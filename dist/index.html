@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141915">
+  <meta name="description" content="Review Journeys in Middle-earth card images, build notes, and card categories.">
+  <title>Journeys Card Review</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141915'/%3E%3Cpath d='M16 14h32v36H16z' fill='%23d8bd78' stroke='%23f1dfad' stroke-width='2'/%3E%3Cpath d='M23 23h18M23 29h18M23 35h13' stroke='%233f4d37' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <div><strong>Journeys Card Review</strong><small>Build images and document notes</small></div>
+    </div>
+    <nav class="view-tabs" aria-label="Views">
+      <button type="button" class="view-tab active" data-view="gallery" aria-current="page">Cards</button>
+      <button type="button" class="view-tab" data-view="document">Document text</button>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="plain-button" id="export-button">Export categories</button>
+      <label class="plain-button import-button">Import categories<input id="import-input" type="file" accept="application/json,.json" hidden></label>
+    </div>
+  </header>
+
+  <main>
+    <section id="gallery-view" class="workspace" aria-label="Card gallery">
+      <aside class="sidebar">
+        <div class="sidebar-heading">Browse cards</div>
+        <nav id="category-list" class="category-list" aria-label="Card categories"></nav>
+        <div class="sidebar-note">Initial categories are suggestions. Changes are saved in this browser; export them to keep a copy.</div>
+      </aside>
+      <div class="gallery-panel">
+        <div class="toolbar">
+          <div class="toolbar-main">
+            <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="card-search" type="search" placeholder="Search cards or heroes" aria-label="Search cards or heroes"></label>
+            <select id="hero-filter" aria-label="Filter by hero"><option value="">All heroes</option></select>
+          </div>
+          <div class="result-meta" id="result-meta" aria-live="polite"></div>
+        </div>
+        <div id="gallery" class="card-grid"></div>
+        <div id="gallery-empty" class="empty-state" hidden>No cards match these filters.</div>
+      </div>
+    </section>
+
+    <section id="document-view" class="document-view" aria-label="Document text" hidden>
+      <div class="document-heading">
+        <div><h1>Document text</h1><p>OCR text beside each captured section. Check names, numbers, and wording against the image.</p></div>
+        <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="document-search" type="search" placeholder="Search document text" aria-label="Search document text"></label>
+      </div>
+      <div id="document-sections" class="document-sections"></div>
+      <div id="document-empty" class="empty-state" hidden>No document sections match this search.</div>
+    </section>
+  </main>
+
+  <dialog id="card-dialog" class="card-dialog" aria-label="Card details">
+    <div class="dialog-shell">
+      <div class="dialog-top"><span id="dialog-counter"></span><button type="button" id="close-dialog" class="icon-button" aria-label="Close card">×</button></div>
+      <div class="dialog-content">
+        <div class="dialog-art"><img id="dialog-image" alt=""></div>
+        <div class="dialog-info">
+          <div class="eyebrow" id="dialog-hero"></div>
+          <h2 id="dialog-title"></h2>
+          <p class="ocr-note" id="dialog-ocr-note"></p>
+          <div class="detail-label">Category</div>
+          <div id="dialog-categories" class="category-choices"></div>
+          <div class="detail-label">Source</div>
+          <button type="button" id="source-button" class="source-link"></button>
+          <div class="dialog-nav"><button type="button" id="prev-card">← Previous</button><button type="button" id="next-card">Next →</button></div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

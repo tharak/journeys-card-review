@@ -14,8 +14,9 @@ const VALID = new Set(CATEGORIES.slice(1, -1).map(item => item.id));
 const SHORTCUTS = { q: 'role', w: 'one-handed', e: 'two-handed', r: 'armor', t: 'trinket', y: 'mount' };
 const STORAGE_KEY = 'journeys-card-review-categories-v1';
 const DELETED_KEY = 'journeys-card-review-deleted-v1';
+const SUBCATEGORY_KEY = 'journeys-card-review-subcategories-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, overrides: {}, deleted: new Set(), category: 'all', search: '', view: 'gallery', visible: [], selected: null };
+const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, roleSubcategories: [], heroNames: [], deleted: new Set(), category: 'all', subcategory: '', search: '', view: 'gallery', visible: [], selected: null };
 let toastTimer;
 
 function showToast(message) {
@@ -27,6 +28,19 @@ function showToast(message) {
 }
 
 function categoryFor(card) { return state.overrides[card.id] || card.category; }
+function subcategoryFor(card) {
+  if (categoryFor(card) === 'hero') return state.heroNames.includes(card.title) ? card.title : '';
+  if (categoryFor(card) === 'role') return state.subcategoryOverrides[card.id] ?? card.subcategory ?? '';
+  return '';
+}
+function fillRoleSelect(select, card) {
+  select.replaceChildren();
+  for (const name of ['', ...state.roleSubcategories]) {
+    const option = document.createElement('option'); option.value = name; option.textContent = name || 'Unassigned role';
+    select.append(option);
+  }
+  select.value = subcategoryFor(card);
+}
 function canonicalId(id) { return state.aliases[id] || id; }
 function normalizeCategory(category) { return category === 'weapon' ? 'unsorted' : category; }
 function titleFor(card) {
@@ -45,6 +59,23 @@ function saveOverrides() {
 function saveDeleted() {
   try { localStorage.setItem(DELETED_KEY, JSON.stringify([...state.deleted])); }
   catch { showToast('This browser could not save deletions. Export a copy.'); }
+}
+
+function saveSubcategories() {
+  try { localStorage.setItem(SUBCATEGORY_KEY, JSON.stringify(state.subcategoryOverrides)); }
+  catch { showToast('This browser could not save role subcategories. Export a copy.'); }
+}
+
+function setSubcategory(id, subcategory) {
+  const card = state.cards.find(item => item.id === id);
+  if (!card || !state.roleSubcategories.includes(subcategory) && subcategory !== '') throw new Error('Invalid role subcategory');
+  if (subcategory === (card.subcategory || '')) delete state.subcategoryOverrides[id];
+  else state.subcategoryOverrides[id] = subcategory;
+  saveSubcategories();
+  const oldIndex = state.visible.findIndex(item => item.id === id);
+  renderCategories(); renderGallery(Math.max(0, oldIndex));
+  if ($('#card-dialog').open && state.selected) renderDialog();
+  showToast(`${titleFor(card)} → ${subcategory || 'Unassigned role'}`);
 }
 
 function toggleDeleted(id) {
@@ -90,8 +121,25 @@ function renderCategories() {
     const label = document.createElement('span'); label.textContent = category.label;
     const tally = document.createElement('span'); tally.className = 'category-count'; tally.textContent = count;
     button.append(icon, label, tally);
-    button.addEventListener('click', () => { state.category = category.id; renderCategories(); renderGallery(); });
+    button.addEventListener('click', () => { state.category = category.id; state.subcategory = ''; renderCategories(); renderGallery(); });
     container.append(button);
+    if (state.category !== category.id || !['hero', 'role'].includes(category.id)) continue;
+    const children = document.createElement('div'); children.className = 'subcategory-list';
+    const names = category.id === 'hero' ? state.heroNames : state.roleSubcategories;
+    const choices = category.id === 'role' ? [...names, ''] : names;
+    for (const name of choices) {
+      const value = name || '__unassigned__';
+      const count = state.cards.filter(card => !state.deleted.has(card.id) && categoryFor(card) === category.id && subcategoryFor(card) === name).length;
+      const child = document.createElement('button'); child.type = 'button';
+      child.className = `subcategory-button${state.subcategory === value ? ' active' : ''}`;
+      child.setAttribute('aria-pressed', String(state.subcategory === value));
+      child.textContent = name || 'Unassigned role';
+      const tally = document.createElement('span'); tally.className = 'category-count'; tally.textContent = count;
+      child.append(tally);
+      child.addEventListener('click', () => { state.subcategory = value; renderCategories(); renderGallery(); });
+      children.append(child);
+    }
+    container.append(children);
   }
 }
 
@@ -100,7 +148,8 @@ function matchingCards() {
   return state.cards.filter(card => {
     if (state.deleted.has(card.id) !== (state.category === 'deleted')) return false;
     if (state.category !== 'all' && state.category !== 'deleted' && categoryFor(card) !== state.category) return false;
-    if (term && !`${card.title} ${titleFor(card)} ${card.id} ${labelFor(categoryFor(card))}`.toLocaleLowerCase().includes(term)) return false;
+    if (state.subcategory && subcategoryFor(card) !== (state.subcategory === '__unassigned__' ? '' : state.subcategory)) return false;
+    if (term && !`${card.title} ${titleFor(card)} ${card.id} ${labelFor(categoryFor(card))} ${subcategoryFor(card)}`.toLocaleLowerCase().includes(term)) return false;
     return true;
   });
 }
@@ -121,7 +170,7 @@ function createCardTile(card) {
   const body = document.createElement('div'); body.className = 'tile-body';
   const title = document.createElement('span'); title.className = 'tile-title'; title.textContent = titleFor(card); title.title = titleFor(card);
   const meta = document.createElement('div'); meta.className = 'tile-meta';
-  const category = document.createElement('span'); category.textContent = labelFor(categoryFor(card));
+  const category = document.createElement('span'); category.textContent = categoryFor(card) === 'hero' ? 'Hero' : [labelFor(categoryFor(card)), subcategoryFor(card)].filter(Boolean).join(' · ');
   const id = document.createElement('span'); id.textContent = `· ${card.id.replace('character-', 'Hero ').replace('card-', '#')}`;
   meta.append(category, id);
   const select = document.createElement('select'); select.className = `tile-category${categoryFor(card) === 'unsorted' ? ' unsorted' : ''}`;
@@ -136,7 +185,16 @@ function createCardTile(card) {
     const restore = document.createElement('button'); restore.type = 'button'; restore.className = 'tile-restore'; restore.textContent = 'Restore card';
     restore.addEventListener('click', () => toggleDeleted(card.id));
     body.append(title, meta, restore);
-  } else body.append(title, meta, select);
+  } else {
+    body.append(title, meta, select);
+    if (categoryFor(card) === 'role') {
+      const roleSelect = document.createElement('select'); roleSelect.className = 'tile-subcategory';
+      roleSelect.setAttribute('aria-label', `Role subcategory for ${titleFor(card)}`);
+      fillRoleSelect(roleSelect, card);
+      roleSelect.addEventListener('change', () => { setCurrentCard(card.id); setSubcategory(card.id, roleSelect.value); });
+      body.append(roleSelect);
+    }
+  }
   tile.append(imageButton, body);
   return tile;
 }
@@ -193,6 +251,13 @@ function renderDialog() {
     button.disabled = state.deleted.has(card.id);
     button.addEventListener('click', () => { setCategories({ [card.id]: category.id }); showToast(`Saved as ${category.label}`); });
     choices.append(button);
+  }
+  const roleWrap = $('#dialog-role-wrap');
+  roleWrap.hidden = categoryFor(card) !== 'role' || state.deleted.has(card.id);
+  if (!roleWrap.hidden) {
+    const roleSelect = $('#dialog-role-select');
+    fillRoleSelect(roleSelect, card);
+    roleSelect.onchange = () => setSubcategory(card.id, roleSelect.value);
   }
   const source = $('#source-button'); source.textContent = `Document section ${card.section}`;
   source.onclick = () => { $('#card-dialog').close(); switchView('document'); document.getElementById(`section-${card.section}`)?.scrollIntoView(); };
@@ -290,10 +355,18 @@ async function start() {
     if (!response.ok) throw new Error('Card data could not load.');
     const data = await response.json();
     state.cards = data.cards; state.sections = data.sections; state.aliases = data.aliases || {};
+    state.roleSubcategories = data.roleSubcategories || [];
+    state.heroNames = state.cards.filter(card => card.id.startsWith('character-')).map(card => card.title).sort((a, b) => a.localeCompare(b));
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
         state.overrides = Object.fromEntries(Object.entries(saved).map(([id, category]) => [canonicalId(id), normalizeCategory(category)]).filter(([id, category]) => state.cards.some(card => card.id === id) && VALID.has(category)));
+      }
+    } catch { /* The gallery still works if storage is unavailable. */ }
+    try {
+      const saved = JSON.parse(localStorage.getItem(SUBCATEGORY_KEY) || '{}');
+      if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+        state.subcategoryOverrides = Object.fromEntries(Object.entries(saved).map(([id, name]) => [canonicalId(id), name]).filter(([id, name]) => state.cards.some(card => card.id === id) && (name === '' || state.roleSubcategories.includes(name))));
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
     try {
@@ -327,7 +400,7 @@ document.addEventListener('keydown', event => {
   if (category && !event.repeat) { event.preventDefault(); categorizeCurrent(category); }
 });
 $('#export-button').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v3', categories: state.overrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v4', categories: state.overrides, subcategories: state.subcategoryOverrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a'); link.href = url; link.download = 'journeys-card-review.json'; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -337,14 +410,20 @@ $('#import-input').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;
   try {
     const data = JSON.parse(await file.text());
-    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
+    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3', 'journeys-card-review-v4'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
+    if (['journeys-card-review-v3', 'journeys-card-review-v4'].includes(data.format) && !Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
+    if (data.format === 'journeys-card-review-v4' && (!data.subcategories || typeof data.subcategories !== 'object' || Array.isArray(data.subcategories) || Object.values(data.subcategories).some(name => name !== '' && !state.roleSubcategories.includes(name)))) throw new Error('Invalid subcategories');
     const changes = Object.fromEntries(Object.entries(data.categories).map(([id, category]) => [canonicalId(id), normalizeCategory(category)]).filter(([id]) => state.cards.some(card => card.id === id)));
     setCategories(changes);
-    if (data.format === 'journeys-card-review-v3') {
-      if (!Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
+    if (['journeys-card-review-v3', 'journeys-card-review-v4'].includes(data.format)) {
       state.deleted = new Set(data.deleted.filter(id => state.cards.some(card => card.id === id)));
-      saveDeleted(); renderCategories(); renderGallery();
+      saveDeleted();
     }
+    if (data.format === 'journeys-card-review-v4') {
+      state.subcategoryOverrides = Object.fromEntries(Object.entries(data.subcategories).map(([id, name]) => [canonicalId(id), name]).filter(([id]) => state.cards.some(card => card.id === id)));
+      saveSubcategories();
+    }
+    renderCategories(); renderGallery();
     showToast('Review imported');
   } catch { showToast('Could not import this review file'); }
   event.target.value = '';

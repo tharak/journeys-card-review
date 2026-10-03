@@ -31,7 +31,7 @@
       <aside class="sidebar">
         <div class="sidebar-heading">Browse cards</div>
         <nav id="category-list" class="category-list" aria-label="Card categories"></nav>
-        <div class="sidebar-note">Initial categories are suggestions. Deleted cards can be restored from Deleted. Changes are saved in this browser; export them to keep a copy.</div>
+        <div class="sidebar-note">Open Hero or Role to browse subcategories. Role labels can be changed on each card. Deleted cards can be restored from Deleted. Changes are saved in this browser; export them to keep a copy.</div>
       </aside>
       <div class="gallery-panel">
         <div class="toolbar">
@@ -70,6 +70,7 @@
           <p class="ocr-note" id="dialog-ocr-note"></p>
           <div class="detail-label">Category</div>
           <div id="dialog-categories" class="category-choices"></div>
+          <div id="dialog-role-wrap" hidden><label class="detail-label" for="dialog-role-select">Role subcategory</label><select id="dialog-role-select" aria-label="Role subcategory"></select></div>
           <div class="detail-label">Source</div>
           <button type="button" id="source-button" class="source-link"></button>
           <button type="button" id="delete-card" class="delete-card-button">Delete card</button>

@@ -34,18 +34,19 @@ function showToast(message) {
 
 function categoryFor(card) { return state.overrides[card.id] || card.category; }
 function subcategoryFor(card) {
-  if (['hero', 'hero-card'].includes(categoryFor(card))) {
+  const category = categoryFor(card);
+  if (['hero', 'hero-card'].includes(category)) {
     const saved = state.subcategoryOverrides[card.id];
     if (saved === '' || state.heroNames.includes(saved)) return saved;
-    if (categoryFor(card) === 'hero' && state.heroNames.includes(card.title)) return card.title;
+    if (category === 'hero' && state.heroNames.includes(card.title)) return card.title;
     return state.heroNames.includes(card.subcategory) ? card.subcategory : '';
   }
-  if (categoryFor(card) === 'role') {
+  if (category === 'role') {
     const saved = state.subcategoryOverrides[card.id];
     if (saved === '' || state.roleSubcategories.includes(saved)) return saved;
     return card.subcategory || '';
   }
-  return '';
+  return typeof state.subcategoryOverrides[card.id] === 'string' ? state.subcategoryOverrides[card.id] : '';
 }
 function fillSubcategorySelect(select, card) {
   select.replaceChildren();
@@ -97,8 +98,9 @@ function setSubcategory(id, subcategory) {
   const card = state.cards.find(item => item.id === id);
   const category = card && categoryFor(card);
   const names = ['hero', 'hero-card'].includes(category) ? state.heroNames : category === 'role' ? state.roleSubcategories : [];
-  if (!card || !['hero', 'hero-card', 'role'].includes(category) || subcategory !== '' && !names.includes(subcategory)) throw new Error('Invalid subcategory');
-  const original = category === 'hero' ? (state.heroNames.includes(card.title) ? card.title : '') : (category === 'hero-card' ? (state.heroNames.includes(card.subcategory) ? card.subcategory : '') : (card.subcategory || ''));
+  const predefined = ['hero', 'hero-card', 'role'].includes(category);
+  if (!card || typeof subcategory !== 'string' || predefined && subcategory !== '' && !names.includes(subcategory)) throw new Error('Invalid subcategory');
+  const original = category === 'hero' ? (state.heroNames.includes(card.title) ? card.title : '') : (category === 'hero-card' ? (state.heroNames.includes(card.subcategory) ? card.subcategory : '') : (category === 'role' ? (card.subcategory || '') : ''));
   if (subcategory === original) delete state.subcategoryOverrides[id];
   else state.subcategoryOverrides[id] = subcategory;
   saveSubcategories();
@@ -153,9 +155,11 @@ function renderCategories() {
     button.append(icon, label, tally);
     button.addEventListener('click', () => { state.category = category.id; state.subcategory = ''; renderCategories(); renderGallery(); });
     container.append(button);
-    if (state.category !== category.id || !['hero', 'hero-card', 'role'].includes(category.id)) continue;
+    if (state.category !== category.id || ['all', 'deleted'].includes(category.id)) continue;
     const children = document.createElement('div'); children.className = 'subcategory-list';
-    const names = ['hero', 'hero-card'].includes(category.id) ? state.heroNames : state.roleSubcategories;
+    const names = ['hero', 'hero-card'].includes(category.id) ? state.heroNames
+      : category.id === 'role' ? state.roleSubcategories
+      : [...new Set(state.cards.filter(card => !state.deleted.has(card.id) && categoryFor(card) === category.id).map(subcategoryFor).filter(Boolean))].sort((a, b) => a.localeCompare(b));
     const choices = [...names, ''];
     for (const name of choices) {
       const value = name || '__unassigned__';
@@ -321,6 +325,12 @@ function createCardTile(card) {
       fillSubcategorySelect(subcategorySelect, card);
       subcategorySelect.addEventListener('change', () => { setCurrentCard(card.id); setSubcategory(card.id, subcategorySelect.value); });
       body.append(subcategorySelect);
+    } else {
+      const subcategoryInput = document.createElement('input'); subcategoryInput.type = 'text'; subcategoryInput.className = 'tile-subcategory';
+      subcategoryInput.placeholder = 'Subcategory'; subcategoryInput.value = subcategoryFor(card);
+      subcategoryInput.setAttribute('aria-label', `Subcategory for ${titleFor(card)}`);
+      subcategoryInput.addEventListener('change', () => { setCurrentCard(card.id); setSubcategory(card.id, subcategoryInput.value.trim()); });
+      body.append(subcategoryInput);
     }
   }
   tile.append(imageButton, body);
@@ -399,13 +409,30 @@ function renderDialog() {
     choices.append(button);
   }
   const subcategoryWrap = $('#dialog-subcategory-wrap');
-  subcategoryWrap.hidden = !['hero', 'hero-card', 'role'].includes(categoryFor(card)) || state.deleted.has(card.id);
+  subcategoryWrap.hidden = state.deleted.has(card.id);
   if (!subcategoryWrap.hidden) {
     const subcategorySelect = $('#dialog-subcategory-select');
     $('#dialog-subcategory-label').textContent = `${labelFor(categoryFor(card))} subcategory`;
-    subcategorySelect.setAttribute('aria-label', `${labelFor(categoryFor(card))} subcategory`);
-    fillSubcategorySelect(subcategorySelect, card);
-    subcategorySelect.onchange = () => setSubcategory(card.id, subcategorySelect.value);
+    const subcategoryInput = $('#dialog-subcategory-input');
+    const predefined = ['hero', 'hero-card', 'role'].includes(categoryFor(card));
+    $('#dialog-subcategory-label').htmlFor = predefined ? 'dialog-subcategory-select' : 'dialog-subcategory-input';
+    subcategorySelect.hidden = !predefined;
+    subcategoryInput.hidden = predefined;
+    if (predefined) {
+      subcategorySelect.setAttribute('aria-label', `${labelFor(categoryFor(card))} subcategory`);
+      fillSubcategorySelect(subcategorySelect, card);
+      subcategorySelect.onchange = () => setSubcategory(card.id, subcategorySelect.value);
+    } else {
+      subcategoryInput.value = subcategoryFor(card);
+      subcategoryInput.placeholder = `Enter ${labelFor(categoryFor(card)).toLocaleLowerCase()} subcategory`;
+      subcategoryInput.setAttribute('aria-label', `${labelFor(categoryFor(card))} subcategory`);
+      subcategoryInput.oninput = () => {
+        if (subcategoryInput.value) state.subcategoryOverrides[card.id] = subcategoryInput.value;
+        else delete state.subcategoryOverrides[card.id];
+        saveSubcategories();
+      };
+      subcategoryInput.onchange = () => setSubcategory(card.id, subcategoryInput.value.trim());
+    }
   }
   const source = $('#source-button'); source.textContent = `Document section ${card.section}`;
   source.onclick = () => { $('#card-dialog').close(); switchView('document'); document.getElementById(`section-${card.section}`)?.scrollIntoView(); };
@@ -530,7 +557,12 @@ async function start() {
     try {
       const saved = JSON.parse(localStorage.getItem(SUBCATEGORY_KEY) || '{}');
       if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
-        state.subcategoryOverrides = Object.fromEntries(Object.entries(saved).map(([id, name]) => [canonicalId(id), name]).filter(([id, name]) => state.cards.some(card => card.id === id) && (name === '' || state.roleSubcategories.includes(name) || state.heroNames.includes(name))));
+        state.subcategoryOverrides = Object.fromEntries(Object.entries(saved).filter(([id, name]) => {
+          const card = state.cards.find(item => item.id === id);
+          if (!card || typeof name !== 'string') return false;
+          const category = categoryFor(card);
+          return !['hero', 'hero-card', 'role'].includes(category) || name === '' || (category === 'role' ? state.roleSubcategories : state.heroNames).includes(name);
+        }));
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
     try {
@@ -588,7 +620,7 @@ document.addEventListener('keydown', event => {
   if (category && !event.repeat) { event.preventDefault(); categorizeCurrent(category); }
 });
 $('#export-button').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v7', categories: state.overrides, subcategories: state.subcategoryOverrides, cardTexts: state.textOverrides, titles: state.titleOverrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v8', categories: state.overrides, subcategories: state.subcategoryOverrides, cardTexts: state.textOverrides, titles: state.titleOverrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a'); link.href = url; link.download = 'journeys-card-review.json'; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -598,27 +630,27 @@ $('#import-input').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;
   try {
     const data = JSON.parse(await file.text());
-    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
-    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) && !Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
-    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) && (!data.subcategories || typeof data.subcategories !== 'object' || Array.isArray(data.subcategories) || Object.values(data.subcategories).some(name => name !== '' && !state.roleSubcategories.includes(name) && !state.heroNames.includes(name)))) throw new Error('Invalid subcategories');
-    if (['journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) && (!data.cardTexts || typeof data.cardTexts !== 'object' || Array.isArray(data.cardTexts) || Object.values(data.cardTexts).some(text => typeof text !== 'string'))) throw new Error('Invalid card text');
-    if (data.format === 'journeys-card-review-v7' && (!data.titles || typeof data.titles !== 'object' || Array.isArray(data.titles) || Object.values(data.titles).some(title => typeof title !== 'string'))) throw new Error('Invalid titles');
+    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
+    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) && !Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
+    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) && (!data.subcategories || typeof data.subcategories !== 'object' || Array.isArray(data.subcategories) || Object.values(data.subcategories).some(name => typeof name !== 'string' || !['journeys-card-review-v8'].includes(data.format) && name !== '' && !state.roleSubcategories.includes(name) && !state.heroNames.includes(name)))) throw new Error('Invalid subcategories');
+    if (['journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) && (!data.cardTexts || typeof data.cardTexts !== 'object' || Array.isArray(data.cardTexts) || Object.values(data.cardTexts).some(text => typeof text !== 'string'))) throw new Error('Invalid card text');
+    if (['journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) && (!data.titles || typeof data.titles !== 'object' || Array.isArray(data.titles) || Object.values(data.titles).some(title => typeof title !== 'string'))) throw new Error('Invalid titles');
     const changes = Object.fromEntries(Object.entries(data.categories).map(([id, category]) => [canonicalId(id), normalizeCategory(category)]).filter(([id]) => state.cards.some(card => card.id === id)));
     setCategories(changes);
-    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format)) {
+    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format)) {
       const importedDeleted = data.deleted.filter(id => state.cards.some(card => card.id === id));
-      state.deleted = new Set(['journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) ? importedDeleted : [...state.duplicateIds, ...importedDeleted]);
+      state.deleted = new Set(['journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) ? importedDeleted : [...state.duplicateIds, ...importedDeleted]);
       saveDeleted();
     }
-    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format)) {
-      state.subcategoryOverrides = Object.fromEntries(Object.entries(data.subcategories).map(([id, name]) => [canonicalId(id), name]).filter(([id]) => state.cards.some(card => card.id === id)));
+    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format)) {
+      state.subcategoryOverrides = Object.fromEntries(Object.entries(data.subcategories).filter(([id]) => state.cards.some(card => card.id === id)));
       saveSubcategories();
     }
-    if (['journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format)) {
+    if (['journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format)) {
       state.textOverrides = Object.fromEntries(Object.entries(data.cardTexts).filter(([id]) => state.cards.some(card => card.id === id)));
       saveCardTexts();
     }
-    if (data.format === 'journeys-card-review-v7') {
+    if (['journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format)) {
       state.titleOverrides = Object.fromEntries(Object.entries(data.titles).filter(([id, title]) => state.cards.some(card => card.id === id) && title.trim()));
       saveTitles();
     }

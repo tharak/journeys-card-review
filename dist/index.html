@@ -21,8 +21,8 @@
       <button type="button" class="view-tab" data-view="document">Document text</button>
     </nav>
     <div class="header-actions">
-      <button type="button" class="plain-button" id="export-button">Export categories</button>
-      <label class="plain-button import-button">Import categories<input id="import-input" type="file" accept="application/json,.json" hidden></label>
+      <button type="button" class="plain-button" id="export-button">Export review</button>
+      <label class="plain-button import-button">Import review<input id="import-input" type="file" accept="application/json,.json" hidden></label>
     </div>
   </header>
 
@@ -31,7 +31,7 @@
       <aside class="sidebar">
         <div class="sidebar-heading">Browse cards</div>
         <nav id="category-list" class="category-list" aria-label="Card categories"></nav>
-        <div class="sidebar-note">Initial categories are suggestions. Changes are saved in this browser; export them to keep a copy.</div>
+        <div class="sidebar-note">Initial categories are suggestions. Deleted cards can be restored from Deleted. Changes are saved in this browser; export them to keep a copy.</div>
       </aside>
       <div class="gallery-panel">
         <div class="toolbar">
@@ -42,7 +42,7 @@
           <div class="result-meta" id="result-meta" aria-live="polite"></div>
         </div>
         <div class="keyboard-guide" aria-label="Keyboard controls">
-          <div class="keyboard-keys"><span><kbd>←</kbd><kbd>→</kbd> move</span><span><kbd>Q</kbd> Role</span><span><kbd>W</kbd> 1-handed</span><span><kbd>E</kbd> 2-handed</span><span><kbd>R</kbd> Armor</span><span><kbd>T</kbd> Trinket</span></div>
+          <div class="keyboard-keys"><span><kbd>←</kbd><kbd>→</kbd> move</span><span><kbd>Q</kbd> Role</span><span><kbd>W</kbd> 1-handed</span><span><kbd>E</kbd> 2-handed</span><span><kbd>R</kbd> Armor</span><span><kbd>T</kbd> Trinket</span><span><kbd>Y</kbd> Mount</span><span><kbd>Del</kbd> delete</span></div>
           <strong id="current-card-label" aria-live="polite"></strong>
         </div>
         <div id="gallery" class="card-grid"></div>
@@ -73,6 +73,7 @@
           <div id="dialog-categories" class="category-choices"></div>
           <div class="detail-label">Source</div>
           <button type="button" id="source-button" class="source-link"></button>
+          <button type="button" id="delete-card" class="delete-card-button">Delete card</button>
           <div class="dialog-nav"><button type="button" id="prev-card">← Previous</button><button type="button" id="next-card">Next →</button></div>
         </div>
       </div>

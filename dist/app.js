@@ -19,7 +19,7 @@ const SUBCATEGORY_KEY = 'journeys-card-review-subcategories-v1';
 const BUILD_KEY = 'journeys-card-review-build-v1';
 const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weapons: ['', ''], armor: '', trinket: '', mount: '' } };
+const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weapons: ['', ''], armor: '', trinket: '', mount: '' } };
 let toastTimer;
 
 function showToast(message) {
@@ -162,13 +162,16 @@ function renderCategories() {
 
 function matchingCards() {
   const term = state.search.toLocaleLowerCase();
-  return state.cards.filter(card => {
+  const cards = state.cards.filter(card => {
     if (state.deleted.has(card.id) !== (state.category === 'deleted')) return false;
     if (state.category !== 'all' && state.category !== 'deleted' && categoryFor(card) !== state.category) return false;
     if (state.subcategory && subcategoryFor(card) !== (state.subcategory === '__unassigned__' ? '' : state.subcategory)) return false;
     if (term && !`${card.title} ${titleFor(card)} ${card.id} ${labelFor(categoryFor(card))} ${subcategoryFor(card)}`.toLocaleLowerCase().includes(term)) return false;
     return true;
   });
+  if (state.sort === 'title-asc') cards.sort((a, b) => titleFor(a).localeCompare(titleFor(b)));
+  if (state.sort === 'title-desc') cards.sort((a, b) => titleFor(b).localeCompare(titleFor(a)));
+  return cards;
 }
 
 function availableCards(category) {
@@ -524,6 +527,7 @@ for (const [id, key] of [['build-armor', 'armor'], ['build-trinket', 'trinket'],
   $(`#${id}`).addEventListener('change', event => { state.build[key] = event.target.value; saveBuild(); renderBuilds(); });
 }
 $('#card-search').addEventListener('input', event => { state.search = event.target.value.trim(); renderGallery(); });
+$('#card-sort').addEventListener('change', event => { state.sort = event.target.value; renderGallery(); });
 $('#document-search').addEventListener('input', renderDocument);
 $('#close-dialog').addEventListener('click', () => $('#card-dialog').close());
 $('#prev-card').addEventListener('click', () => moveCard(-1));

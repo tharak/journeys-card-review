@@ -188,6 +188,14 @@ function matchingCards() {
   });
   if (state.sort === 'title-asc') cards.sort((a, b) => titleFor(a).localeCompare(titleFor(b)));
   if (state.sort === 'title-desc') cards.sort((a, b) => titleFor(b).localeCompare(titleFor(a)));
+  if (state.sort === 'category-subcategory') {
+    const categoryOrder = new Map(CATEGORIES.map((category, index) => [category.id, index]));
+    cards.sort((a, b) =>
+      (categoryOrder.get(categoryFor(a)) - categoryOrder.get(categoryFor(b)))
+      || subcategoryFor(a).localeCompare(subcategoryFor(b))
+      || titleFor(a).localeCompare(titleFor(b))
+    );
+  }
   return cards;
 }
 

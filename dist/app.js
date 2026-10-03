@@ -21,7 +21,7 @@ const TITLE_KEY = 'journeys-card-review-titles-v1';
 const BUILD_KEY = 'journeys-card-review-build-v1';
 const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weaponSubcategories: ['', ''], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
+const state = { cards: [], sections: [], aliases: {}, sourceData: null, overrides: {}, subcategoryOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weaponSubcategories: ['', ''], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
 let toastTimer;
 
 function showToast(message) {
@@ -46,8 +46,9 @@ function subcategoryFor(card) {
     if (saved === '' || state.roleSubcategories.includes(saved)) return saved;
     return card.subcategory || '';
   }
-  return typeof state.subcategoryOverrides[card.id] === 'string' ? state.subcategoryOverrides[card.id] : '';
+  return typeof state.subcategoryOverrides[card.id] === 'string' ? state.subcategoryOverrides[card.id] : (category === card.category ? (card.subcategory || '') : '');
 }
+function cardTextFor(card) { return Object.hasOwn(state.textOverrides, card.id) ? state.textOverrides[card.id] : (card.text || ''); }
 function fillSubcategorySelect(select, card) {
   select.replaceChildren();
   const category = categoryFor(card);
@@ -62,6 +63,7 @@ function canonicalId(id) { return state.aliases[id] || id; }
 function normalizeCategory(category) { return category === 'weapon' ? 'unsorted' : category; }
 function titleFor(card) {
   if (Object.hasOwn(state.titleOverrides, card.id)) return state.titleOverrides[card.id];
+  if (typeof card.displayTitle === 'string') return card.displayTitle;
   if (card.category === 'hero') return card.title;
   let title = (card.ocrTitle || '').replace(/^[a-zA-Z]\s+/, '').replace(/^[^A-ZÀ-Ý]+/, '').trim();
   if (/^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'’ -]{2,36}$/.test(title) && !/\b(?:l|ii|iii)\b/i.test(title)) return title;
@@ -183,7 +185,7 @@ function matchingCards() {
     if (state.deleted.has(card.id) !== (state.category === 'deleted')) return false;
     if (state.category !== 'all' && state.category !== 'deleted' && categoryFor(card) !== state.category) return false;
     if (state.subcategory && subcategoryFor(card) !== (state.subcategory === '__unassigned__' ? '' : state.subcategory)) return false;
-    if (term && !`${card.title} ${titleFor(card)} ${card.id} ${labelFor(categoryFor(card))} ${subcategoryFor(card)} ${state.textOverrides[card.id] || ''}`.toLocaleLowerCase().includes(term)) return false;
+    if (term && !`${card.title} ${titleFor(card)} ${card.id} ${labelFor(categoryFor(card))} ${subcategoryFor(card)} ${cardTextFor(card)}`.toLocaleLowerCase().includes(term)) return false;
     return true;
   });
   if (state.sort === 'title-asc') cards.sort((a, b) => titleFor(a).localeCompare(titleFor(b)));
@@ -421,10 +423,9 @@ function renderDialog() {
   titleInput.onchange = () => { renderGallery(); renderDialog(); };
   $('#dialog-ocr-note').textContent = card.category === 'hero' ? 'Character sheet from the document.' : card.ocrTitle ? `OCR title: ${card.ocrTitle}. Check it against the image.` : 'The title could not be read automatically. Check the image.';
   const cardText = $('#dialog-card-text');
-  cardText.value = state.textOverrides[card.id] || '';
+  cardText.value = cardTextFor(card);
   cardText.oninput = () => {
-    if (cardText.value) state.textOverrides[card.id] = cardText.value;
-    else delete state.textOverrides[card.id];
+    state.textOverrides[card.id] = cardText.value;
     saveCardTexts();
   };
   const choices = $('#dialog-categories'); choices.replaceChildren();
@@ -560,6 +561,7 @@ async function start() {
     const response = await fetch('data.json');
     if (!response.ok) throw new Error('Card data could not load.');
     const data = await response.json();
+    state.sourceData = data;
     state.cards = data.cards; state.sections = data.sections; state.aliases = data.aliases || {};
     state.duplicateIds = (data.deletedCards || []).filter(id => state.cards.some(card => card.id === id));
     state.roleSubcategories = data.roleSubcategories || [];
@@ -668,6 +670,30 @@ $('#export-button').addEventListener('click', () => {
   const link = document.createElement('a'); link.href = url; link.download = 'journeys-card-review.json'; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   showToast('Review exported');
+});
+$('#export-data-button').addEventListener('click', () => {
+  if (!state.sourceData) { showToast('Card data has not loaded yet.'); return; }
+  const exported = { ...state.sourceData };
+  exported.cards = state.cards.map(card => {
+    const updated = { ...card, category: categoryFor(card) };
+    const subcategory = subcategoryFor(card);
+    if (subcategory) updated.subcategory = subcategory;
+    else delete updated.subcategory;
+    const title = titleFor(card);
+    if (title) updated.displayTitle = title;
+    else delete updated.displayTitle;
+    if (Object.hasOwn(state.textOverrides, card.id)) updated.text = state.textOverrides[card.id];
+    else if (typeof updated.text !== 'string') delete updated.text;
+    return updated;
+  });
+  exported.roleSubcategories = state.roleSubcategories;
+  exported.aliases = state.aliases;
+  exported.deletedCards = [...state.deleted];
+  const blob = new Blob([JSON.stringify(exported, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a'); link.href = url; link.download = 'data.json'; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  showToast('Site data exported');
 });
 $('#import-input').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;

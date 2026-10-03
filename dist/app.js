@@ -15,7 +15,7 @@ const SHORTCUTS = { q: 'role', w: 'one-handed', e: 'two-handed', r: 'armor', t: 
 const STORAGE_KEY = 'journeys-card-review-categories-v1';
 const DELETED_KEY = 'journeys-card-review-deleted-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, overrides: {}, deleted: new Set(), category: 'all', hero: '', search: '', view: 'gallery', visible: [], selected: null };
+const state = { cards: [], sections: [], aliases: {}, overrides: {}, deleted: new Set(), category: 'all', search: '', view: 'gallery', visible: [], selected: null };
 let toastTimer;
 
 function showToast(message) {
@@ -27,7 +27,6 @@ function showToast(message) {
 }
 
 function categoryFor(card) { return state.overrides[card.id] || card.category; }
-function heroesFor(card) { return card.heroes || (card.category === 'hero' ? [card.title] : []); }
 function canonicalId(id) { return state.aliases[id] || id; }
 function normalizeCategory(category) { return category === 'weapon' ? 'unsorted' : category; }
 function titleFor(card) {
@@ -101,8 +100,7 @@ function matchingCards() {
   return state.cards.filter(card => {
     if (state.deleted.has(card.id) !== (state.category === 'deleted')) return false;
     if (state.category !== 'all' && state.category !== 'deleted' && categoryFor(card) !== state.category) return false;
-    if (state.hero && !heroesFor(card).includes(state.hero)) return false;
-    if (term && !`${card.title} ${titleFor(card)} ${heroesFor(card).join(' ')} ${card.id} ${labelFor(categoryFor(card))}`.toLocaleLowerCase().includes(term)) return false;
+    if (term && !`${card.title} ${titleFor(card)} ${card.id} ${labelFor(categoryFor(card))}`.toLocaleLowerCase().includes(term)) return false;
     return true;
   });
 }
@@ -123,9 +121,9 @@ function createCardTile(card) {
   const body = document.createElement('div'); body.className = 'tile-body';
   const title = document.createElement('span'); title.className = 'tile-title'; title.textContent = titleFor(card); title.title = titleFor(card);
   const meta = document.createElement('div'); meta.className = 'tile-meta';
-  const hero = document.createElement('span'); hero.textContent = heroesFor(card).join(', ');
+  const category = document.createElement('span'); category.textContent = labelFor(categoryFor(card));
   const id = document.createElement('span'); id.textContent = `· ${card.id.replace('character-', 'Hero ').replace('card-', '#')}`;
-  meta.append(hero, id);
+  meta.append(category, id);
   const select = document.createElement('select'); select.className = `tile-category${categoryFor(card) === 'unsorted' ? ' unsorted' : ''}`;
   select.setAttribute('aria-label', `Category for ${titleFor(card)}`);
   for (const category of CATEGORIES.slice(1, -1)) {
@@ -183,7 +181,7 @@ function renderDialog() {
   $('#dialog-counter').textContent = `Image ${index >= 0 ? index + 1 : 1} of ${state.visible.length || state.cards.length}`;
   $('#dialog-image').src = card.image;
   $('#dialog-image').alt = `${titleFor(card)} card image`;
-  $('#dialog-hero').textContent = heroesFor(card).join(', ');
+  $('#dialog-category').textContent = labelFor(categoryFor(card));
   $('#dialog-title').textContent = titleFor(card);
   $('#dialog-ocr-note').textContent = card.category === 'hero' ? 'Character sheet from the document.' : card.ocrTitle ? `OCR title: ${card.ocrTitle}. Check it against the image.` : 'The title could not be read automatically. Check the image.';
   const choices = $('#dialog-categories'); choices.replaceChildren();
@@ -302,8 +300,6 @@ async function start() {
       const saved = JSON.parse(localStorage.getItem(DELETED_KEY) || '[]');
       if (Array.isArray(saved)) state.deleted = new Set(saved.filter(id => state.cards.some(card => card.id === id)));
     } catch { /* The gallery still works if storage is unavailable. */ }
-    const heroes = [...new Set(state.cards.flatMap(heroesFor))];
-    for (const hero of heroes) { const option = document.createElement('option'); option.value = hero; option.textContent = hero; $('#hero-filter').append(option); }
     renderCategories(); renderGallery(); registerWebMCP();
   } catch (error) {
     $('#gallery-empty').hidden = false;
@@ -314,7 +310,6 @@ async function start() {
 
 document.querySelectorAll('.view-tab').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
 $('#card-search').addEventListener('input', event => { state.search = event.target.value.trim(); renderGallery(); });
-$('#hero-filter').addEventListener('change', event => { state.hero = event.target.value; renderGallery(); });
 $('#document-search').addEventListener('input', renderDocument);
 $('#close-dialog').addEventListener('click', () => $('#card-dialog').close());
 $('#prev-card').addEventListener('click', () => moveCard(-1));

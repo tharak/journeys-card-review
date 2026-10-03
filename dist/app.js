@@ -17,10 +17,11 @@ const STORAGE_KEY = 'journeys-card-review-categories-v1';
 const DELETED_KEY = 'journeys-card-review-deleted-v1';
 const SUBCATEGORY_KEY = 'journeys-card-review-subcategories-v1';
 const CARD_TEXT_KEY = 'journeys-card-review-card-text-v1';
+const TITLE_KEY = 'journeys-card-review-titles-v1';
 const BUILD_KEY = 'journeys-card-review-build-v1';
 const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, textOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weapons: ['', ''], armor: '', trinket: '', mount: '' } };
+const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weapons: ['', ''], armor: '', trinket: '', mount: '' } };
 let toastTimer;
 
 function showToast(message) {
@@ -59,6 +60,7 @@ function fillSubcategorySelect(select, card) {
 function canonicalId(id) { return state.aliases[id] || id; }
 function normalizeCategory(category) { return category === 'weapon' ? 'unsorted' : category; }
 function titleFor(card) {
+  if (Object.hasOwn(state.titleOverrides, card.id)) return state.titleOverrides[card.id];
   if (card.category === 'hero') return card.title;
   let title = (card.ocrTitle || '').replace(/^[a-zA-Z]\s+/, '').replace(/^[^A-ZÀ-Ý]+/, '').trim();
   if (/^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'’ -]{2,36}$/.test(title) && !/\b(?:l|ii|iii)\b/i.test(title)) return title;
@@ -84,6 +86,11 @@ function saveSubcategories() {
 function saveCardTexts() {
   try { localStorage.setItem(CARD_TEXT_KEY, JSON.stringify(state.textOverrides)); }
   catch { showToast('This browser could not save card text. Export a copy.'); }
+}
+
+function saveTitles() {
+  try { localStorage.setItem(TITLE_KEY, JSON.stringify(state.titleOverrides)); }
+  catch { showToast('This browser could not save titles. Export a copy.'); }
 }
 
 function setSubcategory(id, subcategory) {
@@ -361,7 +368,18 @@ function renderDialog() {
   $('#dialog-image').src = card.image;
   $('#dialog-image').alt = `${titleFor(card)} card image`;
   $('#dialog-category').textContent = labelFor(categoryFor(card));
-  $('#dialog-title').textContent = titleFor(card);
+  const titleInput = $('#dialog-title-input');
+  titleInput.value = titleFor(card);
+  titleInput.oninput = () => {
+    const value = titleInput.value.trim();
+    if (value) state.titleOverrides[card.id] = value;
+    else delete state.titleOverrides[card.id];
+    saveTitles();
+    const tileTitle = document.querySelector(`.card-tile[data-card-id="${card.id}"] .tile-title`);
+    if (tileTitle) { tileTitle.textContent = titleFor(card); tileTitle.title = titleFor(card); }
+    $('#current-card-label').textContent = `Current: ${titleFor(card)} · ${card.id.replace('card-', '#').replace('character-', 'Hero ')}`;
+  };
+  titleInput.onchange = () => { renderGallery(); renderDialog(); };
   $('#dialog-ocr-note').textContent = card.category === 'hero' ? 'Character sheet from the document.' : card.ocrTitle ? `OCR title: ${card.ocrTitle}. Check it against the image.` : 'The title could not be read automatically. Check the image.';
   const cardText = $('#dialog-card-text');
   cardText.value = state.textOverrides[card.id] || '';
@@ -504,6 +522,12 @@ async function start() {
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
     try {
+      const saved = JSON.parse(localStorage.getItem(TITLE_KEY) || '{}');
+      if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+        state.titleOverrides = Object.fromEntries(Object.entries(saved).filter(([id, title]) => state.cards.some(card => card.id === id) && typeof title === 'string' && title.trim()));
+      }
+    } catch { /* The gallery still works if storage is unavailable. */ }
+    try {
       const saved = JSON.parse(localStorage.getItem(SUBCATEGORY_KEY) || '{}');
       if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
         state.subcategoryOverrides = Object.fromEntries(Object.entries(saved).map(([id, name]) => [canonicalId(id), name]).filter(([id, name]) => state.cards.some(card => card.id === id) && (name === '' || state.roleSubcategories.includes(name) || state.heroNames.includes(name))));
@@ -564,7 +588,7 @@ document.addEventListener('keydown', event => {
   if (category && !event.repeat) { event.preventDefault(); categorizeCurrent(category); }
 });
 $('#export-button').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v6', categories: state.overrides, subcategories: state.subcategoryOverrides, cardTexts: state.textOverrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v7', categories: state.overrides, subcategories: state.subcategoryOverrides, cardTexts: state.textOverrides, titles: state.titleOverrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a'); link.href = url; link.download = 'journeys-card-review.json'; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -574,27 +598,32 @@ $('#import-input').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;
   try {
     const data = JSON.parse(await file.text());
-    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
-    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6'].includes(data.format) && !Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
-    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6'].includes(data.format) && (!data.subcategories || typeof data.subcategories !== 'object' || Array.isArray(data.subcategories) || Object.values(data.subcategories).some(name => name !== '' && !state.roleSubcategories.includes(name) && !state.heroNames.includes(name)))) throw new Error('Invalid subcategories');
-    if (data.format === 'journeys-card-review-v6' && (!data.cardTexts || typeof data.cardTexts !== 'object' || Array.isArray(data.cardTexts) || Object.values(data.cardTexts).some(text => typeof text !== 'string'))) throw new Error('Invalid card text');
+    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
+    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) && !Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
+    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) && (!data.subcategories || typeof data.subcategories !== 'object' || Array.isArray(data.subcategories) || Object.values(data.subcategories).some(name => name !== '' && !state.roleSubcategories.includes(name) && !state.heroNames.includes(name)))) throw new Error('Invalid subcategories');
+    if (['journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) && (!data.cardTexts || typeof data.cardTexts !== 'object' || Array.isArray(data.cardTexts) || Object.values(data.cardTexts).some(text => typeof text !== 'string'))) throw new Error('Invalid card text');
+    if (data.format === 'journeys-card-review-v7' && (!data.titles || typeof data.titles !== 'object' || Array.isArray(data.titles) || Object.values(data.titles).some(title => typeof title !== 'string'))) throw new Error('Invalid titles');
     const changes = Object.fromEntries(Object.entries(data.categories).map(([id, category]) => [canonicalId(id), normalizeCategory(category)]).filter(([id]) => state.cards.some(card => card.id === id)));
     setCategories(changes);
-    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6'].includes(data.format)) {
+    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format)) {
       const importedDeleted = data.deleted.filter(id => state.cards.some(card => card.id === id));
-      state.deleted = new Set(['journeys-card-review-v5', 'journeys-card-review-v6'].includes(data.format) ? importedDeleted : [...state.duplicateIds, ...importedDeleted]);
+      state.deleted = new Set(['journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format) ? importedDeleted : [...state.duplicateIds, ...importedDeleted]);
       saveDeleted();
     }
-    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6'].includes(data.format)) {
+    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format)) {
       state.subcategoryOverrides = Object.fromEntries(Object.entries(data.subcategories).map(([id, name]) => [canonicalId(id), name]).filter(([id]) => state.cards.some(card => card.id === id)));
       saveSubcategories();
     }
-    if (data.format === 'journeys-card-review-v6') {
+    if (['journeys-card-review-v6', 'journeys-card-review-v7'].includes(data.format)) {
       state.textOverrides = Object.fromEntries(Object.entries(data.cardTexts).filter(([id]) => state.cards.some(card => card.id === id)));
       saveCardTexts();
-      if ($('#card-dialog').open && state.selected) renderDialog();
+    }
+    if (data.format === 'journeys-card-review-v7') {
+      state.titleOverrides = Object.fromEntries(Object.entries(data.titles).filter(([id, title]) => state.cards.some(card => card.id === id) && title.trim()));
+      saveTitles();
     }
     renderCategories(); renderGallery();
+    if ($('#card-dialog').open && state.selected) renderDialog();
     showToast('Review imported');
   } catch { showToast('Could not import this review file'); }
   event.target.value = '';

@@ -12,7 +12,7 @@ const CATEGORIES = [
   { id: 'deleted', label: 'Deleted', icon: '↶' },
 ];
 const VALID = new Set(CATEGORIES.slice(1, -1).map(item => item.id));
-const SHORTCUTS = { q: 'role', w: 'one-handed', e: 'two-handed', r: 'armor', t: 'trinket', y: 'mount' };
+const SHORTCUTS = { q: 'role', w: 'one-handed', e: 'two-handed', r: 'armor', t: 'trinket', y: 'mount', u: 'hero' };
 const STORAGE_KEY = 'journeys-card-review-categories-v1';
 const DELETED_KEY = 'journeys-card-review-deleted-v1';
 const SUBCATEGORY_KEY = 'journeys-card-review-subcategories-v1';

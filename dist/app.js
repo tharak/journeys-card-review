@@ -1,6 +1,7 @@
 const CATEGORIES = [
   { id: 'all', label: 'All cards', icon: '▦' },
   { id: 'hero', label: 'Hero', icon: '♙' },
+  { id: 'hero-card', label: 'Hero-card', icon: '♟' },
   { id: 'role', label: 'Role', icon: '✧' },
   { id: 'one-handed', label: '1-handed', icon: '⚔' },
   { id: 'two-handed', label: '2-handed', icon: '⚔' },

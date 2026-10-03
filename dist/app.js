@@ -16,8 +16,10 @@ const SHORTCUTS = { q: 'role', w: 'one-handed', e: 'two-handed', r: 'armor', t: 
 const STORAGE_KEY = 'journeys-card-review-categories-v1';
 const DELETED_KEY = 'journeys-card-review-deleted-v1';
 const SUBCATEGORY_KEY = 'journeys-card-review-subcategories-v1';
+const BUILD_KEY = 'journeys-card-review-build-v1';
+const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, roleSubcategories: [], heroNames: [], deleted: new Set(), category: 'all', subcategory: '', search: '', view: 'gallery', visible: [], selected: null };
+const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weapons: ['', ''], armor: '', trinket: '', mount: '' } };
 let toastTimer;
 
 function showToast(message) {
@@ -30,10 +32,11 @@ function showToast(message) {
 
 function categoryFor(card) { return state.overrides[card.id] || card.category; }
 function subcategoryFor(card) {
-  if (categoryFor(card) === 'hero') {
+  if (['hero', 'hero-card'].includes(categoryFor(card))) {
     const saved = state.subcategoryOverrides[card.id];
     if (saved === '' || state.heroNames.includes(saved)) return saved;
-    return state.heroNames.includes(card.title) ? card.title : '';
+    if (categoryFor(card) === 'hero' && state.heroNames.includes(card.title)) return card.title;
+    return state.heroNames.includes(card.subcategory) ? card.subcategory : '';
   }
   if (categoryFor(card) === 'role') {
     const saved = state.subcategoryOverrides[card.id];
@@ -45,7 +48,7 @@ function subcategoryFor(card) {
 function fillSubcategorySelect(select, card) {
   select.replaceChildren();
   const category = categoryFor(card);
-  const names = category === 'hero' ? state.heroNames : state.roleSubcategories;
+  const names = ['hero', 'hero-card'].includes(category) ? state.heroNames : state.roleSubcategories;
   for (const name of ['', ...names]) {
     const option = document.createElement('option'); option.value = name; option.textContent = name || `Unassigned ${category}`;
     select.append(option);
@@ -80,9 +83,9 @@ function saveSubcategories() {
 function setSubcategory(id, subcategory) {
   const card = state.cards.find(item => item.id === id);
   const category = card && categoryFor(card);
-  const names = category === 'hero' ? state.heroNames : category === 'role' ? state.roleSubcategories : [];
-  if (!card || !['hero', 'role'].includes(category) || subcategory !== '' && !names.includes(subcategory)) throw new Error('Invalid subcategory');
-  const original = category === 'hero' ? (state.heroNames.includes(card.title) ? card.title : '') : (card.subcategory || '');
+  const names = ['hero', 'hero-card'].includes(category) ? state.heroNames : category === 'role' ? state.roleSubcategories : [];
+  if (!card || !['hero', 'hero-card', 'role'].includes(category) || subcategory !== '' && !names.includes(subcategory)) throw new Error('Invalid subcategory');
+  const original = category === 'hero' ? (state.heroNames.includes(card.title) ? card.title : '') : (category === 'hero-card' ? (state.heroNames.includes(card.subcategory) ? card.subcategory : '') : (card.subcategory || ''));
   if (subcategory === original) delete state.subcategoryOverrides[id];
   else state.subcategoryOverrides[id] = subcategory;
   saveSubcategories();
@@ -137,9 +140,9 @@ function renderCategories() {
     button.append(icon, label, tally);
     button.addEventListener('click', () => { state.category = category.id; state.subcategory = ''; renderCategories(); renderGallery(); });
     container.append(button);
-    if (state.category !== category.id || !['hero', 'role'].includes(category.id)) continue;
+    if (state.category !== category.id || !['hero', 'hero-card', 'role'].includes(category.id)) continue;
     const children = document.createElement('div'); children.className = 'subcategory-list';
-    const names = category.id === 'hero' ? state.heroNames : state.roleSubcategories;
+    const names = ['hero', 'hero-card'].includes(category.id) ? state.heroNames : state.roleSubcategories;
     const choices = [...names, ''];
     for (const name of choices) {
       const value = name || '__unassigned__';
@@ -166,6 +169,101 @@ function matchingCards() {
     if (term && !`${card.title} ${titleFor(card)} ${card.id} ${labelFor(categoryFor(card))} ${subcategoryFor(card)}`.toLocaleLowerCase().includes(term)) return false;
     return true;
   });
+}
+
+function availableCards(category) {
+  return state.cards.filter(card => !state.deleted.has(card.id) && categoryFor(card) === category);
+}
+
+function saveBuild() {
+  try { localStorage.setItem(BUILD_KEY, JSON.stringify(state.build)); } catch { showToast('This browser could not save the build.'); }
+}
+
+function fillBuildSelect(select, cards, placeholder, selectedId, labelForCard = titleFor) {
+  select.replaceChildren();
+  const empty = document.createElement('option'); empty.value = ''; empty.textContent = placeholder; select.append(empty);
+  for (const card of cards) {
+    const option = document.createElement('option'); option.value = card.id; option.textContent = labelFor(card); select.append(option);
+  }
+  select.value = cards.some(card => card.id === selectedId) ? selectedId : '';
+  return select.value;
+}
+
+function appendBuildCard(container, card, eyebrow = '') {
+  const article = document.createElement('article'); article.className = 'build-card';
+  const image = document.createElement('img'); image.src = card.image; image.alt = `${titleFor(card)} card`; image.loading = 'lazy';
+  const title = document.createElement('strong'); title.textContent = titleFor(card);
+  article.append(image);
+  if (eyebrow) { const label = document.createElement('span'); label.className = 'build-card-eyebrow'; label.textContent = eyebrow; article.append(label); }
+  article.append(title); container.append(article);
+}
+
+function renderBuilds() {
+  const heroChoices = availableCards('hero-card').filter(card => state.heroNames.includes(subcategoryFor(card)));
+  state.build.heroCardId = fillBuildSelect($('#build-hero-card'), heroChoices, 'Choose a hero card', state.build.heroCardId,
+    card => `${subcategoryFor(card)} · ${titleFor(card)}`);
+  const selectedHeroCard = state.cards.find(card => card.id === state.build.heroCardId);
+  const heroName = selectedHeroCard ? subcategoryFor(selectedHeroCard) : '';
+  const heroCards = heroName ? heroChoices.filter(card => subcategoryFor(card) === heroName) : [];
+
+  const roleCards = availableCards('role');
+  const roleOptions = state.roleSubcategories.filter(name => roleCards.some(card => subcategoryFor(card) === name));
+  const roleSelect = $('#build-role');
+  roleSelect.replaceChildren();
+  const noRole = document.createElement('option'); noRole.value = ''; noRole.textContent = 'Choose a role'; roleSelect.append(noRole);
+  for (const name of roleOptions) {
+    const option = document.createElement('option'); option.value = name;
+    option.textContent = `${name} (${roleCards.filter(card => subcategoryFor(card) === name).length})`;
+    roleSelect.append(option);
+  }
+  roleSelect.value = roleOptions.includes(state.build.role) ? state.build.role : '';
+  state.build.role = roleSelect.value;
+  const chosenRoleCards = state.build.role ? roleCards.filter(card => subcategoryFor(card) === state.build.role) : [];
+
+  const weaponMode = $('#build-weapon-mode'); weaponMode.value = state.build.weaponMode;
+  const weaponCategory = state.build.weaponMode;
+  const weaponOptions = availableCards(weaponCategory);
+  const weaponSlots = state.build.weaponMode === 'one-handed' ? 2 : 1;
+  state.build.weapons = state.build.weapons.slice(0, weaponSlots);
+  while (state.build.weapons.length < weaponSlots) state.build.weapons.push('');
+  const weaponContainer = $('#build-weapons'); weaponContainer.replaceChildren();
+  for (let index = 0; index < weaponSlots; index++) {
+    const label = document.createElement('label');
+    label.textContent = state.build.weaponMode === 'one-handed' ? `${index + 1}${index ? 'nd' : 'st'} 1-handed` : '2-handed weapon';
+    const select = document.createElement('select');
+    state.build.weapons[index] = fillBuildSelect(select, weaponOptions, 'Choose a weapon', state.build.weapons[index]);
+    select.addEventListener('change', () => { state.build.weapons[index] = select.value; saveBuild(); renderBuilds(); });
+    label.append(select); weaponContainer.append(label);
+  }
+
+  const equipment = [
+    ['build-armor', 'armor', 'Choose armor', 'armor'],
+    ['build-trinket', 'trinket', 'Choose a trinket', 'trinket'],
+    ['build-mount', 'mount', 'Choose a mount', 'mount'],
+  ];
+  for (const [id, category, placeholder, key] of equipment) {
+    const select = $(`#${id}`);
+    state.build[key] = fillBuildSelect(select, availableCards(category), placeholder, state.build[key]);
+  }
+
+  const empty = $('#build-empty');
+  empty.hidden = heroChoices.length > 0;
+  empty.textContent = heroChoices.length
+    ? ''
+    : 'No Hero-card cards have a hero name yet. In Cards, set their category to Hero-card and choose a Hero subcategory.';
+
+  const heroOutput = $('#build-hero-cards'); heroOutput.replaceChildren();
+  $('#build-hero-count').textContent = heroName ? `(${heroCards.length})` : '';
+  for (const card of heroCards) appendBuildCard(heroOutput, card, heroName);
+  const roleOutput = $('#build-role-cards'); roleOutput.replaceChildren();
+  $('#build-role-count').textContent = state.build.role ? `(${chosenRoleCards.length})` : '';
+  for (const card of chosenRoleCards) appendBuildCard(roleOutput, card, state.build.role);
+  const equipmentOutput = $('#build-equipment'); equipmentOutput.replaceChildren();
+  for (const id of [...state.build.weapons, state.build.armor, state.build.trinket, state.build.mount]) {
+    const card = state.cards.find(item => item.id === id);
+    if (card) appendBuildCard(equipmentOutput, card, labelFor(categoryFor(card)));
+  }
+  saveBuild();
 }
 
 function createCardTile(card) {
@@ -201,7 +299,7 @@ function createCardTile(card) {
     body.append(title, meta, restore);
   } else {
     body.append(title, meta, select);
-    if (['hero', 'role'].includes(categoryFor(card))) {
+    if (['hero', 'hero-card', 'role'].includes(categoryFor(card))) {
       const subcategorySelect = document.createElement('select'); subcategorySelect.className = 'tile-subcategory';
       subcategorySelect.setAttribute('aria-label', `${labelFor(categoryFor(card))} subcategory for ${titleFor(card)}`);
       fillSubcategorySelect(subcategorySelect, card);
@@ -267,7 +365,7 @@ function renderDialog() {
     choices.append(button);
   }
   const subcategoryWrap = $('#dialog-subcategory-wrap');
-  subcategoryWrap.hidden = !['hero', 'role'].includes(categoryFor(card)) || state.deleted.has(card.id);
+  subcategoryWrap.hidden = !['hero', 'hero-card', 'role'].includes(categoryFor(card)) || state.deleted.has(card.id);
   if (!subcategoryWrap.hidden) {
     const subcategorySelect = $('#dialog-subcategory-select');
     $('#dialog-subcategory-label').textContent = `${labelFor(categoryFor(card))} subcategory`;
@@ -329,6 +427,7 @@ function renderDocument() {
 
 function switchView(view) {
   state.view = view;
+  $('#builds-view').hidden = view !== 'builds';
   $('#gallery-view').hidden = view !== 'gallery';
   $('#document-view').hidden = view !== 'document';
   for (const button of document.querySelectorAll('.view-tab')) {
@@ -336,6 +435,7 @@ function switchView(view) {
     button.classList.toggle('active', active);
     if (active) button.setAttribute('aria-current', 'page'); else button.removeAttribute('aria-current');
   }
+  if (view === 'builds') renderBuilds();
   if (view === 'document' && !$('#document-sections').children.length) renderDocument();
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
@@ -371,8 +471,16 @@ async function start() {
     if (!response.ok) throw new Error('Card data could not load.');
     const data = await response.json();
     state.cards = data.cards; state.sections = data.sections; state.aliases = data.aliases || {};
+    state.duplicateIds = (data.deletedCards || []).filter(id => state.cards.some(card => card.id === id));
     state.roleSubcategories = data.roleSubcategories || [];
     state.heroNames = state.cards.filter(card => card.id.startsWith('character-')).map(card => card.title).sort((a, b) => a.localeCompare(b));
+    try {
+      const savedBuild = JSON.parse(localStorage.getItem(BUILD_KEY) || 'null');
+      if (savedBuild && typeof savedBuild === 'object') {
+        state.build = { ...state.build, ...savedBuild };
+        if (!Array.isArray(state.build.weapons)) state.build.weapons = ['', ''];
+      }
+    } catch { /* Start with an empty build if saved data is invalid. */ }
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
@@ -386,10 +494,17 @@ async function start() {
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
     try {
-      const saved = JSON.parse(localStorage.getItem(DELETED_KEY) || '[]');
-      if (Array.isArray(saved)) state.deleted = new Set(saved.filter(id => state.cards.some(card => card.id === id)));
+      const savedText = localStorage.getItem(DELETED_KEY);
+      const saved = JSON.parse(savedText || '[]');
+      const validSaved = Array.isArray(saved) ? saved.filter(id => state.cards.some(card => card.id === id)) : [];
+      const initialized = localStorage.getItem(DUPLICATE_REVIEW_KEY) === '1';
+      state.deleted = new Set(initialized ? validSaved : [...(data.deletedCards || []), ...validSaved]);
+      if (!initialized) {
+        saveDeleted();
+        localStorage.setItem(DUPLICATE_REVIEW_KEY, '1');
+      }
     } catch { /* The gallery still works if storage is unavailable. */ }
-    renderCategories(); renderGallery(); registerWebMCP();
+    renderCategories(); renderGallery(); renderBuilds(); registerWebMCP();
   } catch (error) {
     $('#gallery-empty').hidden = false;
     $('#gallery-empty').textContent = 'The review data could not load. Reload this page to try again.';
@@ -398,6 +513,16 @@ async function start() {
 }
 
 document.querySelectorAll('.view-tab').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
+$('#build-hero-card').addEventListener('change', event => { state.build.heroCardId = event.target.value; saveBuild(); renderBuilds(); });
+$('#build-role').addEventListener('change', event => { state.build.role = event.target.value; saveBuild(); renderBuilds(); });
+$('#build-weapon-mode').addEventListener('change', event => {
+  state.build.weaponMode = event.target.value;
+  state.build.weapons = event.target.value === 'one-handed' ? ['', ''] : [''];
+  saveBuild(); renderBuilds();
+});
+for (const [id, key] of [['build-armor', 'armor'], ['build-trinket', 'trinket'], ['build-mount', 'mount']]) {
+  $(`#${id}`).addEventListener('change', event => { state.build[key] = event.target.value; saveBuild(); renderBuilds(); });
+}
 $('#card-search').addEventListener('input', event => { state.search = event.target.value.trim(); renderGallery(); });
 $('#document-search').addEventListener('input', renderDocument);
 $('#close-dialog').addEventListener('click', () => $('#card-dialog').close());
@@ -416,7 +541,7 @@ document.addEventListener('keydown', event => {
   if (category && !event.repeat) { event.preventDefault(); categorizeCurrent(category); }
 });
 $('#export-button').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v4', categories: state.overrides, subcategories: state.subcategoryOverrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v5', categories: state.overrides, subcategories: state.subcategoryOverrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a'); link.href = url; link.download = 'journeys-card-review.json'; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -426,16 +551,17 @@ $('#import-input').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;
   try {
     const data = JSON.parse(await file.text());
-    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3', 'journeys-card-review-v4'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
-    if (['journeys-card-review-v3', 'journeys-card-review-v4'].includes(data.format) && !Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
-    if (data.format === 'journeys-card-review-v4' && (!data.subcategories || typeof data.subcategories !== 'object' || Array.isArray(data.subcategories) || Object.values(data.subcategories).some(name => name !== '' && !state.roleSubcategories.includes(name) && !state.heroNames.includes(name)))) throw new Error('Invalid subcategories');
+    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
+    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5'].includes(data.format) && !Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
+    if (['journeys-card-review-v4', 'journeys-card-review-v5'].includes(data.format) && (!data.subcategories || typeof data.subcategories !== 'object' || Array.isArray(data.subcategories) || Object.values(data.subcategories).some(name => name !== '' && !state.roleSubcategories.includes(name) && !state.heroNames.includes(name)))) throw new Error('Invalid subcategories');
     const changes = Object.fromEntries(Object.entries(data.categories).map(([id, category]) => [canonicalId(id), normalizeCategory(category)]).filter(([id]) => state.cards.some(card => card.id === id)));
     setCategories(changes);
-    if (['journeys-card-review-v3', 'journeys-card-review-v4'].includes(data.format)) {
-      state.deleted = new Set(data.deleted.filter(id => state.cards.some(card => card.id === id)));
+    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5'].includes(data.format)) {
+      const importedDeleted = data.deleted.filter(id => state.cards.some(card => card.id === id));
+      state.deleted = new Set(data.format === 'journeys-card-review-v5' ? importedDeleted : [...state.duplicateIds, ...importedDeleted]);
       saveDeleted();
     }
-    if (data.format === 'journeys-card-review-v4') {
+    if (['journeys-card-review-v4', 'journeys-card-review-v5'].includes(data.format)) {
       state.subcategoryOverrides = Object.fromEntries(Object.entries(data.subcategories).map(([id, name]) => [canonicalId(id), name]).filter(([id]) => state.cards.some(card => card.id === id)));
       saveSubcategories();
     }

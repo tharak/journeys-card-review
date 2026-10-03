@@ -228,8 +228,19 @@ function appendBuildCard(container, card, eyebrow = '') {
 
 function renderBuilds() {
   const heroChoices = availableCards('hero-card').filter(card => state.heroNames.includes(subcategoryFor(card)));
-  state.build.heroCardId = fillBuildSelect($('#build-hero-card'), heroChoices, 'Choose a hero card', state.build.heroCardId,
-    card => `${subcategoryFor(card)} · ${titleFor(card)}`);
+  const heroSelect = $('#build-hero-card');
+  heroSelect.replaceChildren();
+  const noHeroCard = document.createElement('option'); noHeroCard.value = ''; noHeroCard.textContent = 'Choose a hero card'; heroSelect.append(noHeroCard);
+  const availableHeroNames = [...new Set(heroChoices.map(subcategoryFor))].sort((a, b) => a.localeCompare(b));
+  for (const name of availableHeroNames) {
+    const group = document.createElement('optgroup'); group.label = name;
+    for (const card of heroChoices.filter(item => subcategoryFor(item) === name)) {
+      const option = document.createElement('option'); option.value = card.id; option.textContent = titleFor(card); group.append(option);
+    }
+    heroSelect.append(group);
+  }
+  heroSelect.value = heroChoices.some(card => card.id === state.build.heroCardId) ? state.build.heroCardId : '';
+  state.build.heroCardId = heroSelect.value;
   const selectedHeroCard = state.cards.find(card => card.id === state.build.heroCardId);
   const heroName = selectedHeroCard ? subcategoryFor(selectedHeroCard) : '';
   const heroCards = heroName ? heroChoices.filter(card => subcategoryFor(card) === heroName) : [];
@@ -238,7 +249,7 @@ function renderBuilds() {
   const roleOptions = state.roleSubcategories.filter(name => roleCards.some(card => subcategoryFor(card) === name));
   const roleSelect = $('#build-role');
   roleSelect.replaceChildren();
-  const noRole = document.createElement('option'); noRole.value = ''; noRole.textContent = 'Choose a role'; roleSelect.append(noRole);
+  const noRole = document.createElement('option'); noRole.value = ''; noRole.textContent = 'Choose a role subcategory'; roleSelect.append(noRole);
   for (const name of roleOptions) {
     const option = document.createElement('option'); option.value = name;
     option.textContent = `${name} (${roleCards.filter(card => subcategoryFor(card) === name).length})`;

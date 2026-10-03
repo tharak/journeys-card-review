@@ -2,12 +2,14 @@ const CATEGORIES = [
   { id: 'all', label: 'All cards', icon: '▦' },
   { id: 'hero', label: 'Hero', icon: '♙' },
   { id: 'role', label: 'Role', icon: '✧' },
-  { id: 'weapon', label: 'Weapon', icon: '⚔' },
+  { id: 'one-handed', label: '1-handed', icon: '⚔' },
+  { id: 'two-handed', label: '2-handed', icon: '⚔' },
   { id: 'armor', label: 'Armor', icon: '♜' },
   { id: 'trinket', label: 'Trinket', icon: '✦' },
   { id: 'unsorted', label: 'Needs review', icon: '◇' },
 ];
 const VALID = new Set(CATEGORIES.slice(1).map(item => item.id));
+const SHORTCUTS = { q: 'role', w: 'one-handed', e: 'two-handed', r: 'armor', t: 'trinket' };
 const STORAGE_KEY = 'journeys-card-review-categories-v1';
 const $ = selector => document.querySelector(selector);
 const state = { cards: [], sections: [], overrides: {}, category: 'all', hero: '', search: '', view: 'gallery', visible: [], selected: null };
@@ -22,6 +24,7 @@ function showToast(message) {
 }
 
 function categoryFor(card) { return state.overrides[card.id] || card.category; }
+function normalizeCategory(category) { return category === 'weapon' ? 'unsorted' : category; }
 function titleFor(card) {
   if (card.category === 'hero') return card.hero;
   let title = (card.ocrTitle || '').replace(/^[a-zA-Z]\s+/, '').replace(/^[^A-ZÀ-Ý]+/, '').trim();
@@ -36,6 +39,7 @@ function saveOverrides() {
 }
 
 function setCategories(changes) {
+  const oldIndex = state.visible.findIndex(item => item.id === state.selected);
   for (const [id, category] of Object.entries(changes)) {
     const card = state.cards.find(item => item.id === id);
     if (!card || !VALID.has(category)) throw new Error(`Invalid card or category: ${id}`);
@@ -47,8 +51,8 @@ function setCategories(changes) {
   }
   saveOverrides();
   renderCategories();
-  renderGallery();
-  if (state.selected) renderDialog();
+  renderGallery(Math.max(0, oldIndex));
+  if ($('#card-dialog').open && state.selected) renderDialog();
 }
 
 function renderCategories() {
@@ -81,7 +85,10 @@ function matchingCards() {
 
 function createCardTile(card) {
   const tile = document.createElement('article');
-  tile.className = `card-tile${card.category === 'hero' ? ' hero-tile' : ''}`;
+  tile.className = `card-tile${card.category === 'hero' ? ' hero-tile' : ''}${state.selected === card.id ? ' current' : ''}`;
+  tile.dataset.cardId = card.id;
+  tile.addEventListener('focusin', () => setCurrentCard(card.id));
+  tile.addEventListener('click', event => { if (!event.target.closest('button, select')) setCurrentCard(card.id); });
   const imageButton = document.createElement('button');
   imageButton.type = 'button'; imageButton.className = 'tile-image-button';
   imageButton.setAttribute('aria-label', `View ${titleFor(card)} image`);
@@ -102,19 +109,42 @@ function createCardTile(card) {
     select.append(option);
   }
   select.value = categoryFor(card);
-  select.addEventListener('change', () => { setCategories({ [card.id]: select.value }); showToast(`${titleFor(card)} → ${labelFor(select.value)}`); });
+  select.addEventListener('change', () => { setCurrentCard(card.id); setCategories({ [card.id]: select.value }); showToast(`${titleFor(card)} → ${labelFor(select.value)}`); });
   body.append(title, meta, select); tile.append(imageButton, body);
   return tile;
 }
 
-function renderGallery() {
+function renderGallery(fallbackIndex = null) {
   state.visible = matchingCards();
+  if (!state.visible.some(card => card.id === state.selected)) {
+    const fallback = fallbackIndex === null
+      ? state.visible.find(card => card.category !== 'hero') || state.visible[0]
+      : state.visible[Math.min(fallbackIndex, state.visible.length - 1)];
+    state.selected = fallback?.id || null;
+  }
   const gallery = $('#gallery');
   const fragment = document.createDocumentFragment();
   for (const card of state.visible) fragment.append(createCardTile(card));
   gallery.replaceChildren(fragment);
   $('#result-meta').textContent = `${state.visible.length} of ${state.cards.length} images`;
   $('#gallery-empty').hidden = state.visible.length > 0;
+  updateCurrentLabel();
+}
+
+function updateCurrentLabel() {
+  const card = state.cards.find(item => item.id === state.selected);
+  $('#current-card-label').textContent = card ? `Current: ${titleFor(card)} · ${card.id.replace('card-', '#').replace('character-', 'Hero ')}` : 'No current card';
+}
+
+function setCurrentCard(id, scroll = false) {
+  if (!state.visible.some(card => card.id === id)) return;
+  state.selected = id;
+  document.querySelector('.card-tile.current')?.classList.remove('current');
+  const tile = document.querySelector(`.card-tile[data-card-id="${id}"]`);
+  tile?.classList.add('current');
+  if (scroll) tile?.scrollIntoView({ block: 'center', inline: 'nearest' });
+  updateCurrentLabel();
+  if ($('#card-dialog').open) renderDialog();
 }
 
 function renderDialog() {
@@ -143,7 +173,7 @@ function renderDialog() {
 }
 
 function openCard(id) {
-  state.selected = id;
+  setCurrentCard(id);
   renderDialog();
   $('#card-dialog').showModal();
 }
@@ -151,7 +181,18 @@ function openCard(id) {
 function moveCard(direction) {
   const index = state.visible.findIndex(item => item.id === state.selected);
   const next = state.visible[index + direction];
-  if (next) { state.selected = next.id; renderDialog(); }
+  if (next) setCurrentCard(next.id, !$('#card-dialog').open);
+}
+
+function categorizeCurrent(category) {
+  const current = state.cards.find(card => card.id === state.selected);
+  if (!current) return;
+  const index = state.visible.findIndex(card => card.id === current.id);
+  const nextId = state.visible[index + 1]?.id;
+  setCategories({ [current.id]: category });
+  if (nextId && state.visible.some(card => card.id === nextId)) setCurrentCard(nextId, !$('#card-dialog').open);
+  else if (state.selected) setCurrentCard(state.selected, !$('#card-dialog').open);
+  showToast(`${titleFor(current)} → ${labelFor(category)}`);
 }
 
 function renderDocument() {
@@ -221,7 +262,7 @@ async function start() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
-        state.overrides = Object.fromEntries(Object.entries(saved).filter(([id, category]) => state.cards.some(card => card.id === id) && VALID.has(category)));
+        state.overrides = Object.fromEntries(Object.entries(saved).map(([id, category]) => [id, normalizeCategory(category)]).filter(([id, category]) => state.cards.some(card => card.id === id) && VALID.has(category)));
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
     const heroes = [...new Set(state.cards.map(card => card.hero))];
@@ -241,12 +282,19 @@ $('#document-search').addEventListener('input', renderDocument);
 $('#close-dialog').addEventListener('click', () => $('#card-dialog').close());
 $('#prev-card').addEventListener('click', () => moveCard(-1));
 $('#next-card').addEventListener('click', () => moveCard(1));
-$('#card-dialog').addEventListener('keydown', event => {
-  if (event.key === 'ArrowLeft') { event.preventDefault(); moveCard(-1); }
-  if (event.key === 'ArrowRight') { event.preventDefault(); moveCard(1); }
+document.addEventListener('keydown', event => {
+  if (state.view !== 'gallery' || event.altKey || event.ctrlKey || event.metaKey) return;
+  if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    event.preventDefault();
+    moveCard(event.key === 'ArrowLeft' ? -1 : 1);
+    return;
+  }
+  const category = SHORTCUTS[event.key.toLowerCase()];
+  if (category && !event.repeat) { event.preventDefault(); categorizeCurrent(category); }
 });
 $('#export-button').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify({ format: 'journeys-card-categories-v1', categories: state.overrides }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ format: 'journeys-card-categories-v2', categories: state.overrides }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a'); link.href = url; link.download = 'journeys-card-categories.json'; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -256,8 +304,8 @@ $('#import-input').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;
   try {
     const data = JSON.parse(await file.text());
-    if (data.format !== 'journeys-card-categories-v1' || !data.categories || typeof data.categories !== 'object') throw new Error('Invalid category file');
-    setCategories(data.categories);
+    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2'].includes(data.format) || !data.categories || typeof data.categories !== 'object') throw new Error('Invalid category file');
+    setCategories(Object.fromEntries(Object.entries(data.categories).map(([id, category]) => [id, normalizeCategory(category)])));
     showToast('Categories imported');
   } catch { showToast('Could not import this category file'); }
   event.target.value = '';

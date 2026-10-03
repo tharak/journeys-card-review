@@ -21,7 +21,7 @@ const TITLE_KEY = 'journeys-card-review-titles-v1';
 const BUILD_KEY = 'journeys-card-review-build-v1';
 const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weapons: ['', ''], armor: '', trinket: '', mount: '' } };
+const state = { cards: [], sections: [], aliases: {}, overrides: {}, subcategoryOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weaponSubcategories: ['', ''], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
 let toastTimer;
 
 function showToast(message) {
@@ -207,13 +207,14 @@ function saveBuild() {
   try { localStorage.setItem(BUILD_KEY, JSON.stringify(state.build)); } catch { showToast('This browser could not save the build.'); }
 }
 
-function fillBuildSelect(select, cards, placeholder, selectedId, labelForCard = titleFor) {
+function fillBuildSubcategorySelect(select, category, selected) {
+  const names = [...new Set(availableCards(category).map(subcategoryFor).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   select.replaceChildren();
-  const empty = document.createElement('option'); empty.value = ''; empty.textContent = placeholder; select.append(empty);
-  for (const card of cards) {
-    const option = document.createElement('option'); option.value = card.id; option.textContent = labelFor(card); select.append(option);
+  const empty = document.createElement('option'); empty.value = ''; empty.textContent = `Choose a ${labelFor(category).toLocaleLowerCase()} subcategory`; select.append(empty);
+  for (const name of names) {
+    const option = document.createElement('option'); option.value = name; option.textContent = name; select.append(option);
   }
-  select.value = cards.some(card => card.id === selectedId) ? selectedId : '';
+  select.value = names.includes(selected) ? selected : '';
   return select.value;
 }
 
@@ -261,28 +262,27 @@ function renderBuilds() {
 
   const weaponMode = $('#build-weapon-mode'); weaponMode.value = state.build.weaponMode;
   const weaponCategory = state.build.weaponMode;
-  const weaponOptions = availableCards(weaponCategory);
   const weaponSlots = state.build.weaponMode === 'one-handed' ? 2 : 1;
-  state.build.weapons = state.build.weapons.slice(0, weaponSlots);
-  while (state.build.weapons.length < weaponSlots) state.build.weapons.push('');
+  state.build.weaponSubcategories = state.build.weaponSubcategories.slice(0, weaponSlots);
+  while (state.build.weaponSubcategories.length < weaponSlots) state.build.weaponSubcategories.push('');
   const weaponContainer = $('#build-weapons'); weaponContainer.replaceChildren();
   for (let index = 0; index < weaponSlots; index++) {
     const label = document.createElement('label');
-    label.textContent = state.build.weaponMode === 'one-handed' ? `${index + 1}${index ? 'nd' : 'st'} 1-handed` : '2-handed weapon';
+    label.textContent = state.build.weaponMode === 'one-handed' ? `${index + 1}${index ? 'nd' : 'st'} 1-handed subcategory` : '2-handed weapon subcategory';
     const select = document.createElement('select');
-    state.build.weapons[index] = fillBuildSelect(select, weaponOptions, 'Choose a weapon', state.build.weapons[index]);
-    select.addEventListener('change', () => { state.build.weapons[index] = select.value; saveBuild(); renderBuilds(); });
+    state.build.weaponSubcategories[index] = fillBuildSubcategorySelect(select, weaponCategory, state.build.weaponSubcategories[index]);
+    select.addEventListener('change', () => { state.build.weaponSubcategories[index] = select.value; saveBuild(); renderBuilds(); });
     label.append(select); weaponContainer.append(label);
   }
 
   const equipment = [
-    ['build-armor', 'armor', 'Choose armor', 'armor'],
-    ['build-trinket', 'trinket', 'Choose a trinket', 'trinket'],
-    ['build-mount', 'mount', 'Choose a mount', 'mount'],
+    ['build-armor', 'armor', 'armorSubcategory'],
+    ['build-trinket', 'trinket', 'trinketSubcategory'],
+    ['build-mount', 'mount', 'mountSubcategory'],
   ];
-  for (const [id, category, placeholder, key] of equipment) {
+  for (const [id, category, key] of equipment) {
     const select = $(`#${id}`);
-    state.build[key] = fillBuildSelect(select, availableCards(category), placeholder, state.build[key]);
+    state.build[key] = fillBuildSubcategorySelect(select, category, state.build[key]);
   }
 
   const empty = $('#build-empty');
@@ -298,9 +298,19 @@ function renderBuilds() {
   $('#build-role-count').textContent = state.build.role ? `(${chosenRoleCards.length})` : '';
   for (const card of chosenRoleCards) appendBuildCard(roleOutput, card, state.build.role);
   const equipmentOutput = $('#build-equipment'); equipmentOutput.replaceChildren();
-  for (const id of [...state.build.weapons, state.build.armor, state.build.trinket, state.build.mount]) {
-    const card = state.cards.find(item => item.id === id);
-    if (card) appendBuildCard(equipmentOutput, card, labelFor(categoryFor(card)));
+  const chosenEquipment = [
+    ...state.build.weaponSubcategories.map(name => [weaponCategory, name]),
+    ['armor', state.build.armorSubcategory],
+    ['trinket', state.build.trinketSubcategory],
+    ['mount', state.build.mountSubcategory],
+  ];
+  const shownEquipment = new Set();
+  for (const [category, subcategory] of chosenEquipment) {
+    if (!subcategory) continue;
+    for (const card of availableCards(category).filter(item => subcategoryFor(item) === subcategory)) {
+      if (!shownEquipment.has(card.id)) appendBuildCard(equipmentOutput, card, `${labelFor(category)} · ${subcategory}`);
+      shownEquipment.add(card.id);
+    }
   }
   saveBuild();
 }
@@ -554,11 +564,12 @@ async function start() {
     state.duplicateIds = (data.deletedCards || []).filter(id => state.cards.some(card => card.id === id));
     state.roleSubcategories = data.roleSubcategories || [];
     state.heroNames = state.cards.filter(card => card.id.startsWith('character-')).map(card => card.title).sort((a, b) => a.localeCompare(b));
+    let savedBuild = null;
     try {
-      const savedBuild = JSON.parse(localStorage.getItem(BUILD_KEY) || 'null');
+      savedBuild = JSON.parse(localStorage.getItem(BUILD_KEY) || 'null');
       if (savedBuild && typeof savedBuild === 'object') {
         state.build = { ...state.build, ...savedBuild };
-        if (!Array.isArray(state.build.weapons)) state.build.weapons = ['', ''];
+        if (!Array.isArray(state.build.weaponSubcategories)) state.build.weaponSubcategories = ['', ''];
       }
     } catch { /* Start with an empty build if saved data is invalid. */ }
     try {
@@ -584,6 +595,19 @@ async function start() {
         }));
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
+    if (savedBuild && typeof savedBuild === 'object' && !Array.isArray(savedBuild)) {
+      const oldSubcategoryFor = (id, category) => {
+        const card = state.cards.find(item => item.id === id);
+        return card && categoryFor(card) === category ? subcategoryFor(card) : '';
+      };
+      if (!Array.isArray(savedBuild.weaponSubcategories)) {
+        state.build.weaponSubcategories = (Array.isArray(savedBuild.weapons) ? savedBuild.weapons : []).map(id => oldSubcategoryFor(id, savedBuild.weaponMode || 'one-handed'));
+      }
+      if (typeof savedBuild.armorSubcategory !== 'string') state.build.armorSubcategory = oldSubcategoryFor(savedBuild.armor, 'armor');
+      if (typeof savedBuild.trinketSubcategory !== 'string') state.build.trinketSubcategory = oldSubcategoryFor(savedBuild.trinket, 'trinket');
+      if (typeof savedBuild.mountSubcategory !== 'string') state.build.mountSubcategory = oldSubcategoryFor(savedBuild.mount, 'mount');
+      for (const key of ['weapons', 'armor', 'trinket', 'mount']) delete state.build[key];
+    }
     try {
       const saved = JSON.parse(localStorage.getItem(CARD_TEXT_KEY) || '{}');
       if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
@@ -614,10 +638,10 @@ $('#build-hero-card').addEventListener('change', event => { state.build.heroCard
 $('#build-role').addEventListener('change', event => { state.build.role = event.target.value; saveBuild(); renderBuilds(); });
 $('#build-weapon-mode').addEventListener('change', event => {
   state.build.weaponMode = event.target.value;
-  state.build.weapons = event.target.value === 'one-handed' ? ['', ''] : [''];
+  state.build.weaponSubcategories = event.target.value === 'one-handed' ? ['', ''] : [''];
   saveBuild(); renderBuilds();
 });
-for (const [id, key] of [['build-armor', 'armor'], ['build-trinket', 'trinket'], ['build-mount', 'mount']]) {
+for (const [id, key] of [['build-armor', 'armorSubcategory'], ['build-trinket', 'trinketSubcategory'], ['build-mount', 'mountSubcategory']]) {
   $(`#${id}`).addEventListener('change', event => { state.build[key] = event.target.value; saveBuild(); renderBuilds(); });
 }
 $('#card-search').addEventListener('input', event => { state.search = event.target.value.trim(); renderGallery(); });

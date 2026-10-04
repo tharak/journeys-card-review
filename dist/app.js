@@ -635,7 +635,7 @@ async function start() {
   }
 }
 
-document.querySelectorAll('.view-tab').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
+document.querySelectorAll('.view-tab[data-view]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
 $('#build-hero-card').addEventListener('change', event => { state.build.heroCardId = event.target.value; saveBuild(); renderBuilds(); });
 $('#build-role').addEventListener('change', event => { state.build.role = event.target.value; saveBuild(); renderBuilds(); });
 $('#build-weapon-mode').addEventListener('change', event => {

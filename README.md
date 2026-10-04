@@ -13,3 +13,7 @@ Use Left and Right Arrow to move the highlighted card. Press Q for Role, W for 1
 Open Hero or Role in the sidebar to browse its subcategories. Each Role card has a subcategory selector, and exports include those edits. Older category and review exports still import.
 
 OCR titles and initial equipment categories are suggestions. Check them against the card images before relying on them.
+
+The dedicated [build creator](dist/build.html) lets users choose a hero and starting role, add or remove card copies, write strategy notes, and save multiple named builds in their browser. Builds export and import as `journeys-build-v1` JSON. Hero selection adds the matching categorized hero cards; card filters can show the selected hero/role or the full catalog. Review categories, titles, deletions, and subcategories saved in this browser also apply to the creator.
+
+Card and character images now use the fresh `v2` source crops, published as lossless WebP files in `dist/assets/v2/`. Existing card IDs and reviewed categories are retained. Run `python3 scripts/import_v2_assets.py` to republish the parent workspace's `v2` capture. The creator is implemented in `dist/build.html`, `dist/build.js`, and `dist/build.css` and deploys with the existing GitHub Pages workflow.

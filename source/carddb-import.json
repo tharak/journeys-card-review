@@ -1,0 +1,5714 @@
+{
+  "source": "https://sites.google.com/view/jime-carddb/home",
+  "importedAt": "2026-10-04T23:10:02.454796+00:00",
+  "pages": 51,
+  "scans": 660,
+  "newRecords": 466,
+  "linkedScans": 194,
+  "updatedImages": 0,
+  "databaseRecords": 866,
+  "activeRecords": 757,
+  "note": "Conservative identity matching; uncertain scans remain separate for review. OCR is unreviewed.",
+  "records": [
+    {
+      "sourceScanId": "carddb-common-cards-basic-001",
+      "databaseIds": [
+        "carddb-common-cards-basic-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-basic-002",
+      "databaseIds": [
+        "carddb-common-cards-basic-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-basic-003",
+      "databaseIds": [
+        "carddb-common-cards-basic-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-basic-004",
+      "databaseIds": [
+        "carddb-common-cards-basic-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-basic-005",
+      "databaseIds": [
+        "carddb-common-cards-basic-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-basic-006",
+      "databaseIds": [
+        "carddb-common-cards-basic-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-001",
+      "databaseIds": [
+        "carddb-common-cards-titles-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-002",
+      "databaseIds": [
+        "carddb-common-cards-titles-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-003",
+      "databaseIds": [
+        "carddb-common-cards-titles-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-004",
+      "databaseIds": [
+        "carddb-common-cards-titles-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-005",
+      "databaseIds": [
+        "carddb-common-cards-titles-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-006",
+      "databaseIds": [
+        "carddb-common-cards-titles-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-007",
+      "databaseIds": [
+        "carddb-common-cards-titles-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-008",
+      "databaseIds": [
+        "carddb-common-cards-titles-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-009",
+      "databaseIds": [
+        "carddb-common-cards-titles-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-010",
+      "databaseIds": [
+        "carddb-common-cards-titles-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-011",
+      "databaseIds": [
+        "carddb-common-cards-titles-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-012",
+      "databaseIds": [
+        "carddb-common-cards-titles-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-013",
+      "databaseIds": [
+        "carddb-common-cards-titles-013"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-014",
+      "databaseIds": [
+        "carddb-common-cards-titles-014"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-015",
+      "databaseIds": [
+        "carddb-common-cards-titles-015"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-016",
+      "databaseIds": [
+        "carddb-common-cards-titles-016"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-017",
+      "databaseIds": [
+        "carddb-common-cards-titles-017"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-018",
+      "databaseIds": [
+        "carddb-common-cards-titles-018"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-019",
+      "databaseIds": [
+        "carddb-common-cards-titles-019"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-020",
+      "databaseIds": [
+        "carddb-common-cards-titles-020"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-021",
+      "databaseIds": [
+        "carddb-common-cards-titles-021"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-022",
+      "databaseIds": [
+        "carddb-common-cards-titles-022"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-023",
+      "databaseIds": [
+        "carddb-common-cards-titles-023"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-024",
+      "databaseIds": [
+        "carddb-common-cards-titles-024"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-025",
+      "databaseIds": [
+        "carddb-common-cards-titles-025"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-026",
+      "databaseIds": [
+        "carddb-common-cards-titles-026"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-027",
+      "databaseIds": [
+        "carddb-common-cards-titles-027"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-028",
+      "databaseIds": [
+        "carddb-common-cards-titles-028"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-029",
+      "databaseIds": [
+        "carddb-common-cards-titles-029"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-030",
+      "databaseIds": [
+        "carddb-common-cards-titles-030"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-031",
+      "databaseIds": [
+        "carddb-common-cards-titles-031"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-032",
+      "databaseIds": [
+        "carddb-common-cards-titles-032"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-titles-033",
+      "databaseIds": [
+        "carddb-common-cards-titles-033"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-001",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-002",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-003",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-004",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-005",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-006",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-007",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-008",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-009",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-010",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-011",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-012",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-013",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-013"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-014",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-014"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-015",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-015"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-016",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-016"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-017",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-017"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-018",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-018"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-019",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-019"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-common-cards-weaknesses-020",
+      "databaseIds": [
+        "carddb-common-cards-weaknesses-020"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-001",
+      "databaseIds": [
+        "carddb-conditions-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-002",
+      "databaseIds": [
+        "carddb-conditions-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-003",
+      "databaseIds": [
+        "carddb-conditions-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-004",
+      "databaseIds": [
+        "carddb-conditions-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-005",
+      "databaseIds": [
+        "carddb-conditions-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-006",
+      "databaseIds": [
+        "carddb-conditions-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-007",
+      "databaseIds": [
+        "carddb-conditions-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-008",
+      "databaseIds": [
+        "carddb-conditions-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-009",
+      "databaseIds": [
+        "carddb-conditions-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-010",
+      "databaseIds": [
+        "carddb-conditions-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-conditions-011",
+      "databaseIds": [
+        "carddb-conditions-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-001",
+      "databaseIds": [
+        "carddb-damage-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-002",
+      "databaseIds": [
+        "carddb-damage-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-003",
+      "databaseIds": [
+        "carddb-damage-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-004",
+      "databaseIds": [
+        "carddb-damage-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-005",
+      "databaseIds": [
+        "carddb-damage-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-006",
+      "databaseIds": [
+        "carddb-damage-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-007",
+      "databaseIds": [
+        "carddb-damage-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-008",
+      "databaseIds": [
+        "carddb-damage-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-009",
+      "databaseIds": [
+        "carddb-damage-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-010",
+      "databaseIds": [
+        "carddb-damage-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-011",
+      "databaseIds": [
+        "carddb-damage-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-012",
+      "databaseIds": [
+        "carddb-damage-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-013",
+      "databaseIds": [
+        "carddb-damage-013"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-014",
+      "databaseIds": [
+        "carddb-damage-014"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-015",
+      "databaseIds": [
+        "carddb-damage-015"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-016",
+      "databaseIds": [
+        "carddb-damage-016"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-017",
+      "databaseIds": [
+        "carddb-damage-017"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-damage-018",
+      "databaseIds": [
+        "carddb-damage-018"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-001",
+      "databaseIds": [
+        "carddb-fear-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-002",
+      "databaseIds": [
+        "carddb-fear-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-003",
+      "databaseIds": [
+        "carddb-fear-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-004",
+      "databaseIds": [
+        "carddb-fear-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-005",
+      "databaseIds": [
+        "carddb-fear-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-006",
+      "databaseIds": [
+        "carddb-fear-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-007",
+      "databaseIds": [
+        "carddb-fear-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-008",
+      "databaseIds": [
+        "carddb-fear-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-009",
+      "databaseIds": [
+        "carddb-fear-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-010",
+      "databaseIds": [
+        "carddb-fear-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-011",
+      "databaseIds": [
+        "carddb-fear-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-012",
+      "databaseIds": [
+        "carddb-fear-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-013",
+      "databaseIds": [
+        "carddb-fear-013"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-014",
+      "databaseIds": [
+        "carddb-fear-014"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-015",
+      "databaseIds": [
+        "carddb-fear-015"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-016",
+      "databaseIds": [
+        "carddb-fear-016"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-017",
+      "databaseIds": [
+        "carddb-fear-017"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-fear-018",
+      "databaseIds": [
+        "carddb-fear-018"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-aragorn-001",
+      "databaseIds": [
+        "character-001"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-aragorn-002",
+      "databaseIds": [
+        "carddb-heroes-aragorn-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-aragorn-003",
+      "databaseIds": [
+        "card-0012"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-aragorn-004",
+      "databaseIds": [
+        "card-0013"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-aragorn-005",
+      "databaseIds": [
+        "card-0014"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-aragorn-006",
+      "databaseIds": [
+        "card-0015"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-aragorn-007",
+      "databaseIds": [
+        "card-0016"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-arwen-001",
+      "databaseIds": [
+        "character-007"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-arwen-002",
+      "databaseIds": [
+        "carddb-heroes-arwen-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-arwen-003",
+      "databaseIds": [
+        "card-0152"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-arwen-004",
+      "databaseIds": [
+        "card-0153"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-arwen-005",
+      "databaseIds": [
+        "card-0154"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-arwen-006",
+      "databaseIds": [
+        "card-0155"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-arwen-007",
+      "databaseIds": [
+        "card-0156"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-balin-001",
+      "databaseIds": [
+        "character-008"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-balin-002",
+      "databaseIds": [
+        "carddb-heroes-balin-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-balin-003",
+      "databaseIds": [
+        "card-0174"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-balin-004",
+      "databaseIds": [
+        "card-0175"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-balin-005",
+      "databaseIds": [
+        "card-0176"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-balin-006",
+      "databaseIds": [
+        "card-0177"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-balin-007",
+      "databaseIds": [
+        "card-0178"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-001",
+      "databaseIds": [
+        "character-012"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-002",
+      "databaseIds": [
+        "carddb-heroes-beorn-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-003",
+      "databaseIds": [
+        "carddb-heroes-beorn-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-004",
+      "databaseIds": [
+        "carddb-heroes-beorn-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-005",
+      "databaseIds": [
+        "carddb-heroes-beorn-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-006",
+      "databaseIds": [
+        "carddb-heroes-beorn-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-007",
+      "databaseIds": [
+        "carddb-heroes-beorn-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-008",
+      "databaseIds": [
+        "character-013"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-009",
+      "databaseIds": [
+        "carddb-heroes-beorn-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-010",
+      "databaseIds": [
+        "carddb-heroes-beorn-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beorn-011",
+      "databaseIds": [
+        "carddb-heroes-beorn-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beravor-001",
+      "databaseIds": [
+        "character-002"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-beravor-002",
+      "databaseIds": [
+        "carddb-heroes-beravor-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-beravor-003",
+      "databaseIds": [
+        "card-0035"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-beravor-004",
+      "databaseIds": [
+        "card-0036"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-beravor-005",
+      "databaseIds": [
+        "card-0037"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-beravor-006",
+      "databaseIds": [
+        "card-0038"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-beravor-007",
+      "databaseIds": [
+        "card-0039"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-bilbo-001",
+      "databaseIds": [
+        "character-003"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-bilbo-002",
+      "databaseIds": [
+        "carddb-heroes-bilbo-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-bilbo-003",
+      "databaseIds": [
+        "card-0052"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-bilbo-004",
+      "databaseIds": [
+        "card-0053"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-bilbo-005",
+      "databaseIds": [
+        "card-0054"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-bilbo-006",
+      "databaseIds": [
+        "card-0055"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-bilbo-007",
+      "databaseIds": [
+        "card-0056"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-boromir-001",
+      "databaseIds": [
+        "character-014"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-boromir-002",
+      "databaseIds": [
+        "carddb-heroes-boromir-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-boromir-003",
+      "databaseIds": [
+        "card-0292"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-boromir-004",
+      "databaseIds": [
+        "card-0293"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-boromir-005",
+      "databaseIds": [
+        "card-0294"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-boromir-006",
+      "databaseIds": [
+        "card-0295"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-boromir-007",
+      "databaseIds": [
+        "card-0296"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-calaminth-001",
+      "databaseIds": [
+        "character-015"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-calaminth-002",
+      "databaseIds": [
+        "carddb-heroes-calaminth-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-calaminth-003",
+      "databaseIds": [
+        "card-0313"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-calaminth-004",
+      "databaseIds": [
+        "card-0314"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-calaminth-005",
+      "databaseIds": [
+        "card-0315"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-calaminth-006",
+      "databaseIds": [
+        "card-0316"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-calaminth-007",
+      "databaseIds": [
+        "card-0317"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dis-001",
+      "databaseIds": [
+        "character-009"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dis-002",
+      "databaseIds": [
+        "carddb-heroes-dis-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-dis-003",
+      "databaseIds": [
+        "card-0195"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dis-004",
+      "databaseIds": [
+        "card-0196"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dis-005",
+      "databaseIds": [
+        "card-0197"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dis-006",
+      "databaseIds": [
+        "card-0198"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dis-007",
+      "databaseIds": [
+        "card-0199"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dwalin-001",
+      "databaseIds": [
+        "character-016"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dwalin-002",
+      "databaseIds": [
+        "carddb-heroes-dwalin-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-dwalin-003",
+      "databaseIds": [
+        "card-0339"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dwalin-004",
+      "databaseIds": [
+        "card-0340"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dwalin-005",
+      "databaseIds": [
+        "card-0341"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dwalin-006",
+      "databaseIds": [
+        "card-0342"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-dwalin-007",
+      "databaseIds": [
+        "card-0343"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-eleanor-001",
+      "databaseIds": [
+        "character-010"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-eleanor-002",
+      "databaseIds": [
+        "carddb-heroes-eleanor-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-eleanor-003",
+      "databaseIds": [
+        "card-0220"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-eleanor-004",
+      "databaseIds": [
+        "card-0221"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-eleanor-005",
+      "databaseIds": [
+        "card-0222"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-eleanor-006",
+      "databaseIds": [
+        "card-0223"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-eleanor-007",
+      "databaseIds": [
+        "card-0224"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-elena-001",
+      "databaseIds": [
+        "character-004"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-elena-002",
+      "databaseIds": [
+        "carddb-heroes-elena-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-elena-003",
+      "databaseIds": [
+        "card-0076"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-elena-004",
+      "databaseIds": [
+        "card-0077"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-elena-005",
+      "databaseIds": [
+        "card-0078"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-elena-006",
+      "databaseIds": [
+        "card-0079"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-elena-007",
+      "databaseIds": [
+        "card-0080"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-freahild-001",
+      "databaseIds": [
+        "character-017"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-freahild-002",
+      "databaseIds": [
+        "carddb-heroes-freahild-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-freahild-003",
+      "databaseIds": [
+        "card-0362"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-freahild-004",
+      "databaseIds": [
+        "card-0363"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-freahild-005",
+      "databaseIds": [
+        "card-0364"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-freahild-006",
+      "databaseIds": [
+        "card-0365"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-freahild-007",
+      "databaseIds": [
+        "card-0366"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-freahild-008",
+      "databaseIds": [
+        "carddb-heroes-freahild-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-gandalf-001",
+      "databaseIds": [
+        "character-011"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gandalf-002",
+      "databaseIds": [
+        "carddb-heroes-gandalf-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-gandalf-003",
+      "databaseIds": [
+        "card-0245"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gandalf-004",
+      "databaseIds": [
+        "card-0246"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gandalf-005",
+      "databaseIds": [
+        "card-0247"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gandalf-006",
+      "databaseIds": [
+        "card-0248"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gandalf-007",
+      "databaseIds": [
+        "card-0249"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gimli-001",
+      "databaseIds": [
+        "character-005"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gimli-002",
+      "databaseIds": [
+        "carddb-heroes-gimli-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-gimli-003",
+      "databaseIds": [
+        "card-0101"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gimli-004",
+      "databaseIds": [
+        "card-0102"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gimli-005",
+      "databaseIds": [
+        "card-0103"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gimli-006",
+      "databaseIds": [
+        "card-0104"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-gimli-007",
+      "databaseIds": [
+        "card-0105"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-legolas-001",
+      "databaseIds": [
+        "character-006"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-legolas-002",
+      "databaseIds": [
+        "carddb-heroes-legolas-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-legolas-003",
+      "databaseIds": [
+        "card-0125"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-legolas-004",
+      "databaseIds": [
+        "card-0126"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-legolas-005",
+      "databaseIds": [
+        "card-0127"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-legolas-006",
+      "databaseIds": [
+        "card-0128"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-legolas-007",
+      "databaseIds": [
+        "card-0129"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-renerien-001",
+      "databaseIds": [
+        "character-018"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-renerien-002",
+      "databaseIds": [
+        "carddb-heroes-renerien-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-heroes-renerien-003",
+      "databaseIds": [
+        "card-0378"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-renerien-004",
+      "databaseIds": [
+        "card-0379"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-renerien-005",
+      "databaseIds": [
+        "card-0380"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-renerien-006",
+      "databaseIds": [
+        "card-0381"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-heroes-renerien-007",
+      "databaseIds": [
+        "card-0382"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "hero page / numbered base skill"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-001",
+      "databaseIds": [
+        "carddb-items-armors-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-armors-002",
+      "databaseIds": [
+        "carddb-items-armors-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-armors-003",
+      "databaseIds": [
+        "card-0265"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-004",
+      "databaseIds": [
+        "card-0336"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.90 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-005",
+      "databaseIds": [
+        "carddb-items-armors-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-armors-006",
+      "databaseIds": [
+        "card-0266"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.89 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-007",
+      "databaseIds": [
+        "carddb-items-armors-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-armors-008",
+      "databaseIds": [
+        "card-0338"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-009",
+      "databaseIds": [
+        "card-0048",
+        "card-0073",
+        "card-0217",
+        "card-0288",
+        "card-0309"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 2",
+        "title 1.00 / image distance 4",
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-010",
+      "databaseIds": [
+        "card-0218"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-011",
+      "databaseIds": [
+        "card-0049"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.96 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-012",
+      "databaseIds": [
+        "card-0075",
+        "card-0219"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.91 / image distance 12",
+        "title 0.91 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-013",
+      "databaseIds": [
+        "card-0290"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-014",
+      "databaseIds": [
+        "card-0050"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-015",
+      "databaseIds": [
+        "card-0051"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-016",
+      "databaseIds": [
+        "card-0192"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-017",
+      "databaseIds": [
+        "card-0009",
+        "card-0172",
+        "card-0193",
+        "card-0243",
+        "card-0359"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.96 / image distance 4",
+        "title 1.00 / image distance 10",
+        "title 1.00 / image distance 6",
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-018",
+      "databaseIds": [
+        "card-0010",
+        "card-0173",
+        "card-0194"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.95 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-019",
+      "databaseIds": [
+        "card-0244"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-020",
+      "databaseIds": [
+        "card-0011"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-021",
+      "databaseIds": [
+        "carddb-items-armors-021"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-armors-022",
+      "databaseIds": [
+        "carddb-items-armors-022"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-armors-023",
+      "databaseIds": [
+        "card-0098"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.86 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-024",
+      "databaseIds": [
+        "card-0099"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-025",
+      "databaseIds": [
+        "carddb-items-armors-025"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-armors-026",
+      "databaseIds": [
+        "carddb-items-armors-026"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-armors-027",
+      "databaseIds": [
+        "card-0100"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-028",
+      "databaseIds": [
+        "card-0029",
+        "card-0122",
+        "card-0145",
+        "card-0149"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.90 / image distance 8",
+        "title 0.95 / image distance 10",
+        "title 1.00 / image distance 4",
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-029",
+      "databaseIds": [
+        "card-0030",
+        "card-0123",
+        "card-0146"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.92 / image distance 4",
+        "title 1.00 / image distance 4",
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-030",
+      "databaseIds": [
+        "card-0150"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.92 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-031",
+      "databaseIds": [
+        "card-0031"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-032",
+      "databaseIds": [
+        "card-0151"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-armors-033",
+      "databaseIds": [
+        "card-0148"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-001",
+      "databaseIds": [
+        "carddb-items-hands-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-002",
+      "databaseIds": [
+        "carddb-items-hands-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-003",
+      "databaseIds": [
+        "card-0189"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.94 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-004",
+      "databaseIds": [
+        "carddb-items-hands-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-005",
+      "databaseIds": [
+        "card-0190"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-006",
+      "databaseIds": [
+        "card-0191"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-007",
+      "databaseIds": [
+        "carddb-items-hands-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-008",
+      "databaseIds": [
+        "carddb-items-hands-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-009",
+      "databaseIds": [
+        "carddb-items-hands-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-010",
+      "databaseIds": [
+        "carddb-items-hands-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-011",
+      "databaseIds": [
+        "carddb-items-hands-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-012",
+      "databaseIds": [
+        "carddb-items-hands-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-013",
+      "databaseIds": [
+        "carddb-items-hands-013"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-014",
+      "databaseIds": [
+        "carddb-items-hands-014"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-015",
+      "databaseIds": [
+        "carddb-items-hands-015"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-016",
+      "databaseIds": [
+        "carddb-items-hands-016"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-017",
+      "databaseIds": [
+        "carddb-items-hands-017"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-018",
+      "databaseIds": [
+        "carddb-items-hands-018"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-019",
+      "databaseIds": [
+        "carddb-items-hands-019"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-020",
+      "databaseIds": [
+        "carddb-items-hands-020"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-021",
+      "databaseIds": [
+        "card-0119"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.92 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-022",
+      "databaseIds": [
+        "card-0117"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-023",
+      "databaseIds": [
+        "carddb-items-hands-023"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-024",
+      "databaseIds": [
+        "carddb-items-hands-024"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-025",
+      "databaseIds": [
+        "card-0121"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.91 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-026",
+      "databaseIds": [
+        "carddb-items-hands-026"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-027",
+      "databaseIds": [
+        "carddb-items-hands-027"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-028",
+      "databaseIds": [
+        "carddb-items-hands-028"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-029",
+      "databaseIds": [
+        "carddb-items-hands-029"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-030",
+      "databaseIds": [
+        "carddb-items-hands-030"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-031",
+      "databaseIds": [
+        "card-0001",
+        "card-0281"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-032",
+      "databaseIds": [
+        "card-0092"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-033",
+      "databaseIds": [
+        "carddb-items-hands-033"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-034",
+      "databaseIds": [
+        "card-0282"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.92 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-035",
+      "databaseIds": [
+        "carddb-items-hands-035"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-036",
+      "databaseIds": [
+        "card-0093"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.89 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-037",
+      "databaseIds": [
+        "carddb-items-hands-037"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-038",
+      "databaseIds": [
+        "carddb-items-hands-038"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-039",
+      "databaseIds": [
+        "card-0167"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-040",
+      "databaseIds": [
+        "card-0140"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-041",
+      "databaseIds": [
+        "carddb-items-hands-041"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-042",
+      "databaseIds": [
+        "carddb-items-hands-042"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-043",
+      "databaseIds": [
+        "carddb-items-hands-043"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-044",
+      "databaseIds": [
+        "carddb-items-hands-044"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-045",
+      "databaseIds": [
+        "carddb-items-hands-045"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-046",
+      "databaseIds": [
+        "card-0258"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 2"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-047",
+      "databaseIds": [
+        "card-0259"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-048",
+      "databaseIds": [
+        "card-0260"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.87 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-049",
+      "databaseIds": [
+        "carddb-items-hands-049"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-050",
+      "databaseIds": [
+        "card-0261"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-051",
+      "databaseIds": [
+        "carddb-items-hands-051"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-052",
+      "databaseIds": [
+        "carddb-items-hands-052"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-053",
+      "databaseIds": [
+        "carddb-items-hands-053"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-054",
+      "databaseIds": [
+        "carddb-items-hands-054"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-055",
+      "databaseIds": [
+        "carddb-items-hands-055"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-056",
+      "databaseIds": [
+        "carddb-items-hands-056"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-057",
+      "databaseIds": [
+        "carddb-items-hands-057"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-058",
+      "databaseIds": [
+        "carddb-items-hands-058"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-059",
+      "databaseIds": [
+        "carddb-items-hands-059"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-060",
+      "databaseIds": [
+        "carddb-items-hands-060"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-061",
+      "databaseIds": [
+        "carddb-items-hands-061"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-062",
+      "databaseIds": [
+        "carddb-items-hands-062"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-063",
+      "databaseIds": [
+        "carddb-items-hands-063"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-064",
+      "databaseIds": [
+        "carddb-items-hands-064"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-065",
+      "databaseIds": [
+        "carddb-items-hands-065"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-066",
+      "databaseIds": [
+        "carddb-items-hands-066"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-067",
+      "databaseIds": [
+        "carddb-items-hands-067"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-068",
+      "databaseIds": [
+        "carddb-items-hands-068"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-069",
+      "databaseIds": [
+        "carddb-items-hands-069"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-070",
+      "databaseIds": [
+        "carddb-items-hands-070"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-071",
+      "databaseIds": [
+        "carddb-items-hands-071"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-072",
+      "databaseIds": [
+        "card-0026"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-073",
+      "databaseIds": [
+        "carddb-items-hands-073"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-074",
+      "databaseIds": [
+        "card-0027"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-075",
+      "databaseIds": [
+        "card-0028"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-076",
+      "databaseIds": [
+        "card-0355"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.88 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-077",
+      "databaseIds": [
+        "card-0356"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.91 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-078",
+      "databaseIds": [
+        "card-0357"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.96 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-079",
+      "databaseIds": [
+        "carddb-items-hands-079"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-080",
+      "databaseIds": [
+        "carddb-items-hands-080"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-081",
+      "databaseIds": [
+        "card-0045"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-082",
+      "databaseIds": [
+        "card-0046"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-083",
+      "databaseIds": [
+        "carddb-items-hands-083"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-084",
+      "databaseIds": [
+        "carddb-items-hands-084"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-085",
+      "databaseIds": [
+        "carddb-items-hands-085"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-086",
+      "databaseIds": [
+        "carddb-items-hands-086"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-087",
+      "databaseIds": [
+        "card-0005"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.97 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-088",
+      "databaseIds": [
+        "carddb-items-hands-088"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-089",
+      "databaseIds": [
+        "card-0006"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-090",
+      "databaseIds": [
+        "card-0007"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-091",
+      "databaseIds": [
+        "card-0210"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-092",
+      "databaseIds": [
+        "card-0211"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.93 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-093",
+      "databaseIds": [
+        "carddb-items-hands-093"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-094",
+      "databaseIds": [
+        "card-0212"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-095",
+      "databaseIds": [
+        "carddb-items-hands-095"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-096",
+      "databaseIds": [
+        "carddb-items-hands-096"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-097",
+      "databaseIds": [
+        "carddb-items-hands-097"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-098",
+      "databaseIds": [
+        "carddb-items-hands-098"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-099",
+      "databaseIds": [
+        "carddb-items-hands-099"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-100",
+      "databaseIds": [
+        "carddb-items-hands-100"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-101",
+      "databaseIds": [
+        "carddb-items-hands-101"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-102",
+      "databaseIds": [
+        "carddb-items-hands-102"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-103",
+      "databaseIds": [
+        "carddb-items-hands-103"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-104",
+      "databaseIds": [
+        "card-0070"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.94 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-105",
+      "databaseIds": [
+        "card-0142"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-106",
+      "databaseIds": [
+        "card-0071"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 2"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-107",
+      "databaseIds": [
+        "card-0096"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-hands-108",
+      "databaseIds": [
+        "carddb-items-hands-108"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-hands-109",
+      "databaseIds": [
+        "card-0216"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.95 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-001",
+      "databaseIds": [
+        "carddb-items-mounts-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-002",
+      "databaseIds": [
+        "carddb-items-mounts-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-003",
+      "databaseIds": [
+        "carddb-items-mounts-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-004",
+      "databaseIds": [
+        "carddb-items-mounts-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-005",
+      "databaseIds": [
+        "carddb-items-mounts-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-006",
+      "databaseIds": [
+        "carddb-items-mounts-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-007",
+      "databaseIds": [
+        "carddb-items-mounts-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-008",
+      "databaseIds": [
+        "carddb-items-mounts-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-mounts-009",
+      "databaseIds": [
+        "carddb-items-mounts-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-001",
+      "databaseIds": [
+        "carddb-items-trinkets-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-002",
+      "databaseIds": [
+        "carddb-items-trinkets-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-003",
+      "databaseIds": [
+        "carddb-items-trinkets-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-004",
+      "databaseIds": [
+        "carddb-items-trinkets-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-005",
+      "databaseIds": [
+        "carddb-items-trinkets-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-006",
+      "databaseIds": [
+        "carddb-items-trinkets-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-007",
+      "databaseIds": [
+        "carddb-items-trinkets-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-008",
+      "databaseIds": [
+        "carddb-items-trinkets-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-009",
+      "databaseIds": [
+        "carddb-items-trinkets-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-010",
+      "databaseIds": [
+        "carddb-items-trinkets-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-011",
+      "databaseIds": [
+        "carddb-items-trinkets-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-012",
+      "databaseIds": [
+        "carddb-items-trinkets-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-013",
+      "databaseIds": [
+        "carddb-items-trinkets-013"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-014",
+      "databaseIds": [
+        "carddb-items-trinkets-014"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-015",
+      "databaseIds": [
+        "carddb-items-trinkets-015"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-016",
+      "databaseIds": [
+        "carddb-items-trinkets-016"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-017",
+      "databaseIds": [
+        "carddb-items-trinkets-017"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-018",
+      "databaseIds": [
+        "carddb-items-trinkets-018"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-019",
+      "databaseIds": [
+        "carddb-items-trinkets-019"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-020",
+      "databaseIds": [
+        "carddb-items-trinkets-020"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-021",
+      "databaseIds": [
+        "carddb-items-trinkets-021"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-022",
+      "databaseIds": [
+        "carddb-items-trinkets-022"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-023",
+      "databaseIds": [
+        "carddb-items-trinkets-023"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-024",
+      "databaseIds": [
+        "carddb-items-trinkets-024"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-025",
+      "databaseIds": [
+        "carddb-items-trinkets-025"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-026",
+      "databaseIds": [
+        "carddb-items-trinkets-026"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-027",
+      "databaseIds": [
+        "carddb-items-trinkets-027"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-028",
+      "databaseIds": [
+        "carddb-items-trinkets-028"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-029",
+      "databaseIds": [
+        "carddb-items-trinkets-029"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-030",
+      "databaseIds": [
+        "carddb-items-trinkets-030"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-031",
+      "databaseIds": [
+        "carddb-items-trinkets-031"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-032",
+      "databaseIds": [
+        "carddb-items-trinkets-032"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-033",
+      "databaseIds": [
+        "carddb-items-trinkets-033"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-034",
+      "databaseIds": [
+        "carddb-items-trinkets-034"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-035",
+      "databaseIds": [
+        "carddb-items-trinkets-035"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-036",
+      "databaseIds": [
+        "carddb-items-trinkets-036"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-037",
+      "databaseIds": [
+        "carddb-items-trinkets-037"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-038",
+      "databaseIds": [
+        "carddb-items-trinkets-038"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-039",
+      "databaseIds": [
+        "carddb-items-trinkets-039"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-040",
+      "databaseIds": [
+        "carddb-items-trinkets-040"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-041",
+      "databaseIds": [
+        "carddb-items-trinkets-041"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-042",
+      "databaseIds": [
+        "carddb-items-trinkets-042"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-043",
+      "databaseIds": [
+        "carddb-items-trinkets-043"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-044",
+      "databaseIds": [
+        "carddb-items-trinkets-044"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-045",
+      "databaseIds": [
+        "carddb-items-trinkets-045"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-046",
+      "databaseIds": [
+        "carddb-items-trinkets-046"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-047",
+      "databaseIds": [
+        "carddb-items-trinkets-047"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-items-trinkets-048",
+      "databaseIds": [
+        "carddb-items-trinkets-048"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-beast-friend-001",
+      "databaseIds": [
+        "carddb-roles-beast-friend-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-beast-friend-002",
+      "databaseIds": [
+        "carddb-roles-beast-friend-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-beast-friend-003",
+      "databaseIds": [
+        "carddb-roles-beast-friend-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-beast-friend-004",
+      "databaseIds": [
+        "carddb-roles-beast-friend-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-beast-friend-005",
+      "databaseIds": [
+        "carddb-roles-beast-friend-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-beast-friend-006",
+      "databaseIds": [
+        "card-0209"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-001",
+      "databaseIds": [
+        "carddb-roles-burglar-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-002",
+      "databaseIds": [
+        "carddb-roles-burglar-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-003",
+      "databaseIds": [
+        "carddb-roles-burglar-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-004",
+      "databaseIds": [
+        "card-0060"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.92 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-005",
+      "databaseIds": [
+        "carddb-roles-burglar-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-006",
+      "databaseIds": [
+        "carddb-roles-burglar-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-007",
+      "databaseIds": [
+        "carddb-roles-burglar-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-008",
+      "databaseIds": [
+        "carddb-roles-burglar-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-009",
+      "databaseIds": [
+        "carddb-roles-burglar-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-010",
+      "databaseIds": [
+        "carddb-roles-burglar-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-011",
+      "databaseIds": [
+        "card-0040"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 4"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-burglar-012",
+      "databaseIds": [
+        "carddb-roles-burglar-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-001",
+      "databaseIds": [
+        "carddb-roles-captain-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-002",
+      "databaseIds": [
+        "carddb-roles-captain-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-003",
+      "databaseIds": [
+        "carddb-roles-captain-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-004",
+      "databaseIds": [
+        "card-0300"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-005",
+      "databaseIds": [
+        "card-0020"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-006",
+      "databaseIds": [
+        "carddb-roles-captain-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-007",
+      "databaseIds": [
+        "carddb-roles-captain-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-008",
+      "databaseIds": [
+        "carddb-roles-captain-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-009",
+      "databaseIds": [
+        "carddb-roles-captain-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-010",
+      "databaseIds": [
+        "carddb-roles-captain-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-011",
+      "databaseIds": [
+        "carddb-roles-captain-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-captain-012",
+      "databaseIds": [
+        "card-0257"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-001",
+      "databaseIds": [
+        "carddb-roles-delver-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-002",
+      "databaseIds": [
+        "carddb-roles-delver-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-003",
+      "databaseIds": [
+        "carddb-roles-delver-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-004",
+      "databaseIds": [
+        "carddb-roles-delver-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-005",
+      "databaseIds": [
+        "carddb-roles-delver-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-006",
+      "databaseIds": [
+        "carddb-roles-delver-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-007",
+      "databaseIds": [
+        "carddb-roles-delver-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-008",
+      "databaseIds": [
+        "carddb-roles-delver-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-009",
+      "databaseIds": [
+        "carddb-roles-delver-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-010",
+      "databaseIds": [
+        "carddb-roles-delver-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-011",
+      "databaseIds": [
+        "card-0373"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-delver-012",
+      "databaseIds": [
+        "carddb-roles-delver-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-001",
+      "databaseIds": [
+        "carddb-roles-guardian-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-002",
+      "databaseIds": [
+        "card-0018",
+        "card-0298",
+        "card-0301"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-003",
+      "databaseIds": [
+        "carddb-roles-guardian-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-004",
+      "databaseIds": [
+        "carddb-roles-guardian-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-005",
+      "databaseIds": [
+        "carddb-roles-guardian-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-006",
+      "databaseIds": [
+        "carddb-roles-guardian-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-007",
+      "databaseIds": [
+        "carddb-roles-guardian-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-008",
+      "databaseIds": [
+        "carddb-roles-guardian-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-009",
+      "databaseIds": [
+        "card-0302"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-010",
+      "databaseIds": [
+        "carddb-roles-guardian-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-011",
+      "databaseIds": [
+        "card-0303"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.87 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-guardian-012",
+      "databaseIds": [
+        "carddb-roles-guardian-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-001",
+      "databaseIds": [
+        "carddb-roles-guide-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-002",
+      "databaseIds": [
+        "carddb-roles-guide-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-003",
+      "databaseIds": [
+        "carddb-roles-guide-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-004",
+      "databaseIds": [
+        "carddb-roles-guide-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-005",
+      "databaseIds": [
+        "carddb-roles-guide-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-006",
+      "databaseIds": [
+        "carddb-roles-guide-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-007",
+      "databaseIds": [
+        "carddb-roles-guide-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-008",
+      "databaseIds": [
+        "carddb-roles-guide-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-009",
+      "databaseIds": [
+        "carddb-roles-guide-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-010",
+      "databaseIds": [
+        "carddb-roles-guide-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-011",
+      "databaseIds": [
+        "carddb-roles-guide-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-guide-012",
+      "databaseIds": [
+        "carddb-roles-guide-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-001",
+      "databaseIds": [
+        "carddb-roles-herbalist-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-002",
+      "databaseIds": [
+        "carddb-roles-herbalist-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-003",
+      "databaseIds": [
+        "carddb-roles-herbalist-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-004",
+      "databaseIds": [
+        "carddb-roles-herbalist-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-005",
+      "databaseIds": [
+        "carddb-roles-herbalist-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-006",
+      "databaseIds": [
+        "carddb-roles-herbalist-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-007",
+      "databaseIds": [
+        "carddb-roles-herbalist-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-008",
+      "databaseIds": [
+        "carddb-roles-herbalist-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-009",
+      "databaseIds": [
+        "carddb-roles-herbalist-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-010",
+      "databaseIds": [
+        "carddb-roles-herbalist-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-011",
+      "databaseIds": [
+        "card-0254"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-herbalist-012",
+      "databaseIds": [
+        "carddb-roles-herbalist-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-001",
+      "databaseIds": [
+        "carddb-roles-hunter-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-002",
+      "databaseIds": [
+        "carddb-roles-hunter-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-003",
+      "databaseIds": [
+        "carddb-roles-hunter-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-004",
+      "databaseIds": [
+        "carddb-roles-hunter-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-005",
+      "databaseIds": [
+        "carddb-roles-hunter-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-006",
+      "databaseIds": [
+        "carddb-roles-hunter-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-007",
+      "databaseIds": [
+        "carddb-roles-hunter-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-008",
+      "databaseIds": [
+        "carddb-roles-hunter-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-009",
+      "databaseIds": [
+        "carddb-roles-hunter-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-010",
+      "databaseIds": [
+        "card-0324"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.93 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-011",
+      "databaseIds": [
+        "carddb-roles-hunter-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-hunter-012",
+      "databaseIds": [
+        "carddb-roles-hunter-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-001",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-002",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-003",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-004",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-005",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-006",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-007",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-008",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-009",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-010",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-011",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-lorekeeper-012",
+      "databaseIds": [
+        "carddb-roles-lorekeeper-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-001",
+      "databaseIds": [
+        "carddb-roles-meddler-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-002",
+      "databaseIds": [
+        "carddb-roles-meddler-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-003",
+      "databaseIds": [
+        "carddb-roles-meddler-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-004",
+      "databaseIds": [
+        "carddb-roles-meddler-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-005",
+      "databaseIds": [
+        "carddb-roles-meddler-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-006",
+      "databaseIds": [
+        "carddb-roles-meddler-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-007",
+      "databaseIds": [
+        "carddb-roles-meddler-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-008",
+      "databaseIds": [
+        "card-0085"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-009",
+      "databaseIds": [
+        "carddb-roles-meddler-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-010",
+      "databaseIds": [
+        "carddb-roles-meddler-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-011",
+      "databaseIds": [
+        "carddb-roles-meddler-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-meddler-012",
+      "databaseIds": [
+        "card-0084"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-001",
+      "databaseIds": [
+        "carddb-roles-musician-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-002",
+      "databaseIds": [
+        "card-0058"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.92 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-003",
+      "databaseIds": [
+        "card-0059"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.93 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-004",
+      "databaseIds": [
+        "carddb-roles-musician-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-005",
+      "databaseIds": [
+        "card-0062"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.92 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-006",
+      "databaseIds": [
+        "card-0063"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.89 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-007",
+      "databaseIds": [
+        "card-0230"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-008",
+      "databaseIds": [
+        "carddb-roles-musician-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-009",
+      "databaseIds": [
+        "carddb-roles-musician-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-010",
+      "databaseIds": [
+        "carddb-roles-musician-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-011",
+      "databaseIds": [
+        "carddb-roles-musician-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-musician-012",
+      "databaseIds": [
+        "carddb-roles-musician-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-001",
+      "databaseIds": [
+        "card-0032"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-002",
+      "databaseIds": [
+        "carddb-roles-pathfinder-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-003",
+      "databaseIds": [
+        "carddb-roles-pathfinder-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-004",
+      "databaseIds": [
+        "card-0041"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.88 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-005",
+      "databaseIds": [
+        "carddb-roles-pathfinder-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-006",
+      "databaseIds": [
+        "carddb-roles-pathfinder-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-007",
+      "databaseIds": [
+        "carddb-roles-pathfinder-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-008",
+      "databaseIds": [
+        "carddb-roles-pathfinder-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-009",
+      "databaseIds": [
+        "carddb-roles-pathfinder-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-010",
+      "databaseIds": [
+        "carddb-roles-pathfinder-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-011",
+      "databaseIds": [
+        "carddb-roles-pathfinder-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-pathfinder-012",
+      "databaseIds": [
+        "card-0044"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.92 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-001",
+      "databaseIds": [
+        "carddb-roles-provisioner-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-002",
+      "databaseIds": [
+        "carddb-roles-provisioner-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-003",
+      "databaseIds": [
+        "carddb-roles-provisioner-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-004",
+      "databaseIds": [
+        "carddb-roles-provisioner-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-005",
+      "databaseIds": [
+        "carddb-roles-provisioner-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-006",
+      "databaseIds": [
+        "carddb-roles-provisioner-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-007",
+      "databaseIds": [
+        "carddb-roles-provisioner-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-008",
+      "databaseIds": [
+        "carddb-roles-provisioner-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-009",
+      "databaseIds": [
+        "carddb-roles-provisioner-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-010",
+      "databaseIds": [
+        "carddb-roles-provisioner-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-011",
+      "databaseIds": [
+        "carddb-roles-provisioner-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-provisioner-012",
+      "databaseIds": [
+        "card-0347"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-001",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-002",
+      "databaseIds": [
+        "card-0274"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-003",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-004",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-005",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-006",
+      "databaseIds": [
+        "card-0278"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-007",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-008",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-009",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-010",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-011",
+      "databaseIds": [
+        "carddb-roles-shieldmaiden-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-shieldmaiden-012",
+      "databaseIds": [
+        "card-0280"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.95 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-001",
+      "databaseIds": [
+        "carddb-roles-smith-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-002",
+      "databaseIds": [
+        "carddb-roles-smith-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-003",
+      "databaseIds": [
+        "card-0181"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.91 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-004",
+      "databaseIds": [
+        "card-0182"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-005",
+      "databaseIds": [
+        "carddb-roles-smith-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-006",
+      "databaseIds": [
+        "carddb-roles-smith-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-007",
+      "databaseIds": [
+        "carddb-roles-smith-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-008",
+      "databaseIds": [
+        "carddb-roles-smith-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-009",
+      "databaseIds": [
+        "carddb-roles-smith-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-010",
+      "databaseIds": [
+        "carddb-roles-smith-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-011",
+      "databaseIds": [
+        "carddb-roles-smith-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-012",
+      "databaseIds": [
+        "card-0186"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-smith-013",
+      "databaseIds": [
+        "card-0233"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.95 / image distance 10"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-001",
+      "databaseIds": [
+        "carddb-roles-soldier-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-002",
+      "databaseIds": [
+        "carddb-roles-soldier-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-003",
+      "databaseIds": [
+        "carddb-roles-soldier-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-004",
+      "databaseIds": [
+        "carddb-roles-soldier-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-005",
+      "databaseIds": [
+        "carddb-roles-soldier-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-006",
+      "databaseIds": [
+        "carddb-roles-soldier-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-007",
+      "databaseIds": [
+        "carddb-roles-soldier-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-008",
+      "databaseIds": [
+        "carddb-roles-soldier-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-009",
+      "databaseIds": [
+        "card-0207",
+        "card-0208"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 12",
+        "title 1.00 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-010",
+      "databaseIds": [
+        "carddb-roles-soldier-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-011",
+      "databaseIds": [
+        "carddb-roles-soldier-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-soldier-012",
+      "databaseIds": [
+        "carddb-roles-soldier-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-001",
+      "databaseIds": [
+        "carddb-roles-traveller-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-002",
+      "databaseIds": [
+        "carddb-roles-traveller-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-003",
+      "databaseIds": [
+        "card-0083"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-004",
+      "databaseIds": [
+        "carddb-roles-traveller-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-005",
+      "databaseIds": [
+        "card-0086"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 6"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-006",
+      "databaseIds": [
+        "carddb-roles-traveller-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-007",
+      "databaseIds": [
+        "card-0088"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.95 / image distance 12"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-008",
+      "databaseIds": [
+        "carddb-roles-traveller-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-009",
+      "databaseIds": [
+        "carddb-roles-traveller-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-010",
+      "databaseIds": [
+        "carddb-roles-traveller-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-011",
+      "databaseIds": [
+        "card-0350"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 1.00 / image distance 14"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-traveller-012",
+      "databaseIds": [
+        "card-0163"
+      ],
+      "action": "linked",
+      "matchReasons": [
+        "title 0.90 / image distance 8"
+      ]
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-001",
+      "databaseIds": [
+        "carddb-roles-trickster-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-002",
+      "databaseIds": [
+        "carddb-roles-trickster-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-003",
+      "databaseIds": [
+        "carddb-roles-trickster-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-004",
+      "databaseIds": [
+        "carddb-roles-trickster-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-005",
+      "databaseIds": [
+        "carddb-roles-trickster-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-006",
+      "databaseIds": [
+        "carddb-roles-trickster-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-007",
+      "databaseIds": [
+        "carddb-roles-trickster-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-008",
+      "databaseIds": [
+        "carddb-roles-trickster-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-009",
+      "databaseIds": [
+        "carddb-roles-trickster-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-010",
+      "databaseIds": [
+        "carddb-roles-trickster-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-011",
+      "databaseIds": [
+        "carddb-roles-trickster-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-roles-trickster-012",
+      "databaseIds": [
+        "carddb-roles-trickster-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-001",
+      "databaseIds": [
+        "carddb-terrain-001"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-002",
+      "databaseIds": [
+        "carddb-terrain-002"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-003",
+      "databaseIds": [
+        "carddb-terrain-003"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-004",
+      "databaseIds": [
+        "carddb-terrain-004"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-005",
+      "databaseIds": [
+        "carddb-terrain-005"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-006",
+      "databaseIds": [
+        "carddb-terrain-006"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-007",
+      "databaseIds": [
+        "carddb-terrain-007"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-008",
+      "databaseIds": [
+        "carddb-terrain-008"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-009",
+      "databaseIds": [
+        "carddb-terrain-009"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-010",
+      "databaseIds": [
+        "carddb-terrain-010"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-011",
+      "databaseIds": [
+        "carddb-terrain-011"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-012",
+      "databaseIds": [
+        "carddb-terrain-012"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-013",
+      "databaseIds": [
+        "carddb-terrain-013"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-014",
+      "databaseIds": [
+        "carddb-terrain-014"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-015",
+      "databaseIds": [
+        "carddb-terrain-015"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-016",
+      "databaseIds": [
+        "carddb-terrain-016"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-017",
+      "databaseIds": [
+        "carddb-terrain-017"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-018",
+      "databaseIds": [
+        "carddb-terrain-018"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-019",
+      "databaseIds": [
+        "carddb-terrain-019"
+      ],
+      "action": "added",
+      "matchReasons": []
+    },
+    {
+      "sourceScanId": "carddb-terrain-020",
+      "databaseIds": [
+        "carddb-terrain-020"
+      ],
+      "action": "added",
+      "matchReasons": []
+    }
+  ]
+}

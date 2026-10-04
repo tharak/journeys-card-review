@@ -2,10 +2,11 @@ const $ = selector => document.querySelector(selector);
 const TYPES = [
   ['all', 'All cards'], ['hero', 'Hero cards'], ['role', 'Role cards'],
   ['one-handed', '1-handed'], ['two-handed', '2-handed'], ['armor', 'Armor'],
-  ['trinket', 'Trinket'], ['mount', 'Mount'], ['unsorted', 'Other'],
+  ['trinket', 'Trinket'], ['mount', 'Mount'], ['hand-item', 'Hand items'],
+  ['basic', 'Basic'], ['title', 'Title'], ['weakness', 'Weakness'], ['unsorted', 'Other'],
 ];
 const LABELS = Object.fromEntries(TYPES);
-const EQUIPMENT = new Set(['one-handed', 'two-handed', 'armor', 'trinket', 'mount']);
+const EQUIPMENT = new Set(['one-handed', 'two-handed', 'armor', 'trinket', 'mount', 'hand-item']);
 const DRAFT_KEY = 'journeys-build-creator-draft-v1';
 const SAVED_KEY = 'journeys-build-creator-saved-v1';
 const REVIEW_KEYS = {
@@ -87,7 +88,7 @@ function normalizeDraft(input, importing = false) {
     : Object.entries(input.cards && typeof input.cards === 'object' ? input.cards : {});
   for (const [originalId, quantity] of entries) {
     const id = state.data.aliases?.[originalId] || originalId;
-    if (typeof id !== 'string' || !state.byId.has(id) || id.startsWith('character-')) throw new Error(`Unknown card: ${originalId}`);
+    if (typeof id !== 'string' || !state.byId.has(id) || state.byId.get(id).buildEligible === false || state.byId.get(id).category === 'hero-card' || id.startsWith('character-')) throw new Error(`Unknown card: ${originalId}`);
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 9) throw new Error('Card quantities must be between 1 and 9.');
     draft.cards[id] = Math.min(9, (draft.cards[id] || 0) + quantity);
   }
@@ -132,7 +133,7 @@ function renderSetup() {
 function availableCards() {
   const hero = heroName();
   return state.cards.filter(card => {
-    if (card.deleted || card.id.startsWith('character-')) return false;
+    if (card.deleted || card.buildEligible === false || card.category === 'hero-card' || card.id.startsWith('character-')) return false;
     if (state.category !== 'all' && card.category !== state.category) return false;
     if (state.matching && hero && card.category === 'hero' && card.subcategory !== hero) return false;
     if (state.matching && state.draft.role && card.category === 'role' && card.subcategory !== state.draft.role) return false;
@@ -186,7 +187,7 @@ function renderSummary() {
   const selected = selectedCards();
   $('#summary-title').textContent = state.draft.name.trim() || 'A new journey';
   $('#summary-hero').textContent = [heroName(), state.draft.role].filter(Boolean).join(' · ') || 'Choose a hero to begin';
-  $('#skill-count').textContent = selected.filter(({ card }) => ['hero', 'role'].includes(card.category)).reduce((sum, item) => sum + item.quantity, 0);
+  $('#skill-count').textContent = selected.filter(({ card }) => ['hero', 'role', 'basic', 'title', 'weakness'].includes(card.category)).reduce((sum, item) => sum + item.quantity, 0);
   $('#equipment-count').textContent = selected.filter(({ card }) => EQUIPMENT.has(card.category)).reduce((sum, item) => sum + item.quantity, 0);
   $('#save-build').disabled = !state.draft.heroId;
   $('#export-build').disabled = !state.draft.heroId;
@@ -245,7 +246,7 @@ function chooseHero(id) {
   const hero = heroName();
   let added = 0;
   if (hero) for (const card of state.cards) {
-    if (!card.deleted && !card.id.startsWith('character-') && card.category === 'hero' && card.subcategory === hero) {
+    if (!card.deleted && card.buildEligible !== false && !card.id.startsWith('character-') && card.category === 'hero' && card.subcategory === hero) {
       state.draft.cards[card.id] = 1; added++;
     }
   }

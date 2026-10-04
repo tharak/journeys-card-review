@@ -8,6 +8,17 @@ const CATEGORIES = [
   { id: 'armor', label: 'Armor', icon: '♜' },
   { id: 'trinket', label: 'Trinket', icon: '✦' },
   { id: 'mount', label: 'Mount', icon: '♞' },
+  { id: 'hand-item', label: 'Hand items', icon: '⚔' },
+  { id: 'basic', label: 'Basic', icon: '✧' },
+  { id: 'title', label: 'Title', icon: '✦' },
+  { id: 'weakness', label: 'Weakness', icon: '◇' },
+  { id: 'terrain', label: 'Terrain', icon: '▦' },
+  { id: 'damage', label: 'Damage', icon: '✦' },
+  { id: 'fear', label: 'Fear', icon: '◇' },
+  { id: 'boon', label: 'Boon', icon: '✧' },
+  { id: 'bane', label: 'Bane', icon: '◇' },
+  { id: 'captured', label: 'Captured / Escape', icon: '↶' },
+  { id: 'card-back', label: 'Character backs', icon: '♟' },
   { id: 'unsorted', label: 'Needs review', icon: '◇' },
   { id: 'deleted', label: 'Deleted', icon: '↶' },
 ];
@@ -408,6 +419,12 @@ function renderDialog() {
   $('#dialog-counter').textContent = `Image ${index >= 0 ? index + 1 : 1} of ${state.visible.length || state.cards.length}`;
   $('#dialog-image').src = card.image;
   $('#dialog-image').alt = `${titleFor(card)} card image`;
+  const scans = (card.sourceScans || []).filter(scan => scan.image !== card.image);
+  $('#dialog-scan-wrap').hidden = scans.length === 0;
+  const scanSelect = $('#dialog-scan');
+  scanSelect.replaceChildren(new Option('Selected image · v2', card.image));
+  for (const scan of scans) scanSelect.add(new Option(`JiME Card DB · scan ${scan.sourceImageNumber}`, scan.image));
+  scanSelect.onchange = () => { $('#dialog-image').src = scanSelect.value; };
   $('#dialog-category').textContent = labelFor(categoryFor(card));
   const titleInput = $('#dialog-title-input');
   titleInput.value = titleFor(card);
@@ -421,7 +438,7 @@ function renderDialog() {
     $('#current-card-label').textContent = `Current: ${titleFor(card)} · ${card.id.replace('card-', '#').replace('character-', 'Hero ')}`;
   };
   titleInput.onchange = () => { renderGallery(); renderDialog(); };
-  $('#dialog-ocr-note').textContent = card.category === 'hero' ? 'Character sheet from the document.' : card.ocrTitle ? `OCR title: ${card.ocrTitle}. Check it against the image.` : 'The title could not be read automatically. Check the image.';
+  $('#dialog-ocr-note').textContent = card.category === 'hero-card' ? 'Character sheet. Check the image for abilities and stats.' : card.ocrTitle ? `OCR title: ${card.ocrTitle}. Check it against the image.` : 'The title could not be read automatically. Check the image.';
   const cardText = $('#dialog-card-text');
   cardText.value = cardTextFor(card);
   cardText.oninput = () => {
@@ -464,8 +481,14 @@ function renderDialog() {
       subcategoryInput.onchange = () => setSubcategory(card.id, subcategoryInput.value.trim());
     }
   }
-  const source = $('#source-button'); source.textContent = `Document section ${card.section}`;
-  source.onclick = () => { $('#card-dialog').close(); switchView('document'); document.getElementById(`section-${card.section}`)?.scrollIntoView(); };
+  const source = $('#source-button');
+  if (card.sourceUrl?.startsWith('https://sites.google.com/view/jime-carddb/')) {
+    source.textContent = `JiME Card DB · ${card.sourceHeading || 'Source'}`;
+    source.onclick = () => window.open(card.sourceUrl, '_blank', 'noopener,noreferrer');
+  } else {
+    source.textContent = `Document section ${card.section}`;
+    source.onclick = () => { $('#card-dialog').close(); switchView('document'); document.getElementById(`section-${card.section}`)?.scrollIntoView(); };
+  }
   const deleteButton = $('#delete-card');
   deleteButton.textContent = state.deleted.has(card.id) ? 'Restore card' : 'Delete card';
   deleteButton.onclick = () => toggleDeleted(card.id);

@@ -96,7 +96,8 @@
         "card-0166",
         "card-0282"
       ],
-      "displayTitle": "Sword Duelling"
+      "displayTitle": "Sword Duelling",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0003",
@@ -113,7 +114,8 @@
       "mergedIds": [
         "card-0283"
       ],
-      "displayTitle": "Sword Iron-Render"
+      "displayTitle": "Sword Iron-Render",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0004",
@@ -123,7 +125,7 @@
       "group": 3,
       "section": 1,
       "image": "assets/v2/card-0004.webp",
-      "subcategory": "banner",
+      "subcategory": "Banner",
       "displayTitle": "Banner"
     },
     {
@@ -134,7 +136,7 @@
       "group": 3,
       "section": 1,
       "image": "assets/v2/card-0005.webp",
-      "subcategory": "banner",
+      "subcategory": "Banner",
       "displayTitle": "Banner Dunedain",
       "sourceScans": [
         {
@@ -169,7 +171,7 @@
       "group": 3,
       "section": 1,
       "image": "assets/v2/card-0006.webp",
-      "subcategory": "banner",
+      "subcategory": "Banner",
       "displayTitle": "Banner War-Maker",
       "sourceScans": [
         {
@@ -181,7 +183,7 @@
           "text": ";{ 13%: 2 hits e\ni\" After you or a nearby ;\n]' hero rests, guards, or 1l\n' hides, that hero gains Hi\ne 1 inspiration. |\nI‘L} War-Maker P i",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 56.0,
+            "titleConfidence": 56,
             "engine": "tesseract"
           }
         }
@@ -191,7 +193,7 @@
       "text": ";{ 13%: 2 hits e\ni\" After you or a nearby ;\n]' hero rests, guards, or 1l\n' hides, that hero gains Hi\ne 1 inspiration. |\nI‘L} War-Maker P i",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 56.0,
+        "titleConfidence": 56,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -204,7 +206,7 @@
       "group": 3,
       "section": 1,
       "image": "assets/v2/card-0007.webp",
-      "subcategory": "banner",
+      "subcategory": "Banner",
       "displayTitle": "Banner Hope’s Beacon",
       "sourceScans": [
         {
@@ -252,7 +254,8 @@
         "card-0242",
         "card-0358"
       ],
-      "displayTitle": "Card 0008"
+      "displayTitle": "Card 0008",
+      "subcategory": "Plate Armor"
     },
     {
       "id": "card-0009",
@@ -357,7 +360,7 @@
       "section": 1,
       "image": "assets/v2/card-0011.webp",
       "subcategory": "Plate Armor",
-      "displayTitle": "Card 0011",
+      "displayTitle": "Kings Crest",
       "sourceScans": [
         {
           "id": "carddb-items-armors-020",
@@ -473,7 +476,7 @@
           "text": "1 /3 i\ni T\n< 11 3 ; S\n\\._‘\n& Strike 3 (When you attack, i\n% discard to add 3 hits.) :\nGuard 2 (Discard to prevent 3\nA W for a hero in your\ni space.) 1",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 67.0,
+            "titleConfidence": 67,
             "engine": "tesseract"
           }
         }
@@ -483,7 +486,7 @@
       "text": "1 /3 i\ni T\n< 11 3 ; S\n\\._‘\n& Strike 3 (When you attack, i\n% discard to add 3 hits.) :\nGuard 2 (Discard to prevent 3\nA W for a hero in your\ni space.) 1",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 67.0,
+        "titleConfidence": 67,
         "engine": "tesseract"
       },
       "printedCardNumber": "3"
@@ -958,7 +961,7 @@
           "text": "| i';;_ ncrease your % limit by 1. }\n\"4 Before you suffer facedown X\\, 7€\nI* you may prevent 1 of that X\\, il\nflle After you explore a tile, you |\nil may spend 1 inspiration to ' j’%\n’ _ scout 2. }’\nG 21 t\n€ Greenwood Garb ,\nRN 4| 5 o",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 85.0,
+            "titleConfidence": 85,
             "engine": "tesseract"
           }
         }
@@ -968,7 +971,7 @@
       "text": "| i';;_ ncrease your % limit by 1. }\n\"4 Before you suffer facedown X\\, 7€\nI* you may prevent 1 of that X\\, il\nflle After you explore a tile, you |\nil may spend 1 inspiration to ' j’%\n’ _ scout 2. }’\nG 21 t\n€ Greenwood Garb ,\nRN 4| 5 o",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 85.0,
+        "titleConfidence": 85,
         "engine": "tesseract"
       },
       "printedCardNumber": "938"
@@ -1169,7 +1172,7 @@
       "id": "card-0037",
       "title": "E mWayﬂs of Old",
       "ocrTitle": "E mWayﬂs of Old",
-      "category": "role",
+      "category": "hero",
       "group": 13,
       "section": 4,
       "image": "assets/v2/card-0037.webp",
@@ -1197,7 +1200,8 @@
         "titleConfidence": 68.7,
         "engine": "tesseract"
       },
-      "printedCardNumber": "3"
+      "printedCardNumber": "3",
+      "subcategory": "Beravor"
     },
     {
       "id": "card-0038",
@@ -1628,7 +1632,7 @@
           "text": "i s I e bR TR N N\ngi;‘ en you test to negate X 21\n’{» or %, you may spend Bt\ne | inspiration to convert 2 d N\nI After you suffer any amount of ‘i\nI X or %%, you may flip 1 !\nM or % facedown. i\ni{ Guard’s Tabard 3 }\n= R ]\nT A e~ e e S 3",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 63.0,
+            "titleConfidence": 63,
             "engine": "tesseract"
           }
         }
@@ -1638,7 +1642,7 @@
       "text": "i s I e bR TR N N\ngi;‘ en you test to negate X 21\n’{» or %, you may spend Bt\ne | inspiration to convert 2 d N\nI After you suffer any amount of ‘i\nI X or %%, you may flip 1 !\nM or % facedown. i\ni{ Guard’s Tabard 3 }\n= R ]\nT A e~ e e S 3",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 63.0,
+        "titleConfidence": 63,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -1707,7 +1711,7 @@
           "text": "\"i\"icrease your inspiration limit ‘ipt\nIF When you test to negate B\n‘1 or %#*, you may convert | o 1\nil co 2 . H\nli Suffer all % facedown. i\n» Star of the West\nW_;{%'a PR p’\\g o,\n%D_H_\\\\_A_L, L%",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 92.0,
+            "titleConfidence": 92,
             "engine": "tesseract"
           }
         }
@@ -1717,7 +1721,7 @@
       "text": "\"i\"icrease your inspiration limit ‘ipt\nIF When you test to negate B\n‘1 or %#*, you may convert | o 1\nil co 2 . H\nli Suffer all % facedown. i\n» Star of the West\nW_;{%'a PR p’\\g o,\n%D_H_\\\\_A_L, L%",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 92.0,
+        "titleConfidence": 92,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -1769,7 +1773,7 @@
       "id": "card-0053",
       "title": "E _The Tookish Part",
       "ocrTitle": "E _The Tookish Part",
-      "category": "role",
+      "category": "hero",
       "group": 19,
       "section": 6,
       "image": "assets/v2/card-0053.webp",
@@ -1797,7 +1801,8 @@
         "titleConfidence": 86.3,
         "engine": "tesseract"
       },
-      "printedCardNumber": "2"
+      "printedCardNumber": "2",
+      "subcategory": "Bilbo"
     },
     {
       "id": "card-0054",
@@ -2051,7 +2056,7 @@
           "text": "i T\n2 Song of Mocking &\nVe\n. Song\n® During your turn, you may\n. discard this skill to apply stun |\n@ to 1 enemy in your space. If\ng you do, 1 nearby hero gains §\n1 inspiration. %\nL Guard 1\n3 ' - = A R N S = e_\n— - . Musician 5 ; -,",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 62.0,
+            "titleConfidence": 62,
             "engine": "tesseract"
           }
         }
@@ -2061,7 +2066,7 @@
       "text": "i T\n2 Song of Mocking &\nVe\n. Song\n® During your turn, you may\n. discard this skill to apply stun |\n@ to 1 enemy in your space. If\ng you do, 1 nearby hero gains §\n1 inspiration. %\nL Guard 1\n3 ' - = A R N S = e_\n— - . Musician 5 ; -,",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 62.0,
+        "titleConfidence": 62,
         "engine": "tesseract"
       },
       "printedCardNumber": "5"
@@ -2176,7 +2181,7 @@
       "id": "card-0066",
       "title": "i ” Sling",
       "ocrTitle": "i ” Sling",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 24,
       "section": 8,
       "image": "assets/v2/card-0066.webp",
@@ -2196,7 +2201,7 @@
       "id": "card-0068",
       "title": "Whistler",
       "ocrTitle": "Whistler",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 24,
       "section": 8,
       "image": "assets/v2/card-0068.webp",
@@ -2345,7 +2350,8 @@
         "card-0241",
         "card-0287"
       ],
-      "displayTitle": "Card 0072"
+      "displayTitle": "Card 0072",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0073",
@@ -2386,11 +2392,12 @@
       "id": "card-0074",
       "title": "i Guard’s Tabard",
       "ocrTitle": "i Guard’s Tabard",
-      "category": "unsorted",
+      "category": "armor",
       "group": 26,
       "section": 8,
       "image": "assets/v2/card-0074.webp",
-      "displayTitle": "Guard’s Tabard"
+      "displayTitle": "Guard’s Tabard",
+      "subcategory": "Padded Armor"
     },
     {
       "id": "card-0075",
@@ -2584,7 +2591,7 @@
       "id": "card-0080",
       "title": "z Layi of Twilight",
       "ocrTitle": "z Layi of Twilight",
-      "category": "role",
+      "category": "hero",
       "group": 27,
       "section": 8,
       "image": "assets/v2/card-0080.webp",
@@ -2612,7 +2619,8 @@
         "titleConfidence": 86.8,
         "engine": "tesseract"
       },
-      "printedCardNumber": "5"
+      "printedCardNumber": "5",
+      "subcategory": "Elena"
     },
     {
       "id": "card-0081",
@@ -2747,7 +2755,7 @@
           "text": "\\< - .;' E P\n8 Contemplation &\nP Knowledge '\n& You may have up to 6 prepared @\n> skills at the same time. (If this §\n& skill is discarded, discard all but 3\n& 4 prepared skills.) 2\n¥ Rest2 .\nlz ‘; . ‘-\";;:—-‘-“-:'—>> TN — —_— \" .r\n- Mecddler 8 —",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 68.0,
+            "titleConfidence": 68,
             "engine": "tesseract"
           }
         }
@@ -2757,7 +2765,7 @@
       "text": "\\< - .;' E P\n8 Contemplation &\nP Knowledge '\n& You may have up to 6 prepared @\n> skills at the same time. (If this §\n& skill is discarded, discard all but 3\n& 4 prepared skills.) 2\n¥ Rest2 .\nlz ‘; . ‘-\";;:—-‘-“-:'—>> TN — —_— \" .r\n- Mecddler 8 —",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 68.0,
+        "titleConfidence": 68,
         "engine": "tesseract"
       },
       "printedCardNumber": "8"
@@ -3029,11 +3037,12 @@
       "id": "card-0095",
       "title": "E Reinfor‘ced Shielil",
       "ocrTitle": "E Reinfor‘ced Shielil",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 33,
       "section": 10,
       "image": "assets/v2/card-0095.webp",
-      "displayTitle": "Card 0095"
+      "displayTitle": "Card 0095",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0096",
@@ -3171,7 +3180,7 @@
           "text": "i e a2 o\n' ncrease your X, %% and\n&% inspiration limits by 1. il\n8ll° When you test to negate, you f |\nil may test - or @) instead. 'j' |\nl, Suffer all X facedown. il\n% Dragon Scale : }\nahlly\nB =",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 79.0,
+            "titleConfidence": 79,
             "engine": "tesseract"
           }
         }
@@ -3181,7 +3190,7 @@
       "text": "i e a2 o\n' ncrease your X, %% and\n&% inspiration limits by 1. il\n8ll° When you test to negate, you f |\nil may test - or @) instead. 'j' |\nl, Suffer all X facedown. il\n% Dragon Scale : }\nahlly\nB =",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 79.0,
+        "titleConfidence": 79,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -3266,7 +3275,7 @@
       "id": "card-0103",
       "title": "i Restless Axe",
       "ocrTitle": "i Restless Axe",
-      "category": "role",
+      "category": "hero",
       "group": 35,
       "section": 11,
       "image": "assets/v2/card-0103.webp",
@@ -3294,7 +3303,8 @@
         "titleConfidence": 92.2,
         "engine": "tesseract"
       },
-      "printedCardNumber": "3"
+      "printedCardNumber": "3",
+      "subcategory": "Gimli"
     },
     {
       "id": "card-0104",
@@ -3358,7 +3368,7 @@
           "text": "Z .\\ ¥, |\nol el 4 |\nVA - F s\ns\n\\\"\n;, When you attack, you may %\nP spend any amountof deto  SS\n¢ add an equal number of hits.\n- Gimit D =",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 59.0,
+            "titleConfidence": 59,
             "engine": "tesseract"
           }
         }
@@ -3368,7 +3378,7 @@
       "text": "Z .\\ ¥, |\nol el 4 |\nVA - F s\ns\n\\\"\n;, When you attack, you may %\nP spend any amountof deto  SS\n¢ add an equal number of hits.\n- Gimit D =",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 59.0,
+        "titleConfidence": 59,
         "engine": "tesseract"
       },
       "printedCardNumber": "5"
@@ -3388,7 +3398,7 @@
       "id": "card-0107",
       "title": "l 1 Love of War and Valou",
       "ocrTitle": "l 1 Love of War and Valou",
-      "category": "hero",
+      "category": "role",
       "group": 36,
       "section": 11,
       "image": "assets/v2/card-0107.webp",
@@ -3398,7 +3408,8 @@
       "mergedIds": [
         "card-0108"
       ],
-      "displayTitle": "Love of War and Valou"
+      "displayTitle": "Love of War and Valou",
+      "subcategory": "Soldier"
     },
     {
       "id": "card-0108",
@@ -3408,7 +3419,8 @@
       "group": 36,
       "section": 11,
       "image": "assets/v2/card-0108.webp",
-      "displayTitle": "Love qf War and Valon"
+      "displayTitle": "Love qf War and Valon",
+      "subcategory": "Soldier"
     },
     {
       "id": "card-0109",
@@ -3597,11 +3609,12 @@
       "id": "card-0118",
       "title": "E . Knife",
       "ocrTitle": "E . Knife",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 41,
       "section": 13,
       "image": "assets/v2/card-0118.webp",
-      "displayTitle": "Knife"
+      "displayTitle": "Knife",
+      "subcategory": "Knife"
     },
     {
       "id": "card-0119",
@@ -3739,7 +3752,7 @@
           "text": "| i';;_ ncrease your % limit by 1. }\n\"4 Before you suffer facedown X\\, 7€\nI* you may prevent 1 of that X\\, il\nflle After you explore a tile, you |\nil may spend 1 inspiration to ' j’%\n’ _ scout 2. }’\nG 21 t\n€ Greenwood Garb ,\nRN 4| 5 o",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 85.0,
+            "titleConfidence": 85,
             "engine": "tesseract"
           }
         }
@@ -3749,7 +3762,7 @@
       "text": "| i';;_ ncrease your % limit by 1. }\n\"4 Before you suffer facedown X\\, 7€\nI* you may prevent 1 of that X\\, il\nflle After you explore a tile, you |\nil may spend 1 inspiration to ' j’%\n’ _ scout 2. }’\nG 21 t\n€ Greenwood Garb ,\nRN 4| 5 o",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 85.0,
+        "titleConfidence": 85,
         "engine": "tesseract"
       },
       "printedCardNumber": "938"
@@ -3758,11 +3771,12 @@
       "id": "card-0124",
       "title": "i Wanderer’s Wish",
       "ocrTitle": "i Wanderer’s Wish",
-      "category": "unsorted",
+      "category": "armor",
       "group": 42,
       "section": 13,
       "image": "assets/v2/card-0124.webp",
-      "displayTitle": "Wanderer’s Wish"
+      "displayTitle": "Wanderer’s Wish",
+      "subcategory": "Travel Garb"
     },
     {
       "id": "card-0125",
@@ -3825,7 +3839,7 @@
           "text": "oL o ARREF - . o 5\n4’(‘ e 4 ©\no - . - - g\no Light-Footed -\n!!\nB When you interact with a 9\nI scarch or threat token, before &\n¥ you test, you may discard this §\n£ skill to test Q instead and X\nL scout 1. 3\n¥ Sprint 1 (During your turn, %\nL discard to move 1 space.) '\n3 A R A e & e\nS : Legolas 2 B g Y",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 90.0,
+            "titleConfidence": 90,
             "engine": "tesseract"
           }
         }
@@ -3835,7 +3849,7 @@
       "text": "oL o ARREF - . o 5\n4’(‘ e 4 ©\no - . - - g\no Light-Footed -\n!!\nB When you interact with a 9\nI scarch or threat token, before &\n¥ you test, you may discard this §\n£ skill to test Q instead and X\nL scout 1. 3\n¥ Sprint 1 (During your turn, %\nL discard to move 1 space.) '\n3 A R A e & e\nS : Legolas 2 B g Y",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 90.0,
+        "titleConfidence": 90,
         "engine": "tesseract"
       },
       "printedCardNumber": "2"
@@ -3844,7 +3858,7 @@
       "id": "card-0127",
       "title": "E Lﬁght-Footed",
       "ocrTitle": "E Lﬁght-Footed",
-      "category": "role",
+      "category": "hero",
       "group": 43,
       "section": 13,
       "image": "assets/v2/card-0127.webp",
@@ -3872,7 +3886,8 @@
         "titleConfidence": 38.6,
         "engine": "tesseract"
       },
-      "printedCardNumber": "3"
+      "printedCardNumber": "3",
+      "subcategory": "Legolas"
     },
     {
       "id": "card-0128",
@@ -3913,7 +3928,7 @@
       "id": "card-0129",
       "title": "Immortality",
       "ocrTitle": "Immortality",
-      "category": "role",
+      "category": "hero",
       "group": 43,
       "section": 13,
       "image": "assets/v2/card-0129.webp",
@@ -3941,7 +3956,8 @@
         "titleConfidence": 47.9,
         "engine": "tesseract"
       },
-      "printedCardNumber": "5"
+      "printedCardNumber": "5",
+      "subcategory": "Legolas"
     },
     {
       "id": "card-0130",
@@ -4063,7 +4079,8 @@
       "group": 48,
       "section": 15,
       "image": "assets/v2/card-0137.webp",
-      "displayTitle": "Card 0137"
+      "displayTitle": "Card 0137",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0138",
@@ -4080,7 +4097,8 @@
       "mergedIds": [
         "card-0235"
       ],
-      "displayTitle": "Sword Elf-Forged"
+      "displayTitle": "Sword Elf-Forged",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0139",
@@ -4173,7 +4191,7 @@
           "text": ": ii‘:’ per round, when you ;\n14\" would suffer any amount of X, ‘\nWt you may prevent 1 X\\ %\ni !\n.‘?5 Before you provoke an enemy, l‘\nil apply 2 hits and pierce to thar i\n| cnemy. ;(\nlb} Bossed Shield i\ns 49 sy 0\n: AN\nAN Y | O v S8",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 70.0,
+            "titleConfidence": 70,
             "engine": "tesseract"
           }
         }
@@ -4183,7 +4201,7 @@
       "text": ": ii‘:’ per round, when you ;\n14\" would suffer any amount of X, ‘\nWt you may prevent 1 X\\ %\ni !\n.‘?5 Before you provoke an enemy, l‘\nil apply 2 hits and pierce to thar i\n| cnemy. ;(\nlb} Bossed Shield i\ns 49 sy 0\n: AN\nAN Y | O v S8",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 70.0,
+        "titleConfidence": 70,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -4192,21 +4210,23 @@
       "id": "card-0143",
       "title": "Ironhide",
       "ocrTitle": "Ironhide",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 49,
       "section": 15,
       "image": "assets/v2/card-0143.webp",
-      "displayTitle": "Ironhide"
+      "displayTitle": "Ironhide",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0144",
       "title": "E Hrinanbenn",
       "ocrTitle": "E Hrinanbenn",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 49,
       "section": 15,
       "image": "assets/v2/card-0144.webp",
-      "displayTitle": "Hrinanbenn"
+      "displayTitle": "Hrinanbenn",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0145",
@@ -4263,7 +4283,7 @@
           "text": "| i';;_ ncrease your % limit by 1. }\n\"4 Before you suffer facedown X\\, 7€\nI* you may prevent 1 of that X\\, il\nflle After you explore a tile, you |\nil may spend 1 inspiration to ' j’%\n’ _ scout 2. }’\nG 21 t\n€ Greenwood Garb ,\nRN 4| 5 o",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 85.0,
+            "titleConfidence": 85,
             "engine": "tesseract"
           }
         }
@@ -4273,7 +4293,7 @@
       "text": "| i';;_ ncrease your % limit by 1. }\n\"4 Before you suffer facedown X\\, 7€\nI* you may prevent 1 of that X\\, il\nflle After you explore a tile, you |\nil may spend 1 inspiration to ' j’%\n’ _ scout 2. }’\nG 21 t\n€ Greenwood Garb ,\nRN 4| 5 o",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 85.0,
+        "titleConfidence": 85,
         "engine": "tesseract"
       },
       "printedCardNumber": "938"
@@ -4282,11 +4302,12 @@
       "id": "card-0147",
       "title": "i Wanderer’s Wish",
       "ocrTitle": "i Wanderer’s Wish",
-      "category": "unsorted",
+      "category": "armor",
       "group": 50,
       "section": 15,
       "image": "assets/v2/card-0147.webp",
-      "displayTitle": "Wanderer’s Wish"
+      "displayTitle": "Wanderer’s Wish",
+      "subcategory": "Travel Garb"
     },
     {
       "id": "card-0148",
@@ -4543,7 +4564,7 @@
       "id": "card-0155",
       "title": "Evenstar",
       "ocrTitle": "Evenstar",
-      "category": "role",
+      "category": "hero",
       "group": 52,
       "section": 15,
       "image": "assets/v2/card-0155.webp",
@@ -4571,7 +4592,8 @@
         "titleConfidence": 68.6,
         "engine": "tesseract"
       },
-      "printedCardNumber": "4"
+      "printedCardNumber": "4",
+      "subcategory": "Arwen"
     },
     {
       "id": "card-0156",
@@ -4763,17 +4785,19 @@
       "group": 57,
       "section": 17,
       "image": "assets/v2/card-0165.webp",
-      "displayTitle": "Card 0165"
+      "displayTitle": "Card 0165",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0166",
       "title": "i | Duelll-ng Sword",
       "ocrTitle": "i | Duelll-ng Sword",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 57,
       "section": 17,
       "image": "assets/v2/card-0166.webp",
-      "displayTitle": "Sword Duelling"
+      "displayTitle": "Sword Duelling",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0167",
@@ -4818,27 +4842,30 @@
       "group": 58,
       "section": 17,
       "image": "assets/v2/card-0168.webp",
-      "displayTitle": "Card 0168"
+      "displayTitle": "Card 0168",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0169",
       "title": "Reinforced Shlelti",
       "ocrTitle": "Reinforced Shlelti",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 58,
       "section": 17,
       "image": "assets/v2/card-0169.webp",
-      "displayTitle": "Reinforced Shlelti"
+      "displayTitle": "Reinforced Shlelti",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0170",
       "title": "i Ironhide",
       "ocrTitle": "i Ironhide",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 58,
       "section": 17,
       "image": "assets/v2/card-0170.webp",
-      "displayTitle": "Ironhide"
+      "displayTitle": "Ironhide",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0171",
@@ -5036,7 +5063,7 @@
       "id": "card-0177",
       "title": "E ' Loyal Frle‘nd",
       "ocrTitle": "E ' Loyal Frle‘nd",
-      "category": "role",
+      "category": "hero",
       "group": 60,
       "section": 18,
       "image": "assets/v2/card-0177.webp",
@@ -5064,7 +5091,8 @@
         "titleConfidence": 73.1,
         "engine": "tesseract"
       },
-      "printedCardNumber": "4"
+      "printedCardNumber": "4",
+      "subcategory": "Balin"
     },
     {
       "id": "card-0178",
@@ -5081,7 +5109,7 @@
       "mergedIds": [
         "card-0342"
       ],
-      "subcategory": "Dwalin",
+      "subcategory": "Balin",
       "displayTitle": "Misty Mountains Cold",
       "sourceScans": [
         {
@@ -5343,7 +5371,7 @@
           "text": "‘\\\\;.\".;__'__._.-A ' ; r r,f) ,,;.,.:'_,'L\\ A RN SR DS SRR G BN D ) e, 4\n! i e .\n] b £y L T || —— \\ \"7 e\nil SRR = OF . -l\nTi e S R ST e | i £ ¥ 3 & ,amage IB r |\ni l 5 }33& f-’:\"/:\"\":\"—_v'-\":-{\"‘3 i Rl | | i st O ol \\L ; . :\n(1] } 3 to place 1 card from the test on top of your i\n< /lkwr ' .‘t:; . '\\._,/ \\'/’ 2 i —.~' l’\\\\/“ \\\\ .'\\'5'—*.7:-\"\",'\"5?}7‘:\"::’7’——*\"\"‘4' e T T T e L T",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 34.0,
+            "titleConfidence": 34,
             "engine": "tesseract"
           }
         }
@@ -5353,7 +5381,7 @@
       "text": "‘\\\\;.\".;__'__._.-A ' ; r r,f) ,,;.,.:'_,'L\\ A RN SR DS SRR G BN D ) e, 4\n! i e .\n] b £y L T || —— \\ \"7 e\nil SRR = OF . -l\nTi e S R ST e | i £ ¥ 3 & ,amage IB r |\ni l 5 }33& f-’:\"/:\"\":\"—_v'-\":-{\"‘3 i Rl | | i st O ol \\L ; . :\n(1] } 3 to place 1 card from the test on top of your i\n< /lkwr ' .‘t:; . '\\._,/ \\'/’ 2 i —.~' l’\\\\/“ \\\\ .'\\'5'—*.7:-\"\",'\"5?}7‘:\"::’7’——*\"\"‘4' e T T T e L T",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 34.0,
+        "titleConfidence": 34,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -5583,7 +5611,7 @@
       "id": "card-0195",
       "title": "Fury",
       "ocrTitle": "Fury",
-      "category": "role",
+      "category": "hero",
       "group": 66,
       "section": 19,
       "image": "assets/v2/card-0195.webp",
@@ -5611,7 +5639,8 @@
         "titleConfidence": 63.8,
         "engine": "tesseract"
       },
-      "printedCardNumber": "1"
+      "printedCardNumber": "1",
+      "subcategory": "Dis"
     },
     {
       "id": "card-0196",
@@ -5628,7 +5657,7 @@
       "mergedIds": [
         "card-0339"
       ],
-      "subcategory": "Dwalin",
+      "subcategory": "Dis",
       "displayTitle": "Kinship",
       "sourceScans": [
         {
@@ -5735,7 +5764,7 @@
       "id": "card-0199",
       "title": "flre- Heart '",
       "ocrTitle": "flre- Heart '",
-      "category": "role",
+      "category": "hero",
       "group": 66,
       "section": 19,
       "image": "assets/v2/card-0199.webp",
@@ -5763,7 +5792,8 @@
         "titleConfidence": 91.3,
         "engine": "tesseract"
       },
-      "printedCardNumber": "5"
+      "printedCardNumber": "5",
+      "subcategory": "Dis"
     },
     {
       "id": "card-0200",
@@ -6142,11 +6172,12 @@
       "id": "card-0214",
       "title": "E . Reinfor‘ced Shiel",
       "ocrTitle": "E . Reinfor‘ced Shiel",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 75,
       "section": 21,
       "image": "assets/v2/card-0214.webp",
-      "displayTitle": "Card 0214"
+      "displayTitle": "Card 0214",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0215",
@@ -6156,13 +6187,14 @@
       "group": 75,
       "section": 21,
       "image": "assets/v2/card-0215.webp",
-      "displayTitle": "Card 0215"
+      "displayTitle": "Card 0215",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0216",
       "title": "i . Hrinanbenn",
       "ocrTitle": "i . Hrinanbenn",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 75,
       "section": 21,
       "image": "assets/v2/card-0216.webp",
@@ -6177,7 +6209,7 @@
           "text": "P o N\n\" Once per round, when you i\n* would suffer any amount of X\\, &\n& you may prevent 2 X\\ and ’é\nil prepare a skill from your discard “‘; '\n| _ e 1\nol i\ns‘ Once per round, after an enemy | |\n;.-_:_moves into your space, you may /,, i\n@M apply stun to that enemy. |\n_ ;‘ Hrinanbenn pe )\ne 1 ¥ Faien SN .'.»\".\\“._- Ao\ng 5.9 S i ey N SAY AN e X\n< § S SR 3\niy i » Wi 8BS\n:-. B N i M%‘sm’w&;'—w‘}”} / / ‘;",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 61.0,
+            "titleConfidence": 61,
             "engine": "tesseract"
           }
         }
@@ -6187,10 +6219,11 @@
       "text": "P o N\n\" Once per round, when you i\n* would suffer any amount of X\\, &\n& you may prevent 2 X\\ and ’é\nil prepare a skill from your discard “‘; '\n| _ e 1\nol i\ns‘ Once per round, after an enemy | |\n;.-_:_moves into your space, you may /,, i\n@M apply stun to that enemy. |\n_ ;‘ Hrinanbenn pe )\ne 1 ¥ Faien SN .'.»\".\\“._- Ao\ng 5.9 S i ey N SAY AN e X\n< § S SR 3\niy i » Wi 8BS\n:-. B N i M%‘sm’w&;'—w‘}”} / / ‘;",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 61.0,
+        "titleConfidence": 61,
         "engine": "tesseract"
       },
-      "printedCardNumber": null
+      "printedCardNumber": null,
+      "subcategory": "Shield"
     },
     {
       "id": "card-0217",
@@ -6336,7 +6369,7 @@
       "id": "card-0221",
       "title": "i | Fateless",
       "ocrTitle": "i | Fateless",
-      "category": "role",
+      "category": "hero",
       "group": 77,
       "section": 22,
       "image": "assets/v2/card-0221.webp",
@@ -6364,7 +6397,8 @@
         "titleConfidence": 91.3,
         "engine": "tesseract"
       },
-      "printedCardNumber": "2"
+      "printedCardNumber": "2",
+      "subcategory": "Eleanor"
     },
     {
       "id": "card-0222",
@@ -6382,7 +6416,7 @@
         "card-0223",
         "card-0295"
       ],
-      "subcategory": "Boromir",
+      "subcategory": "Eleanor",
       "displayTitle": "Blogd of Gondor",
       "sourceScans": [
         {
@@ -6413,7 +6447,7 @@
       "id": "card-0223",
       "title": "l Blood éf Gondof",
       "ocrTitle": "l Blood éf Gondof",
-      "category": "role",
+      "category": "hero",
       "group": 77,
       "section": 22,
       "image": "assets/v2/card-0223.webp",
@@ -6441,7 +6475,8 @@
         "titleConfidence": 75.3,
         "engine": "tesseract"
       },
-      "printedCardNumber": "4"
+      "printedCardNumber": "4",
+      "subcategory": "Eleanor"
     },
     {
       "id": "card-0224",
@@ -6458,7 +6493,7 @@
       "mergedIds": [
         "card-0364"
       ],
-      "subcategory": "Freahild",
+      "subcategory": "Eleanor",
       "displayTitle": "Gifl of Mén",
       "sourceScans": [
         {
@@ -6680,41 +6715,45 @@
       "id": "card-0234",
       "title": "i fword",
       "ocrTitle": "i fword",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 83,
       "section": 24,
       "image": "assets/v2/card-0234.webp",
-      "displayTitle": "Sword"
+      "displayTitle": "Sword",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0235",
       "title": "Elf-Forged Sword",
       "ocrTitle": "Elf-Forged Sword",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 83,
       "section": 24,
       "image": "assets/v2/card-0235.webp",
-      "displayTitle": "Sword Elf-Forged"
+      "displayTitle": "Elf-Forged",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0236",
       "title": "i Fatf-Bender",
       "ocrTitle": "i Fatf-Bender",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 83,
       "section": 24,
       "image": "assets/v2/card-0236.webp",
-      "displayTitle": "Sword Fate-Bender"
+      "displayTitle": "Sword Fate-Bender",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0237",
       "title": "i' Will-Carver",
       "ocrTitle": "i' Will-Carver",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 83,
       "section": 24,
       "image": "assets/v2/card-0237.webp",
-      "displayTitle": "Sword Will-Carver"
+      "displayTitle": "Sword Will-Carver",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0238",
@@ -6731,11 +6770,12 @@
       "id": "card-0239",
       "title": "Reinforced Shielii",
       "ocrTitle": "Reinforced Shielii",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 84,
       "section": 24,
       "image": "assets/v2/card-0239.webp",
-      "displayTitle": "Reinforced Shielii"
+      "displayTitle": "Reinforced Shielii",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0240",
@@ -6745,27 +6785,30 @@
       "group": 84,
       "section": 24,
       "image": "assets/v2/card-0240.webp",
-      "displayTitle": "Card 0240"
+      "displayTitle": "Card 0240",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0241",
       "title": "E o Hrinanbem.l",
       "ocrTitle": "E o Hrinanbem.l",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 84,
       "section": 24,
       "image": "assets/v2/card-0241.webp",
-      "displayTitle": "Card 0241"
+      "displayTitle": "Card 0241",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0242",
       "title": "i ”Pla'.te-AArmor",
       "ocrTitle": "i ”Pla'.te-AArmor",
-      "category": "unsorted",
+      "category": "armor",
       "group": 85,
       "section": 24,
       "image": "assets/v2/card-0242.webp",
-      "displayTitle": "Card 0242"
+      "displayTitle": "Card 0242",
+      "subcategory": "Plate Armor"
     },
     {
       "id": "card-0243",
@@ -6997,7 +7040,7 @@
           "text": "& Tactic b |\nB When you attack an enemy in B |\n. your space, discard this skill {8\n& to add smite and stun to the »\n| attack. i",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 59.0,
+            "titleConfidence": 59,
             "engine": "tesseract"
           }
         }
@@ -7007,7 +7050,7 @@
       "text": "& Tactic b |\nB When you attack an enemy in B |\n. your space, discard this skill {8\n& to add smite and stun to the »\n| attack. i",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 59.0,
+        "titleConfidence": 59,
         "engine": "tesseract"
       },
       "printedCardNumber": "5"
@@ -7209,7 +7252,7 @@
           "text": "==, The CreatBear (S————r AN zn |\ni ; E | L B o ] : SRR % ko g\n| 1| . .;-;,_ ‘3 : IR \"-:25.\":'33‘ i o SIS 8 ; §\nn . #(ﬁ e Wisdom o 2 | o B\n. & | Q) - |\n1 A T | 6 NG\nS e e P \\ B\n[l \" | | @ EHE\n’ o o { . 48 a;‘ &‘{ H {  Before you interact, as an additional cost, choose and 7 }\n8 f g r\" !é ’ }\\g‘t § ! { | discard 1 prepared skill. B\n| LTI e | ST 5 B0y | (You can only equip Rending Claws and Hoary Coat.) | §\ns 7 \\/4>W—-—--——-——:-7;",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 15.0,
+            "titleConfidence": 15,
             "engine": "tesseract"
           }
         }
@@ -7219,7 +7262,7 @@
       "text": "==, The CreatBear (S————r AN zn |\ni ; E | L B o ] : SRR % ko g\n| 1| . .;-;,_ ‘3 : IR \"-:25.\":'33‘ i o SIS 8 ; §\nn . #(ﬁ e Wisdom o 2 | o B\n. & | Q) - |\n1 A T | 6 NG\nS e e P \\ B\n[l \" | | @ EHE\n’ o o { . 48 a;‘ &‘{ H {  Before you interact, as an additional cost, choose and 7 }\n8 f g r\" !é ’ }\\g‘t § ! { | discard 1 prepared skill. B\n| LTI e | ST 5 B0y | (You can only equip Rending Claws and Hoary Coat.) | §\ns 7 \\/4>W—-—--——-——:-7;",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 15.0,
+        "titleConfidence": 15,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -7314,7 +7357,7 @@
           "text": ":\\’“ @/ Before you attack an %\n-: exhausted enemy, gain\ni%a 1 boon of your choice.\n“ 13 3 hits, smite gl\n} 13 3 hits ?,f\n| 13 2 hits, stun ‘, §\ni}, 3 Bolger’s Pride e\nk\\«%;?\"‘ a\"“‘i:._ b ~ /(4",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 66.0,
+            "titleConfidence": 66,
             "engine": "tesseract"
           }
         }
@@ -7324,7 +7367,7 @@
       "text": ":\\’“ @/ Before you attack an %\n-: exhausted enemy, gain\ni%a 1 boon of your choice.\n“ 13 3 hits, smite gl\n} 13 3 hits ?,f\n| 13 2 hits, stun ‘, §\ni}, 3 Bolger’s Pride e\nk\\«%;?\"‘ a\"“‘i:._ b ~ /(4",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 66.0,
+        "titleConfidence": 66,
         "engine": "tesseract"
       },
       "printedCardNumber": "82"
@@ -7535,11 +7578,12 @@
       "id": "card-0271",
       "title": "I Th.e_ flrst Beorning",
       "ocrTitle": "I Th.e_ flrst Beorning",
-      "category": "role",
+      "category": "hero",
       "group": 95,
       "section": 27,
       "image": "assets/v2/card-0271.webp",
-      "displayTitle": "Card 0271"
+      "displayTitle": "Card 0271",
+      "subcategory": "Beorn"
     },
     {
       "id": "card-0272",
@@ -7612,7 +7656,8 @@
       "group": 97,
       "section": 27,
       "image": "assets/v2/card-0275.webp",
-      "displayTitle": "Boasting"
+      "displayTitle": "Boasting",
+      "subcategory": "Delver"
     },
     {
       "id": "card-0276",
@@ -7756,7 +7801,7 @@
       "id": "card-0281",
       "title": "E Sword",
       "ocrTitle": "E Sword",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 101,
       "section": 29,
       "image": "assets/v2/card-0281.webp",
@@ -7784,13 +7829,14 @@
         "titleConfidence": 52.5,
         "engine": "tesseract"
       },
-      "printedCardNumber": null
+      "printedCardNumber": null,
+      "subcategory": "Sword"
     },
     {
       "id": "card-0282",
       "title": "i Duelling Sword",
       "ocrTitle": "i Duelling Sword",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 101,
       "section": 29,
       "image": "assets/v2/card-0282.webp",
@@ -7818,17 +7864,19 @@
         "titleConfidence": 56.9,
         "engine": "tesseract"
       },
-      "printedCardNumber": "5"
+      "printedCardNumber": "5",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0283",
       "title": "i Iron-Render",
       "ocrTitle": "i Iron-Render",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 101,
       "section": 29,
       "image": "assets/v2/card-0283.webp",
-      "displayTitle": "Sword Iron-Render"
+      "displayTitle": "Sword Iron-Render",
+      "subcategory": "Sword"
     },
     {
       "id": "card-0284",
@@ -7845,31 +7893,34 @@
       "id": "card-0285",
       "title": "Reinforced Shlelcji",
       "ocrTitle": "Reinforced Shlelcji",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 102,
       "section": 29,
       "image": "assets/v2/card-0285.webp",
-      "displayTitle": "Shield Reinforced"
+      "displayTitle": "Shield Reinforced",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0286",
       "title": "Ironhide",
       "ocrTitle": "Ironhide",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 102,
       "section": 29,
       "image": "assets/v2/card-0286.webp",
-      "displayTitle": "Shield Ironhide"
+      "displayTitle": "Shield Ironhide",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0287",
       "title": "i . Hrinanbem",
       "ocrTitle": "i . Hrinanbem",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 102,
       "section": 29,
       "image": "assets/v2/card-0287.webp",
-      "displayTitle": "Hrinanbem"
+      "displayTitle": "Hrinanbem",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0288",
@@ -7910,11 +7961,12 @@
       "id": "card-0289",
       "title": "i AGuard's Tabard",
       "ocrTitle": "i AGuard's Tabard",
-      "category": "unsorted",
+      "category": "armor",
       "group": 103,
       "section": 29,
       "image": "assets/v2/card-0289.webp",
-      "displayTitle": "AGuard's Tabard"
+      "displayTitle": "AGuard's Tabard",
+      "subcategory": "Padded Armor"
     },
     {
       "id": "card-0290",
@@ -7943,7 +7995,7 @@
           "text": "E necrease your inspiration limit 3 ‘\ni When you test to negate Y |\n¢|g - or %, you may convert 2 o }\n; to 2 3. ol\n| E:f \\i ,\n€ Heart-Swell 3\ne 2o b ‘.\\g.,/$ R, St et\no ot oy - 7/ N NG e\ncHERERE ¢ A0S\nk\\.‘ P _!:;\\ /‘\nAN = | 00 %",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 59.0,
+            "titleConfidence": 59,
             "engine": "tesseract"
           }
         }
@@ -7953,7 +8005,7 @@
       "text": "E necrease your inspiration limit 3 ‘\ni When you test to negate Y |\n¢|g - or %, you may convert 2 o }\n; to 2 3. ol\n| E:f \\i ,\n€ Heart-Swell 3\ne 2o b ‘.\\g.,/$ R, St et\no ot oy - 7/ N NG e\ncHERERE ¢ A0S\nk\\.‘ P _!:;\\ /‘\nAN = | 00 %",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 59.0,
+        "titleConfidence": 59,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -7962,11 +8014,12 @@
       "id": "card-0291",
       "title": "i | étar ;)f the West",
       "ocrTitle": "i | étar ;)f the West",
-      "category": "unsorted",
+      "category": "armor",
       "group": 103,
       "section": 29,
       "image": "assets/v2/card-0291.webp",
-      "displayTitle": "West"
+      "displayTitle": "West",
+      "subcategory": "Padded Armor"
     },
     {
       "id": "card-0292",
@@ -8084,7 +8137,7 @@
       "id": "card-0295",
       "title": "I_ Blood of Gondor",
       "ocrTitle": "I_ Blood of Gondor",
-      "category": "role",
+      "category": "hero",
       "group": 104,
       "section": 30,
       "image": "assets/v2/card-0295.webp",
@@ -8112,7 +8165,8 @@
         "titleConfidence": 67.5,
         "engine": "tesseract"
       },
-      "printedCardNumber": "4"
+      "printedCardNumber": "4",
+      "subcategory": "Boromir"
     },
     {
       "id": "card-0296",
@@ -8377,7 +8431,7 @@
           "text": "¥ »l'__j\";‘;'::‘:;:'ﬁ A ”_»::;-_-.-:_4___‘.: ,’—“————-——--':*“**-—\\ - en—, o ) e #\nA BE B B N e e y :\nFE 17 £l B T A B A P ——— PR e ~4 i e ‘ ;\ni X e Aciiy ) 4 (4 -~ é\no = - = e st ) 2 C—m‘“@ s\ne i % & o < Wit ;| 3 ‘ { Jamage !ﬂ r ‘W .\ni B SR T 4 ] | [ After you prepare an aid, food, or valour skill, e\ns T A Hobbit TN 575 AN S——————————————\n/l\\;.'_)'.'_:_'.:;.'.:_'.;:::':'.‘:.'.. & X A O evensrers ’4','”':::‘ :- / = Y : [",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 39.0,
+            "titleConfidence": 39,
             "engine": "tesseract"
           }
         }
@@ -8387,7 +8441,7 @@
       "text": "¥ »l'__j\";‘;'::‘:;:'ﬁ A ”_»::;-_-.-:_4___‘.: ,’—“————-——--':*“**-—\\ - en—, o ) e #\nA BE B B N e e y :\nFE 17 £l B T A B A P ——— PR e ~4 i e ‘ ;\ni X e Aciiy ) 4 (4 -~ é\no = - = e st ) 2 C—m‘“@ s\ne i % & o < Wit ;| 3 ‘ { Jamage !ﬂ r ‘W .\ni B SR T 4 ] | [ After you prepare an aid, food, or valour skill, e\ns T A Hobbit TN 575 AN S——————————————\n/l\\;.'_)'.'_:_'.:;.'.:_'.;:::':'.‘:.'.. & X A O evensrers ’4','”':::‘ :- / = Y : [",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 39.0,
+        "titleConfidence": 39,
         "engine": "tesseract"
       },
       "printedCardNumber": null
@@ -8418,11 +8472,12 @@
       "id": "card-0307",
       "title": "l» River-Calling",
       "ocrTitle": "l» River-Calling",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 109,
       "section": 31,
       "image": "assets/v2/card-0307.webp",
-      "displayTitle": "Harp River-Calling"
+      "displayTitle": "Harp River-Calling",
+      "subcategory": "Harp"
     },
     {
       "id": "card-0308",
@@ -8441,7 +8496,8 @@
         "card-0334",
         "card-0377"
       ],
-      "displayTitle": "Harp Chorus of Light"
+      "displayTitle": "Harp Chorus of Light",
+      "subcategory": "Harp"
     },
     {
       "id": "card-0309",
@@ -8482,31 +8538,34 @@
       "id": "card-0310",
       "title": "i Guard’s Tabard",
       "ocrTitle": "i Guard’s Tabard",
-      "category": "unsorted",
+      "category": "armor",
       "group": 110,
       "section": 31,
       "image": "assets/v2/card-0310.webp",
-      "displayTitle": "Guard’s Tabard"
+      "displayTitle": "Guard’s Tabard",
+      "subcategory": "Padded Armor"
     },
     {
       "id": "card-0311",
       "title": "g Heart-Swell",
       "ocrTitle": "g Heart-Swell",
-      "category": "unsorted",
+      "category": "armor",
       "group": 110,
       "section": 31,
       "image": "assets/v2/card-0311.webp",
-      "displayTitle": "Heart-Swell"
+      "displayTitle": "Heart-Swell",
+      "subcategory": "Padded Armor"
     },
     {
       "id": "card-0312",
       "title": "i | étar of the West",
       "ocrTitle": "i | étar of the West",
-      "category": "unsorted",
+      "category": "armor",
       "group": 110,
       "section": 31,
       "image": "assets/v2/card-0312.webp",
-      "displayTitle": "West"
+      "displayTitle": "West",
+      "subcategory": "Padded Armor"
     },
     {
       "id": "card-0313",
@@ -8547,7 +8606,7 @@
       "id": "card-0314",
       "title": "E Thg Tookish Part",
       "ocrTitle": "E Thg Tookish Part",
-      "category": "role",
+      "category": "hero",
       "group": 111,
       "section": 31,
       "image": "assets/v2/card-0314.webp",
@@ -8575,7 +8634,8 @@
         "titleConfidence": 42.3,
         "engine": "tesseract"
       },
-      "printedCardNumber": "2"
+      "printedCardNumber": "2",
+      "subcategory": "Calaminth Took"
     },
     {
       "id": "card-0315",
@@ -8651,7 +8711,7 @@
       "id": "card-0317",
       "title": "I | Fierce Resolve",
       "ocrTitle": "I | Fierce Resolve",
-      "category": "role",
+      "category": "hero",
       "group": 111,
       "section": 31,
       "image": "assets/v2/card-0317.webp",
@@ -8679,7 +8739,8 @@
         "titleConfidence": 62.7,
         "engine": "tesseract"
       },
-      "printedCardNumber": "5"
+      "printedCardNumber": "5",
+      "subcategory": "Calaminth Took"
     },
     {
       "id": "card-0318",
@@ -8847,7 +8908,8 @@
       "group": 117,
       "section": 33,
       "image": "assets/v2/card-0327.webp",
-      "displayTitle": "Walking Stick"
+      "displayTitle": "Walking Stick",
+      "subcategory": "Walking Stick"
     },
     {
       "id": "card-0328",
@@ -8857,7 +8919,8 @@
       "group": 117,
       "section": 33,
       "image": "assets/v2/card-0328.webp",
-      "displayTitle": "Walking Stick Trusted"
+      "displayTitle": "Walking Stick Trusted",
+      "subcategory": "Walking Stick"
     },
     {
       "id": "card-0329",
@@ -8867,7 +8930,8 @@
       "group": 117,
       "section": 33,
       "image": "assets/v2/card-0329.webp",
-      "displayTitle": "Walking Stick Constant Companion"
+      "displayTitle": "Walking Stick Constant Companion",
+      "subcategory": "Walking Stick"
     },
     {
       "id": "card-0330",
@@ -8877,17 +8941,19 @@
       "group": 117,
       "section": 33,
       "image": "assets/v2/card-0330.webp",
-      "displayTitle": "Walking Stick Cloud-Chaser"
+      "displayTitle": "Walking Stick Cloud-Chaser",
+      "subcategory": "Walking Stick"
     },
     {
       "id": "card-0331",
       "title": "Card 0331",
       "ocrTitle": "",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 118,
       "section": 33,
       "image": "assets/v2/card-0331.webp",
-      "displayTitle": "Card 0331"
+      "displayTitle": "Card 0331",
+      "subcategory": "Harp"
     },
     {
       "id": "card-0332",
@@ -8904,21 +8970,23 @@
       "id": "card-0333",
       "title": "i River-Calling",
       "ocrTitle": "i River-Calling",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 118,
       "section": 33,
       "image": "assets/v2/card-0333.webp",
-      "displayTitle": "River-Calling"
+      "displayTitle": "River-Calling",
+      "subcategory": "Harp"
     },
     {
       "id": "card-0334",
       "title": "Chorus of Light",
       "ocrTitle": "Chorus of Light",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 118,
       "section": 33,
       "image": "assets/v2/card-0334.webp",
-      "displayTitle": "Chorus of Light"
+      "displayTitle": "Chorus of Light",
+      "subcategory": "Harp"
     },
     {
       "id": "card-0335",
@@ -8970,7 +9038,7 @@
       "id": "card-0337",
       "title": "Splendor-Well",
       "ocrTitle": "Splendor-Well",
-      "category": "unsorted",
+      "category": "role",
       "group": 119,
       "section": 34,
       "image": "assets/v2/card-0337.webp",
@@ -9015,7 +9083,7 @@
       "id": "card-0339",
       "title": "Kinship",
       "ocrTitle": "Kinship",
-      "category": "role",
+      "category": "hero",
       "group": 120,
       "section": 34,
       "image": "assets/v2/card-0339.webp",
@@ -9030,7 +9098,7 @@
           "text": "O\\ e RPR A R\ng =\nN g oy %-- 05\n“'\\'\\ A Sl . =\ne s\nAid A\n& Before a nearby hero tests, @\n* you may discard this skill for\n§ that hero to reveal 2 additional 3\n& cards; if they are a Dwarf, :\nyou may scout 1. ‘\n. i S .4t p\n) : Dwalin 1",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 55.0,
+            "titleConfidence": 55,
             "engine": "tesseract"
           }
         }
@@ -9040,10 +9108,11 @@
       "text": "O\\ e RPR A R\ng =\nN g oy %-- 05\n“'\\'\\ A Sl . =\ne s\nAid A\n& Before a nearby hero tests, @\n* you may discard this skill for\n§ that hero to reveal 2 additional 3\n& cards; if they are a Dwarf, :\nyou may scout 1. ‘\n. i S .4t p\n) : Dwalin 1",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 55.0,
+        "titleConfidence": 55,
         "engine": "tesseract"
       },
-      "printedCardNumber": "1"
+      "printedCardNumber": "1",
+      "subcategory": "Dwalin"
     },
     {
       "id": "card-0340",
@@ -9100,7 +9169,7 @@
           "text": "- o\n| AN ’ gape < \"\nI G TH\nb . > 4 O\nfe  AncestralGrudge &\n\\..!\nInnate « Tactic 9,\n# When you attack an Orc or b\n. Goblin, you may add 2 hits\ni and lethal. k\nR Strike 3 (When you attack, ;\nB discard to add 3 hits.) 1\n: e 4 Dw .ll_in 3 ®) -",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 62.0,
+            "titleConfidence": 62,
             "engine": "tesseract"
           }
         }
@@ -9110,7 +9179,7 @@
       "text": "- o\n| AN ’ gape < \"\nI G TH\nb . > 4 O\nfe  AncestralGrudge &\n\\..!\nInnate « Tactic 9,\n# When you attack an Orc or b\n. Goblin, you may add 2 hits\ni and lethal. k\nR Strike 3 (When you attack, ;\nB discard to add 3 hits.) 1\n: e 4 Dw .ll_in 3 ®) -",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 62.0,
+        "titleConfidence": 62,
         "engine": "tesseract"
       },
       "printedCardNumber": "3"
@@ -9119,7 +9188,7 @@
       "id": "card-0342",
       "title": "E Misty Mouﬁtains Col",
       "ocrTitle": "E Misty Mouﬁtains Col",
-      "category": "role",
+      "category": "hero",
       "group": 120,
       "section": 34,
       "image": "assets/v2/card-0342.webp",
@@ -9147,7 +9216,8 @@
         "titleConfidence": 75.5,
         "engine": "tesseract"
       },
-      "printedCardNumber": "4"
+      "printedCardNumber": "4",
+      "subcategory": "Dwalin"
     },
     {
       "id": "card-0343",
@@ -9370,11 +9440,12 @@
       "id": "card-0353",
       "title": "Reinforced Shi",
       "ocrTitle": "Reinforced Shi",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 125,
       "section": 35,
       "image": "assets/v2/card-0353.webp",
-      "displayTitle": "Reinforced Shi"
+      "displayTitle": "Reinforced Shi",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0354",
@@ -9384,7 +9455,8 @@
       "group": 125,
       "section": 35,
       "image": "assets/v2/card-0354.webp",
-      "displayTitle": "Shield Foe-Blind"
+      "displayTitle": "Shield Foe-Blind",
+      "subcategory": "Shield"
     },
     {
       "id": "card-0355",
@@ -9495,11 +9567,12 @@
       "id": "card-0358",
       "title": "i - Plaﬂteﬂﬁ-\\rmér- -",
       "ocrTitle": "i - Plaﬂteﬂﬁ-\\rmér- -",
-      "category": "unsorted",
+      "category": "armor",
       "group": 127,
       "section": 36,
       "image": "assets/v2/card-0358.webp",
-      "displayTitle": "Card 0358"
+      "displayTitle": "Card 0358",
+      "subcategory": "Plate Armor"
     },
     {
       "id": "card-0359",
@@ -9540,11 +9613,12 @@
       "id": "card-0360",
       "title": "Defend.er of the Citad",
       "ocrTitle": "Defend.er of the Citad",
-      "category": "unsorted",
+      "category": "armor",
       "group": 127,
       "section": 36,
       "image": "assets/v2/card-0360.webp",
-      "displayTitle": "Card 0360"
+      "displayTitle": "Card 0360",
+      "subcategory": "Plate Armor"
     },
     {
       "id": "card-0361",
@@ -9554,13 +9628,14 @@
       "group": 128,
       "section": 36,
       "image": "assets/v2/card-0361.webp",
-      "displayTitle": "Snowbrighf"
+      "displayTitle": "Snowbrighf",
+      "subcategory": "Mounts"
     },
     {
       "id": "card-0362",
       "title": "g Fateless",
       "ocrTitle": "g Fateless",
-      "category": "role",
+      "category": "hero",
       "group": 129,
       "section": 36,
       "image": "assets/v2/card-0362.webp",
@@ -9588,7 +9663,8 @@
         "titleConfidence": 22.9,
         "engine": "tesseract"
       },
-      "printedCardNumber": "1"
+      "printedCardNumber": "1",
+      "subcategory": "Freahild"
     },
     {
       "id": "card-0363",
@@ -9629,7 +9705,7 @@
       "id": "card-0364",
       "title": "Qift of Men",
       "ocrTitle": "Qift of Men",
-      "category": "role",
+      "category": "hero",
       "group": 129,
       "section": 36,
       "image": "assets/v2/card-0364.webp",
@@ -9657,7 +9733,8 @@
         "titleConfidence": 62.4,
         "engine": "tesseract"
       },
-      "printedCardNumber": "3"
+      "printedCardNumber": "3",
+      "subcategory": "Freahild"
     },
     {
       "id": "card-0365",
@@ -9704,7 +9781,7 @@
       "id": "card-0366",
       "title": "I Ca\\falry éombat",
       "ocrTitle": "I Ca\\falry éombat",
-      "category": "role",
+      "category": "hero",
       "group": 129,
       "section": 36,
       "image": "assets/v2/card-0366.webp",
@@ -9719,7 +9796,7 @@
           "text": "N RS e\nS A &> = -\nBV < v —\n: i X 7 (&)\ne Cavalry Combat ¢\n® After you test to negate,\n. you may discard this skill o |\n& scout 2 and move 1 space\n& withourt provoking attacks.\n- e  oa e e e -~ o t' -\n: Fréahild 5 '",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 69.0,
+            "titleConfidence": 69,
             "engine": "tesseract"
           }
         }
@@ -9729,10 +9806,11 @@
       "text": "N RS e\nS A &> = -\nBV < v —\n: i X 7 (&)\ne Cavalry Combat ¢\n® After you test to negate,\n. you may discard this skill o |\n& scout 2 and move 1 space\n& withourt provoking attacks.\n- e  oa e e e -~ o t' -\n: Fréahild 5 '",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 69.0,
+        "titleConfidence": 69,
         "engine": "tesseract"
       },
-      "printedCardNumber": "5"
+      "printedCardNumber": "5",
+      "subcategory": "Freahild"
     },
     {
       "id": "card-0367",
@@ -9820,7 +9898,7 @@
           "text": "e .\n:‘ I. 1 0 7 -wfi\\:ﬂ s 2 -\" f i - é\nGlory .\nValour W\nf-‘_; After you suffer X or %#, gain &\n. 1 inspiration and scout 1. :\no X\n& Strike 2 b\n& Guard 1 ;\n~ : Dg‘lvcr BEe S—",
           "ocr": {
             "reviewed": false,
-            "titleConfidence": 66.0,
+            "titleConfidence": 66,
             "engine": "tesseract"
           }
         }
@@ -9830,7 +9908,7 @@
       "text": "e .\n:‘ I. 1 0 7 -wfi\\:ﬂ s 2 -\" f i - é\nGlory .\nValour W\nf-‘_; After you suffer X or %#, gain &\n. 1 inspiration and scout 1. :\no X\n& Strike 2 b\n& Guard 1 ;\n~ : Dg‘lvcr BEe S—",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 66.0,
+        "titleConfidence": 66,
         "engine": "tesseract"
       },
       "printedCardNumber": "11"
@@ -9896,21 +9974,23 @@
       "id": "card-0376",
       "title": "g River-Calling",
       "ocrTitle": "g River-Calling",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 134,
       "section": 38,
       "image": "assets/v2/card-0376.webp",
-      "displayTitle": "River-Calling"
+      "displayTitle": "River-Calling",
+      "subcategory": "Harp"
     },
     {
       "id": "card-0377",
       "title": "I Chorus of Light",
       "ocrTitle": "I Chorus of Light",
-      "category": "unsorted",
+      "category": "one-handed",
       "group": 134,
       "section": 38,
       "image": "assets/v2/card-0377.webp",
-      "displayTitle": "Chorus of Light"
+      "displayTitle": "Chorus of Light",
+      "subcategory": "Harp"
     },
     {
       "id": "card-0378",
@@ -10062,7 +10142,7 @@
       "id": "card-0382",
       "title": "I’ Crey Havén Craft",
       "ocrTitle": "I’ Crey Havén Craft",
-      "category": "role",
+      "category": "hero",
       "group": 135,
       "section": 38,
       "image": "assets/v2/card-0382.webp",
@@ -10090,7 +10170,8 @@
         "titleConfidence": 56.3,
         "engine": "tesseract"
       },
-      "printedCardNumber": "5"
+      "printedCardNumber": "5",
+      "subcategory": "Renerien"
     },
     {
       "id": "carddb-common-cards-basic-001",
@@ -10301,7 +10382,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 83.0,
+        "titleConfidence": 83,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -10517,7 +10598,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 83.0,
+        "titleConfidence": 83,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -10571,7 +10652,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 76.0,
+        "titleConfidence": 76,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -10787,7 +10868,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 67.0,
+        "titleConfidence": 67,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -10868,7 +10949,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 68.0,
+        "titleConfidence": 68,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -10922,7 +11003,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 85.0,
+        "titleConfidence": 85,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -11138,7 +11219,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 53.0,
+        "titleConfidence": 53,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -11543,7 +11624,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 99.0,
+        "titleConfidence": 99,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -11948,7 +12029,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 75.0,
+        "titleConfidence": 75,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -13109,7 +13190,7 @@
       "printedCardNumber": "2",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 72.0,
+        "titleConfidence": 72,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -13136,7 +13217,7 @@
       "printedCardNumber": "3",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 61.0,
+        "titleConfidence": 61,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -13229,7 +13310,7 @@
       "title": "Rending Claws",
       "ocrTitle": "Rending Claws",
       "displayTitle": "Rending Claws",
-      "category": "hand-item",
+      "category": "two-handed",
       "subcategory": "Beorn",
       "image": "assets/carddb/carddb-heroes-beorn-010.webp",
       "text": "3 ) SN .,._._._.;_;.._., i ..“ - 7»\n> 132 2 hits, sunder o }\n|4 232 5 hits i |\n, When you attack, you Ii!\n; may discard a prepared i\nb skill to add 2 hits. il\ng Rending Claws 3\ne NG T R\nb s ,;‘r‘",
@@ -13526,8 +13607,7 @@
       "title": "Snowbright",
       "ocrTitle": "Snowbright",
       "displayTitle": "Snowbright",
-      "category": "hand-item",
-      "subcategory": "Freahild",
+      "category": "mount",
       "image": "assets/carddb/carddb-heroes-freahild-008.webp",
       "text": "S \"_\"';'; 5 i >. i‘\n;_--j ; Creature ;\n@ Once per round, after you A\nifft or a nearby hero suffers X\n5‘? or %, that hero may gain !\nil 1 inspiration. i|}\nI 18\n| 1\n{ Snowbright 3\ni 3 e 5\ne 0 N A <\n,434}?!1“11/' h NG 0\n£ B m /\n\\yi““ S R\nA e e i AP",
       "buildEligible": true,
@@ -13662,7 +13742,7 @@
       "ocrTitle": "Armors 1",
       "displayTitle": "Armors 1",
       "category": "armor",
-      "subcategory": "Armors",
+      "subcategory": "Cloak",
       "image": "assets/carddb/carddb-items-armors-001.webp",
       "text": "o= e e s T i A\n| ,Before you suffer X\\ or %%, you *\n§® may spend 1 inspirationto &\nBilF prevent 1 of that X or %#. M",
       "buildEligible": true,
@@ -13689,7 +13769,7 @@
       "ocrTitle": "Fangorn Cloak",
       "displayTitle": "Fangorn Cloak",
       "category": "armor",
-      "subcategory": "Armors",
+      "subcategory": "Cloak",
       "image": "assets/carddb/carddb-items-armors-002.webp",
       "text": "% = BeforeyousufferNor oM\n&l %%, you may spend 1 i\nE inspiration to prevent d\n: ;-\" 1 of that N\\ or %&. | ’\niR i\njg 5 Fangorn Cloak -\nJ 2 ] & - \" &\ngPr S\n| | % 4",
       "buildEligible": true,
@@ -13716,7 +13796,7 @@
       "ocrTitle": "' Slip-Thorn",
       "displayTitle": "' Slip-Thorn",
       "category": "armor",
-      "subcategory": "Armors",
+      "subcategory": "Cloak",
       "image": "assets/carddb/carddb-items-armors-005.webp",
       "text": "g*‘\\l\\\" @ 13 2 hirs, pierce a\n%% . Before you suffer Nor o\ne %+, you may spend 1 ‘i\n‘ I inspiration to prevent ;‘I\n| /78 2 of that X and %&. ?1{\n;’&g. 1 Slip-Thorn - g\no e N -4 ;‘ \"",
       "buildEligible": true,
@@ -13730,7 +13810,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 52.0,
+        "titleConfidence": 52,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -13743,7 +13823,7 @@
       "ocrTitle": "Wind-Walker",
       "displayTitle": "Wind-Walker",
       "category": "armor",
-      "subcategory": "Armors",
+      "subcategory": "Cloak",
       "image": "assets/carddb/carddb-items-armors-007.webp",
       "text": "(IR R\n= ¥\nlj Before you perform a travel i\n8% action, you may move 1 space. &\nI Before you suffer XN or %, you ; :\nil may spend 1 inspiration to |\nil prevent 1 of that X or %, |\n__ After setup, become hidden. »t\ni3 Wind-Walker 3.\nPR o 92 ol",
       "buildEligible": true,
@@ -13770,7 +13850,7 @@
       "ocrTitle": "Ring Mail",
       "displayTitle": "Ring Mail",
       "category": "armor",
-      "subcategory": "Armors",
+      "subcategory": "Ring Mail",
       "image": "assets/carddb/carddb-items-armors-021.webp",
       "text": "g;-ecrease your @ by 1. 3. :\n- If you would test &, @, or @ to U1\nl negate, you may test % instead. i\n€ Ring Mail |\nR % o0",
       "buildEligible": true,
@@ -13784,7 +13864,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 71.0,
+        "titleConfidence": 71,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -13797,7 +13877,7 @@
       "ocrTitle": "Evendim Ring Mail",
       "displayTitle": "Evendim Ring Mail",
       "category": "armor",
-      "subcategory": "Armors",
+      "subcategory": "Ring Mail",
       "image": "assets/carddb/carddb-items-armors-022.webp",
       "text": "‘ f -~ Decrease your Q by 1. §\n8 Increase your % limitby 1. =8\nil If you would test &, @), or @ to ‘1’; ‘\nBl negate, you may test % instead. i\n!{ Evendim Ring Mail . :\n\\ Taw |\nANl = x5\ne N e e e LTS )",
       "buildEligible": true,
@@ -13824,7 +13904,7 @@
       "ocrTitle": "lb Blade-Bane",
       "displayTitle": "lb Blade-Bane",
       "category": "armor",
-      "subcategory": "Armors",
+      "subcategory": "Ring Mail",
       "image": "assets/carddb/carddb-items-armors-025.webp",
       "text": "l \" Decrease your @ by 1. S\n= Increase your X\\ and W\ni limics by 1. A\nIl If you would test %, @), or @ to i‘\nIl negace, you may test - instead. i\ni Suffer all N facedown. |\nlb Blade-Bane e |\nB : 41“%‘& i\n-\nI DY o | o 4\nPR o | o o 4\ne e e o U o S - )",
       "buildEligible": true,
@@ -13851,7 +13931,7 @@
       "ocrTitle": "Wralh's-Enc_i",
       "displayTitle": "Wralh's-Enc_i",
       "category": "armor",
-      "subcategory": "Armors",
+      "subcategory": "Ring Mail",
       "image": "assets/carddb/carddb-items-armors-026.webp",
       "text": "{\"Decrease your @ by 1. 3,§\n= Increase your @) by 1. g {1\nil Increase your XN and %# !!\nilf limits by 1. ;I i\nil If you would test &, @), or @ to ’\n| negate, you may test % instead. ({8\n‘ Wrath’s-End n |\n3 il B W )\ni!;”.y_-_\\é{ﬂ«;z | 98 O 3%",
       "buildEligible": true,
@@ -13877,8 +13957,8 @@
       "title": "Battle Axe",
       "ocrTitle": "Battle Axe",
       "displayTitle": "Battle Axe",
-      "category": "hand-item",
-      "subcategory": "Axes",
+      "category": "two-handed",
+      "subcategory": "Battle Axe",
       "image": "assets/carddb/carddb-items-hands-001.webp",
       "text": "| IE , Battle Axe > _)",
       "buildEligible": true,
@@ -13904,8 +13984,8 @@
       "title": "Llron Hills Bit_lle Axe",
       "ocrTitle": "Llron Hills Bit_lle Axe",
       "displayTitle": "Llron Hills Bit_lle Axe",
-      "category": "hand-item",
-      "subcategory": "Axes",
+      "category": "two-handed",
+      "subcategory": "Battle Axe",
       "image": "assets/carddb/carddb-items-hands-002.webp",
       "text": "‘ 13 2 hits, sunder ‘:\n§\" 23 6 hits .!\n'§ IronHillsBattieAxe 3\nN v o",
       "buildEligible": true,
@@ -13931,8 +14011,8 @@
       "title": "Grief-Bearer",
       "ocrTitle": "Grief-Bearer",
       "displayTitle": "Grief-Bearer",
-      "category": "hand-item",
-      "subcategory": "Axes",
+      "category": "two-handed",
+      "subcategory": "Battle Axe",
       "image": "assets/carddb/carddb-items-hands-004.webp",
       "text": "- 13%: 2 hits, sunder 3\nl& Grief-Bearer\nL A",
       "buildEligible": true,
@@ -13958,8 +14038,8 @@
       "title": "Hatchet",
       "ocrTitle": "Hatchet",
       "displayTitle": "Hatchet",
-      "category": "hand-item",
-      "subcategory": "Axes",
+      "category": "one-handed",
+      "subcategory": "Hatchet",
       "image": "assets/carddb/carddb-items-hands-007.webp",
       "text": "I ‘.‘:J' \";V...___._..______.___.,__A________,_*,__._,_,_”\";_.. s\nA . /8 : .}\ng Q\\ 235 3 hits, sunder 3\nN 1\nR | I\nB -l\n& i\nL.':’ o ',,\"-U't\n&3 .'_ BT g:“/ 4 .\n\\ 2 s 3 /é\no3 a2 -~ S— - R ]\ni»L-wk&—/ﬂL_ B L",
       "buildEligible": true,
@@ -13985,8 +14065,8 @@
       "title": "Wanderer's Hatchet",
       "ocrTitle": "Wanderer's Hatchet",
       "displayTitle": "Wanderer's Hatchet",
-      "category": "hand-item",
-      "subcategory": "Axes",
+      "category": "one-handed",
+      "subcategory": "Hatchet",
       "image": "assets/carddb/carddb-items-hands-008.webp",
       "text": "NS¢ Bcfore you arttack, you g\n- may spend 1 inspiration &\n'\\Q §i to give this item $» for 3\n' B that attack. f[\n. 23#: 4 hits, sunder |\ns : | 1\n'$  Wanderer'sHatchet 8/\nB\né ; R b\\.{%\nED&{//\\* f\\/,\\\\\\% N 3]5",
       "buildEligible": true,
@@ -14012,8 +14092,8 @@
       "title": "Throat-Secker",
       "ocrTitle": "Throat-Secker",
       "displayTitle": "Throat-Secker",
-      "category": "hand-item",
-      "subcategory": "Axes",
+      "category": "one-handed",
+      "subcategory": "Hatchet",
       "image": "assets/carddb/carddb-items-hands-009.webp",
       "text": "I\\»: 13 2 hits, sunder {n\n;;\\,‘5 232 2 hits, lechal !li\n| |\n”[} Throat-Seeker S )\ns &L &\n&) ’ : e\n{ -‘-{;l.*-' —A,.ﬁ...w \" R 233!}\\",
       "buildEligible": true,
@@ -14039,8 +14119,8 @@
       "title": "Drake ' ' x alﬂl 'l",
       "ocrTitle": "Drake ' ' x alﬂl 'l",
       "displayTitle": "Drake ' ' x alﬂl 'l",
-      "category": "hand-item",
-      "subcategory": "Axes",
+      "category": "one-handed",
+      "subcategory": "Hatchet",
       "image": "assets/carddb/carddb-items-hands-010.webp",
       "text": ";L\" e \"”__v_______'____v__\" ;-,': .\nNS  1:%: 3 hits, sunder mi\n@ 132 hits o\n;'\\‘:??\" 23 4 hits, stun ‘\nit Decrease your inspiration ;s\n1t S 4 Hi\nil limic by 1. i\n‘i; ; Drake-Tooth o",
       "buildEligible": true,
@@ -14066,8 +14146,8 @@
       "title": "Hunger",
       "ocrTitle": "Hunger",
       "displayTitle": "Hunger",
-      "category": "hand-item",
-      "subcategory": "Axes",
+      "category": "one-handed",
+      "subcategory": "Hatchet",
       "image": "assets/carddb/carddb-items-hands-011.webp",
       "text": "/Q\\\\ 13%: 3 hits, sunder\n1\\:\\_\\. /' i . g\n1 After you flip 1 or more [l\n“ X facedown, flip 1 % i\nil Hunger ,, §\n,r\"':;\nTR ok e o\nAN~ | L%",
       "buildEligible": true,
@@ -14093,8 +14173,8 @@
       "title": "Dagger",
       "ocrTitle": "Dagger",
       "displayTitle": "Dagger",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Dagger",
       "image": "assets/carddb/carddb-items-hands-012.webp",
       "text": ":f,,\":/ x”f’\"\"\"\"““““~‘ e \"\nN 132 2 hits ; ,\n% 23 3 hits, pierce bl |\ne 8 |\n18 |\n4| = Dagger .3",
       "buildEligible": true,
@@ -14120,8 +14200,8 @@
       "title": "Ered Luin Dagger",
       "ocrTitle": "Ered Luin Dagger",
       "displayTitle": "Ered Luin Dagger",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Dagger",
       "image": "assets/carddb/carddb-items-hands-013.webp",
       "text": "| E\"-\\S\\g_j.\".' Before you attack, you g]\n@g‘ - may spend | inspiration & ]\ni f to give this weapon $» for ;3\ng 8 that attack. ‘\n2l . : Il\n| I 13: 2 hits i\n: lb;{.\\ 23 4 hits, pierce | |\n|1} 3 Ered Luin Dagger 8\ne B v 4 &\nAniNAlll Y pL 5",
       "buildEligible": true,
@@ -14147,8 +14227,8 @@
       "title": "Gondolin Dagger",
       "ocrTitle": "Gondolin Dagger",
       "displayTitle": "Gondolin Dagger",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Dagger",
       "image": "assets/carddb/carddb-items-hands-014.webp",
       "text": "kqsv When used to attack, 5\n3.‘/ ~if there is a nearby orc\n, ; or goblin, reveal N\n“ 1 additional card. ?\n: 13 2 hits ' I\n232 4 hits, pierce Hi\nl|l§\\ Gondolin Dagger o |\n/ ~&E N :V; RN |",
       "buildEligible": true,
@@ -14174,8 +14254,8 @@
       "title": "Blood-Wright",
       "ocrTitle": "Blood-Wright",
       "displayTitle": "Blood-Wright",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Dagger",
       "image": "assets/carddb/carddb-items-hands-015.webp",
       "text": "' 132: 2 hits 5\n‘ 23 4 hits, pierce |\n| I Decrease your XN and % i\nol limits by 1. i\n;!fl : Blood-Wright o |\nILM_. L85 & 3ee]",
       "buildEligible": true,
@@ -14201,8 +14281,8 @@
       "title": "Widow's Warning",
       "ocrTitle": "Widow's Warning",
       "displayTitle": "Widow's Warning",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Dagger",
       "image": "assets/carddb/carddb-items-hands-016.webp",
       "text": ",-v 1*.;:. Z hlt!s A\n! 23 4 hits, pierce |\n; When you test, if there 1l\n:, is a nearby orc or goblin, il\nKE reveal 1 additional card. i\n{lv‘_ i\ng!% ,  WidowsWarning _§\n: /\n| ’ig’vm\\l it v | 85 © e\nT, N e e Seyety -",
       "buildEligible": true,
@@ -14228,8 +14308,8 @@
       "title": "Shade Breaker",
       "ocrTitle": "Shade Breaker",
       "displayTitle": "Shade Breaker",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Dagger",
       "image": "assets/carddb/carddb-items-hands-017.webp",
       "text": "e e\n‘5“.%‘_?\\7_.__'; 13 2 hits, smite g\ns 13 2 hits ;.-‘,; l\n{ 3 After you defeat an enemy |\n;'i group, a hero in your i\n‘ \\ space may discard 1 %®. i\n:’ Shade-Breaker . §\nT,\nl@ AL Y | 85 © S8d)",
       "buildEligible": true,
@@ -14255,8 +14335,8 @@
       "title": "Worm’s Tooth",
       "ocrTitle": "Worm’s Tooth",
       "displayTitle": "Worm’s Tooth",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Dagger",
       "image": "assets/carddb/carddb-items-hands-018.webp",
       "text": ":,7“.\\,—-% e e N\nBNag¥ After setup, become i\n_.j\" despondent.\n: 3 : .'?.\\\nWhen you test, if there is i\nt a nearby Orc or Goblin, Fl-:\n,] add 1 . i\nji 23 5 hits, pierce H\nLo 23 5 hits, smite W\ni[%L Worm’s Tooth o |\n\\- i ﬁ zgn,“a /A\nN PRI T ) ’ : |\ns Lo o ‘,//\\//\"1 [ N \\‘\\\\. %\\/l!\ni#{{\\:‘lw{l*{. T Ny %}\\",
       "buildEligible": true,
@@ -14282,8 +14362,8 @@
       "title": "Knite",
       "ocrTitle": "Knite",
       "displayTitle": "Knite",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Knife",
       "image": "assets/carddb/carddb-items-hands-019.webp",
       "text": "[ ———\nN 13t 2 hits, pierce 3\n; '  23z 2 hits, lethal g\ni R\ni i\n? \" I _';.,fy",
       "buildEligible": true,
@@ -14309,8 +14389,8 @@
       "title": "funnng Kotre",
       "ocrTitle": "funnng Kotre",
       "displayTitle": "funnng Kotre",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Knife",
       "image": "assets/carddb/carddb-items-hands-020.webp",
       "text": "e\n# W% 13 3 hits, pierce 2 4\nx: 23 2 hits, lethal q\ni After you defeat an enemy\ni { group, gain 1 additional \" i\n| inspiration. |\n[ g\ns LN , e\n‘ el e o T",
       "buildEligible": true,
@@ -14336,8 +14416,8 @@
       "title": "DTAT-OWIIL",
       "ocrTitle": "DTAT-OWIIL",
       "displayTitle": "DTAT-OWIIL",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Knife",
       "image": "assets/carddb/carddb-items-hands-023.webp",
       "text": "N\na\\i\\_ 13%: 3 hits, pierce £\nl‘ 23t 3 hits, lethal\n! ~  After you attack with ?\ni this item, you may move |\n’kg 1 space without provoking i\n’¥ ~arracks. |\n“h : s w\n| l: !_‘ \\ \\g’fcfvjm S .:_“.’m_;\\‘:_g‘lln‘nw\\ LUN S VA 4 '_‘ / ;",
       "buildEligible": true,
@@ -14363,8 +14443,8 @@
       "title": "Lassemaica",
       "ocrTitle": "Lassemaica",
       "displayTitle": "Lassemaica",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Knife",
       "image": "assets/carddb/carddb-items-hands-024.webp",
       "text": "N Before you attack, look at g\nFﬁ« ®_ the top card of your deck. .\n\";', If it is a card with e, B |\n]‘ add 2 hits to the attack. \"\nil 13#: 3 hits, pierce ‘“\n;' 232 3 hits, lechal 1\n€ Lassemaica )} ‘\nP Dl v | 80 558 l\nAU Y | °) Y IR",
       "buildEligible": true,
@@ -14390,8 +14470,8 @@
       "title": "Short Sword",
       "ocrTitle": "Short Sword",
       "displayTitle": "Short Sword",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Short Sword",
       "image": "assets/carddb/carddb-items-hands-026.webp",
       "text": "37\n‘j\\\\(\" g When used to attack, you %\ni may spend 1 inspiration %\n( to add 1 hit and pierce. )\n|| |\n\\ A 13%: 3 hits \\\n| {18 | \\I\n‘\\ . 2:%: 3 hits |\nW/ e\n1t B | 5",
       "buildEligible": true,
@@ -14417,8 +14497,8 @@
       "title": "Ercdain Short S 'oId",
       "ocrTitle": "Ercdain Short S 'oId",
       "displayTitle": "Ercdain Short S 'oId",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Short Sword",
       "image": "assets/carddb/carddb-items-hands-027.webp",
       "text": "©) When used to attack {\nAN 1en used ro attack, you &\nA8 may spend | inspiration %\n\" to add 1 hit and pierce.\nl ; 13#: 3 hits }\n; 232 3 hits, sunder li\nW\nI,L; .~ Eredain Short Sword )\nS8 : » ! o\nh o s’",
       "buildEligible": true,
@@ -14432,7 +14512,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 69.0,
+        "titleConfidence": 69,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -14444,8 +14524,8 @@
       "title": "Revenant",
       "ocrTitle": "Revenant",
       "displayTitle": "Revenant",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Short Sword",
       "image": "assets/carddb/carddb-items-hands-028.webp",
       "text": "|‘3;° ¢ When used to attack, if 3\n#B\\. You have no faceup @, 0\n-\\_f%-_/' add 1 hit and pierce. )\ni' 13: 3 hits !\n|18 1\nl- 13%: 3 hits I\n. !\nQ 23 4 hits, sunder |\n7 a \"?.'\\‘.::‘\\' N\nIL{ Revenant &\n— s\nR S",
       "buildEligible": true,
@@ -14471,8 +14551,8 @@
       "title": "Dancer on the Wind",
       "ocrTitle": "Dancer on the Wind",
       "displayTitle": "Dancer on the Wind",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Short Sword",
       "image": "assets/carddb/carddb-items-hands-029.webp",
       "text": "R o T m——\n)\\ -\nl(. 9/ When used to attack, you\n/\\ may spend 1 inspiration §J\n\\\\,/ to ignore counterattacks\n! ' N~ for this attack. '\n|1l\nB 3 13 3 hits Il\n8l |\n' 14 2 hits, cleave i\nMy 23 4 hits, sunder i\ns a e - - 5\nl 3 Dancer on the Wind |\nE [ , r\"’ /'\n| *) . ¢ o",
       "buildEligible": true,
@@ -14498,8 +14578,8 @@
       "title": "Scour",
       "ocrTitle": "Scour",
       "displayTitle": "Scour",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Short Sword",
       "image": "assets/carddb/carddb-items-hands-030.webp",
       "text": "T ——\nN en used to attack, 3\n7B\\ you must discard all your\nS inspiration and add A |\nV \\ 2 hits for each inspiration ‘ :\n! | tecarde 1 WAy {\n\\\\\\,/ discarded this way. It\n\" 13 4 hits, pierce, smite j I\n(L8 232 5 hits, sunder, stun 8 l i\n’\\‘»c-‘:' —_—\nw -\n/ o\n[ B 3 : ¥ 3",
       "buildEligible": true,
@@ -14525,8 +14605,8 @@
       "title": "'_ Elf-Forged Su_rg_rd",
       "ocrTitle": "'_ Elf-Forged Su_rg_rd",
       "displayTitle": "'_ Elf-Forged Su_rg_rd",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Sword",
       "image": "assets/carddb/carddb-items-hands-033.webp",
       "text": "DN 1::: 2 hits, pierce 3l\n| i i\n'S Elf-Forged Sword 8\nI # v d",
       "buildEligible": true,
@@ -14552,8 +14632,8 @@
       "title": "Northern Blade",
       "ocrTitle": "Northern Blade",
       "displayTitle": "Northern Blade",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Sword",
       "image": "assets/carddb/carddb-items-hands-035.webp",
       "text": "R 7 T i,\nNS Before you attack an &\n;-“.fj enemy that has sorcery, 8\n8¢  gain | inspiration. i\nBl\n’ 3 1 3 3 hits r';\n| 2 2 3 hits, cleave i\n?b,; { Northern Blade 3\nEk \\\"' - e “‘.“' e 5 = m@\\\nP \\ﬁg S\n9 ' 7 d",
       "buildEligible": true,
@@ -14579,8 +14659,8 @@
       "title": "Fate-Idender",
       "ocrTitle": "Fate-Idender",
       "displayTitle": "Fate-Idender",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Sword",
       "image": "assets/carddb/carddb-items-hands-037.webp",
       "text": "NS When used ro artack while ©}\n7%\\, you have 3 or more \\, ?_,'\n| : : : |\n1‘i 13%: 2 hits, smite i\n: e‘-' 13%: 2 hits I\n|l§ : Fate-Bender »\n118 \" - 4 e\n5 cog AR e :\nDY e |\ne (o ——— 3 - )",
       "buildEligible": true,
@@ -14606,8 +14686,8 @@
       "title": "Irnn_-l_ endcr",
       "ocrTitle": "Irnn_-l_ endcr",
       "displayTitle": "Irnn_-l_ endcr",
-      "category": "hand-item",
-      "subcategory": "Blades",
+      "category": "one-handed",
+      "subcategory": "Sword",
       "image": "assets/carddb/carddb-items-hands-038.webp",
       "text": "N g 153 hits, pierce i\n:t. 13 3 hits, sunder\n‘:\" R, ’,) z 3\n|\\ ¢ 23 3 hits, lethal it\n}L§ 1 Iron-Render | :\nA \" 4 A",
       "buildEligible": true,
@@ -14633,8 +14713,8 @@
       "title": "Hammer",
       "ocrTitle": "Hammer",
       "displayTitle": "Hammer",
-      "category": "hand-item",
-      "subcategory": "Blunt Weapons",
+      "category": "two-handed",
+      "subcategory": "Hammer",
       "image": "assets/carddb/carddb-items-hands-041.webp",
       "text": "\":\\;,'“-‘\" D oy\ni 1\n13\n|1 |\n2 R\nY =\n—— 4",
       "buildEligible": true,
@@ -14660,8 +14740,8 @@
       "title": "Hollowbold Hammer",
       "ocrTitle": "Hollowbold Hammer",
       "displayTitle": "Hollowbold Hammer",
-      "category": "hand-item",
-      "subcategory": "Blunt Weapons",
+      "category": "two-handed",
+      "subcategory": "Hammer",
       "image": "assets/carddb/carddb-items-hands-042.webp",
       "text": "132 3 hits, sunder ‘::\ne 2::: 3 hits, cleave Bl |\nIR 1\nI'b% . Hollowbold Hammer . g\nD",
       "buildEligible": true,
@@ -14687,8 +14767,8 @@
       "title": "Mountain-Fall",
       "ocrTitle": "Mountain-Fall",
       "displayTitle": "Mountain-Fall",
-      "category": "hand-item",
-      "subcategory": "Blunt Weapons",
+      "category": "two-handed",
+      "subcategory": "Hammer",
       "image": "assets/carddb/carddb-items-hands-043.webp",
       "text": "\\ - /B . e\nii\\:/ 13 4 hits, sunder |\n®%¥ 13 3 his, cleave &\n| |\n* Mountain-Fall Jg\nT e\ns A e\no VAT S N\\ -\nAGINAI[ Y 7 Y I",
       "buildEligible": true,
@@ -14714,8 +14794,8 @@
       "title": "sleeping Bell",
       "ocrTitle": "sleeping Bell",
       "displayTitle": "sleeping Bell",
-      "category": "hand-item",
-      "subcategory": "Blunt Weapons",
+      "category": "two-handed",
+      "subcategory": "Hammer",
       "image": "assets/carddb/carddb-items-hands-044.webp",
       "text": ",{\\i % 13 3 hits, sunder 5\ns 23 7 hits, cleave x\ni \\; When you defeat an i\ni . 1\ni enemy group, gain i\nf 1 additional inspiration.\ni SleepingBell  _§\ns I\\\n& A\n2 B\nANl Y Y I8",
       "buildEligible": true,
@@ -14741,8 +14821,8 @@
       "title": "Bone-Crinder",
       "ocrTitle": "Bone-Crinder",
       "displayTitle": "Bone-Crinder",
-      "category": "hand-item",
-      "subcategory": "Blunt Weapons",
+      "category": "two-handed",
+      "subcategory": "Hammer",
       "image": "assets/carddb/carddb-items-hands-045.webp",
       "text": "NS9” You can have 1 fewer %\n5‘—* ~ prepared skill.\ni 13 4 hits, sunder i\nJ; 13::: 4 hits, cleave |\nil 23t 8 hits, stun 1\n- i\n|1 1\n\\‘/Ti:;_—::; - \\-- - ald - N . . . A . had a : \" - \"1..\n'LL 4 Bone-Grinder S |\net\nW\nR = Cos '\\),a'_ ‘g\nSt - T\nk|| il WG 7",
       "buildEligible": true,
@@ -14768,8 +14848,8 @@
       "title": "Hobbler",
       "ocrTitle": "Hobbler",
       "displayTitle": "Hobbler",
-      "category": "hand-item",
-      "subcategory": "Blunt Weapons",
+      "category": "one-handed",
+      "subcategory": "Mace",
       "image": "assets/carddb/carddb-items-hands-049.webp",
       "text": "{\\\\“ When used to attack an ,§\n.‘ exhausted enemy, you\nIN8g#¢ may convert 1 e to 1 3.\ni 13 3 hits, sunder !'\ni 13 2 hits, cleave il\no 132 2 hits, stun ol\nil =1\nS Hobbler 3\nsoz.\nTR",
       "buildEligible": true,
@@ -14795,8 +14875,8 @@
       "title": "Staves and Spears 51",
       "ocrTitle": "Staves and Spears 51",
       "displayTitle": "Staves and Spears 51",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Spear",
       "image": "assets/carddb/carddb-items-hands-051.webp",
       "text": "-'A' : 23 4 hits, pierce\n&7 %\n‘ : oy\nR 4 20 o5",
       "buildEligible": true,
@@ -14822,8 +14902,8 @@
       "title": "Long Spear",
       "ocrTitle": "Long Spear",
       "displayTitle": "Long Spear",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Spear",
       "image": "assets/carddb/carddb-items-hands-052.webp",
       "text": "ET.‘:‘; f\" 13%: 4 hits é\n@ 23 5 hits, pierce -y\n\\' When you test to I\n;!f negate X or % from a 4'\nt counterattack, you may H\n- convert 1 o to 1 3. i\nq; B |\n‘E\\ 1 Long Spear :",
       "buildEligible": true,
@@ -14849,8 +14929,8 @@
       "title": "Rohirric Spear",
       "ocrTitle": "Rohirric Spear",
       "displayTitle": "Rohirric Spear",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Spear",
       "image": "assets/carddb/carddb-items-hands-053.webp",
       "text": "& Before you artack, you §\nmay spend 1 inspiration g\nfQ ' to give this item $» for\n1, - that attack. \"g\n} 23 4 hits, pierce i\n]L\\; Rohirric Spear &\nel O° 3",
       "buildEligible": true,
@@ -14876,8 +14956,8 @@
       "title": "fzgg_h o_f the White Tree",
       "ocrTitle": "fzgg_h o_f the White Tree",
       "displayTitle": "fzgg_h o_f the White Tree",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Spear",
       "image": "assets/carddb/carddb-items-hands-054.webp",
       "text": "5‘ 132 3 hits, pierce\nI 25 hics |\n[ | E When you test to lf\n‘ negate N\\ or % from a ”\nI counterattack, you may  fif\nconvert all o to 3. O\n\"b . Bough of the White Tree _",
       "buildEligible": true,
@@ -14903,8 +14983,8 @@
       "title": "Faengwyr",
       "ocrTitle": "Faengwyr",
       "displayTitle": "Faengwyr",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Spear",
       "image": "assets/carddb/carddb-items-hands-055.webp",
       "text": "» > e e M vy 2)\n§\\(°)/ When used to atrack, EQ\n=\\, if you moved this turn, ===\n) dd 2 hics. N\n| 132 4 hits, pierce il\n; '/ ‘ L /‘ ; g\nﬁ’-—-l}_ﬁl._u 98 & 3N",
       "buildEligible": true,
@@ -14930,8 +15010,8 @@
       "title": "Dancing Steel",
       "ocrTitle": "Dancing Steel",
       "displayTitle": "Dancing Steel",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Spear",
       "image": "assets/carddb/carddb-items-hands-056.webp",
       "text": ",_\".v 7 e . T\n{Q 132 3 hits, pierce 3\n', 13%: 3 hits, smite |\n= 232 5 hits\n‘ % After you attack with ;L\ni this item, you may move i\n% 1 space for each songyou Wi\n8% have prepared. 1\n'g Dancing Steel e\n4 ) / =\nDA i 98 o\nAN L R",
       "buildEligible": true,
@@ -14957,8 +15037,8 @@
       "title": "Isenhild",
       "ocrTitle": "Isenhild",
       "displayTitle": "Isenhild",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Spear",
       "image": "assets/carddb/carddb-items-hands-057.webp",
       "text": "e 13 4 hits, pierce LAl\n./;1: 13: 4 hits, smite f_\nQ ) Aftera nearby enemy is i\n’\\ © defeated, you may discard {§i\n§«  a prepared song skill to i\ng move 2 spaces. = |\nEf Isenhild j\ni[\\\\g S o",
       "buildEligible": true,
@@ -14984,8 +15064,8 @@
       "title": "Staif",
       "ocrTitle": "Staif",
       "displayTitle": "Staif",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Staff",
       "image": "assets/carddb/carddb-items-hands-058.webp",
       "text": "£ 1322 2 hits |\n|| 232 3 hits, stun B |\ni 1\nI 1l",
       "buildEligible": true,
@@ -15011,8 +15091,8 @@
       "title": "one-Land Slall",
       "ocrTitle": "one-Land Slall",
       "displayTitle": "one-Land Slall",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Staff",
       "image": "assets/carddb/carddb-items-hands-059.webp",
       "text": "‘. \\ /8 g .\nI  2: 4 hics, stun {\n5 !\nS Lone-Land Staff b |\ne",
       "buildEligible": true,
@@ -15038,8 +15118,8 @@
       "title": "Staff of the Flame",
       "ocrTitle": "Staff of the Flame",
       "displayTitle": "Staff of the Flame",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Staff",
       "image": "assets/carddb/carddb-items-hands-060.webp",
       "text": "@k 132 2 hits, smite ”I\n’! | j Before attacking with this i\nI i item, you may discard a i\ni prepared skill to scout 2. i\n'€  Staff of the Flame | 3",
       "buildEligible": true,
@@ -15065,8 +15145,8 @@
       "title": "Ent-Crook",
       "ocrTitle": "Ent-Crook",
       "displayTitle": "Ent-Crook",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Staff",
       "image": "assets/carddb/carddb-items-hands-061.webp",
       "text": "@ 132 3 hits, cleave E |\n= 23 5 hits, stun\n‘ You cannot sprint. it\ni Ent-Crook",
       "buildEligible": true,
@@ -15092,8 +15172,8 @@
       "title": "Maranwe",
       "ocrTitle": "Maranwe",
       "displayTitle": "Maranwe",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Staff",
       "image": "assets/carddb/carddb-items-hands-062.webp",
       "text": "¥ 13 3 hits, stun\nN 23%: 4 hits, smite |\n{ (.) . Before atracking with this i\n‘ item, you may discard a ‘,‘\nR repared skill to scout 2. i\n'ih Maranwé o\n\" SR,\nT R S T R\nBN ¢ 4| 01 o4",
       "buildEligible": true,
@@ -15119,8 +15199,8 @@
       "title": "Maiden-Wrath",
       "ocrTitle": "Maiden-Wrath",
       "displayTitle": "Maiden-Wrath",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Staff",
       "image": "assets/carddb/carddb-items-hands-063.webp",
       "text": "N\\ When used o attackan &\n~ exhausted enemy, add 1 3. A\n| 1:%: 4 hits 1\nal 13t: 2 hits, sunder B |\n; t 2% 3 hits, stun _i\n48 Maiden-Wrath &\ni e --'\"‘ et _% &\nDy %\nEALINN 5 o\n? e B ] y -",
       "buildEligible": true,
@@ -15146,8 +15226,8 @@
       "title": "World's Burden",
       "ocrTitle": "World's Burden",
       "displayTitle": "World's Burden",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "two-handed",
+      "subcategory": "Staff",
       "image": "assets/carddb/carddb-items-hands-064.webp",
       "text": "§}_§; B’ 13 Scout 2 i\ne 13 hits, stun |\nI 23 3 hits, cleave, smite il\n8 World’s Burden 3\ney . - S 3\no |",
       "buildEligible": true,
@@ -15173,8 +15253,8 @@
       "title": "Walking Stick",
       "ocrTitle": "Walking Stick",
       "displayTitle": "Walking Stick",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "one-handed",
+      "subcategory": "Walking Stick",
       "image": "assets/carddb/carddb-items-hands-065.webp",
       "text": "% 23 2 hits, stun N\nit After you move into b\nit a space with difficulc \";\n| ground, gain 1 I\n| inspiration. hi\n1( e - &\ne Walking Stick ® |",
       "buildEligible": true,
@@ -15200,8 +15280,8 @@
       "title": "kTrusted Walking Stick",
       "ocrTitle": "kTrusted Walking Stick",
       "displayTitle": "kTrusted Walking Stick",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "one-handed",
+      "subcategory": "Walking Stick",
       "image": "assets/carddb/carddb-items-hands-066.webp",
       "text": "[;\\kt_ ¢ 13 2 hits, cleave g\n& 5 2% 3 hits, stun :\n;:'-\" You may ignore % |\ni difficult ground. i |\nS ! ;, | ‘!\n‘]_i; ,  Trusted Walking Stick  §\n:‘.‘_'_-‘f ; *;,gﬁ :",
       "buildEligible": true,
@@ -15227,8 +15307,8 @@
       "title": "Quick-Nick",
       "ocrTitle": "Quick-Nick",
       "displayTitle": "Quick-Nick",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "one-handed",
+      "subcategory": "Walking Stick",
       "image": "assets/carddb/carddb-items-hands-067.webp",
       "text": "e BN ‘** s Y\n\\‘g‘? # 13 3 hits, cleave g\n{ gl 13 3 hits\n\" l & 23 Stun, after this i\ni1 attack you may move [l\nf 1 space. Ht\ni You may ignore it\n-j difficult ground. o\n‘!‘g E Quick-Nick .\nSl o0",
       "buildEligible": true,
@@ -15254,8 +15334,8 @@
       "title": "Cons_t_ant Companion",
       "ocrTitle": "Cons_t_ant Companion",
       "displayTitle": "Cons_t_ant Companion",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "one-handed",
+      "subcategory": "Walking Stick",
       "image": "assets/carddb/carddb-items-hands-068.webp",
       "text": ":’j\"'t\"' 132 3 hits 1\ng 2R 132 2 hits, cleave i-_;:i\n| 13:2: 2 hits, stun ’»\n‘u », 13 Gain 1 inspiration E:\n| b . 1]\n' You may ignore i\n¢ difhicult ground. o l\n3 Constant Companion 3!\no\nAN T 2‘&‘3‘",
       "buildEligible": true,
@@ -15281,8 +15361,8 @@
       "title": "’ iLL L Cloud-Chaser",
       "ocrTitle": "’ iLL L Cloud-Chaser",
       "displayTitle": "’ iLL L Cloud-Chaser",
-      "category": "hand-item",
-      "subcategory": "Staves and Spears",
+      "category": "one-handed",
+      "subcategory": "Walking Stick",
       "image": "assets/carddb/carddb-items-hands-069.webp",
       "text": "= 'f*\\ e e «!s\nNS 13 4 hits, cleave 33\n1’ =» 23 3 hits, stun\n‘ i After you attack with this 7\ni ain 1 inspiration. |\ni item, gain piration |\n1 You may ignore darkness,\nou may ig |\ni difhcult ground, and\n’$ fortified. .\niLL L Cloud-Chaser |\nLU Y,",
       "buildEligible": true,
@@ -15308,8 +15388,8 @@
       "title": "Creat Bow",
       "ocrTitle": "Creat Bow",
       "displayTitle": "Creat Bow",
-      "category": "hand-item",
-      "subcategory": "Ranged Weapons",
+      "category": "two-handed",
+      "subcategory": "Great Bow",
       "image": "assets/carddb/carddb-items-hands-070.webp",
       "text": "1 1}\n3 Great Bow 3\nR e,\n.\nb AT e S S Y|\n: Yo ——— e} o 40",
       "buildEligible": true,
@@ -15335,8 +15415,8 @@
       "title": "Mirkwood Great Bow",
       "ocrTitle": "Mirkwood Great Bow",
       "displayTitle": "Mirkwood Great Bow",
-      "category": "hand-item",
-      "subcategory": "Ranged Weapons",
+      "category": "two-handed",
+      "subcategory": "Great Bow",
       "image": "assets/carddb/carddb-items-hands-071.webp",
       "text": "Q... @l\ne 232 5 hits, cleave 1]\n§3 Mirkwood Great Bow _§\nC 4 R RS o\n.\nb NAAED o ST <\nL\\;‘\\ ¥ o ol",
       "buildEligible": true,
@@ -15362,8 +15442,8 @@
       "title": "Mourning-Song",
       "ocrTitle": "Mourning-Song",
       "displayTitle": "Mourning-Song",
-      "category": "hand-item",
-      "subcategory": "Ranged Weapons",
+      "category": "two-handed",
+      "subcategory": "Great Bow",
       "image": "assets/carddb/carddb-items-hands-073.webp",
       "text": "N When used to attack, {59 i\n& if you have a song card ===\n4 d,add 1 3\n; .‘ . prepare , d X %\n| \" 13 2 hits 1\n1 A\n|1 13%: Lethal i\n1 23 5 hits, cleave ,3\nlL: 3 Mourning-Song\n= el\nN e W\n- 4 i SO .\n{;, \\.>( AN )(/’ : BE",
       "buildEligible": true,
@@ -15377,7 +15457,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 80.0,
+        "titleConfidence": 80,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -15389,8 +15469,8 @@
       "title": "Foe-Blood",
       "ocrTitle": "Foe-Blood",
       "displayTitle": "Foe-Blood",
-      "category": "hand-item",
-      "subcategory": "Ranged Weapons",
+      "category": "two-handed",
+      "subcategory": "Short Bow",
       "image": "assets/carddb/carddb-items-hands-079.webp",
       "text": "e —\nSa% | 3 hits, lechal ‘*snj\n;’,6\\ 2 % 5 hits, pierce 2\nNS y/ b1\niIS= When used to attack, you i |\n,\" may add 2 hits. If you do, | 1‘\n| suffer 1 facedown X\\, (7his il\n,,‘ \\{ : N cannot be prevented.)\ni § Foe-Blood 7,\ne\nY\nAGINA[ Y Y b\nST e e B o",
       "buildEligible": true,
@@ -15416,8 +15496,8 @@
       "title": "Needle-Threader",
       "ocrTitle": "Needle-Threader",
       "displayTitle": "Needle-Threader",
-      "category": "hand-item",
-      "subcategory": "Ranged Weapons",
+      "category": "two-handed",
+      "subcategory": "Short Bow",
       "image": "assets/carddb/carddb-items-hands-080.webp",
       "text": "f\\:’ 13 3 hits, pierce \"ﬁgg,’ng’\n/Q\\ 23 7 hits, smite\nL 332 12 hits, lethal\n\\‘ (.) After you attack with this |\n*\\\"/ item, discard 1 prepared\ne 1\n'€  Needle-Threader P |",
       "buildEligible": true,
@@ -15443,8 +15523,8 @@
       "title": "Gi_antsbane",
       "ocrTitle": "Gi_antsbane",
       "displayTitle": "Gi_antsbane",
-      "category": "hand-item",
-      "subcategory": "Ranged Weapons",
+      "category": "one-handed",
+      "subcategory": "Sling",
       "image": "assets/carddb/carddb-items-hands-083.webp",
       "text": ">ﬁ' ...'“'* e st e e é\\_ —\ns ; e 7 .: R 3\nQ\\ ¢ 2:= 3 hits, sunder\nl L3z 4 NIts i :\n; When you attack an elite {ff\n‘% enemy with this item, |\ni add 1 3=\n;] Giantsbane e &",
       "buildEligible": true,
@@ -15470,8 +15550,8 @@
       "title": "Whlsl er",
       "ocrTitle": "Whlsl er",
       "displayTitle": "Whlsl er",
-      "category": "hand-item",
-      "subcategory": "Ranged Weapons",
+      "category": "one-handed",
+      "subcategory": "Sling",
       "image": "assets/carddb/carddb-items-hands-084.webp",
       "text": "i 23 4 hits, smite i\ni After you attack with this ,\nII item, gain 1 inspiration i\nfll:  for each song skill you ;\n0 ; % have prepared. o l |\n5% S I W\nL; X o A'\\' > G e e\nFY BN & 4\nDY ¢ | e el\ni{;-mil\\;ﬁ L - %?5‘",
       "buildEligible": true,
@@ -15497,8 +15577,8 @@
       "title": "Shooting Star",
       "ocrTitle": "Shooting Star",
       "displayTitle": "Shooting Star",
-      "category": "hand-item",
-      "subcategory": "Ranged Weapons",
+      "category": "one-handed",
+      "subcategory": "Sling",
       "image": "assets/carddb/carddb-items-hands-085.webp",
       "text": "I ] - .\n{/,Q\\ b 13 2 hits, stun\n(\\\\\\ ¢ B\nial St 232 3 hits, sunder B |\n| i When you attack, you i\ne may add 1 3. If you i\nUi do, suffer 1 %% (Thisee i\n& cannot be prevented.) = |\n,l Shooting Star pe\nRt AV N b A\n'MWI;:W\\\n_U{fl i = %}\\",
       "buildEligible": true,
@@ -15524,8 +15604,8 @@
       "title": "Banr_u_",
       "ocrTitle": "Banr_u_",
       "displayTitle": "Banr_u_",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Banner",
       "image": "assets/carddb/carddb-items-hands-086.webp",
       "text": ", i you or a nearby hero 3\nil rests or guards, that hero :\nit gains 1 inspiration. ‘\n}]l& Banner )\nI: :‘;;{‘.' 3",
       "buildEligible": true,
@@ -15551,8 +15631,8 @@
       "title": "War-Haven",
       "ocrTitle": "War-Haven",
       "displayTitle": "War-Haven",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Banner",
       "image": "assets/carddb/carddb-items-hands-088.webp",
       "text": ";_,j'After you or a nearby hero &\n811\" rests, guards, or hides, that 24,\nff hero gains 1 inspiration. ‘\n| | After you discard a prepared il\nI sactic card, you or a nearby il\nll hero may discard 1 facedown it\n]L{ War-Haven b |\nsy B .\"..‘ f",
       "buildEligible": true,
@@ -15578,8 +15658,8 @@
       "title": "Heart’s-Rest",
       "ocrTitle": "Heart’s-Rest",
       "displayTitle": "Heart’s-Rest",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Harp",
       "image": "assets/carddb/carddb-items-hands-093.webp",
       "text": "12 At the start of your turn, a g\n& hero in your space who has 0 &\ni inspiration gains 1 inspiration,\nil If a hero in your space would i\n! I gain an inspiration, they may !\n| i discard a facedown XX or % i\n| %‘mstedd. l ,\nl i Heart’s-Rest P\n) : b \" &\n/) % 'Y : § 4453 -\nI/ sl&-ﬁ/m 20 > ¥ %",
       "buildEligible": true,
@@ -15605,8 +15685,8 @@
       "title": "' Chorus of Light",
       "ocrTitle": "' Chorus of Light",
       "displayTitle": "' Chorus of Light",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Harp",
       "image": "assets/carddb/carddb-items-hands-095.webp",
       "text": "WO Each hero increases m\n.' their inspiration limic S\nt i At the start of your turn,  ff\n| { a hero in your space gains | i\nI8 1 inspiration. H\n1S e Stun, smite., :\nfi 3 Chorus of Light 3}\n= e \\ et\n3 SRS i",
       "buildEligible": true,
@@ -15632,8 +15712,8 @@
       "title": "Horn",
       "ocrTitle": "Horn",
       "displayTitle": "Horn",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Horn",
       "image": "assets/carddb/carddb-items-hands-096.webp",
       "text": "%} t the start of your turn, if\ni you are in a space with an \"\n@ enemy, you or a nearby hero 3 ‘I '\n1‘ gains 1 inspiration. “\nIa 1l\n2 LN LY |",
       "buildEligible": true,
@@ -15659,8 +15739,8 @@
       "title": "Lonaorian norn",
       "ocrTitle": "Lonaorian norn",
       "displayTitle": "Lonaorian norn",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Horn",
       "image": "assets/carddb/carddb-items-hands-097.webp",
       "text": "e 7 s “\"'“\"\"\"‘\" = |\n:‘ ‘ft the start of your turn, if\n:“you are in a space with an ‘\nB4 cnemy, you or a nearby hero )\ni oains 1 ation. 3\nI ga inspiratio i|\n| i If a nearby hero would gain an i\nIl inspiration, they may become i\nL emboldened instead.\nJb. : Gondorian Horn 3\ne ~ 7 4\n% b ; V :\nN &> o7 ] Y - ’- S .\nB »_-~'c»::::a;‘=;f;w1—nm‘=7-—-‘f-‘-‘m i ¥\n[ —— e RS Y N",
       "buildEligible": true,
@@ -15686,8 +15766,8 @@
       "title": "Sentry’s Horn",
       "ocrTitle": "Sentry’s Horn",
       "displayTitle": "Sentry’s Horn",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Horn",
       "image": "assets/carddb/carddb-items-hands-098.webp",
       "text": "(s s e e e N )\ni At the start of your turn, if ‘,\ni you are in a space with an Y\nit enemy, you or a nearby hero |\nit gains 1 inspiration. Bl |\nil Once per round, when you or | |\n| a nearby hero scouts, that hero |\n§ may reveal 1 additional card. il\n5 7\n|hrk 3 Sentry’s Horn o i\n1R & $ s 2\nARNINAIIR 2\nA o N e e e o N |",
       "buildEligible": true,
@@ -15713,8 +15793,8 @@
       "title": "starsong",
       "ocrTitle": "starsong",
       "displayTitle": "starsong",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Horn",
       "image": "assets/carddb/carddb-items-hands-099.webp",
       "text": "e S =\nif; the start of your turn, if\n[ you are in a space with an By\n/. ®\nff cnemy, you and a nearby hero i}\nB gain 1 inspiration. {l\nil Once per round, you may 'l»\n| discard a song card for a nearby 'z\nb hero to discard 1 %% or N, t\n|L§ 1 Starsong e ?\nL\n% ; . o b s, \\: -\n4 \\ _:w m e e / {:\n_,..‘.;,{l NI LS , e (™\n! A T e ————— r————— >}",
       "buildEligible": true,
@@ -15740,8 +15820,8 @@
       "title": "Clarion Call",
       "ocrTitle": "Clarion Call",
       "displayTitle": "Clarion Call",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Horn",
       "image": "assets/carddb/carddb-items-hands-100.webp",
       "text": "[s 7 et\n| t the start of your turn, if\n¢ you are in a space with an 1\ni cnemy, you or a nearby hero '{%’\ni,l gains 1 inspiration. ::\n? l ¢ After you attack, you may ¢ !I\n“ spend 2 inspiration for a {\n§ nearby hero to also artack. A\n| ig - Clarion Call o |\nI8 3 Eeae > 4 % A\nU e —— 1‘@\n(i -,%?;:‘g-‘ % b | 80 PRXE |\nAGINZIR Y | °0 > I8",
       "buildEligible": true,
@@ -15767,8 +15847,8 @@
       "title": "Ringing Glory",
       "ocrTitle": "Ringing Glory",
       "displayTitle": "Ringing Glory",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Horn",
       "image": "assets/carddb/carddb-items-hands-101.webp",
       "text": "N 1 Lethal @\n@ b At the start of your turn, %]\nW if you are in a space |\ni‘~f ~ with an enemy, you 8 |\ni and a nearby hero gain it\n|< 1 inspiration. H\n}% 1 Ringing Glory 3\nN e\no= B ey",
       "buildEligible": true,
@@ -15794,8 +15874,8 @@
       "title": "Lg E Thunderclap",
       "ocrTitle": "Lg E Thunderclap",
       "displayTitle": "Lg E Thunderclap",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Horn",
       "image": "assets/carddb/carddb-items-hands-102.webp",
       "text": "NS, 13 Lethal Q\no 8 13t A nearby hero may =\n|48 move 1 space without % |\n:!-. provoking attacks. Bl\n| At the start of your turn, i\n‘? you or a nearby hero gains }i\nLo 1 inspirartion. <\n‘Lg E Thunderclap '\n.n.:;’..‘ %\" % ‘l-'};‘ \"\"& s i\\‘.‘ ‘ ;\nBEROE 2\nARSI ¥ | R",
       "buildEligible": true,
@@ -15821,8 +15901,8 @@
       "title": "Shteld",
       "ocrTitle": "Shteld",
       "displayTitle": "Shteld",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Shield",
       "image": "assets/carddb/carddb-items-hands-103.webp",
       "text": "i;fi' per round, when you i\n& would suffer any amount of N, 8\ng you may prevent 1 X\\ |\nR 3 o Sk o _-’i' » ,\"_v 3 3 r\" o\nD IR\ne e T T S b e }",
       "buildEligible": true,
@@ -15848,8 +15928,8 @@
       "title": "Foe Blind",
       "ocrTitle": "Foe Blind",
       "displayTitle": "Foe Blind",
-      "category": "hand-item",
-      "subcategory": "Support",
+      "category": "one-handed",
+      "subcategory": "Shield",
       "image": "assets/carddb/carddb-items-hands-108.webp",
       "text": "&g 13 Stun é*;\nv Once per round, when 8\nil you would suffer any A\ni amount of X, you may 8|\nl v prevent 2 X\\ and prepare i\n‘ a skill with guard from i\n- your discard pile. .:\ni P 4 1|\ng[y} 1 Foe-Blind 3,\np W\\ e oo s A‘nm—dﬁﬁ\\\nP COSS\" S S ‘ ':(\\.;,\"4 “ - &\n‘ | LT\ng o 6 i s X ) o\nST A [,-f\\’\\\\'\\g i /i Xs\\, l\n\\E—- N AR Y",
       "buildEligible": true,
@@ -16119,7 +16199,7 @@
       "ocrTitle": "Boolts",
       "displayTitle": "Boolts",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Boots",
       "image": "assets/carddb/carddb-items-trinkets-001.webp",
       "text": "fi fyou would test @ or X, ’\n' * you may deplete this item : ‘;\nI to test M or Q instead. ;\n} = Boots 3\n2 e 4 v e e\nALy & 22658",
       "buildEligible": true,
@@ -16146,7 +16226,7 @@
       "ocrTitle": "Lrecnway Boots",
       "displayTitle": "Lrecnway Boots",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Boots",
       "image": "assets/carddb/carddb-items-trinkets-002.webp",
       "text": "i you would test @ or %,\n& you may deplete this item ]\nj9-- to test % or Q instead. W\nt Before you move out of a !l\n: \"5. space, you may dcplete this ..- i\n: ‘ item to not provoke attacks. i\nlﬁé Greenway Boots 3\n CITIT\ne & | 45050\n= . ‘&hw“_'w*—\"' et ) ‘@",
       "buildEligible": true,
@@ -16173,7 +16253,7 @@
       "ocrTitle": "ilg k - Dusk-Treaders",
       "displayTitle": "ilg k - Dusk-Treaders",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Boots",
       "image": "assets/carddb/carddb-items-trinkets-003.webp",
       "text": "R o R e o N\ni fyou would test @ or %, il\ni you may deplete this item ‘]\nff o test & or @ instead. 5\n'8 ~ )\nil Before you move out of a I\nI space or interact with a token, !\n’? you may deplete this item to ~ [{i§\n;:not provoke attacks. it\nilg(k - Dusk-Treaders &",
       "buildEligible": true,
@@ -16200,7 +16280,7 @@
       "ocrTitle": "Brooch",
       "displayTitle": "Brooch",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Brooch",
       "image": "assets/carddb/carddb-items-trinkets-004.webp",
       "text": "i . E !\nif you would suffer any amount &1\n& of %, you may deplete this 2l\nf item to suffer that % facedown N¥\ni | - B 1\n| :. instead. s |\nl Brooch ,\ne \" Bl W",
       "buildEligible": true,
@@ -16227,7 +16307,7 @@
       "ocrTitle": "Clilauul DIVLRNn",
       "displayTitle": "Clilauul DIVLRNn",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Brooch",
       "image": "assets/carddb/carddb-items-trinkets-005.webp",
       "text": "h el = -y\n;'-;‘If you would suffer any amount &1\n& of %*, you may deplete this item 84\niff to suffer that % facedown instead 3\nlll. and prevent 1 of that % i1\n8 ‘H\nH i\n[ ] Eriador Brooch A3\nd e - B 2\n: T\n7 gl S y",
       "buildEligible": true,
@@ -16254,7 +16334,7 @@
       "ocrTitle": "Mark of Arnor",
       "displayTitle": "Mark of Arnor",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Brooch",
       "image": "assets/carddb/carddb-items-trinkets-006.webp",
       "text": "| I you would suffer any amount 2\n& of %, you may deplete this 24\nil item o suffer that % facedown |\nifl. instead and prevent 1 of that %, ': i\n| i During your turn, you may {it\n| % deplete this item to flip 1 ! H\n§l or %* facedown. I8\n‘ 1 Mark of Arnor pe i\n-/'.' \".»\"‘?')-'r ; !\n: AL TR OGO TSI, /4\n[ e S O W ol <",
       "buildEligible": true,
@@ -16281,7 +16361,7 @@
       "ocrTitle": "Clirclet",
       "displayTitle": "Clirclet",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Circlet",
       "image": "assets/carddb/carddb-items-trinkets-007.webp",
       "text": "e s e N\n\"ﬁcrease your inspiration limit iE\nI When you perform a @ test, § :\nil you may deplete this itemto i\nil prepare 1 card from the test. ‘\n= by o\nb 4\n‘ﬂ”l A N N T T LR L GGV ~ ’ ¥",
       "buildEligible": true,
@@ -16308,7 +16388,7 @@
       "ocrTitle": "Silver Circlet",
       "displayTitle": "Silver Circlet",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Circlet",
       "image": "assets/carddb/carddb-items-trinkets-008.webp",
       "text": "__h'Crease your inspiration limit '\nV7 b\n¥ When you perform a @) test, % .\n‘ you may deplete this item to ‘i\n‘i prepare 1 card from the test. i\nlu- ; Silver Circlet po i\nb 4\nBT @ | 56058\n| [ e N . %\\\ne R ey",
       "buildEligible": true,
@@ -16335,7 +16415,7 @@
       "ocrTitle": "Seven-Flame Crown",
       "displayTitle": "Seven-Flame Crown",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Circlet",
       "image": "assets/carddb/carddb-items-trinkets-009.webp",
       "text": "! Sl e\n%i ncrease your inspiration limit l\nf b When you perform a ) test, g .\nll. you may deplete this item to {l\n\\ prepare 1 card from the test. il\nl?f ,  Seven-Flame Crown 3\n'/\\‘rz » n {.5: i ' ‘",
       "buildEligible": true,
@@ -16362,7 +16442,7 @@
       "ocrTitle": "Extra Rations",
       "displayTitle": "Extra Rations",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Extra Rations",
       "image": "assets/carddb/carddb-items-trinkets-010.webp",
       "text": "s :=;~3 S Food g i\n= At the start of the rally phase, ¢\nI you may deplete this item for N\n‘:“ a hero in your space to diseard\n| |\nI;%‘ Extra Rations\ni ’-. i",
       "buildEligible": true,
@@ -16389,7 +16469,7 @@
       "ocrTitle": "JL Breeland Rations",
       "displayTitle": "JL Breeland Rations",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Extra Rations",
       "image": "assets/carddb/carddb-items-trinkets-011.webp",
       "text": "Food i\nB At the start of the rally phase, &\nil you may deplete this item for i\nil 2 hero in your space to discard i\nJL{{ Breeland Rations @\nBT @ 48058",
       "buildEligible": true,
@@ -16403,7 +16483,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 74.0,
+        "titleConfidence": 74,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -16416,7 +16496,7 @@
       "ocrTitle": "Hobbit Rations",
       "displayTitle": "Hobbit Rations",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Extra Rations",
       "image": "assets/carddb/carddb-items-trinkets-012.webp",
       "text": ": Food o\n& At the start of the rally phase, =\nIl you may deplete this item for N\nli a hero in your space to discard iff\nJ Hobbit Rations ,,\n: T R\n:\\‘ e e e 2R .\nS I'(“' < ~ - | NS S\nL\\flf E (Y 8 48 NP\n\" ——. o~ oo o~ af T . \\:, ’",
       "buildEligible": true,
@@ -16443,7 +16523,7 @@
       "ocrTitle": "Butterbur Biscuits",
       "displayTitle": "Butterbur Biscuits",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Extra Rations",
       "image": "assets/carddb/carddb-items-trinkets-013.webp",
       "text": "Food %A\n= At the start of the rally phase, =€\ni’ you may deplete this item fora 3\nil hero in your space to become ;l\ni determined and discard up to I‘;\n1’5 2N\\ and %*. i\nL . Butterbur Biscuits . §.\n2 i g s F\n% ) } MR\nAR \" 8 /8% /..\ne N e T L 2N",
       "buildEligible": true,
@@ -16470,7 +16550,7 @@
       "ocrTitle": "Tookish Apple Cakes",
       "displayTitle": "Tookish Apple Cakes",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Extra Rations",
       "image": "assets/carddb/carddb-items-trinkets-014.webp",
       "text": "e Food it\nAt the start of the rally phase, #\nil you may deplete this item h\n| for heroes in your space to |\n‘1 collectively discard up to 2 N § }\n! Tookish Apple Cakes . 8!\no T T",
       "buildEligible": true,
@@ -16497,7 +16577,7 @@
       "ocrTitle": "Fang Pendant",
       "displayTitle": "Fang Pendant",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Fang Pendant",
       "image": "assets/carddb/carddb-items-trinkets-015.webp",
       "text": "3\";}51*_, ~ 13 Pierce 3\n\"%  After you defeat an T\n7 N ¥\nenemy group, yol may il\n{18 deplete this item to gain 2!‘\nI' 1 inspiration. i\n;! Fang Pendant \")\nST,\n/‘7 - ‘\\%‘3 ,",
       "buildEligible": true,
@@ -16524,7 +16604,7 @@
       "ocrTitle": "Warg-fang Pendant",
       "displayTitle": "Warg-fang Pendant",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Fang Pendant",
       "image": "assets/carddb/carddb-items-trinkets-016.webp",
       "text": "i ,,.' ; = ;7; 1\ne 13%: Pierce S\nj'; After you defeat an !!\n| enemy group, you may '\n’ deplete this item to gain i\n.:. . . v . ! )\n[ 1 inspiration. 1\n]l§ . Warg-fang Pendant 38\nNS\n’“\\\\‘ : /.- z\n: > : ) m 7 A s ;\\/, |",
       "buildEligible": true,
@@ -16551,7 +16631,7 @@
       "ocrTitle": "Vengeance's Bite",
       "displayTitle": "Vengeance's Bite",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Fang Pendant",
       "image": "assets/carddb/carddb-items-trinkets-017.webp",
       "text": "(\\E‘ & After you defeat an }'g\n- enemy group, you may 1'5\n§ deplete this item to gain il\n% 1 inspiration or become i\ns, determined. |\n; Vengeance's Bite\nV6Y \"yl 3005 ,",
       "buildEligible": true,
@@ -16578,7 +16658,7 @@
       "ocrTitle": "Hahd_ﬁerchit'f",
       "displayTitle": "Hahd_ﬁerchit'f",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Handkerchief",
       "image": "assets/carddb/carddb-items-trinkets-018.webp",
       "text": "Y e e A\ni a8 &\n| ;Z\"A‘ftcr you interact with a person 3\n8% token, you may deplete this e\nBl item to gain 1 inspiration and N\ng1l perform 1 additional action.\n5 HandKerchief e )",
       "buildEligible": true,
@@ -16605,7 +16685,7 @@
       "ocrTitle": "l-lelrloom Ha_ndl erchlel",
       "displayTitle": "l-lelrloom Ha_ndl erchlel",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Handkerchief",
       "image": "assets/carddb/carddb-items-trinkets-019.webp",
       "text": "g-_:-A&CI‘ you interact with a g\nW& person token, you may deplete S8\ni this item to gain 1 inspiration, &\n@l become determined, and ‘\nBl perform 1 additional action. | ‘\n§k~ . Heirloom Handkerchief .8\n= .",
       "buildEligible": true,
@@ -16632,7 +16712,7 @@
       "ocrTitle": "Forget-Me-Never",
       "displayTitle": "Forget-Me-Never",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Handkerchief",
       "image": "assets/carddb/carddb-items-trinkets-020.webp",
       "text": "?j,g;f.’-While there are no nearby 4\n© heroes, increase your @ by 1. 5\n“\" After you interact with a ’: :\nll. person token, you may deplete Ih\n{1 this item to gain 1 inspiration, Hi\ni become determined, and\ni perform 1 additional action. -:5\ni (. 2\n‘y‘\\ § Forget-Me-Never B\n= ,\nTN A e IO S A s 2 O TR k\ng £ - : 5 .\nG YR >",
       "buildEligible": true,
@@ -16659,7 +16739,7 @@
       "ocrTitle": "Helmet",
       "displayTitle": "Helmet",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Helmet",
       "image": "assets/carddb/carddb-items-trinkets-021.webp",
       "text": "e,\ne e .\n4{ you would suffer any 4\n& amount of X, you may\nff deplete this item to suffer that a\n:‘.-, N facedown instead. |\ng i\n'€ Helmet )\n’I’K . . N4\n8 G f;. ' : ‘.‘7: . ' o j\noTe",
       "buildEligible": true,
@@ -16686,7 +16766,7 @@
       "ocrTitle": "Dwarf-Forged Helmet",
       "displayTitle": "Dwarf-Forged Helmet",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Helmet",
       "image": "assets/carddb/carddb-items-trinkets-022.webp",
       "text": ";;,‘_;:'-If you would suffer any il\n& amount of N\\, you may\n£ deplete this item to suffer that ,\nN facedown instead.\ni |\n1! Dwarf-Forged Helmet }\n55% A ‘;.,. g",
       "buildEligible": true,
@@ -16713,7 +16793,7 @@
       "ocrTitle": "Fire-Sale",
       "displayTitle": "Fire-Sale",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Helmet",
       "image": "assets/carddb/carddb-items-trinkets-023.webp",
       "text": "{# Increase your NN limicby 1. 8¢\n= If you would suffer any\nill° amount of N, you may ‘I\nifl. deplete this item to suffer that 7 ;\n' N facedown instead. | ;\n. A\n| Fire-Scale PN\nL::O l : ;. 2 ¥ _'\n1N, e \" S 7\nL.k@ Il el 0|",
       "buildEligible": true,
@@ -16740,7 +16820,7 @@
       "ocrTitle": "Old Map",
       "displayTitle": "Old Map",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Map",
       "image": "assets/carddb/carddb-items-trinkets-024.webp",
       "text": "§ S i\niAfter you explore a tile, '\n¢ you may deplete this item to 5\ni choosc another hero to gain )\nit 1 inspiration. il\ni 18 2|\nl,{ Old Map » i\n11°7 e \"‘ ,4;‘\nQL | 21058",
       "buildEligible": true,
@@ -16767,7 +16847,7 @@
       "ocrTitle": "Bounder’s Map",
       "displayTitle": "Bounder’s Map",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Map",
       "image": "assets/carddb/carddb-items-trinkets-025.webp",
       "text": "g.:;‘k'fter you explore a tile or i\ni defeat an enemy group, you “\niff may deplete this item to |\n| i choose another hero to gain 3\nil 1 inspiration. il\n‘ Bounder’s Map ]\ns o S ’ gl R i S\noledDED",
       "buildEligible": true,
@@ -16794,7 +16874,7 @@
       "ocrTitle": "Bullroarer’s Course",
       "displayTitle": "Bullroarer’s Course",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Map",
       "image": "assets/carddb/carddb-items-trinkets-026.webp",
       "text": "s e N\né:i\"ifter you explore a tile or\ni defeat an enemy group, you 4\ni may deplete this item to e\n| f choose another hero to gain f\nit 1 inspiration.\nI When you attack, you may ;\nl | deplete this item to add lethal. |\nl Bullroarer’s Course 8\n?rr: : o u :h\\ u,\\\\“ : :_.\\- Nl\nG \\;\\\\> S )",
       "buildEligible": true,
@@ -16821,7 +16901,7 @@
       "ocrTitle": "OldPipe",
       "displayTitle": "OldPipe",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Pipe",
       "image": "assets/carddb/carddb-items-trinkets-027.webp",
       "text": "i - When you scout during the i\n& rally phase, if there are no\ni ncarby enemies, you may i\nil deplete this item to prepare I\n18 = {fi\ni 1 additional card. I\ni it\nS Old Pipe 3\n2 \\ 3 - / PR %\nV‘ \"N = o ] 7 / \\g-ﬁ:‘ﬂ.‘, :\ny | alt g /\"\n; ' NG\nW e e e e s Jnsameriy -~ g",
       "buildEligible": true,
@@ -16848,7 +16928,7 @@
       "ocrTitle": "ong-Stemmed Pi ze",
       "displayTitle": "ong-Stemmed Pi ze",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Pipe",
       "image": "assets/carddb/carddb-items-trinkets-028.webp",
       "text": "{}\\thn you scout during the §\n& rally phase, if there are no P\nift ncarby enemies, you may A\nifl. deplete this item to prepare E |\nil 1 additional card and discard | |\n' 2 facedown %#. i\ni !\n| |{ Long-Stemmed Pipe . 3§\nBl 8 & &\n! tn)—--u« e e .|,-,A”-j‘ @\n2 WA 7\n| = o 4 f A ?“ 7 5\nSTy\nrreine:",
       "buildEligible": true,
@@ -16875,7 +16955,7 @@
       "ocrTitle": "Storm-Maker",
       "displayTitle": "Storm-Maker",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Pipe",
       "image": "assets/carddb/carddb-items-trinkets-029.webp",
       "text": "When you scout during the &\n®i rally phase, if there are no\n8l ncarby enemies, you may ‘\n; ‘ deplete this item to prepare |\n8l 1 additional card, discard ‘ ‘\n“ 2 facedown %#, and gain a i\n8ill boon of your choice. i'\nJ Storm-Maker P\n| \\ != — N A 3\no WA 7\n- e\ndgf L S R 1 MQX",
       "buildEligible": true,
@@ -16902,7 +16982,7 @@
       "ocrTitle": "Old Scepler",
       "displayTitle": "Old Scepler",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Scepter",
       "image": "assets/carddb/carddb-items-trinkets-030.webp",
       "text": "'; ou have the £lf, Dwarf, and g\n& Hobbit traits. 0\nli* After you interact with a b\nil person token, you may deplete °f ;\n; this item to gain 1 inspiration. i\n| i\nS Old Scepter o )\n(&) .\n=\nb )Q,;/.",
       "buildEligible": true,
@@ -16929,7 +17009,7 @@
       "ocrTitle": "Silver Septer",
       "displayTitle": "Silver Septer",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Scepter",
       "image": "assets/carddb/carddb-items-trinkets-031.webp",
       "text": "| i_f ou have the £/f, Duwarf; and g\nU& Hobbit traits. %\nil After you interact with a R\n- ;! i person token, you may deplete | |\ni chis item to gain 1 inspiration | |\nH or discard 1 %®. i\n< Silver Scepter 3 '\nv\n) L) . e",
       "buildEligible": true,
@@ -16956,7 +17036,7 @@
       "ocrTitle": "The Silent Scepter",
       "displayTitle": "The Silent Scepter",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Old Scepter",
       "image": "assets/carddb/carddb-items-trinkets-032.webp",
       "text": "i L ou have the £lf;, Dwarf, and i\n& Hobbit traits.\nfli* After you interact with a h\nllt. person roken, you may deplete ff\nit cthis item for you or a nearby |\n';’ hero to gain 2 inspiration and i\n;ér;sdiscard 1 %%\n}l} The Silent Scepter »\nE_z\n> ’\\lq— > N",
       "buildEligible": true,
@@ -16983,7 +17063,7 @@
       "ocrTitle": "Provisions",
       "displayTitle": "Provisions",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Provisions",
       "image": "assets/carddb/carddb-items-trinkets-033.webp",
       "text": "e N, |\n# At the end of your turn,  \\\nil you may deplete this item 1\nlg to scout 1. For each creature il\ni card in your play area, reveal l ;\n|' 1 additional card. ‘\nL( Provisions o |\ns A\n. T = > e S\nN = ‘T‘ls,, 3 U Ao //'v\"/' )\nllr (2 '-% & 26 \\ |",
       "buildEligible": true,
@@ -17010,7 +17090,7 @@
       "ocrTitle": "Wayfarer’s Provisions",
       "displayTitle": "Wayfarer’s Provisions",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Provisions",
       "image": "assets/carddb/carddb-items-trinkets-034.webp",
       "text": "cameas e e s e~ 2 NS .,',...'.:‘, 5\n-“»f; ' Food | § ;\nDuring your turn, you may\nil deplete this item to scout 1. [\n; For each creature card in your ,'\nil play area, reveal 1 additional |‘\n1} Wayfarer’s Provisions ‘-\nN> LS\ne =\n- & Lk = . ) - - A _»' 5 ‘\\ :\n4 \\\\¥s e\n\\ IRNY & oA ]",
       "buildEligible": true,
@@ -17037,7 +17117,7 @@
       "ocrTitle": "Horselord Supply",
       "displayTitle": "Horselord Supply",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Provisions",
       "image": "assets/carddb/carddb-items-trinkets-035.webp",
       "text": "®* During your turn, you may ™\n\" deplete this item to scout 1. f\nil For cach creature card in your 3“ |\n! . o !\n| I play area, reveal 1 additional i\n1B > 8l\nil card. i\nlig 3 Horselord Supply .8\n\\.} - b m 3 ‘ 4\nL B ~ 2 o NG\nL-& I",
       "buildEligible": true,
@@ -17064,7 +17144,7 @@
       "ocrTitle": "Rope",
       "displayTitle": "Rope",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Rope",
       "image": "assets/carddb/carddb-items-trinkets-036.webp",
       "text": "e i e N\n;:_,._;,a en you interact with a N\ni token and test % or @, you Sl\nmay deplete this item to § |\nl convert 1 o to 1 3. il\nl}; Rope e )\nA e e T A A S, e e ) o s )",
       "buildEligible": true,
@@ -17091,7 +17171,7 @@
       "ocrTitle": "Hobson Rope",
       "displayTitle": "Hobson Rope",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Rope",
       "image": "assets/carddb/carddb-items-trinkets-037.webp",
       "text": "e e s N\nH v . s U\nl en you interact with a A\n& token, if you would test &, &\nf you may test Q instead. )\n:'i When you interact with a\nI8 % i\nil token and test - or @, you |\n“ may deplete this item to i\n':,;,;;convert 1 o to 1 3. 1 1\n\"\":‘ <'Y — % \\.i\nl Hobson Rope b9 )\ns L : O",
       "buildEligible": true,
@@ -17118,7 +17198,7 @@
       "ocrTitle": "Ninnyhammer Braid",
       "displayTitle": "Ninnyhammer Braid",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Rope",
       "image": "assets/carddb/carddb-items-trinkets-038.webp",
       "text": "PSS e onamema: e Ay\n%thn you interact with a %\ni token, if you would test %, i\nf you may test @ instead. BNl\nil When you interact with a 1\nil token and test & or Q, you I\ni ¥l 81\n__ may deplete this item to i\nconvert 1 o to 2 3%, ‘; !\n}la} . Ninnyhammer Braid .\nA -",
       "buildEligible": true,
@@ -17145,7 +17225,7 @@
       "ocrTitle": "iome",
       "displayTitle": "iome",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Tome",
       "image": "assets/carddb/carddb-items-trinkets-039.webp",
       "text": "g{ en you scout, you may f\n& deplete this item to reveal B\nifft 2 additional cards. B\nil AN\nY \\'6 VNS",
       "buildEligible": true,
@@ -17172,7 +17252,7 @@
       "ocrTitle": "lome ot palile",
       "displayTitle": "lome ot palile",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Tome",
       "image": "assets/carddb/carddb-items-trinkets-040.webp",
       "text": "(P onias I ittt i e ot gt — 7‘lv txer\n.3;When you scout, you may %\nk= deplete this item to reveal\n4 ales k2 AN\nit 2 additional cards. Ifyoudo 3\nit and there is an enemy in your ‘ |\n| space, gain 1 inspiration. i i\nTome of Battle\n\" ’ e .ﬂ“\"\n_J; e S R R ;\\(-.,..-( e / \"\"‘",
       "buildEligible": true,
@@ -17199,7 +17279,7 @@
       "ocrTitle": "Legendarium of Thror",
       "displayTitle": "Legendarium of Thror",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Tome",
       "image": "assets/carddb/carddb-items-trinkets-041.webp",
       "text": ";;;-JWhen you scout, you may &l\ni deplete this item to reveal ;\nff 2 additional cards and prepare .\n'i I additional card. If youdo i\nil and there is an enemy in your {Hil§\nii space, gain | inspiration. 18\n]( Legendarium of Thror @)\nW5 . ,::.5,“ e, = . ;\ne A P",
       "buildEligible": true,
@@ -17226,7 +17306,7 @@
       "ocrTitle": "Torch",
       "displayTitle": "Torch",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Torch",
       "image": "assets/carddb/carddb-items-trinkets-042.webp",
       "text": "; g«fj‘You and other heroes in your ; f\n& space ignore darkness. 2\n| Il\n| i{ Torch b\n“5_ N\n(&) »\nby 7 L",
       "buildEligible": true,
@@ -17253,7 +17333,7 @@
       "ocrTitle": "Weathir-top Torch",
       "displayTitle": "Weathir-top Torch",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Torch",
       "image": "assets/carddb/carddb-items-trinkets-043.webp",
       "text": "¢ You and other heroes in your &1\n& space ignore darkness. 3\n' Ifyou attack an enemy in your ;\n| b space, you may deplete this | i\n‘ : item to add pierce or smite. | '\nf 1 Weathertop Torch . §\nw i\n- P",
       "buildEligible": true,
@@ -17280,7 +17360,7 @@
       "ocrTitle": "Under Sun",
       "displayTitle": "Under Sun",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Torch",
       "image": "assets/carddb/carddb-items-trinkets-044.webp",
       "text": "R a\n;\\.—;f\"You and other heroes in your g;;\n& space ignore darkness. A\ni* If you attack an enemy in ‘i\nill. your space, you may deplete -’ '\nit this item to add pierce, smite, | l\nii and stun. i\nFr\n2 s d\n] o\n~N s\no\nb TI0En]\n. ‘ 4 3%\nSNE 3 I\\\n712 3 @ 86&H %",
       "buildEligible": true,
@@ -17307,7 +17387,7 @@
       "ocrTitle": "Waterskin",
       "displayTitle": "Waterskin",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Waterskin",
       "image": "assets/carddb/carddb-items-trinkets-045.webp",
       "text": "T i e N\n=~ en you travel, you may 35‘\n' deplete this item to move \"\nk1 additional space.\nVi Ye K",
       "buildEligible": true,
@@ -17334,7 +17414,7 @@
       "ocrTitle": "Elven Waterskin",
       "displayTitle": "Elven Waterskin",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Waterskin",
       "image": "assets/carddb/carddb-items-trinkets-046.webp",
       "text": "! \" epmaonsi ottt e S .\nﬁi ~ When you travel, you may %}\n1 * deplete this item to move \"l\n§f 1 addidonal space.\n‘a 1\n1 Elven Waterskin 8\n! 1 “ et \"\"' S e / y “.\n| roen)\nVoYes",
       "buildEligible": true,
@@ -17361,7 +17441,7 @@
       "ocrTitle": "Clear-Water",
       "displayTitle": "Clear-Water",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "Waterskin",
       "image": "assets/carddb/carddb-items-trinkets-047.webp",
       "text": ";!i? ncrease your %#* limit by 1. ‘!\n% When you travel, you may =~ =€\n® deplete this item to move M\ni 1 addidonal space. l\n'lg} a Clear-Water ’_\nD R o _oh L\nAece W",
       "buildEligible": true,
@@ -17388,7 +17468,7 @@
       "ocrTitle": "The Crown of Shadows",
       "displayTitle": "The Crown of Shadows",
       "category": "trinket",
-      "subcategory": "Trinkets",
+      "subcategory": "The Crown of Shadows",
       "image": "assets/carddb/carddb-items-trinkets-048.webp",
       "text": "'i \" You may equip 1 additional @. &\n= en you test, you may\n\" deplete this rinker to add #: 4\nil equal to your corruption.\nil i\n'|fq The Crown of Shadows B\ngs\n2 é\n; \\/.\" S - il o 3 b . BE\n: $ ‘4 ¥ 4 &, i",
       "buildEligible": true,
@@ -17510,7 +17590,7 @@
       "printedCardNumber": "4",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 92.0,
+        "titleConfidence": 92,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -17888,7 +17968,7 @@
       "printedCardNumber": "3",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 73.0,
+        "titleConfidence": 73,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -18671,7 +18751,7 @@
       "printedCardNumber": "3",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 87.0,
+        "titleConfidence": 87,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -18806,7 +18886,7 @@
       "printedCardNumber": "8",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 89.0,
+        "titleConfidence": 89,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -18860,7 +18940,7 @@
       "printedCardNumber": "10",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 73.0,
+        "titleConfidence": 73,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -19022,7 +19102,7 @@
       "printedCardNumber": "4",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 91.0,
+        "titleConfidence": 91,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -19157,7 +19237,7 @@
       "printedCardNumber": "9",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 89.0,
+        "titleConfidence": 89,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -19319,7 +19399,7 @@
       "printedCardNumber": "4",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 51.0,
+        "titleConfidence": 51,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -19454,7 +19534,7 @@
       "printedCardNumber": "9",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 71.0,
+        "titleConfidence": 71,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -19481,7 +19561,7 @@
       "printedCardNumber": "11",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 86.0,
+        "titleConfidence": 86,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -19643,7 +19723,7 @@
       "printedCardNumber": "5",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 75.0,
+        "titleConfidence": 75,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -19778,7 +19858,7 @@
       "printedCardNumber": "10",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 46.0,
+        "titleConfidence": 46,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -19940,7 +20020,7 @@
       "printedCardNumber": "4",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 57.0,
+        "titleConfidence": 57,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -20129,7 +20209,7 @@
       "printedCardNumber": "1",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 67.0,
+        "titleConfidence": 67,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -20372,7 +20452,7 @@
       "printedCardNumber": "5",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 81.0,
+        "titleConfidence": 81,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -20615,7 +20695,7 @@
       "printedCardNumber": "3",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 58.0,
+        "titleConfidence": 58,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -20777,7 +20857,7 @@
       "printedCardNumber": "9",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 65.0,
+        "titleConfidence": 65,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -21101,7 +21181,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 49.0,
+        "titleConfidence": 49,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -21344,7 +21424,7 @@
       "printedCardNumber": "1",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 55.0,
+        "titleConfidence": 55,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -21506,7 +21586,7 @@
       "printedCardNumber": "7",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 89.0,
+        "titleConfidence": 89,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -21695,7 +21775,7 @@
       "printedCardNumber": "4",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 71.0,
+        "titleConfidence": 71,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -22262,7 +22342,7 @@
       "printedCardNumber": "5",
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 42.0,
+        "titleConfidence": 42,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -22370,7 +22450,7 @@
       "printedCardNumber": null,
       "ocr": {
         "reviewed": false,
-        "titleConfidence": 56.0,
+        "titleConfidence": 56,
         "engine": "tesseract"
       },
       "databaseIds": [
@@ -23044,114 +23124,204 @@
     "Trickster"
   ],
   "deletedCards": [
+    "carddb-roles-trickster-012",
+    "card-0113",
+    "card-0114",
+    "carddb-roles-soldier-007",
+    "carddb-roles-soldier-008",
+    "carddb-roles-soldier-010",
+    "carddb-heroes-beorn-003",
+    "carddb-heroes-beorn-004",
+    "carddb-heroes-beorn-005",
+    "carddb-heroes-beorn-006",
+    "carddb-roles-burglar-012",
+    "carddb-roles-captain-001",
+    "carddb-roles-captain-002",
+    "carddb-roles-captain-003",
+    "carddb-roles-captain-008",
+    "carddb-roles-captain-009",
+    "card-0257",
+    "card-0300",
     "card-0275",
-    "card-0206",
-    "card-0021",
-    "card-0110",
-    "card-0229",
-    "card-0228",
     "card-0372",
-    "card-0019",
-    "card-0017",
-    "card-0304",
+    "card-0228",
+    "card-0229",
+    "card-0110",
+    "carddb-roles-delver-006",
+    "carddb-roles-guardian-001",
+    "carddb-roles-guardian-003",
+    "card-0200",
+    "card-0201",
+    "card-0202",
+    "card-0205",
+    "card-0297",
+    "card-0298",
     "card-0299",
     "card-0022",
-    "card-0201",
-    "card-0297",
-    "card-0205",
     "card-0023",
-    "card-0276",
+    "carddb-roles-guardian-004",
+    "carddb-roles-guardian-012",
+    "carddb-roles-guardian-008",
+    "card-0024",
+    "carddb-roles-herbalist-006",
+    "carddb-roles-hunter-004",
+    "carddb-roles-lorekeeper-007",
+    "carddb-roles-meddler-010",
+    "carddb-roles-musician-001",
+    "card-0230",
     "card-0277",
-    "card-0064",
+    "carddb-roles-musician-012",
+    "card-0276",
+    "card-0131",
     "card-0132",
-    "card-0135",
-    "card-0134",
-    "card-0033",
     "card-0130",
+    "card-0043",
     "card-0133",
+    "card-0134",
+    "carddb-roles-pathfinder-002",
+    "carddb-roles-pathfinder-003",
+    "carddb-roles-pathfinder-011",
+    "carddb-roles-pathfinder-010",
     "card-0164",
-    "card-0273",
+    "carddb-roles-shieldmaiden-001",
+    "carddb-roles-shieldmaiden-003",
+    "carddb-roles-shieldmaiden-011",
+    "card-0225",
     "card-0226",
     "card-0227",
+    "card-0318",
     "card-0319",
     "card-0320",
-    "card-0367",
     "card-0368",
     "card-0369",
+    "card-0367",
     "card-0371",
-    "card-0187",
-    "card-0225",
+    "card-0233",
+    "card-0322",
     "card-0370",
     "card-0232",
+    "card-0231",
     "card-0323",
-    "card-0185",
-    "card-0322",
-    "card-0318",
-    "card-0114",
-    "card-0113",
-    "card-0082",
+    "carddb-roles-smith-001",
+    "carddb-roles-smith-002",
+    "carddb-roles-smith-005",
+    "carddb-roles-smith-006",
+    "carddb-roles-smith-007",
+    "carddb-roles-smith-010",
+    "carddb-roles-soldier-001",
+    "carddb-roles-soldier-002",
+    "carddb-roles-soldier-003",
+    "card-0157",
+    "card-0158",
     "card-0159",
     "card-0160",
+    "card-0161",
+    "card-0162",
+    "card-0163",
+    "card-0344",
     "card-0345",
     "card-0346",
     "card-0348",
-    "card-0351",
-    "card-0157",
     "card-0349",
-    "card-0161",
-    "card-0344",
-    "card-0090",
-    "card-0089",
-    "card-0162",
-    "card-0215",
-    "card-0137",
-    "card-0165",
-    "card-0091",
+    "card-0350",
+    "card-0351",
+    "carddb-roles-traveller-001",
+    "carddb-roles-traveller-002",
+    "carddb-roles-traveller-009",
     "card-0066",
     "card-0067",
     "card-0068",
-    "card-0095",
+    "card-0091",
+    "card-0331",
+    "card-0333",
+    "card-0334",
+    "card-0376",
+    "card-0377",
     "card-0118",
+    "card-0094",
+    "card-0095",
     "card-0143",
-    "card-0072",
+    "card-0144",
     "card-0168",
     "card-0169",
     "card-0170",
     "card-0214",
-    "card-0144",
+    "card-0215",
+    "card-0216",
+    "card-0238",
     "card-0239",
     "card-0240",
     "card-0241",
-    "card-0287",
-    "card-0331",
-    "card-0333",
-    "card-0334",
-    "card-0353",
-    "card-0376",
-    "card-0377",
-    "card-0354",
-    "card-0330",
-    "card-0329",
-    "card-0328",
-    "card-0327",
-    "card-0308",
-    "card-0307",
-    "card-0286",
     "card-0285",
-    "card-0234",
-    "card-0002",
+    "card-0286",
+    "card-0287",
+    "card-0353",
+    "card-0001",
+    "card-0165",
     "card-0166",
+    "card-0137",
+    "card-0281",
+    "card-0282",
+    "card-0283",
+    "card-0237",
     "card-0138",
     "card-0236",
-    "card-0003",
-    "card-0237",
-    "card-0289",
-    "card-0008",
-    "card-0352",
-    "card-0284",
-    "card-0238",
-    "card-0213",
     "card-0141",
-    "card-0094"
+    "card-0311",
+    "carddb-items-armors-001",
+    "card-0335",
+    "card-0073",
+    "card-0217",
+    "card-0288",
+    "card-0309",
+    "card-0310",
+    "card-0289",
+    "card-0074",
+    "card-0291",
+    "card-0312",
+    "card-0219",
+    "card-0171",
+    "card-0172",
+    "card-0173",
+    "card-0192",
+    "card-0193",
+    "card-0194",
+    "card-0242",
+    "card-0243",
+    "card-0358",
+    "card-0359",
+    "card-0360",
+    "carddb-items-armors-021",
+    "card-0213",
+    "card-0284",
+    "card-0352",
+    "card-0122",
+    "card-0123",
+    "card-0124",
+    "card-0145",
+    "card-0146",
+    "card-0147",
+    "card-0149",
+    "card-0374",
+    "card-0375",
+    "carddb-items-hands-070",
+    "carddb-items-hands-086",
+    "card-0212",
+    "carddb-items-hands-096",
+    "carddb-items-hands-097",
+    "carddb-items-hands-019",
+    "carddb-items-hands-020",
+    "carddb-items-hands-023",
+    "carddb-items-hands-103",
+    "carddb-items-hands-108",
+    "carddb-items-hands-084",
+    "carddb-items-hands-033",
+    "carddb-items-hands-037",
+    "carddb-items-hands-038",
+    "carddb-items-hands-065",
+    "carddb-items-hands-066",
+    "carddb-items-hands-068",
+    "carddb-items-hands-069",
+    "carddb-items-hands-001"
   ]
 }

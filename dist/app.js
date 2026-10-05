@@ -1,3 +1,5 @@
+import { REVIEW_FIELDS, normalizeCategory, parseReview, createReview, createSiteData, isCardOrder, cardOrderFor, compareCardOrder } from './review-data.mjs';
+
 const CATEGORIES = [
   { id: 'all', label: 'All cards', icon: '▦' },
   { id: 'hero', label: 'Hero', icon: '♙' },
@@ -27,12 +29,13 @@ const SHORTCUTS = { q: 'role', w: 'one-handed', e: 'two-handed', r: 'armor', t: 
 const STORAGE_KEY = 'journeys-card-review-categories-v1';
 const DELETED_KEY = 'journeys-card-review-deleted-v1';
 const SUBCATEGORY_KEY = 'journeys-card-review-subcategories-v1';
+const ORDER_KEY = 'journeys-card-review-orders-v1';
 const CARD_TEXT_KEY = 'journeys-card-review-card-text-v1';
 const TITLE_KEY = 'journeys-card-review-titles-v1';
 const BUILD_KEY = 'journeys-card-review-build-v1';
 const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, sourceData: null, overrides: {}, subcategoryOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weaponSubcategories: ['', ''], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
+const state = { cards: [], sections: [], aliases: {}, sourceData: null, overrides: {}, subcategoryOverrides: {}, orderOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weaponSubcategories: ['', ''], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
 let toastTimer;
 
 function showToast(message) {
@@ -44,6 +47,7 @@ function showToast(message) {
 }
 
 function categoryFor(card) { return state.overrides[card.id] || card.category; }
+function orderFor(card) { return cardOrderFor(card, state.orderOverrides); }
 function subcategoryFor(card) {
   const category = categoryFor(card);
   if (['hero', 'hero-card'].includes(category)) {
@@ -71,7 +75,6 @@ function fillSubcategorySelect(select, card) {
   select.value = subcategoryFor(card);
 }
 function canonicalId(id) { return state.aliases[id] || id; }
-function normalizeCategory(category) { return category === 'weapon' ? 'unsorted' : category; }
 function titleFor(card) {
   if (Object.hasOwn(state.titleOverrides, card.id)) return state.titleOverrides[card.id];
   if (typeof card.displayTitle === 'string') return card.displayTitle;
@@ -82,29 +85,48 @@ function titleFor(card) {
 }
 function labelFor(category) { return CATEGORIES.find(item => item.id === category)?.label || category; }
 
+function saveStoredValue(key, value, message) {
+  try { localStorage.setItem(key, JSON.stringify(value)); }
+  catch { showToast(message); }
+}
+
 function saveOverrides() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.overrides)); }
-  catch { showToast('This browser could not save categories. Export a copy.'); }
+  saveStoredValue(STORAGE_KEY, state.overrides, 'This browser could not save categories. Export a copy.');
 }
 
 function saveDeleted() {
-  try { localStorage.setItem(DELETED_KEY, JSON.stringify([...state.deleted])); }
-  catch { showToast('This browser could not save deletions. Export a copy.'); }
+  saveStoredValue(DELETED_KEY, [...state.deleted], 'This browser could not save deletions. Export a copy.');
 }
 
 function saveSubcategories() {
-  try { localStorage.setItem(SUBCATEGORY_KEY, JSON.stringify(state.subcategoryOverrides)); }
-  catch { showToast('This browser could not save subcategories. Export a copy.'); }
+  saveStoredValue(SUBCATEGORY_KEY, state.subcategoryOverrides, 'This browser could not save subcategories. Export a copy.');
+}
+
+function saveOrders() {
+  saveStoredValue(ORDER_KEY, state.orderOverrides, 'This browser could not save card order. Export a copy.');
+}
+
+function setOrder(card, input) {
+  const order = input.value.trim() === '' ? null : input.valueAsNumber;
+  if (!input.validity.valid || !isCardOrder(order)) {
+    showToast('Order must be a whole number of 0 or more, or blank.');
+    input.value = orderFor(card) ?? '';
+    return;
+  }
+  if (order === cardOrderFor(card)) delete state.orderOverrides[card.id];
+  else state.orderOverrides[card.id] = order;
+  saveOrders();
+  renderGallery();
+  if ($('#card-dialog').open && state.selected) renderDialog();
+  showToast(`${titleFor(card)} → Order ${order ?? 'unassigned'}`);
 }
 
 function saveCardTexts() {
-  try { localStorage.setItem(CARD_TEXT_KEY, JSON.stringify(state.textOverrides)); }
-  catch { showToast('This browser could not save card text. Export a copy.'); }
+  saveStoredValue(CARD_TEXT_KEY, state.textOverrides, 'This browser could not save card text. Export a copy.');
 }
 
 function saveTitles() {
-  try { localStorage.setItem(TITLE_KEY, JSON.stringify(state.titleOverrides)); }
-  catch { showToast('This browser could not save titles. Export a copy.'); }
+  saveStoredValue(TITLE_KEY, state.titleOverrides, 'This browser could not save titles. Export a copy.');
 }
 
 function setSubcategory(id, subcategory) {
@@ -201,11 +223,13 @@ function matchingCards() {
   });
   if (state.sort === 'title-asc') cards.sort((a, b) => titleFor(a).localeCompare(titleFor(b)));
   if (state.sort === 'title-desc') cards.sort((a, b) => titleFor(b).localeCompare(titleFor(a)));
+  if (state.sort === 'card-order') cards.sort((a, b) => compareCardOrder(orderFor(a), orderFor(b)));
   if (state.sort === 'category-subcategory') {
     const categoryOrder = new Map(CATEGORIES.map((category, index) => [category.id, index]));
     cards.sort((a, b) =>
       (categoryOrder.get(categoryFor(a)) - categoryOrder.get(categoryFor(b)))
       || subcategoryFor(a).localeCompare(subcategoryFor(b))
+      || compareCardOrder(orderFor(a), orderFor(b))
       || titleFor(a).localeCompare(titleFor(b))
     );
   }
@@ -213,11 +237,12 @@ function matchingCards() {
 }
 
 function availableCards(category) {
-  return state.cards.filter(card => !state.deleted.has(card.id) && categoryFor(card) === category);
+  return state.cards.filter(card => !state.deleted.has(card.id) && categoryFor(card) === category)
+    .sort((a, b) => compareCardOrder(orderFor(a), orderFor(b)));
 }
 
 function saveBuild() {
-  try { localStorage.setItem(BUILD_KEY, JSON.stringify(state.build)); } catch { showToast('This browser could not save the build.'); }
+  saveStoredValue(BUILD_KEY, state.build, 'This browser could not save the build.');
 }
 
 function fillBuildSubcategorySelect(select, category, selected) {
@@ -330,7 +355,7 @@ function renderBuilds() {
 
 function createCardTile(card) {
   const tile = document.createElement('article');
-  tile.className = `card-tile${card.category === 'hero' ? ' hero-tile' : ''}${state.selected === card.id ? ' current' : ''}${state.deleted.has(card.id) ? ' deleted' : ''}`;
+  tile.className = `card-tile${['hero-card', 'card-back'].includes(card.category) ? ' hero-tile' : ''}${state.selected === card.id ? ' current' : ''}${state.deleted.has(card.id) ? ' deleted' : ''}`;
   tile.dataset.cardId = card.id;
   tile.addEventListener('focusin', () => setCurrentCard(card.id));
   tile.addEventListener('click', event => { if (!event.target.closest('button, select')) setCurrentCard(card.id); });
@@ -374,6 +399,13 @@ function createCardTile(card) {
       subcategoryInput.addEventListener('change', () => { setCurrentCard(card.id); setSubcategory(card.id, subcategoryInput.value.trim()); });
       body.append(subcategoryInput);
     }
+    const orderLabel = document.createElement('label'); orderLabel.className = 'tile-order-label';
+    orderLabel.append('Order');
+    const orderInput = document.createElement('input'); orderInput.type = 'number'; orderInput.min = '0'; orderInput.step = '1'; orderInput.className = 'tile-subcategory tile-order';
+    orderInput.placeholder = 'Unassigned'; orderInput.value = orderFor(card) ?? '';
+    orderInput.setAttribute('aria-label', `Order for ${titleFor(card)}`);
+    orderInput.addEventListener('change', () => { setCurrentCard(card.id); setOrder(card, orderInput); });
+    orderLabel.append(orderInput); body.append(orderLabel);
   }
   tile.append(imageButton, body);
   return tile;
@@ -481,6 +513,11 @@ function renderDialog() {
       subcategoryInput.onchange = () => setSubcategory(card.id, subcategoryInput.value.trim());
     }
   }
+  const orderWrap = $('#dialog-order-wrap');
+  orderWrap.hidden = state.deleted.has(card.id);
+  const orderInput = $('#dialog-order-input');
+  orderInput.value = orderFor(card) ?? '';
+  orderInput.onchange = () => setOrder(card, orderInput);
   const source = $('#source-button');
   if (card.sourceUrl?.startsWith('https://sites.google.com/view/jime-carddb/')) {
     source.textContent = `JiME Card DB · ${card.sourceHeading || 'Source'}`;
@@ -620,6 +657,12 @@ async function start() {
         }));
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
+    try {
+      const saved = JSON.parse(localStorage.getItem(ORDER_KEY) || '{}');
+      if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+        state.orderOverrides = Object.fromEntries(Object.entries(saved).filter(([id, order]) => state.cards.some(card => card.id === id) && isCardOrder(order)));
+      }
+    } catch { /* The gallery still works if storage is unavailable. */ }
     if (savedBuild && typeof savedBuild === 'object' && !Array.isArray(savedBuild)) {
       const oldSubcategoryFor = (id, category) => {
         const card = state.cards.find(item => item.id === id);
@@ -687,67 +730,51 @@ document.addEventListener('keydown', event => {
   const category = SHORTCUTS[event.key.toLowerCase()];
   if (category && !event.repeat) { event.preventDefault(); categorizeCurrent(category); }
 });
-$('#export-button').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify({ format: 'journeys-card-review-v8', categories: state.overrides, subcategories: state.subcategoryOverrides, cardTexts: state.textOverrides, titles: state.titleOverrides, deleted: [...state.deleted] }, null, 2)], { type: 'application/json' });
+function downloadJSON(data, filename) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
-  const link = document.createElement('a'); link.href = url; link.download = 'journeys-card-review.json'; link.click();
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function importReview(data) {
+  const review = parseReview(data, { ...state, validCategories: VALID });
+  setCategories(review.categories);
+  if (Object.hasOwn(review, 'deleted')) {
+    state.deleted = review.deleted;
+    saveDeleted();
+  }
+  const saveFields = {
+    subcategoryOverrides: saveSubcategories,
+    orderOverrides: saveOrders,
+    textOverrides: saveCardTexts,
+    titleOverrides: saveTitles,
+  };
+  for (const { stateKey } of REVIEW_FIELDS) {
+    if (!Object.hasOwn(review, stateKey)) continue;
+    state[stateKey] = review[stateKey];
+    saveFields[stateKey]();
+  }
+  renderCategories(); renderGallery();
+  if ($('#card-dialog').open && state.selected) renderDialog();
+}
+
+$('#export-button').addEventListener('click', () => {
+  downloadJSON(createReview(state), 'journeys-card-review.json');
   showToast('Review exported');
 });
 $('#export-data-button').addEventListener('click', () => {
   if (!state.sourceData) { showToast('Card data has not loaded yet.'); return; }
-  const exported = { ...state.sourceData };
-  exported.cards = state.cards.map(card => {
-    const updated = { ...card, category: categoryFor(card) };
-    const subcategory = subcategoryFor(card);
-    if (subcategory) updated.subcategory = subcategory;
-    else delete updated.subcategory;
-    const title = titleFor(card);
-    if (title) updated.displayTitle = title;
-    else delete updated.displayTitle;
-    if (Object.hasOwn(state.textOverrides, card.id)) updated.text = state.textOverrides[card.id];
-    else if (typeof updated.text !== 'string') delete updated.text;
-    return updated;
-  });
-  exported.roleSubcategories = state.roleSubcategories;
-  exported.aliases = state.aliases;
-  exported.deletedCards = [...state.deleted];
-  const blob = new Blob([JSON.stringify(exported, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a'); link.href = url; link.download = 'data.json'; link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  downloadJSON(createSiteData(state, { categoryFor, subcategoryFor, titleFor }), 'data.json');
   showToast('Site data exported');
 });
 $('#import-input').addEventListener('change', async event => {
   const file = event.target.files?.[0]; if (!file) return;
   try {
-    const data = JSON.parse(await file.text());
-    if (!['journeys-card-categories-v1', 'journeys-card-categories-v2', 'journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) || !data.categories || typeof data.categories !== 'object' || Array.isArray(data.categories)) throw new Error('Invalid review file');
-    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) && !Array.isArray(data.deleted)) throw new Error('Invalid deleted cards');
-    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) && (!data.subcategories || typeof data.subcategories !== 'object' || Array.isArray(data.subcategories) || Object.values(data.subcategories).some(name => typeof name !== 'string' || !['journeys-card-review-v8'].includes(data.format) && name !== '' && !state.roleSubcategories.includes(name) && !state.heroNames.includes(name)))) throw new Error('Invalid subcategories');
-    if (['journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) && (!data.cardTexts || typeof data.cardTexts !== 'object' || Array.isArray(data.cardTexts) || Object.values(data.cardTexts).some(text => typeof text !== 'string'))) throw new Error('Invalid card text');
-    if (['journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) && (!data.titles || typeof data.titles !== 'object' || Array.isArray(data.titles) || Object.values(data.titles).some(title => typeof title !== 'string'))) throw new Error('Invalid titles');
-    const changes = Object.fromEntries(Object.entries(data.categories).map(([id, category]) => [canonicalId(id), normalizeCategory(category)]).filter(([id]) => state.cards.some(card => card.id === id)));
-    setCategories(changes);
-    if (['journeys-card-review-v3', 'journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format)) {
-      const importedDeleted = data.deleted.filter(id => state.cards.some(card => card.id === id));
-      state.deleted = new Set(['journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format) ? importedDeleted : [...state.duplicateIds, ...importedDeleted]);
-      saveDeleted();
-    }
-    if (['journeys-card-review-v4', 'journeys-card-review-v5', 'journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format)) {
-      state.subcategoryOverrides = Object.fromEntries(Object.entries(data.subcategories).filter(([id]) => state.cards.some(card => card.id === id)));
-      saveSubcategories();
-    }
-    if (['journeys-card-review-v6', 'journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format)) {
-      state.textOverrides = Object.fromEntries(Object.entries(data.cardTexts).filter(([id]) => state.cards.some(card => card.id === id)));
-      saveCardTexts();
-    }
-    if (['journeys-card-review-v7', 'journeys-card-review-v8'].includes(data.format)) {
-      state.titleOverrides = Object.fromEntries(Object.entries(data.titles).filter(([id, title]) => state.cards.some(card => card.id === id) && title.trim()));
-      saveTitles();
-    }
-    renderCategories(); renderGallery();
-    if ($('#card-dialog').open && state.selected) renderDialog();
+    importReview(JSON.parse(await file.text()));
     showToast('Review imported');
   } catch { showToast('Could not import this review file'); }
   event.target.value = '';

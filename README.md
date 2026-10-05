@@ -12,11 +12,15 @@ Use Left and Right Arrow to move the highlighted card. Press Q for Role, W for 1
 
 Open Hero or Role in the sidebar to browse its subcategories. Each Role card has a subcategory selector, and exports include those edits. Older category and review exports still import.
 
+Each card also has an editable Order field in the gallery and card details. Enter a whole number of 0 or more, or leave it blank for unassigned. Choose Card order to sort ascending, with unassigned cards last; Category – subcategory uses Order within each group. Builds also show cards in this order. Order edits save in the browser and are included in review exports (`journeys-card-review-v9`) and site data exports (`order`, a number or `null`). Importing an older review preserves existing order edits.
+
 OCR titles and initial equipment categories are suggestions. Check them against the card images before relying on them.
 
 The dedicated [build creator](dist/build.html) lets users choose a hero and starting role, add or remove card copies, write strategy notes, and save multiple named builds in their browser. Builds export and import as `journeys-build-v1` JSON. Hero selection adds the matching categorized hero cards; card filters can show the selected hero/role or the full catalog. Review categories, titles, deletions, and subcategories saved in this browser also apply to the creator.
 
 Card and character images now use the fresh `v2` source crops, published as lossless WebP files in `dist/assets/v2/`. Existing card IDs and reviewed categories are retained. Run `python3 scripts/import_v2_assets.py` to republish the parent workspace's `v2` capture. The creator is implemented in `dist/build.html`, `dist/build.js`, and `dist/build.css` and deploys with the existing GitHub Pages workflow.
+
+The browser UI is in `dist/app.js`; review format validation and exports are in `dist/review-data.mjs`. Serve `dist/` over HTTP for local development (for example, `python3 -m http.server 8000 --directory dist`). Run the review compatibility tests with `node --test tests/*.test.mjs`.
 
 The [JiME Card DB](https://sites.google.com/view/jime-carddb/home) import adds 660 scans from 51 pages: 466 new records and 194 scans linked to existing entries. Distinct numbered skills and equipment tiers remain separate; uncertain matches stay as separate records for review. Existing IDs, categories, aliases, deletions, and selected v2 artwork are preserved. Open a matched card and use Image source to view its additional scan. New categories cover basic, title, weakness, terrain, damage, fear, conditions, and character backs. Hand items keep their source grouping until their hand count is reviewed. Reference cards appear in the gallery and are excluded from the build creator.
 

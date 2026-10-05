@@ -1,3 +1,5 @@
+import { isCardOrder, cardOrderFor, compareCardOrder } from './review-data.mjs';
+
 const $ = selector => document.querySelector(selector);
 const TYPES = [
   ['all', 'All cards'], ['hero', 'Hero cards'], ['role', 'Role cards'],
@@ -12,6 +14,7 @@ const SAVED_KEY = 'journeys-build-creator-saved-v1';
 const REVIEW_KEYS = {
   categories: 'journeys-card-review-categories-v1',
   subcategories: 'journeys-card-review-subcategories-v1',
+  orders: 'journeys-card-review-orders-v1',
   titles: 'journeys-card-review-titles-v1',
   deleted: 'journeys-card-review-deleted-v1',
 };
@@ -50,6 +53,7 @@ function applyReviews() {
   const categories = Object.fromEntries(Object.entries(record(readStored(REVIEW_KEYS.categories, {})))
     .map(([id, category]) => [state.data.aliases?.[id] || id, category === 'weapon' ? 'unsorted' : category]));
   const subcategories = record(readStored(REVIEW_KEYS.subcategories, {}));
+  const orders = Object.fromEntries(Object.entries(record(readStored(REVIEW_KEYS.orders, {}))).filter(([, value]) => isCardOrder(value)));
   const titles = record(readStored(REVIEW_KEYS.titles, {}));
   const savedDeleted = readStored(REVIEW_KEYS.deleted, []);
   let initialized = false;
@@ -65,8 +69,9 @@ function applyReviews() {
     const publishedTitle = card.displayTitle && !/^Card \d+$/i.test(card.displayTitle) ? card.displayTitle : fallback;
     return { ...card, category, title: typeof titles[card.id] === 'string' && titles[card.id].trim() ? titles[card.id] : publishedTitle,
       subcategory: typeof subcategories[card.id] === 'string' ? subcategories[card.id] : card.subcategory || '',
+      order: cardOrderFor(card, orders),
       deleted: deleted.has(card.id) };
-  });
+  }).sort((a, b) => compareCardOrder(a.order, b.order));
   state.byId = new Map(state.cards.map(card => [card.id, card]));
   state.heroes = state.cards.filter(card => card.id.startsWith('character-'));
 }

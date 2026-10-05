@@ -8,7 +8,7 @@
   <title>Journeys Card Review</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141915'/%3E%3Cpath d='M16 14h32v36H16z' fill='%23d8bd78' stroke='%23f1dfad' stroke-width='2'/%3E%3Cpath d='M23 23h18M23 29h18M23 35h13' stroke='%233f4d37' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <script type="module" src="app.js"></script>
 </head>
 <body>
   <header class="topbar">
@@ -53,13 +53,13 @@
       <aside class="sidebar">
         <div class="sidebar-heading">Browse cards</div>
         <nav id="category-list" class="category-list" aria-label="Card categories"></nav>
-        <div class="sidebar-note">Open Hero or Role to browse subcategories. Set the subcategory on each card. Deleted cards can be restored from Deleted. Changes are saved in this browser; export them to keep a copy.</div>
+        <div class="sidebar-note">Open Hero or Role to browse subcategories. Set the subcategory and order on each card. Deleted cards can be restored from Deleted. Changes are saved in this browser; export them to keep a copy.</div>
       </aside>
       <div class="gallery-panel">
         <div class="toolbar">
           <div class="toolbar-main">
             <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="card-search" type="search" placeholder="Search cards" aria-label="Search cards"></label>
-            <label class="sort-wrap"><span>Order</span><select id="card-sort" aria-label="Order cards"><option value="original">Original order</option><option value="category-subcategory">Category – subcategory</option><option value="title-asc">Title A–Z</option><option value="title-desc">Title Z–A</option></select></label>
+            <label class="sort-wrap"><span>Order</span><select id="card-sort" aria-label="Order cards"><option value="original">Original order</option><option value="card-order">Card order</option><option value="category-subcategory">Category – subcategory</option><option value="title-asc">Title A–Z</option><option value="title-desc">Title Z–A</option></select></label>
           </div>
           <div class="result-meta" id="result-meta" aria-live="polite"></div>
         </div>
@@ -98,6 +98,7 @@
           <div class="detail-label">Category</div>
           <div id="dialog-categories" class="category-choices"></div>
           <div id="dialog-subcategory-wrap" hidden><label class="detail-label" id="dialog-subcategory-label">Subcategory</label><select id="dialog-subcategory-select" aria-label="Subcategory"></select><input id="dialog-subcategory-input" class="card-subcategory-input" type="text" aria-label="Subcategory"></div>
+          <div id="dialog-order-wrap"><label class="detail-label" for="dialog-order-input">Order</label><input id="dialog-order-input" class="card-subcategory-input" type="number" min="0" step="1" placeholder="Unassigned" aria-label="Card order"></div>
           <div class="detail-label">Source</div>
           <button type="button" id="source-button" class="source-link"></button>
           <button type="button" id="delete-card" class="delete-card-button">Delete card</button>

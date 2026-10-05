@@ -84,7 +84,9 @@ export function heroCardsFor(cards, heroCardId) {
 
 export function renderBuildFlow(container, { cards, selection: input, prefix, onChange, onPreview }) {
   const focusedId = container.contains(document.activeElement) ? document.activeElement.id : '';
-  const scrollPositions = new Map([...container.querySelectorAll('.build-flow-row')].map(row => [row.id, row.scrollLeft]));
+  const scrollPositions = new Map([...container.querySelectorAll('.build-flow-row, .build-picker')].map(row => [row.id, row.scrollLeft]));
+  const previousChoices = new Map([...container.querySelectorAll('.build-picker')]
+    .map(picker => [picker.id, picker.querySelector('[aria-checked="true"]')?.dataset.value]));
   const selection = normalizeBuildSelection(input, cards);
   const fragment = document.createDocumentFragment();
   const section = (title, name) => {
@@ -94,21 +96,41 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
     fragment.append(element); return element;
   };
   const picker = (parent, labelText, name, options, selected, change) => {
-    if (!options.some(option => !option.options || option.options.length)) return;
-    const label = document.createElement('label'); label.className = 'build-picker';
-    const select = document.createElement('select'); select.id = `${prefix}-${name}`;
-    select.setAttribute('aria-label', labelText);
-    for (const option of options) {
-      if (option.options) {
-        if (!option.options.length) continue;
-        const group = document.createElement('optgroup'); group.label = option.label;
-        for (const [value, text] of option.options) group.append(new Option(text, value));
-        select.append(group);
-      } else select.add(new Option(option[1], option[0]));
+    const choices = options.flatMap(option => option.options
+      ? option.options.map(([value, text]) => ({ value, text, group: option.label }))
+      : [{ value: option[0], text: option[1] }]);
+    if (!choices.length) return;
+    const segments = document.createElement('div'); segments.className = 'build-picker';
+    segments.id = `${prefix}-${name}`;
+    segments.setAttribute('role', 'radiogroup');
+    segments.setAttribute('aria-label', labelText);
+    for (const [index, choice] of choices.entries()) {
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'build-segment';
+      button.id = `${segments.id}-${index}`; button.dataset.value = choice.value;
+      button.setAttribute('role', 'radio'); button.setAttribute('aria-checked', String(choice.value === selected));
+      button.tabIndex = choice.value === selected ? 0 : -1;
+      button.textContent = choice.text;
+      if (choice.group) {
+        button.setAttribute('aria-label', `${choice.text}, ${choice.group}`);
+        const badge = document.createElement('span'); badge.className = 'build-segment-hand';
+        badge.textContent = choice.group === '1-handed' ? '1H' : '2H'; badge.setAttribute('aria-hidden', 'true');
+        button.append(badge);
+      }
+      button.addEventListener('click', () => { if (choice.value !== selected) change(choice.value); });
+      button.addEventListener('keydown', event => {
+        let next;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % choices.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index + choices.length - 1) % choices.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = choices.length - 1;
+        else return;
+        event.preventDefault();
+        segments.children[next].focus({ preventScroll: true });
+        if (choices[next].value !== selected) change(choices[next].value);
+      });
+      segments.append(button);
     }
-    select.value = selected;
-    select.addEventListener('change', () => change(select.value));
-    label.append(select); parent.append(label); return select;
+    parent.append(segments); return segments;
   };
   const renderCards = (parent, matches, name) => {
     const row = document.createElement('div'); row.className = 'build-flow-row'; row.id = `${prefix}-${name}`;
@@ -176,7 +198,14 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
     renderCards(equipmentStep, selection[key] ? cardsFor(cards, category, selection[key]) : [], `${category}-cards`);
   }
   container.replaceChildren(fragment);
-  for (const row of container.querySelectorAll('.build-flow-row')) row.scrollLeft = scrollPositions.get(row.id) || 0;
+  for (const row of container.querySelectorAll('.build-flow-row, .build-picker')) row.scrollLeft = scrollPositions.get(row.id) || 0;
   if (focusedId) document.getElementById(focusedId)?.focus({ preventScroll: true });
+  for (const picker of container.querySelectorAll('.build-picker')) {
+    const selected = picker.querySelector('[aria-checked="true"]');
+    if (!selected || previousChoices.get(picker.id) === selected.dataset.value) continue;
+    const bounds = picker.getBoundingClientRect(), segment = selected.getBoundingClientRect();
+    if (segment.left < bounds.left + 4) picker.scrollLeft += segment.left - bounds.left - 4;
+    else if (segment.right > bounds.right - 4) picker.scrollLeft += segment.right - bounds.right + 4;
+  }
   return selection;
 }

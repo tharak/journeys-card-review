@@ -54,7 +54,7 @@ export function parseReview(data, { cards, aliases, duplicateIds, roleSubcategor
 
   const cardIds = new Set(cards.map(card => card.id));
   const categories = Object.fromEntries(Object.entries(data.categories)
-    .map(([id, category]) => [aliases[id] || id, normalizeCategory(category)])
+    .map(([id, category]) => [cardIds.has(id) ? id : aliases[id] || id, normalizeCategory(category)])
     .filter(([id]) => cardIds.has(id)));
   for (const [id, category] of Object.entries(categories)) {
     if (!validCategories.has(category)) throw new Error(`Invalid card or category: ${id}`);

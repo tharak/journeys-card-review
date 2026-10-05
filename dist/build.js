@@ -1,8 +1,10 @@
 import { isCardOrder, cardOrderFor, compareCardOrder } from './review-data.mjs';
 
+import { cardsFor, subcategoriesFor, normalizeBuildSelection, renderBuildFlow } from './build-flow.mjs';
+
 const $ = selector => document.querySelector(selector);
 const TYPES = [
-  ['all', 'All cards'], ['hero', 'Hero cards'], ['role', 'Role cards'],
+  ['all', 'All cards'], ['hero', 'Hero cards'], ['hero-card', 'Hero card'], ['card-back', 'Hero back'], ['role', 'Role cards'],
   ['one-handed', '1-handed'], ['two-handed', '2-handed'], ['armor', 'Armor'],
   ['trinket', 'Trinket'], ['mount', 'Mount'], ['hand-item', 'Hand items'],
   ['basic', 'Basic'], ['title', 'Title'], ['weakness', 'Weakness'], ['unsorted', 'Other'],
@@ -18,9 +20,9 @@ const REVIEW_KEYS = {
   titles: 'journeys-card-review-titles-v1',
   deleted: 'journeys-card-review-deleted-v1',
 };
-const emptyDraft = () => ({ id: '', name: '', heroId: '', role: '', notes: '', cards: {} });
+const emptyDraft = () => ({ id: '', name: '', heroId: '', role: '', notes: '', cards: {}, weaponMode: '', weaponSubcategories: [], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' });
 const state = { loaded: false, data: null, capture: {}, cards: [], byId: new Map(), heroes: [],
-  draft: emptyDraft(), saved: [], category: 'all', subcategory: '', search: '', matching: true };
+  draft: emptyDraft(), saved: [] };
 let toastTimer;
 
 function toast(message) {
@@ -50,8 +52,9 @@ function persistDraft() {
 
 function applyReviews() {
   const record = value => value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  const knownIds = new Set(state.data.cards.map(card => card.id));
   const categories = Object.fromEntries(Object.entries(record(readStored(REVIEW_KEYS.categories, {})))
-    .map(([id, category]) => [state.data.aliases?.[id] || id, category === 'weapon' ? 'unsorted' : category]));
+    .map(([id, category]) => [knownIds.has(id) ? id : state.data.aliases?.[id] || id, category === 'weapon' ? 'unsorted' : category]));
   const subcategories = record(readStored(REVIEW_KEYS.subcategories, {}));
   const orders = Object.fromEntries(Object.entries(record(readStored(REVIEW_KEYS.orders, {}))).filter(([, value]) => isCardOrder(value)));
   const titles = record(readStored(REVIEW_KEYS.titles, {}));
@@ -73,7 +76,7 @@ function applyReviews() {
       deleted: deleted.has(card.id) };
   }).sort((a, b) => compareCardOrder(a.order, b.order));
   state.byId = new Map(state.cards.map(card => [card.id, card]));
-  state.heroes = state.cards.filter(card => card.id.startsWith('character-'));
+  state.heroes = cardsFor(state.cards, 'hero-card');
 }
 
 function normalizeDraft(input, importing = false) {
@@ -86,17 +89,37 @@ function normalizeDraft(input, importing = false) {
   }
   draft.name = draft.name.slice(0, 100);
   draft.notes = draft.notes.slice(0, 10000);
+  for (const key of ['weaponMode', 'armorSubcategory', 'trinketSubcategory', 'mountSubcategory']) {
+    if (input[key] !== undefined && typeof input[key] !== 'string') throw new Error(`Invalid build ${key}.`);
+  }
+  if (input.weaponSubcategories !== undefined && (!Array.isArray(input.weaponSubcategories)
+    || input.weaponSubcategories.length > 2 || input.weaponSubcategories.some(value => typeof value !== 'string'))) {
+    throw new Error('Invalid build weapons.');
+  }
   if (draft.heroId && !state.heroes.some(hero => hero.id === draft.heroId)) throw new Error('This build uses an unknown hero.');
-  if (draft.role && !state.data.roleSubcategories.includes(draft.role)) throw new Error('This build uses an unknown role.');
+  if (draft.role && !subcategoriesFor(state.cards, 'role').includes(draft.role)) throw new Error('This build uses an unknown role.');
   if (importing && !Array.isArray(input.cards)) throw new Error('The build is missing its card list.');
   const entries = Array.isArray(input.cards) ? input.cards.map(card => [card?.id, card?.quantity])
     : Object.entries(input.cards && typeof input.cards === 'object' ? input.cards : {});
   for (const [originalId, quantity] of entries) {
-    const id = state.data.aliases?.[originalId] || originalId;
-    if (typeof id !== 'string' || !state.byId.has(id) || state.byId.get(id).buildEligible === false || state.byId.get(id).category === 'hero-card' || id.startsWith('character-')) throw new Error(`Unknown card: ${originalId}`);
+    const id = state.byId.has(originalId) ? originalId : state.data.aliases?.[originalId] || originalId;
+    if (typeof id !== 'string' || !state.byId.has(id) || state.byId.get(id).buildEligible === false || ['hero-card', 'card-back'].includes(state.byId.get(id).category) || id.startsWith('character-')) throw new Error(`Unknown card: ${originalId}`);
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 9) throw new Error('Card quantities must be between 1 and 9.');
     draft.cards[id] = Math.min(9, (draft.cards[id] || 0) + quantity);
   }
+  const equipment = { ...input };
+  if (input.weaponMode === undefined) {
+    const weapons = [...new Map(Object.keys(draft.cards).map(id => state.byId.get(id))
+      .filter(card => ['one-handed', 'two-handed'].includes(card.category) && card.subcategory)
+      .map(card => [`${card.category}:${card.subcategory}`, card])).values()];
+    equipment.weaponMode = weapons[0]?.category || '';
+    equipment.weaponSubcategories = weapons.filter(card => card.category === equipment.weaponMode).slice(0, 2).map(card => card.subcategory);
+    for (const category of ['armor', 'trinket', 'mount']) {
+      equipment[`${category}Subcategory`] = Object.keys(draft.cards).map(id => state.byId.get(id)).find(card => card.category === category)?.subcategory || '';
+    }
+  }
+  const { heroCardId, ...choices } = normalizeBuildSelection({ ...equipment, heroCardId: draft.heroId, role: draft.role }, state.cards);
+  Object.assign(draft, choices);
   return draft;
 }
 
@@ -118,70 +141,35 @@ function renderSaved() {
 function renderSetup() {
   $('#build-name').value = state.draft.name;
   $('#build-notes').value = state.draft.notes;
-  fillSelect($('#hero-select'), state.heroes.map(card => [card.id, card.title]), 'Choose a hero', state.draft.heroId);
-  fillSelect($('#role-select'), state.data.roleSubcategories.map(role => [role, role]), 'Choose a role', state.draft.role);
-  const portrait = $('#hero-portrait');
-  const hero = state.byId.get(state.draft.heroId);
-  if (hero) {
-    const image = document.createElement('img'); image.src = hero.image; image.alt = `${hero.title} character sheet`;
-    const button = document.createElement('button'); button.className = 'art-button'; button.type = 'button';
-    button.setAttribute('aria-label', `View ${hero.title} character sheet`);
-    button.append(image); button.addEventListener('click', () => preview(hero.id));
-    portrait.replaceChildren(button);
-  } else {
-    const mark = document.createElement('span'); mark.textContent = '✦'; mark.setAttribute('aria-hidden', 'true');
-    const copy = document.createElement('p'); copy.textContent = 'A hero awaits'; portrait.replaceChildren(mark, copy);
-  }
   renderSaved();
 }
 
-function availableCards() {
-  const hero = heroName();
-  return state.cards.filter(card => {
-    if (card.deleted || card.buildEligible === false || card.category === 'hero-card' || card.id.startsWith('character-')) return false;
-    if (state.category !== 'all' && card.category !== state.category) return false;
-    if (state.matching && hero && card.category === 'hero' && card.subcategory !== hero) return false;
-    if (state.matching && state.draft.role && card.category === 'role' && card.subcategory !== state.draft.role) return false;
-    if (state.search && !`${card.title} ${card.id} ${LABELS[card.category] || ''} ${card.subcategory}`.toLocaleLowerCase().includes(state.search)) return false;
-    return true;
-  });
-}
-
-function renderFilters() {
-  const filters = $('#library-filters'); filters.replaceChildren();
-  for (const [id, label] of TYPES) {
-    const button = document.createElement('button'); button.type = 'button';
-    button.className = `filter-button${state.category === id ? ' active' : ''}`;
-    button.textContent = label; button.setAttribute('aria-pressed', String(state.category === id));
-    button.addEventListener('click', () => { state.category = id; state.subcategory = ''; renderFilters(); renderLibrary(); });
-    filters.append(button);
-  }
+function createBuilderCard(card) {
+  const quantity = state.draft.cards[card.id] || 0;
+  const tile = document.createElement('article'); tile.className = `builder-card${quantity ? ' in-build' : ''}`;
+  const art = document.createElement('button'); art.className = 'art-button'; art.type = 'button';
+  art.setAttribute('aria-label', `View ${card.title}`); art.addEventListener('click', () => preview(card.id));
+  const image = document.createElement('img'); image.src = card.image; image.alt = `${card.title} card`; image.loading = 'lazy';
+  art.append(image);
+  const title = document.createElement('h3'); title.textContent = card.title; title.title = card.title;
+  const meta = document.createElement('p'); meta.textContent = [LABELS[card.category] || 'Other', card.subcategory].filter(Boolean).join(' · ');
+  const add = document.createElement('button'); add.type = 'button'; add.className = 'add-card';
+  add.textContent = quantity ? `Add another · ${quantity} in build` : '+ Add to build'; add.disabled = quantity >= 9;
+  add.setAttribute('aria-label', `Add ${card.title} to build`); add.addEventListener('click', () => changeQuantity(card.id, 1));
+  tile.append(art, title, meta, add); return tile;
 }
 
 function renderLibrary() {
-  const available = availableCards();
-  const subcategories = [...new Set(available.map(card => card.subcategory).filter(Boolean))].sort((a, b) => a.localeCompare(b));
-  if (!subcategories.includes(state.subcategory)) state.subcategory = '';
-  fillSelect($('#subcategory-filter'), subcategories.map(value => [value, value]), 'All subcategories', state.subcategory);
-  const cards = available.filter(card => !state.subcategory || card.subcategory === state.subcategory);
-  $('#library-count').textContent = `${cards.length} cards`;
-  $('#library-empty').hidden = cards.length > 0;
-  const fragment = document.createDocumentFragment();
-  for (const card of cards) {
-    const quantity = state.draft.cards[card.id] || 0;
-    const tile = document.createElement('article'); tile.className = `builder-card${quantity ? ' in-build' : ''}`;
-    const art = document.createElement('button'); art.className = 'art-button'; art.type = 'button';
-    art.setAttribute('aria-label', `View ${card.title}`); art.addEventListener('click', () => preview(card.id));
-    const image = document.createElement('img'); image.src = card.image; image.alt = `${card.title} card`; image.loading = 'lazy';
-    art.append(image);
-    const title = document.createElement('h3'); title.textContent = card.title; title.title = card.title;
-    const meta = document.createElement('p'); meta.textContent = [LABELS[card.category] || 'Other', card.subcategory].filter(Boolean).join(' · ');
-    const add = document.createElement('button'); add.type = 'button'; add.className = 'add-card';
-    add.textContent = quantity ? `Add another · ${quantity} in build` : '+ Add to build'; add.disabled = quantity >= 9;
-    add.setAttribute('aria-label', `Add ${card.title} to build`); add.addEventListener('click', () => changeQuantity(card.id, 1));
-    tile.append(art, title, meta, add); fragment.append(tile);
-  }
-  $('#card-library').replaceChildren(fragment);
+  renderBuildFlow($('#creator-flow'), {
+    cards: state.cards, selection: { ...state.draft, heroCardId: state.draft.heroId }, prefix: 'creator',
+    renderCard: createBuilderCard, onPreview: preview,
+    onChange(selection) {
+      const { heroCardId, ...choices } = selection;
+      Object.assign(state.draft, choices);
+      if (heroCardId !== state.draft.heroId) chooseHero(heroCardId);
+      else { persistDraft(); renderSummary(); renderLibrary(); }
+    },
+  });
 }
 
 function selectedCards() {
@@ -245,7 +233,7 @@ function chooseHero(id) {
   const oldHero = heroName();
   for (const [cardId] of Object.entries(state.draft.cards)) {
     const card = state.byId.get(cardId);
-    if (card.category === 'hero' && card.subcategory === oldHero) delete state.draft.cards[cardId];
+    if (card?.category === 'hero' && card.subcategory === oldHero) delete state.draft.cards[cardId];
   }
   state.draft.heroId = id;
   const hero = heroName();
@@ -274,7 +262,9 @@ function exportBuild() {
   if (!state.draft.heroId) return;
   const name = state.draft.name.trim() || `${heroName()} build`;
   const data = { format: 'journeys-build-v1', name, heroId: state.draft.heroId, hero: heroName(), role: state.draft.role,
-    notes: state.draft.notes, cards: selectedCards().map(({ card, quantity }) => ({ id: card.id, title: card.title, quantity, category: card.category, subcategory: card.subcategory })) };
+    notes: state.draft.notes, weaponMode: state.draft.weaponMode, weaponSubcategories: state.draft.weaponSubcategories,
+    armorSubcategory: state.draft.armorSubcategory, trinketSubcategory: state.draft.trinketSubcategory, mountSubcategory: state.draft.mountSubcategory,
+    cards: selectedCards().map(({ card, quantity }) => ({ id: card.id, title: card.title, quantity, category: card.category, subcategory: card.subcategory })) };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
   const link = document.createElement('a'); link.href = url;
   link.download = `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'journeys'}-build.json`;
@@ -294,19 +284,14 @@ async function start() {
     }
     try { state.draft = normalizeDraft(readStored(DRAFT_KEY, emptyDraft())); } catch { state.draft = emptyDraft(); }
     state.loaded = true;
-    for (const id of ['saved-builds', 'build-name', 'build-notes', 'hero-select', 'role-select', 'build-search', 'subcategory-filter']) $( `#${id}`).disabled = false;
+    for (const id of ['saved-builds', 'build-name', 'build-notes']) $( `#${id}`).disabled = false;
     $('#loading').hidden = true;
-    renderSetup(); renderFilters(); renderSummary(); renderLibrary();
+    renderSetup(); renderSummary(); renderLibrary();
   } catch (error) { $('#loading').textContent = error.message; }
 }
 
-$('#hero-select').addEventListener('change', event => chooseHero(event.target.value));
-$('#role-select').addEventListener('change', event => { state.draft.role = event.target.value; persistDraft(); renderSummary(); renderLibrary(); });
 $('#build-name').addEventListener('input', event => { state.draft.name = event.target.value; persistDraft(); renderSummary(); });
 $('#build-notes').addEventListener('input', event => { state.draft.notes = event.target.value; persistDraft(); });
-$('#build-search').addEventListener('input', event => { state.search = event.target.value.trim().toLocaleLowerCase(); renderLibrary(); });
-$('#matching-only').addEventListener('change', event => { state.matching = event.target.checked; renderLibrary(); });
-$('#subcategory-filter').addEventListener('change', event => { state.subcategory = event.target.value; renderLibrary(); });
 $('#saved-builds').addEventListener('change', event => {
   const build = state.saved.find(item => item.id === event.target.value);
   if (build) { loadDraft(normalizeDraft(build)); toast('Saved build opened'); }

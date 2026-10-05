@@ -8,6 +8,7 @@
   <title>Journeys Card Review</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141915'/%3E%3Cpath d='M16 14h32v36H16z' fill='%23d8bd78' stroke='%23f1dfad' stroke-width='2'/%3E%3Cpath d='M23 23h18M23 29h18M23 35h13' stroke='%233f4d37' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="build-flow.css">
   <script type="module" src="app.js"></script>
 </head>
 <body>
@@ -31,22 +32,8 @@
 
   <main>
     <section id="builds-view" class="builds-view" aria-label="Build creator">
-      <div class="builds-heading"><div><p class="eyebrow">BUILD CREATOR</p><h1>Builds</h1><p>Choose a hero card and role. Their matching cards are added automatically. Add equipment to complete the build.</p></div></div>
-      <div class="build-controls">
-        <label>Hero card<select id="build-hero-card"><option value="">Choose a hero card</option></select></label>
-        <label>Role subcategory<select id="build-role"><option value="">Choose a role subcategory</option></select></label>
-        <label>Weapon setup<select id="build-weapon-mode"><option value="one-handed">Two 1-handed weapons</option><option value="two-handed">One 2-handed weapon</option></select></label>
-        <div id="build-weapons" class="build-weapon-selects"></div>
-        <label>Armor subcategory<select id="build-armor"><option value="">Choose an armor subcategory</option></select></label>
-        <label>Trinket subcategory<select id="build-trinket"><option value="">Choose a trinket subcategory</option></select></label>
-        <label>Mount subcategory<select id="build-mount"><option value="">Choose a mount subcategory</option></select></label>
-      </div>
-      <div id="build-empty" class="empty-state" hidden></div>
-      <div class="build-output">
-        <section class="build-card-group"><h2>Hero cards <span id="build-hero-count"></span></h2><div id="build-hero-cards" class="build-card-grid"></div></section>
-        <section class="build-card-group"><h2>Role cards <span id="build-role-count"></span></h2><div id="build-role-cards" class="build-card-grid"></div></section>
-        <section class="build-card-group"><h2>Equipment</h2><div id="build-equipment" class="build-equipment-grid"></div></section>
-      </div>
+      <div class="builds-heading"><div><p class="eyebrow">BUILD CREATOR</p><h1>Builds</h1><p>Choose a hero, explore their cards, and pick a role and equipment for the journey.</p></div></div>
+      <div id="build-flow" class="build-flow"></div>
     </section>
 
     <section id="gallery-view" class="workspace" aria-label="Card gallery" hidden>

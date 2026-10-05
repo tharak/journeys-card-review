@@ -77,6 +77,13 @@ test('rejects invalid categories on known cards and ignores unknown cards', () =
   assert.deepEqual(parseReview({ ...fixture(8), categories: { missing: 'invalid' } }, context).categories, {});
 });
 
+test('existing reviewed card IDs keep their categories even when an old alias points elsewhere', () => {
+  const review = parseReview({ ...fixture(8), categories: { 'card-2': 'armor' } }, {
+    ...context, aliases: { ...context.aliases, 'card-2': 'card-1' },
+  });
+  assert.deepEqual(review.categories, { 'card-2': 'armor' });
+});
+
 test('parsing does not change the source file or current review', () => {
   const data = fixture(8);
   const before = structuredClone({ data, context });

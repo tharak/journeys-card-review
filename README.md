@@ -16,7 +16,9 @@ Each card also has an editable Order field in the gallery and card details. Ente
 
 OCR titles and initial equipment categories are suggestions. Check them against the card images before relying on them.
 
-The dedicated [build creator](dist/build.html) lets users choose a hero and starting role, add or remove card copies, write strategy notes, and save multiple named builds in their browser. Builds export and import as `journeys-build-v1` JSON. Hero selection adds the matching categorized hero cards; card filters can show the selected hero/role or the full catalog. Review categories, titles, deletions, and subcategories saved in this browser also apply to the creator.
+Both the Builds tab and the dedicated [build creator](dist/build.html) start with a hero picker, show the selected hero's front and back side by side, then show their Hero cards. The Role picker and its matching cards follow. The first weapon picker groups all 1-handed and 2-handed subcategories; choosing a 1-handed weapon adds a second picker limited to 1-handed subcategories. Armor, trinket, and mount each have their own picker and matching cards below. Every group uses the reviewed categories, subcategories, deletions, titles, and card order.
+
+The dedicated creator also lets users add or remove card copies, write strategy notes, and save multiple named builds in their browser. Builds export and import as `journeys-build-v1` JSON, including the equipment picker selections. Older builds still import; their equipment choices are inferred from their selected cards. Hero selection adds the matching categorized hero cards. The shared flow and selection validation are in `dist/build-flow.mjs`, with styling in `dist/build-flow.css`.
 
 Card and character images now use the fresh `v2` source crops, published as lossless WebP files in `dist/assets/v2/`. Existing card IDs and reviewed categories are retained. Run `python3 scripts/import_v2_assets.py` to republish the parent workspace's `v2` capture. The creator is implemented in `dist/build.html`, `dist/build.js`, and `dist/build.css` and deploys with the existing GitHub Pages workflow.
 

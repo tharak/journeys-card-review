@@ -1,3 +1,4 @@
+import { renderBuildFlow } from './build-flow.mjs';
 import { REVIEW_FIELDS, normalizeCategory, parseReview, createReview, createSiteData, isCardOrder, cardOrderFor, compareCardOrder } from './review-data.mjs';
 
 const CATEGORIES = [
@@ -35,7 +36,7 @@ const TITLE_KEY = 'journeys-card-review-titles-v1';
 const BUILD_KEY = 'journeys-card-review-build-v1';
 const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
-const state = { cards: [], sections: [], aliases: {}, sourceData: null, overrides: {}, subcategoryOverrides: {}, orderOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: 'one-handed', weaponSubcategories: ['', ''], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
+const state = { cards: [], sections: [], aliases: {}, sourceData: null, overrides: {}, subcategoryOverrides: {}, orderOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: '', weaponSubcategories: [], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
 let toastTimer;
 
 function showToast(message) {
@@ -74,7 +75,7 @@ function fillSubcategorySelect(select, card) {
   }
   select.value = subcategoryFor(card);
 }
-function canonicalId(id) { return state.aliases[id] || id; }
+function canonicalId(id) { return state.cards.some(card => card.id === id) ? id : state.aliases[id] || id; }
 function titleFor(card) {
   if (Object.hasOwn(state.titleOverrides, card.id)) return state.titleOverrides[card.id];
   if (typeof card.displayTitle === 'string') return card.displayTitle;
@@ -236,120 +237,34 @@ function matchingCards() {
   return cards;
 }
 
-function availableCards(category) {
-  return state.cards.filter(card => !state.deleted.has(card.id) && categoryFor(card) === category)
-    .sort((a, b) => compareCardOrder(orderFor(a), orderFor(b)));
-}
-
 function saveBuild() {
   saveStoredValue(BUILD_KEY, state.build, 'This browser could not save the build.');
 }
 
-function fillBuildSubcategorySelect(select, category, selected) {
-  const names = [...new Set(availableCards(category).map(subcategoryFor).filter(Boolean))].sort((a, b) => a.localeCompare(b));
-  select.replaceChildren();
-  const empty = document.createElement('option'); empty.value = ''; empty.textContent = `Choose a ${labelFor(category).toLocaleLowerCase()} subcategory`; select.append(empty);
-  for (const name of names) {
-    const option = document.createElement('option'); option.value = name; option.textContent = name; select.append(option);
-  }
-  select.value = names.includes(selected) ? selected : '';
-  return select.value;
+function buildCard(card) {
+  const article = document.createElement('article'); article.className = 'build-card';
+  const button = document.createElement('button'); button.type = 'button'; button.className = 'build-art-button';
+  button.setAttribute('aria-label', `View ${card.title}`);
+  button.addEventListener('click', () => openBuildCard(card.id));
+  const image = document.createElement('img'); image.src = card.image; image.alt = `${card.title} card`; image.loading = 'lazy';
+  button.append(image);
+  const title = document.createElement('strong'); title.textContent = card.title;
+  article.append(button, title); return article;
 }
 
-function appendBuildCard(container, card, eyebrow = '') {
-  const article = document.createElement('article'); article.className = 'build-card';
-  const image = document.createElement('img'); image.src = card.image; image.alt = `${titleFor(card)} card`; image.loading = 'lazy';
-  const title = document.createElement('strong'); title.textContent = titleFor(card);
-  article.append(image);
-  if (eyebrow) { const label = document.createElement('span'); label.className = 'build-card-eyebrow'; label.textContent = eyebrow; article.append(label); }
-  article.append(title); container.append(article);
+function openBuildCard(id) {
+  state.selected = id;
+  renderDialog();
+  $('#card-dialog').showModal();
 }
 
 function renderBuilds() {
-  const heroChoices = availableCards('hero-card').filter(card => state.heroNames.includes(subcategoryFor(card)));
-  const heroSelect = $('#build-hero-card');
-  heroSelect.replaceChildren();
-  const noHeroCard = document.createElement('option'); noHeroCard.value = ''; noHeroCard.textContent = 'Choose a hero card'; heroSelect.append(noHeroCard);
-  const availableHeroNames = [...new Set(heroChoices.map(subcategoryFor))].sort((a, b) => a.localeCompare(b));
-  for (const name of availableHeroNames) {
-    const group = document.createElement('optgroup'); group.label = name;
-    for (const card of heroChoices.filter(item => subcategoryFor(item) === name)) {
-      const option = document.createElement('option'); option.value = card.id; option.textContent = titleFor(card); group.append(option);
-    }
-    heroSelect.append(group);
-  }
-  heroSelect.value = heroChoices.some(card => card.id === state.build.heroCardId) ? state.build.heroCardId : '';
-  state.build.heroCardId = heroSelect.value;
-  const selectedHeroCard = state.cards.find(card => card.id === state.build.heroCardId);
-  const heroName = selectedHeroCard ? subcategoryFor(selectedHeroCard) : '';
-  const heroCards = heroName ? heroChoices.filter(card => subcategoryFor(card) === heroName) : [];
-
-  const roleCards = availableCards('role');
-  const roleOptions = state.roleSubcategories.filter(name => roleCards.some(card => subcategoryFor(card) === name));
-  const roleSelect = $('#build-role');
-  roleSelect.replaceChildren();
-  const noRole = document.createElement('option'); noRole.value = ''; noRole.textContent = 'Choose a role subcategory'; roleSelect.append(noRole);
-  for (const name of roleOptions) {
-    const option = document.createElement('option'); option.value = name;
-    option.textContent = `${name} (${roleCards.filter(card => subcategoryFor(card) === name).length})`;
-    roleSelect.append(option);
-  }
-  roleSelect.value = roleOptions.includes(state.build.role) ? state.build.role : '';
-  state.build.role = roleSelect.value;
-  const chosenRoleCards = state.build.role ? roleCards.filter(card => subcategoryFor(card) === state.build.role) : [];
-
-  const weaponMode = $('#build-weapon-mode'); weaponMode.value = state.build.weaponMode;
-  const weaponCategory = state.build.weaponMode;
-  const weaponSlots = state.build.weaponMode === 'one-handed' ? 2 : 1;
-  state.build.weaponSubcategories = state.build.weaponSubcategories.slice(0, weaponSlots);
-  while (state.build.weaponSubcategories.length < weaponSlots) state.build.weaponSubcategories.push('');
-  const weaponContainer = $('#build-weapons'); weaponContainer.replaceChildren();
-  for (let index = 0; index < weaponSlots; index++) {
-    const label = document.createElement('label');
-    label.textContent = state.build.weaponMode === 'one-handed' ? `${index + 1}${index ? 'nd' : 'st'} 1-handed subcategory` : '2-handed weapon subcategory';
-    const select = document.createElement('select');
-    state.build.weaponSubcategories[index] = fillBuildSubcategorySelect(select, weaponCategory, state.build.weaponSubcategories[index]);
-    select.addEventListener('change', () => { state.build.weaponSubcategories[index] = select.value; saveBuild(); renderBuilds(); });
-    label.append(select); weaponContainer.append(label);
-  }
-
-  const equipment = [
-    ['build-armor', 'armor', 'armorSubcategory'],
-    ['build-trinket', 'trinket', 'trinketSubcategory'],
-    ['build-mount', 'mount', 'mountSubcategory'],
-  ];
-  for (const [id, category, key] of equipment) {
-    const select = $(`#${id}`);
-    state.build[key] = fillBuildSubcategorySelect(select, category, state.build[key]);
-  }
-
-  const empty = $('#build-empty');
-  empty.hidden = heroChoices.length > 0;
-  empty.textContent = heroChoices.length
-    ? ''
-    : 'No Hero-card cards have a hero name yet. In Cards, set their category to Hero-card and choose a Hero subcategory.';
-
-  const heroOutput = $('#build-hero-cards'); heroOutput.replaceChildren();
-  $('#build-hero-count').textContent = heroName ? `(${heroCards.length})` : '';
-  for (const card of heroCards) appendBuildCard(heroOutput, card, heroName);
-  const roleOutput = $('#build-role-cards'); roleOutput.replaceChildren();
-  $('#build-role-count').textContent = state.build.role ? `(${chosenRoleCards.length})` : '';
-  for (const card of chosenRoleCards) appendBuildCard(roleOutput, card, state.build.role);
-  const equipmentOutput = $('#build-equipment'); equipmentOutput.replaceChildren();
-  const chosenEquipment = [
-    ...state.build.weaponSubcategories.map(name => [weaponCategory, name]),
-    ['armor', state.build.armorSubcategory],
-    ['trinket', state.build.trinketSubcategory],
-    ['mount', state.build.mountSubcategory],
-  ];
-  const shownEquipment = new Set();
-  for (const [category, subcategory] of chosenEquipment) {
-    if (!subcategory) continue;
-    for (const card of availableCards(category).filter(item => subcategoryFor(item) === subcategory)) {
-      if (!shownEquipment.has(card.id)) appendBuildCard(equipmentOutput, card, `${labelFor(category)} · ${subcategory}`);
-      shownEquipment.add(card.id);
-    }
-  }
+  const cards = state.cards.map(card => ({ ...card, category: categoryFor(card), subcategory: subcategoryFor(card),
+    title: titleFor(card), order: orderFor(card), deleted: state.deleted.has(card.id) }));
+  state.build = renderBuildFlow($('#build-flow'), {
+    cards, selection: state.build, prefix: 'build', renderCard: buildCard, onPreview: openBuildCard,
+    onChange(selection) { state.build = selection; saveBuild(); renderBuilds(); },
+  });
   saveBuild();
 }
 
@@ -702,16 +617,6 @@ async function start() {
 }
 
 document.querySelectorAll('.view-tab[data-view]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
-$('#build-hero-card').addEventListener('change', event => { state.build.heroCardId = event.target.value; saveBuild(); renderBuilds(); });
-$('#build-role').addEventListener('change', event => { state.build.role = event.target.value; saveBuild(); renderBuilds(); });
-$('#build-weapon-mode').addEventListener('change', event => {
-  state.build.weaponMode = event.target.value;
-  state.build.weaponSubcategories = event.target.value === 'one-handed' ? ['', ''] : [''];
-  saveBuild(); renderBuilds();
-});
-for (const [id, key] of [['build-armor', 'armorSubcategory'], ['build-trinket', 'trinketSubcategory'], ['build-mount', 'mountSubcategory']]) {
-  $(`#${id}`).addEventListener('change', event => { state.build[key] = event.target.value; saveBuild(); renderBuilds(); });
-}
 $('#card-search').addEventListener('input', event => { state.search = event.target.value.trim(); renderGallery(); });
 $('#card-sort').addEventListener('change', event => { state.sort = event.target.value; renderGallery(); });
 $('#document-search').addEventListener('input', renderDocument);

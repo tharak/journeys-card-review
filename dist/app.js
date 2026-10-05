@@ -241,28 +241,19 @@ function saveBuild() {
   saveStoredValue(BUILD_KEY, state.build, 'This browser could not save the build.');
 }
 
-function buildCard(card) {
-  const article = document.createElement('article'); article.className = 'build-card';
-  const button = document.createElement('button'); button.type = 'button'; button.className = 'build-art-button';
-  button.setAttribute('aria-label', `View ${card.title}`);
-  button.addEventListener('click', () => openBuildCard(card.id));
-  const image = document.createElement('img'); image.src = card.image; image.alt = `${card.title} card`; image.loading = 'lazy';
-  button.append(image);
-  const title = document.createElement('strong'); title.textContent = card.title;
-  article.append(button, title); return article;
-}
-
 function openBuildCard(id) {
-  state.selected = id;
-  renderDialog();
-  $('#card-dialog').showModal();
+  const card = state.cards.find(card => card.id === id);
+  if (!card) return;
+  $('#build-preview-image').src = card.image;
+  $('#build-preview-image').alt = titleFor(card);
+  $('#build-preview-dialog').showModal();
 }
 
 function renderBuilds() {
   const cards = state.cards.map(card => ({ ...card, category: categoryFor(card), subcategory: subcategoryFor(card),
     title: titleFor(card), order: orderFor(card), deleted: state.deleted.has(card.id) }));
   state.build = renderBuildFlow($('#build-flow'), {
-    cards, selection: state.build, prefix: 'build', renderCard: buildCard, onPreview: openBuildCard,
+    cards, selection: state.build, prefix: 'build', onPreview: openBuildCard,
     onChange(selection) { state.build = selection; saveBuild(); renderBuilds(); },
   });
   saveBuild();
@@ -620,6 +611,7 @@ document.querySelectorAll('.view-tab[data-view]').forEach(button => button.addEv
 $('#card-search').addEventListener('input', event => { state.search = event.target.value.trim(); renderGallery(); });
 $('#card-sort').addEventListener('change', event => { state.sort = event.target.value; renderGallery(); });
 $('#document-search').addEventListener('input', renderDocument);
+$('#close-build-preview').addEventListener('click', () => $('#build-preview-dialog').close());
 $('#close-dialog').addEventListener('click', () => $('#card-dialog').close());
 $('#prev-card').addEventListener('click', () => moveCard(-1));
 $('#next-card').addEventListener('click', () => moveCard(1));

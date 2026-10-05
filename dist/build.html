@@ -12,28 +12,20 @@
   <script type="module" src="build.js"></script>
 </head>
 <body class="creator-page">
-  <header class="topbar">
-    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✦</span><div><strong>Journeys</strong><small>Into Middle-earth</small></div></a>
-    <nav class="view-tabs" aria-label="Pages"><a class="view-tab" href="index.html">Card review</a><a class="view-tab active" href="build.html" aria-current="page">Create build</a></nav>
-    <div class="header-actions"><button class="plain-button" id="new-build" type="button">New build</button><label class="plain-button import-button">Import build<input id="import-build" type="file" accept=".json,application/json" hidden></label></div>
+  <header class="build-toolbar" aria-label="Build controls">
+    <a class="plain-button" href="index.html" aria-label="Back to card review">←</a>
+    <input id="build-name" maxlength="100" placeholder="Build name" aria-label="Build name" autocomplete="off" disabled>
+    <select id="saved-builds" aria-label="Saved builds" disabled><option value="">Choose a saved build</option></select>
+    <button class="plain-button" id="new-build" type="button" aria-label="New build">+</button>
+    <label class="plain-button import-button" aria-label="Import build">⇧<input id="import-build" type="file" accept=".json,application/json" aria-label="Import build file" hidden></label>
+    <button id="save-build" class="plain-button" type="button" aria-label="Save build" disabled>✓</button>
+    <button id="export-build" class="plain-button" type="button" aria-label="Export build" disabled>⇩</button>
   </header>
   <main class="creator-main">
-    <div class="creator-heading"><div><p class="eyebrow">MAKE YOUR OWN ADVENTURE</p><h1>Create a build</h1><p>Choose your hero. Gather the cards for your next journey.</p></div><label class="saved-builds">Your saved builds<select id="saved-builds" disabled><option value="">Choose a saved build</option></select></label></div>
     <p class="creator-loading" id="loading" role="status">Gathering the cards…</p>
-    <label class="build-name-field">Build name<input id="build-name" maxlength="100" placeholder="A new journey" autocomplete="off" disabled></label>
-    <div class="creator-workspace">
-      <div id="creator-flow" class="build-flow"></div>
-      <aside class="build-summary" aria-label="Your build">
-        <div class="summary-heading"><p class="eyebrow">YOUR FELLOWSHIP, YOUR WAY</p><h2 id="summary-title">A new journey</h2><p id="summary-hero">Choose a hero to begin</p></div>
-        <div class="build-stats"><div><strong id="skill-count">0</strong><span>Skill cards</span></div><div><strong id="equipment-count">0</strong><span>Equipment</span></div></div>
-        <div id="selected-cards" class="selected-cards"><p class="summary-empty">Your selected cards will appear here.</p></div>
-        <label class="build-notes">Build notes<textarea id="build-notes" rows="4" maxlength="10000" placeholder="Strategy, upgrades, and cards to prepare…" disabled></textarea></label>
-        <div class="summary-actions"><button id="save-build" class="gold-button" type="button" disabled>Save build</button><button id="export-build" class="plain-button" type="button" disabled>Export JSON</button></div>
-        <p class="save-status" id="save-status" role="status">Your draft is saved in this browser.</p>
-      </aside>
-    </div>
+    <div id="creator-flow" class="build-flow"></div>
   </main>
-  <dialog id="preview-dialog" class="build-preview" aria-label="Card preview"><button id="close-preview" class="icon-button" type="button" aria-label="Close card preview">×</button><h2 id="preview-title"></h2><img id="preview-image" alt=""></dialog>
+  <dialog id="preview-dialog" class="build-image-preview" aria-label="Card image"><button id="close-preview" class="icon-button" type="button" aria-label="Close card image">×</button><img id="preview-image" alt=""></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

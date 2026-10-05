@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { cardsFor, heroCardsFor, normalizeBuildSelection, subcategoriesFor } from '../dist/build-flow.mjs';
+import { cardsFor, heroCardsFor, normalizeBuildSelection, subcategoriesFor, orderedBuildRow } from '../dist/build-flow.mjs';
 
 const cards = [
   { id: 'hero-front', category: 'hero-card', subcategory: 'Aragorn' },
@@ -49,4 +49,20 @@ test('selection normalization clears deleted and unavailable choices without cha
   assert.equal(selected.heroCardId, ''); assert.equal(selected.role, ''); assert.equal(selected.weaponMode, '');
   assert.equal(selected.trinketSubcategory, 'Harp');
   assert.deepEqual(input, before);
+});
+
+test('picked cards lead each row in click order while the other cards keep reviewed order', () => {
+  const row = cardsFor(cards, 'one-handed');
+  assert.deepEqual(orderedBuildRow(row, ['shield', 'sword-2']).map(card => card.id), ['shield', 'sword-2', 'sword-1', 'hand-harp']);
+  assert.deepEqual(orderedBuildRow(row, ['sword-2']).map(card => card.id), ['sword-2', 'sword-1', 'shield', 'hand-harp']);
+  assert.deepEqual(orderedBuildRow(row, []), row);
+});
+
+test('changing a picker removes hidden picks and preserves the remaining click order', () => {
+  const input = { heroCardId: 'hero-front', role: 'Captain', weaponMode: 'one-handed', weaponSubcategories: ['Sword', 'Shield'],
+    pickedCardIds: ['shield', 'hero-skill', 'sword-2', 'role', 'deleted-weapon', 'hero-back', 'shield'] };
+  assert.deepEqual(normalizeBuildSelection(input, cards).pickedCardIds, ['shield', 'hero-skill', 'sword-2', 'role']);
+  const updated = normalizeBuildSelection({ ...input, weaponMode: 'two-handed', weaponSubcategories: ['Bow'] }, cards);
+  assert.deepEqual(updated.pickedCardIds, ['hero-skill', 'role']);
+  assert.deepEqual(normalizeBuildSelection({ ...input, heroCardId: '' }, cards).pickedCardIds, ['shield', 'sword-2', 'role']);
 });

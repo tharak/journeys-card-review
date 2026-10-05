@@ -18,7 +18,7 @@ export function subcategoriesFor(cards, category) {
 }
 
 export function normalizeBuildSelection(input, cards) {
-  const selection = { heroCardId: '', role: '', weaponMode: '', weaponSubcategories: [],
+  const selection = { heroCardId: '', role: '', weaponMode: '', weaponSubcategories: [], pickedCardIds: [],
     armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' };
   if (cardsFor(cards, 'hero-card').some(card => card.id === input?.heroCardId)) selection.heroCardId = input.heroCardId;
   if (subcategoriesFor(cards, 'role').includes(input?.role)) selection.role = input.role;
@@ -34,7 +34,30 @@ export function normalizeBuildSelection(input, cards) {
   for (const [category, , key] of EQUIPMENT) {
     if (subcategoriesFor(cards, category).includes(input?.[key])) selection[key] = input[key];
   }
+  const availableIds = new Set(visibleBuildCards(cards, selection).map(card => card.id));
+  selection.pickedCardIds = [...new Set(Array.isArray(input?.pickedCardIds) ? input.pickedCardIds : [])]
+    .filter(id => availableIds.has(id));
   return selection;
+}
+
+export function visibleBuildCards(cards, selection) {
+  const matches = [...heroCardsFor(cards, selection.heroCardId).skills];
+  if (selection.role) matches.push(...cardsFor(cards, 'role', selection.role));
+  if (selection.weaponMode) {
+    for (const name of selection.weaponSubcategories || []) {
+      if (name) matches.push(...cardsFor(cards, selection.weaponMode, name));
+    }
+  }
+  for (const [category, , key] of EQUIPMENT) {
+    if (selection[key]) matches.push(...cardsFor(cards, category, selection[key]));
+  }
+  return [...new Map(matches.map(card => [card.id, card])).values()];
+}
+
+export function orderedBuildRow(cards, pickedCardIds) {
+  const ranks = new Map(pickedCardIds.map((id, index) => [id, index]));
+  return [...cards].sort((a, b) => (ranks.get(a.id) ?? Infinity) - (ranks.get(b.id) ?? Infinity)
+    || compareCardOrder(cardOrderFor(a), cardOrderFor(b)));
 }
 
 export function heroCardsFor(cards, heroCardId) {
@@ -44,19 +67,21 @@ export function heroCardsFor(cards, heroCardId) {
     skills: name ? cardsFor(cards, 'hero', name) : [] };
 }
 
-export function renderBuildFlow(container, { cards, selection: input, prefix, onChange, onPreview, renderCard }) {
+export function renderBuildFlow(container, { cards, selection: input, prefix, onChange, onPreview }) {
   const focusedId = container.contains(document.activeElement) ? document.activeElement.id : '';
+  const scrollPositions = new Map([...container.querySelectorAll('.build-flow-row')].map(row => [row.id, row.scrollLeft]));
   const selection = normalizeBuildSelection(input, cards);
   const fragment = document.createDocumentFragment();
   const section = (title, name) => {
     const element = document.createElement('section'); element.className = 'build-step';
     element.dataset.step = name;
-    const heading = document.createElement('h2'); heading.textContent = title;
-    element.append(heading); fragment.append(element); return element;
+    element.setAttribute('aria-label', title);
+    fragment.append(element); return element;
   };
   const picker = (parent, labelText, name, options, selected, change) => {
-    const label = document.createElement('label'); label.className = 'build-picker'; label.textContent = labelText;
+    const label = document.createElement('label'); label.className = 'build-picker';
     const select = document.createElement('select'); select.id = `${prefix}-${name}`;
+    select.setAttribute('aria-label', labelText);
     select.add(new Option(`Choose ${labelText.toLocaleLowerCase()}`, ''));
     for (const option of options) {
       if (option.options) {
@@ -69,16 +94,23 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
     select.addEventListener('change', () => change(select.value));
     label.append(select); parent.append(label); return select;
   };
-  const renderCards = (parent, matches, name, emptyText) => {
-    const grid = document.createElement('div'); grid.className = 'build-flow-grid'; grid.id = `${prefix}-${name}`;
-    for (const card of matches) {
-      const tile = renderCard(card); tile.dataset.cardId = card.id; grid.append(tile);
+  const renderCards = (parent, matches, name) => {
+    const row = document.createElement('div'); row.className = 'build-flow-row'; row.id = `${prefix}-${name}`;
+    for (const card of orderedBuildRow(matches, selection.pickedCardIds)) {
+      const picked = selection.pickedCardIds.includes(card.id);
+      const button = document.createElement('button'); button.type = 'button';
+      button.className = `build-image-card${picked ? ' picked' : ''}`;
+      button.id = `${prefix}-${name}-${card.id}`; button.dataset.cardId = card.id;
+      button.setAttribute('aria-label', `Pick ${card.title || card.id}`);
+      button.setAttribute('aria-pressed', String(picked));
+      button.addEventListener('click', () => {
+        if (!picked) row.scrollLeft = 0;
+        update({ pickedCardIds: picked ? selection.pickedCardIds.filter(id => id !== card.id) : [...selection.pickedCardIds, card.id] });
+      });
+      const image = document.createElement('img'); image.src = card.image; image.alt = card.title || card.id; image.loading = 'lazy';
+      button.append(image); row.append(button);
     }
-    parent.append(grid);
-    if (!matches.length) {
-      const empty = document.createElement('p'); empty.className = 'build-step-empty'; empty.textContent = emptyText;
-      parent.append(empty);
-    }
+    parent.append(row);
   };
   const update = changes => onChange({ ...selection, ...changes });
 
@@ -88,7 +120,7 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
     .map(card => [card.id, card.title]), selection.heroCardId, value => update({ heroCardId: value }));
   const { front, backs, skills } = heroCardsFor(cards, selection.heroCardId);
   if (front) {
-    const sheets = document.createElement('div'); sheets.className = 'hero-sides'; sheets.id = `${prefix}-hero-sides`;
+    const sheets = document.createElement('div'); sheets.className = 'hero-sides build-flow-row'; sheets.id = `${prefix}-hero-sides`;
     for (const [card, side] of [[front, 'Front'], ...backs.map(card => [card, 'Back'])]) {
       const figure = document.createElement('figure');
       const button = document.createElement('button'); button.type = 'button'; button.className = 'hero-side-art';
@@ -96,20 +128,15 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
       button.addEventListener('click', () => onPreview(card.id));
       const image = document.createElement('img'); image.src = card.image; image.alt = `${front.subcategory || front.title} · ${side}`;
       button.append(image);
-      const caption = document.createElement('figcaption'); caption.textContent = side;
-      figure.append(button, caption); sheets.append(figure);
+      figure.append(button); sheets.append(figure);
     }
     heroStep.append(sheets);
-    if (!backs.length) {
-      const empty = document.createElement('p'); empty.className = 'build-step-empty'; empty.textContent = 'No back card is available for this hero.';
-      heroStep.append(empty);
-    }
   }
-  renderCards(section('Hero cards', 'hero-cards'), skills, 'hero-cards', front ? 'No hero cards are categorized for this hero.' : 'Choose a hero to see their cards.');
+  renderCards(section('Hero cards', 'hero-cards'), skills, 'hero-cards');
 
   const roleStep = section('Role', 'role');
   picker(roleStep, 'Role', 'role', subcategoriesFor(cards, 'role').map(name => [name, name]), selection.role, role => update({ role }));
-  renderCards(roleStep, selection.role ? cardsFor(cards, 'role', selection.role) : [], 'role-cards', 'Choose a role to see its cards.');
+  renderCards(roleStep, selection.role ? cardsFor(cards, 'role', selection.role) : [], 'role-cards');
 
   const weaponStep = section('Weapons', 'weapons');
   const weaponOptions = ['one-handed', 'two-handed'].map(category => ({ label: category === 'one-handed' ? '1-handed' : '2-handed',
@@ -120,20 +147,21 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
     const second = weaponMode === 'one-handed' && selection.weaponMode === 'one-handed' ? selection.weaponSubcategories[1] : '';
     update({ weaponMode, weaponSubcategories: weaponMode === 'one-handed' ? [subcategory, second] : weaponMode ? [subcategory] : [] });
   });
-  renderCards(weaponStep, selection.weaponMode ? cardsFor(cards, selection.weaponMode, selection.weaponSubcategories[0]) : [], 'weapon-cards', 'Choose a weapon subcategory to see all its cards.');
+  renderCards(weaponStep, selection.weaponMode ? cardsFor(cards, selection.weaponMode, selection.weaponSubcategories[0]) : [], 'weapon-cards');
   if (selection.weaponMode === 'one-handed') {
     picker(weaponStep, 'Second 1-handed weapon', 'second-weapon', subcategoriesFor(cards, 'one-handed').map(name => [name, name]),
       selection.weaponSubcategories[1], value => update({ weaponSubcategories: [selection.weaponSubcategories[0], value] }));
     renderCards(weaponStep, selection.weaponSubcategories[1] ? cardsFor(cards, 'one-handed', selection.weaponSubcategories[1]) : [],
-      'second-weapon-cards', 'Choose a second 1-handed weapon to see its cards.');
+      'second-weapon-cards');
   }
   for (const [category, title, key] of EQUIPMENT) {
     const equipmentStep = section(title, category);
     picker(equipmentStep, `${category === 'trinket' ? 'Trinket' : title} subcategory`, category,
       subcategoriesFor(cards, category).map(name => [name, name]), selection[key], value => update({ [key]: value }));
-    renderCards(equipmentStep, selection[key] ? cardsFor(cards, category, selection[key]) : [], `${category}-cards`, `Choose a ${category} subcategory to see all its cards.`);
+    renderCards(equipmentStep, selection[key] ? cardsFor(cards, category, selection[key]) : [], `${category}-cards`);
   }
   container.replaceChildren(fragment);
+  for (const row of container.querySelectorAll('.build-flow-row')) row.scrollLeft = scrollPositions.get(row.id) || 0;
   if (focusedId) document.getElementById(focusedId)?.focus({ preventScroll: true });
   return selection;
 }

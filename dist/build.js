@@ -10,7 +10,6 @@ const TYPES = [
   ['basic', 'Basic'], ['title', 'Title'], ['weakness', 'Weakness'], ['unsorted', 'Other'],
 ];
 const LABELS = Object.fromEntries(TYPES);
-const EQUIPMENT = new Set(['one-handed', 'two-handed', 'armor', 'trinket', 'mount', 'hand-item']);
 const DRAFT_KEY = 'journeys-build-creator-draft-v1';
 const SAVED_KEY = 'journeys-build-creator-saved-v1';
 const REVIEW_KEYS = {
@@ -25,8 +24,9 @@ const state = { loaded: false, data: null, capture: {}, cards: [], byId: new Map
   draft: emptyDraft(), saved: [] };
 let toastTimer;
 
-function toast(message) {
+function toast(message, error = false) {
   $('#toast').textContent = message;
+  $('#toast').classList.toggle('error', error);
   $('#toast').classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => $('#toast').classList.remove('show'), 3200);
@@ -40,14 +40,13 @@ function readStored(key, fallback) {
 function writeStored(key, data) {
   try { localStorage.setItem(key, JSON.stringify(data)); return true; }
   catch {
-    $('#save-status').textContent = 'Export your build to keep a copy.';
-    toast('This browser could not save the build. Export a copy.');
+    toast('This browser could not save the build. Export a copy.', true);
     return false;
   }
 }
 
 function persistDraft() {
-  if (writeStored(DRAFT_KEY, state.draft)) $('#save-status').textContent = 'Draft saved in this browser.';
+  writeStored(DRAFT_KEY, state.draft);
 }
 
 function applyReviews() {
@@ -118,8 +117,9 @@ function normalizeDraft(input, importing = false) {
       equipment[`${category}Subcategory`] = Object.keys(draft.cards).map(id => state.byId.get(id)).find(card => card.category === category)?.subcategory || '';
     }
   }
-  const { heroCardId, ...choices } = normalizeBuildSelection({ ...equipment, heroCardId: draft.heroId, role: draft.role }, state.cards);
+  const { heroCardId, pickedCardIds, ...choices } = normalizeBuildSelection({ ...equipment, heroCardId: draft.heroId, role: draft.role, pickedCardIds: Object.keys(draft.cards) }, state.cards);
   Object.assign(draft, choices);
+  draft.cards = Object.fromEntries(pickedCardIds.map(id => [id, draft.cards[id]]));
   return draft;
 }
 
@@ -140,111 +140,41 @@ function renderSaved() {
 
 function renderSetup() {
   $('#build-name').value = state.draft.name;
-  $('#build-notes').value = state.draft.notes;
   renderSaved();
 }
 
-function createBuilderCard(card) {
-  const quantity = state.draft.cards[card.id] || 0;
-  const tile = document.createElement('article'); tile.className = `builder-card${quantity ? ' in-build' : ''}`;
-  const art = document.createElement('button'); art.className = 'art-button'; art.type = 'button';
-  art.setAttribute('aria-label', `View ${card.title}`); art.addEventListener('click', () => preview(card.id));
-  const image = document.createElement('img'); image.src = card.image; image.alt = `${card.title} card`; image.loading = 'lazy';
-  art.append(image);
-  const title = document.createElement('h3'); title.textContent = card.title; title.title = card.title;
-  const meta = document.createElement('p'); meta.textContent = [LABELS[card.category] || 'Other', card.subcategory].filter(Boolean).join(' · ');
-  const add = document.createElement('button'); add.type = 'button'; add.className = 'add-card';
-  add.textContent = quantity ? `Add another · ${quantity} in build` : '+ Add to build'; add.disabled = quantity >= 9;
-  add.setAttribute('aria-label', `Add ${card.title} to build`); add.addEventListener('click', () => changeQuantity(card.id, 1));
-  tile.append(art, title, meta, add); return tile;
-}
-
 function renderLibrary() {
-  renderBuildFlow($('#creator-flow'), {
-    cards: state.cards, selection: { ...state.draft, heroCardId: state.draft.heroId }, prefix: 'creator',
-    renderCard: createBuilderCard, onPreview: preview,
+  const selection = renderBuildFlow($('#creator-flow'), {
+    cards: state.cards, selection: { ...state.draft, heroCardId: state.draft.heroId, pickedCardIds: Object.keys(state.draft.cards) },
+    prefix: 'creator', onPreview: preview,
     onChange(selection) {
-      const { heroCardId, ...choices } = selection;
+      const { heroCardId, pickedCardIds, ...choices } = normalizeBuildSelection(selection, state.cards);
+      state.draft.cards = Object.fromEntries(pickedCardIds.map(id => [id, state.draft.cards[id] || 1]));
+      state.draft.heroId = heroCardId;
       Object.assign(state.draft, choices);
-      if (heroCardId !== state.draft.heroId) chooseHero(heroCardId);
-      else { persistDraft(); renderSummary(); renderLibrary(); }
+      persistDraft(); renderActions(); renderLibrary();
     },
   });
+  state.draft.cards = Object.fromEntries(selection.pickedCardIds.map(id => [id, state.draft.cards[id] || 1]));
 }
 
 function selectedCards() {
   return Object.entries(state.draft.cards).map(([id, quantity]) => ({ card: state.byId.get(id), quantity })).filter(item => item.card);
 }
 
-function renderSummary() {
-  const selected = selectedCards();
-  $('#summary-title').textContent = state.draft.name.trim() || 'A new journey';
-  $('#summary-hero').textContent = [heroName(), state.draft.role].filter(Boolean).join(' · ') || 'Choose a hero to begin';
-  $('#skill-count').textContent = selected.filter(({ card }) => ['hero', 'role', 'basic', 'title', 'weakness'].includes(card.category)).reduce((sum, item) => sum + item.quantity, 0);
-  $('#equipment-count').textContent = selected.filter(({ card }) => EQUIPMENT.has(card.category)).reduce((sum, item) => sum + item.quantity, 0);
+function renderActions() {
   $('#save-build').disabled = !state.draft.heroId;
   $('#export-build').disabled = !state.draft.heroId;
-  const container = $('#selected-cards'); container.replaceChildren();
-  if (!selected.length) {
-    const copy = document.createElement('p'); copy.className = 'summary-empty'; copy.textContent = 'Your selected cards will appear here.'; container.append(copy);
-  }
-  const groups = [ ['Hero cards', card => card.category === 'hero'], ['Role cards', card => card.category === 'role'],
-    ['Equipment', card => EQUIPMENT.has(card.category)], ['Other cards', card => !['hero', 'role'].includes(card.category) && !EQUIPMENT.has(card.category)] ];
-  for (const [label, match] of groups) {
-    const cards = selected.filter(({ card }) => match(card)); if (!cards.length) continue;
-    const group = document.createElement('section'); group.className = 'selected-group';
-    const heading = document.createElement('h3'); heading.textContent = label; group.append(heading);
-    for (const { card, quantity } of cards) {
-      const row = document.createElement('div'); row.className = 'selected-row';
-      const art = document.createElement('button'); art.type = 'button'; art.setAttribute('aria-label', `View ${card.title}`);
-      const image = document.createElement('img'); image.src = card.image; image.alt = ''; image.loading = 'lazy'; art.append(image);
-      art.addEventListener('click', () => preview(card.id));
-      const title = document.createElement('span'); title.textContent = card.title;
-      const controls = document.createElement('div'); controls.className = 'quantity-controls';
-      const minus = document.createElement('button'); minus.type = 'button'; minus.textContent = '−'; minus.setAttribute('aria-label', `Remove one ${card.title}`);
-      minus.addEventListener('click', () => changeQuantity(card.id, -1));
-      const tally = document.createElement('span'); tally.textContent = quantity;
-      const plus = document.createElement('button'); plus.type = 'button'; plus.textContent = '+'; plus.disabled = quantity >= 9;
-      plus.setAttribute('aria-label', `Add one ${card.title}`); plus.addEventListener('click', () => changeQuantity(card.id, 1));
-      controls.append(minus, tally, plus); row.append(art, title, controls); group.append(row);
-    }
-    container.append(group);
-  }
-}
-
-function changeQuantity(id, change) {
-  const quantity = Math.min(9, (state.draft.cards[id] || 0) + change);
-  if (quantity > 0) state.draft.cards[id] = quantity; else delete state.draft.cards[id];
-  persistDraft(); renderSummary(); renderLibrary();
 }
 
 function preview(id) {
   const card = state.byId.get(id); if (!card) return;
-  $('#preview-title').textContent = card.title;
   $('#preview-image').src = card.image; $('#preview-image').alt = `${card.title} card`;
   $('#preview-dialog').showModal();
 }
 
 function loadDraft(draft) {
-  state.draft = draft; persistDraft(); renderSetup(); renderSummary(); renderLibrary();
-}
-
-function chooseHero(id) {
-  const oldHero = heroName();
-  for (const [cardId] of Object.entries(state.draft.cards)) {
-    const card = state.byId.get(cardId);
-    if (card?.category === 'hero' && card.subcategory === oldHero) delete state.draft.cards[cardId];
-  }
-  state.draft.heroId = id;
-  const hero = heroName();
-  let added = 0;
-  if (hero) for (const card of state.cards) {
-    if (!card.deleted && card.buildEligible !== false && !card.id.startsWith('character-') && card.category === 'hero' && card.subcategory === hero) {
-      state.draft.cards[card.id] = 1; added++;
-    }
-  }
-  persistDraft(); renderSetup(); renderSummary(); renderLibrary();
-  if (hero) toast(`${hero} selected · ${added} hero cards added`);
+  state.draft = draft; persistDraft(); renderSetup(); renderActions(); renderLibrary();
 }
 
 function saveBuild() {
@@ -253,8 +183,7 @@ function saveBuild() {
   const build = { ...structuredClone(state.draft), id, name: state.draft.name.trim() || `${heroName()} build`, updatedAt: new Date().toISOString() };
   const saved = [...state.saved.filter(item => item.id !== id), build];
   if (!writeStored(SAVED_KEY, saved)) return;
-  state.saved = saved; state.draft = normalizeDraft(build); persistDraft(); renderSetup(); renderSummary();
-  $('#save-status').textContent = `Saved “${build.name}” in this browser.`;
+  state.saved = saved; state.draft = normalizeDraft(build); persistDraft(); renderSetup(); renderActions();
   toast('Build saved');
 }
 
@@ -284,14 +213,13 @@ async function start() {
     }
     try { state.draft = normalizeDraft(readStored(DRAFT_KEY, emptyDraft())); } catch { state.draft = emptyDraft(); }
     state.loaded = true;
-    for (const id of ['saved-builds', 'build-name', 'build-notes']) $( `#${id}`).disabled = false;
+    for (const id of ['saved-builds', 'build-name']) $( `#${id}`).disabled = false;
     $('#loading').hidden = true;
-    renderSetup(); renderSummary(); renderLibrary();
+    renderSetup(); renderActions(); renderLibrary();
   } catch (error) { $('#loading').textContent = error.message; }
 }
 
-$('#build-name').addEventListener('input', event => { state.draft.name = event.target.value; persistDraft(); renderSummary(); });
-$('#build-notes').addEventListener('input', event => { state.draft.notes = event.target.value; persistDraft(); });
+$('#build-name').addEventListener('input', event => { state.draft.name = event.target.value; persistDraft(); renderActions(); });
 $('#saved-builds').addEventListener('change', event => {
   const build = state.saved.find(item => item.id === event.target.value);
   if (build) { loadDraft(normalizeDraft(build)); toast('Saved build opened'); }
@@ -306,14 +234,14 @@ $('#import-build').addEventListener('change', async event => {
     if (file.size > 2 * 1024 * 1024) throw new Error('This file is too large for a build.');
     const draft = normalizeDraft(JSON.parse(await file.text()), true); draft.id = '';
     loadDraft(draft); toast('Build imported. Save it to keep a named copy.');
-  } catch (error) { toast(error instanceof SyntaxError ? 'This file is not valid JSON.' : error.message); }
+  } catch (error) { toast(error instanceof SyntaxError ? 'This file is not valid JSON.' : error.message, true); }
   event.target.value = '';
 });
 $('#close-preview').addEventListener('click', () => $('#preview-dialog').close());
 $('#preview-dialog').addEventListener('click', event => { if (event.target === event.currentTarget) event.currentTarget.close(); });
 window.addEventListener('storage', event => {
   if (state.loaded && [...Object.values(REVIEW_KEYS), 'journeys-card-review-duplicate-review-v1'].includes(event.key)) {
-    applyReviews(); renderSetup(); renderSummary(); renderLibrary();
+    applyReviews(); renderSetup(); renderActions(); renderLibrary();
   }
 });
 start();

@@ -20,6 +20,8 @@ Both the Builds tab and the dedicated [build creator](dist/build.html) start wit
 
 Build views show only the pickers and card images, with one horizontally scrolling row per group. Click a card to highlight it; picked cards appear first in click order, followed by the other cards in reviewed order. Click again to unpick it. Changing a picker removes picks that no longer belong to the displayed groups. Hero selection displays its cards without automatically picking them.
 
+Every build picker selects its first available option when its previous choice is empty or unavailable; valid saved choices are preserved. There are no placeholder options, and categories with no choices hide their picker. At screen widths of 700px or less, the main page shows only Builds, hiding navigation and review controls. The dedicated creator remains available at its direct URL.
+
 The dedicated creator saves multiple named builds in the browser and exports/imports `journeys-build-v1` JSON, including picker selections and highlighted cards. Older builds still import; their equipment choices are inferred from their selected cards. Existing notes and card quantities remain in the saved data. The shared flow and selection validation are in `dist/build-flow.mjs`, with styling in `dist/build-flow.css`.
 
 Card and character images now use the fresh `v2` source crops, published as lossless WebP files in `dist/assets/v2/`. Existing card IDs and reviewed categories are retained. Run `python3 scripts/import_v2_assets.py` to republish the parent workspace's `v2` capture. The creator is implemented in `dist/build.html`, `dist/build.js`, and `dist/build.css` and deploys with the existing GitHub Pages workflow.

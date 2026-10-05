@@ -17,22 +17,37 @@ export function subcategoriesFor(cards, category) {
     .sort((a, b) => a.localeCompare(b));
 }
 
+function heroChoices(cards) {
+  return cardsFor(cards, 'hero-card')
+    .sort((a, b) => (a.subcategory || a.title || a.id).localeCompare(b.subcategory || b.title || b.id));
+}
+
 export function normalizeBuildSelection(input, cards) {
   const selection = { heroCardId: '', role: '', weaponMode: '', weaponSubcategories: [], pickedCardIds: [],
     armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' };
-  if (cardsFor(cards, 'hero-card').some(card => card.id === input?.heroCardId)) selection.heroCardId = input.heroCardId;
-  if (subcategoriesFor(cards, 'role').includes(input?.role)) selection.role = input.role;
+  const heroes = heroChoices(cards);
+  selection.heroCardId = heroes.some(card => card.id === input?.heroCardId) ? input.heroCardId : heroes[0]?.id || '';
+  const roles = subcategoriesFor(cards, 'role');
+  selection.role = roles.includes(input?.role) ? input.role : roles[0] || '';
   const weapons = Array.isArray(input?.weaponSubcategories) ? input.weaponSubcategories : [];
+  const weaponChoices = ['one-handed', 'two-handed'].flatMap(category =>
+    subcategoriesFor(cards, category).map(name => [category, name]));
+  let firstWeapon = weaponChoices[0];
   if (['one-handed', 'two-handed'].includes(input?.weaponMode)
     && subcategoriesFor(cards, input.weaponMode).includes(weapons[0])) {
-    selection.weaponMode = input.weaponMode;
-    selection.weaponSubcategories = [weapons[0]];
-    if (input.weaponMode === 'one-handed') {
-      selection.weaponSubcategories.push(subcategoriesFor(cards, 'one-handed').includes(weapons[1]) ? weapons[1] : '');
+    firstWeapon = [input.weaponMode, weapons[0]];
+  }
+  if (firstWeapon) {
+    selection.weaponMode = firstWeapon[0];
+    selection.weaponSubcategories = [firstWeapon[1]];
+    if (selection.weaponMode === 'one-handed') {
+      const oneHanded = subcategoriesFor(cards, 'one-handed');
+      selection.weaponSubcategories.push(oneHanded.includes(weapons[1]) ? weapons[1] : oneHanded[0]);
     }
   }
   for (const [category, , key] of EQUIPMENT) {
-    if (subcategoriesFor(cards, category).includes(input?.[key])) selection[key] = input[key];
+    const choices = subcategoriesFor(cards, category);
+    selection[key] = choices.includes(input?.[key]) ? input[key] : choices[0] || '';
   }
   const availableIds = new Set(visibleBuildCards(cards, selection).map(card => card.id));
   selection.pickedCardIds = [...new Set(Array.isArray(input?.pickedCardIds) ? input.pickedCardIds : [])]
@@ -79,12 +94,13 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
     fragment.append(element); return element;
   };
   const picker = (parent, labelText, name, options, selected, change) => {
+    if (!options.some(option => !option.options || option.options.length)) return;
     const label = document.createElement('label'); label.className = 'build-picker';
     const select = document.createElement('select'); select.id = `${prefix}-${name}`;
     select.setAttribute('aria-label', labelText);
-    select.add(new Option(`Choose ${labelText.toLocaleLowerCase()}`, ''));
     for (const option of options) {
       if (option.options) {
+        if (!option.options.length) continue;
         const group = document.createElement('optgroup'); group.label = option.label;
         for (const [value, text] of option.options) group.append(new Option(text, value));
         select.append(group);
@@ -115,8 +131,7 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
   const update = changes => onChange({ ...selection, ...changes });
 
   const heroStep = section('Your hero', 'hero');
-  picker(heroStep, 'Hero card', 'hero-card', cardsFor(cards, 'hero-card')
-    .sort((a, b) => (a.subcategory || a.title).localeCompare(b.subcategory || b.title))
+  picker(heroStep, 'Hero card', 'hero-card', heroChoices(cards)
     .map(card => [card.id, card.title]), selection.heroCardId, value => update({ heroCardId: value }));
   const { front, backs, skills } = heroCardsFor(cards, selection.heroCardId);
   if (front) {

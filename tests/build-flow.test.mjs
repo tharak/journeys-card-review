@@ -4,6 +4,7 @@ import { cardsFor, heroCardsFor, normalizeBuildSelection, subcategoriesFor, orde
 
 const cards = [
   { id: 'hero-front', category: 'hero-card', subcategory: 'Aragorn' },
+  { id: 'bilbo-front', category: 'hero-card', subcategory: 'Bilbo' },
   { id: 'hero-back', category: 'card-back', subcategory: 'Aragorn' },
   { id: 'hero-skill', category: 'hero', subcategory: 'Aragorn' },
   { id: 'other-skill', category: 'hero', subcategory: 'Bilbo' },
@@ -32,21 +33,23 @@ test('subcategory choices exclude deleted cards and group by category', () => {
   assert.deepEqual(cardsFor(cards, 'one-handed', 'Sword').map(card => card.id), ['sword-1', 'sword-2']);
 });
 
-test('a second weapon is allowed only after choosing a 1-handed subcategory', () => {
+test('a second weapon defaults to the first 1-handed subcategory and disappears for 2-handed choices', () => {
   const input = { heroCardId: 'hero-front', role: 'Captain', weaponMode: 'one-handed', weaponSubcategories: ['Sword', 'Shield'] };
   assert.deepEqual(normalizeBuildSelection(input, cards).weaponSubcategories, ['Sword', 'Shield']);
   assert.deepEqual(normalizeBuildSelection({ ...input, weaponMode: 'two-handed', weaponSubcategories: ['Bow', 'Shield'] }, cards).weaponSubcategories, ['Bow']);
   const empty = normalizeBuildSelection({ ...input, weaponSubcategories: ['', 'Shield'] }, cards);
-  assert.equal(empty.weaponMode, '');
-  assert.deepEqual(empty.weaponSubcategories, []);
-  assert.deepEqual(normalizeBuildSelection({ ...input, weaponSubcategories: ['Sword', 'Bow'] }, cards).weaponSubcategories, ['Sword', '']);
+  assert.equal(empty.weaponMode, 'one-handed');
+  assert.deepEqual(empty.weaponSubcategories, ['Harp', 'Shield']);
+  assert.deepEqual(normalizeBuildSelection({ ...input, weaponSubcategories: ['Sword', 'Bow'] }, cards).weaponSubcategories, ['Sword', 'Harp']);
+  assert.deepEqual(normalizeBuildSelection({ ...input, weaponSubcategories: ['Sword', 'Sword'] }, cards).weaponSubcategories, ['Sword', 'Sword']);
 });
 
-test('selection normalization clears deleted and unavailable choices without changing the input', () => {
+test('selection normalization replaces unavailable choices with defaults without changing the input', () => {
   const input = { heroCardId: 'missing', role: 'missing', weaponMode: 'one-handed', weaponSubcategories: ['Axe', 'Sword'], trinketSubcategory: 'Harp' };
   const before = structuredClone(input);
   const selected = normalizeBuildSelection(input, cards);
-  assert.equal(selected.heroCardId, ''); assert.equal(selected.role, ''); assert.equal(selected.weaponMode, '');
+  assert.equal(selected.heroCardId, 'hero-front'); assert.equal(selected.role, 'Captain'); assert.equal(selected.weaponMode, 'one-handed');
+  assert.deepEqual(selected.weaponSubcategories, ['Harp', 'Sword']);
   assert.equal(selected.trinketSubcategory, 'Harp');
   assert.deepEqual(input, before);
 });
@@ -64,5 +67,35 @@ test('changing a picker removes hidden picks and preserves the remaining click o
   assert.deepEqual(normalizeBuildSelection(input, cards).pickedCardIds, ['shield', 'hero-skill', 'sword-2', 'role']);
   const updated = normalizeBuildSelection({ ...input, weaponMode: 'two-handed', weaponSubcategories: ['Bow'] }, cards);
   assert.deepEqual(updated.pickedCardIds, ['hero-skill', 'role']);
-  assert.deepEqual(normalizeBuildSelection({ ...input, heroCardId: '' }, cards).pickedCardIds, ['shield', 'sword-2', 'role']);
+  assert.deepEqual(normalizeBuildSelection({ ...input, heroCardId: 'bilbo-front' }, cards).pickedCardIds, ['shield', 'sword-2', 'role']);
+});
+
+test('fresh builds default every picker in displayed order without picking cards', () => {
+  const catalog = [...cards,
+    { id: 'deleted-hero', category: 'hero-card', subcategory: 'A', deleted: true },
+    { id: 'first-hero', category: 'hero-card', subcategory: 'A hero', order: 100 },
+    { id: 'armor-b', category: 'armor', subcategory: 'Plate', order: 0 },
+    { id: 'armor-a', category: 'armor', subcategory: 'Cloak', order: 100 },
+    { id: 'mount', category: 'mount', subcategory: 'Pony' },
+  ];
+  assert.deepEqual(normalizeBuildSelection({}, catalog), {
+    heroCardId: 'first-hero', role: 'Captain', weaponMode: 'one-handed', weaponSubcategories: ['Harp', 'Harp'],
+    armorSubcategory: 'Cloak', trinketSubcategory: 'Harp', mountSubcategory: 'Pony', pickedCardIds: [],
+  });
+});
+
+test('empty categories stay empty and a 2-handed-only catalog selects its first weapon', () => {
+  assert.deepEqual(normalizeBuildSelection({}, []), {
+    heroCardId: '', role: '', weaponMode: '', weaponSubcategories: [], pickedCardIds: [],
+    armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '',
+  });
+  const selected = normalizeBuildSelection({}, cards.filter(card => card.category === 'two-handed'));
+  assert.equal(selected.weaponMode, 'two-handed');
+  assert.deepEqual(selected.weaponSubcategories, ['Bow']);
+});
+
+test('valid restored choices and visible highlights survive default normalization', () => {
+  const input = { heroCardId: 'bilbo-front', role: 'Captain', weaponMode: 'two-handed', weaponSubcategories: ['Bow'],
+    armorSubcategory: '', trinketSubcategory: 'Harp', mountSubcategory: '', pickedCardIds: ['bow', 'other-skill', 'role'] };
+  assert.deepEqual(normalizeBuildSelection(input, cards), input);
 });

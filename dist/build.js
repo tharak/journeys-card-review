@@ -1,6 +1,6 @@
 import { isCardOrder, cardOrderFor, compareCardOrder } from './review-data.mjs';
 
-import { cardsFor, subcategoriesFor, normalizeBuildSelection, renderBuildFlow } from './build-flow.mjs';
+import { normalizeBuildSelection, renderBuildFlow } from './build-flow.mjs';
 
 const $ = selector => document.querySelector(selector);
 const TYPES = [
@@ -20,7 +20,7 @@ const REVIEW_KEYS = {
   deleted: 'journeys-card-review-deleted-v1',
 };
 const emptyDraft = () => ({ id: '', name: '', heroId: '', role: '', notes: '', cards: {}, weaponMode: '', weaponSubcategories: [], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' });
-const state = { loaded: false, data: null, capture: {}, cards: [], byId: new Map(), heroes: [],
+const state = { loaded: false, data: null, capture: {}, cards: [], byId: new Map(),
   draft: emptyDraft(), saved: [] };
 let toastTimer;
 
@@ -75,7 +75,6 @@ function applyReviews() {
       deleted: deleted.has(card.id) };
   }).sort((a, b) => compareCardOrder(a.order, b.order));
   state.byId = new Map(state.cards.map(card => [card.id, card]));
-  state.heroes = cardsFor(state.cards, 'hero-card');
 }
 
 function normalizeDraft(input, importing = false) {
@@ -95,8 +94,6 @@ function normalizeDraft(input, importing = false) {
     || input.weaponSubcategories.length > 2 || input.weaponSubcategories.some(value => typeof value !== 'string'))) {
     throw new Error('Invalid build weapons.');
   }
-  if (draft.heroId && !state.heroes.some(hero => hero.id === draft.heroId)) throw new Error('This build uses an unknown hero.');
-  if (draft.role && !subcategoriesFor(state.cards, 'role').includes(draft.role)) throw new Error('This build uses an unknown role.');
   if (importing && !Array.isArray(input.cards)) throw new Error('The build is missing its card list.');
   const entries = Array.isArray(input.cards) ? input.cards.map(card => [card?.id, card?.quantity])
     : Object.entries(input.cards && typeof input.cards === 'object' ? input.cards : {});
@@ -118,6 +115,7 @@ function normalizeDraft(input, importing = false) {
     }
   }
   const { heroCardId, pickedCardIds, ...choices } = normalizeBuildSelection({ ...equipment, heroCardId: draft.heroId, role: draft.role, pickedCardIds: Object.keys(draft.cards) }, state.cards);
+  draft.heroId = heroCardId;
   Object.assign(draft, choices);
   draft.cards = Object.fromEntries(pickedCardIds.map(id => [id, draft.cards[id]]));
   return draft;
@@ -155,7 +153,11 @@ function renderLibrary() {
       persistDraft(); renderActions(); renderLibrary();
     },
   });
-  state.draft.cards = Object.fromEntries(selection.pickedCardIds.map(id => [id, state.draft.cards[id] || 1]));
+  const { heroCardId, pickedCardIds, ...choices } = selection;
+  state.draft.heroId = heroCardId;
+  Object.assign(state.draft, choices);
+  state.draft.cards = Object.fromEntries(pickedCardIds.map(id => [id, state.draft.cards[id] || 1]));
+  persistDraft(); renderActions();
 }
 
 function selectedCards() {

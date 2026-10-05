@@ -36,6 +36,7 @@ const TITLE_KEY = 'journeys-card-review-titles-v1';
 const BUILD_KEY = 'journeys-card-review-build-v1';
 const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
+const mobileBuilds = window.matchMedia('(max-width:700px)');
 const state = { cards: [], sections: [], aliases: {}, sourceData: null, overrides: {}, subcategoryOverrides: {}, orderOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: '', weaponSubcategories: [], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
 let toastTimer;
 
@@ -483,6 +484,7 @@ function renderDocument() {
 }
 
 function switchView(view) {
+  if (mobileBuilds.matches) view = 'builds';
   state.view = view;
   $('#builds-view').hidden = view !== 'builds';
   $('#gallery-view').hidden = view !== 'gallery';
@@ -492,10 +494,17 @@ function switchView(view) {
     button.classList.toggle('active', active);
     if (active) button.setAttribute('aria-current', 'page'); else button.removeAttribute('aria-current');
   }
-  if (view === 'builds') renderBuilds();
+  if (view === 'builds' && state.cards.length) renderBuilds();
   if (view === 'document' && !$('#document-sections').children.length) renderDocument();
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
+
+mobileBuilds.addEventListener('change', event => {
+  if (event.matches) {
+    $('#card-dialog').close();
+    switchView('builds');
+  }
+});
 
 function registerWebMCP() {
   if (!document.modelContext?.registerTool) return;

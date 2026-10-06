@@ -19,13 +19,13 @@ const build = () => ({ ...emptyDraft(), id: 'original', name: 'Ranger', heroId: 
   cards: { 'blade-a': 1, 'blade-b': 1, dagger: 1, 'armor-b': 1, 'armor-a': 1, 'armor-z': 1, deleted: 1 } });
 
 test('summary uses only highlighted items and highest assigned Order independently in each slot', () => {
-  assert.equal(buildSummary(build(), catalog), 'Aragorn · Hunter · Best blade · Dagger · Coat');
+  assert.equal(buildSummary(build(), catalog), 'Aragorn · Ranger · Hunter · Best blade · Dagger · Coat');
   const unpicked = build(); unpicked.cards = {};
-  assert.equal(buildSummary(unpicked, catalog), 'Aragorn · Hunter');
+  assert.equal(buildSummary(unpicked, catalog), 'Aragorn · Ranger · Hunter');
 });
 test('two-handed summaries have one weapon slot and unassigned items still appear', () => {
   const two = build(); two.weaponMode = 'two-handed'; two.weaponSubcategories = ['Axe', 'Axe']; two.cards = { axe: 1 };
-  assert.equal(buildSummary(two, [...catalog, { id: 'axe', title: 'Axe', category: 'two-handed', subcategory: 'Axe', order: null }]), 'Aragorn · Hunter · Axe');
+  assert.equal(buildSummary(two, [...catalog, { id: 'axe', title: 'Axe', category: 'two-handed', subcategory: 'Axe', order: null }]), 'Aragorn · Ranger · Hunter · Axe');
 });
 test('copies retain independent quantities and notes while clearing ownership and revision', () => {
   const original = { ...build(), ownerId: 'someone', ownerName: 'Someone', revision: 8, notes: 'Keep me', createdAt: 123 };

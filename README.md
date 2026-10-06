@@ -1,6 +1,6 @@
 # Journeys Builds
 
-A static card catalog and build creator for *Journeys in Middle-earth*. It combines the captured build document with scans from JiME Card DB. The published database contains 866 records, including 109 existing deleted entries; 757 entries are visible by default. Approved editors save categories, subcategories, order, text, titles, and deletions to Google Cloud automatically. The home page lists public saved builds as text: hero, role, and the highest-Order highlighted item in each equipment slot. The **+** button opens the creator. Personal favorites sync with your Google account; the list can be ordered by Favorites, Hero, or Role.
+A static card catalog and build creator for *Journeys in Middle-earth*. It combines the captured build document with scans from JiME Card DB. The published database contains 866 records, including 109 existing deleted entries; 757 entries are visible by default. Approved editors save categories, subcategories, order, text, titles, and deletions to Google Cloud automatically. The home page lists public saved builds as text: hero, build name, role, and the highest-Order highlighted item in each equipment slot. The **+** button opens the creator. Personal favorites sync with your Google account; search and ordering by Favorites, Hero, or Role share the top bar. These filters are absent from the creator.
 
 Character sheets use `category: "hero-card"`; hero skills use `category: "hero"`. Their subcategory identifies the character. Card records have no `hero` or `heroes` field.
 

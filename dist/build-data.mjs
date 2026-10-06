@@ -50,7 +50,7 @@ export function buildPayload(build) {
 export function buildSummary(build, catalog) {
   const byId = new Map(catalog.map(card => [card.id, card]));
   const hero = byId.get(build.heroId);
-  const parts = [hero?.subcategory || hero?.title || 'Unknown hero', build.role || 'No role'];
+  const parts = [hero?.subcategory || hero?.title || 'Unknown hero', build.name || 'Untitled build', build.role || 'No role'];
   const picked = Object.keys(build.cards || {}).map(id => byId.get(id)).filter(card => card && !card.deleted);
   const slots = (build.weaponSubcategories || []).slice(0, build.weaponMode === 'two-handed' ? 1 : 2)
     .map(name => [build.weaponMode, name]);

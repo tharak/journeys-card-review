@@ -29,7 +29,7 @@ export function connectBuildList({ getCatalog, notify }) {
       favorite.textContent = active ? '★' : '☆';
       favorite.setAttribute('aria-label', `${active ? 'Unfavorite' : 'Favorite'} ${link.textContent}`);
       favorite.setAttribute('aria-pressed', String(active));
-      favorite.title = user ? (active ? 'Remove favorite' : 'Favorite build') : 'Sign in to favorite builds';
+      favorite.title = active ? 'Remove favorite' : 'Favorite build';
       favorite.disabled = !user || busyFavorites.has(build.id);
       favorite.addEventListener('click', async () => {
         if (!user || busyFavorites.has(build.id)) return;
@@ -45,8 +45,7 @@ export function connectBuildList({ getCatalog, notify }) {
     }
     const empty = $('#build-list-empty');
     empty.hidden = !failure && ready && matching.length > 0;
-    empty.textContent = failure || (!ready ? 'Loading saved builds…' : builds.length ? 'No builds match these filters.' : 'No saved builds yet. Create the first build.');
-    $('#build-count').textContent = ready && !failure ? `${matching.length} build${matching.length === 1 ? '' : 's'}` : '';
+    empty.textContent = failure || (!ready ? 'Loading saved builds…' : builds.length ? 'No matching builds.' : 'No saved builds.');
     migration.render();
   }
   store.then(connection => connection.watchList(next => { builds = next; ready = true; failure = ''; render(); }, () => {

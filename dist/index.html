@@ -17,6 +17,14 @@
       <button type="button" class="view-tab active" data-view="builds" aria-current="page">Builds</button>
       <a class="view-tab create-build-link" href="build.html" aria-label="Create build" title="Create build">+</a>
     </nav>
+    <div id="build-filters" class="topbar-filters">
+      <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="build-search" type="search" placeholder="Search builds" aria-label="Search builds"></label>
+      <label class="sort-wrap"><span>Order by</span><select id="build-sort" aria-label="Order builds"><option value="favorite">Favorites</option><option value="hero">Hero</option><option value="role">Role</option></select></label>
+    </div>
+    <div id="card-filters" class="topbar-filters" hidden>
+      <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="card-search" type="search" placeholder="Search cards" aria-label="Search cards"></label>
+      <label class="sort-wrap"><span>Order by</span><select id="card-sort" aria-label="Order cards"><option value="original">Original order</option><option value="card-order">Card order</option><option value="category-subcategory">Category – subcategory</option><option value="title-asc">Title A–Z</option><option value="title-desc">Title Z–A</option></select></label>
+    </div>
     <div class="header-actions" hidden>
       <button type="button" class="plain-button" id="export-button">Export review</button>
       <button type="button" class="plain-button" id="export-data-button" title="Download the full site data, including this browser's edits">Export site data</button>
@@ -37,11 +45,6 @@
 
   <main>
     <section id="builds-view" class="builds-view" aria-label="Saved builds">
-      <div class="build-list-toolbar">
-        <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="build-search" type="search" placeholder="Search builds" aria-label="Search builds"></label>
-        <label class="sort-wrap"><span>Order by</span><select id="build-sort" aria-label="Order builds"><option value="favorite">Favorites</option><option value="hero">Hero</option><option value="role">Role</option></select></label>
-        <span id="build-count" class="result-meta" aria-live="polite"></span>
-      </div>
       <button id="local-build-transfer" class="plain-button" type="button" hidden>Transfer browser-saved builds</button>
       <ul id="saved-build-list" class="saved-build-list"></ul>
       <p id="build-list-empty" class="empty-state" role="status">Loading saved builds…</p>
@@ -51,20 +54,9 @@
       <aside class="sidebar">
         <div class="sidebar-heading">Browse cards</div>
         <nav id="category-list" class="category-list" aria-label="Card categories"></nav>
-        <div class="sidebar-note">Open Hero or Role to browse subcategories. Approved editors can update the shared catalog. Card edits save automatically.</div>
       </aside>
       <div class="gallery-panel">
-        <div class="toolbar">
-          <div class="toolbar-main">
-            <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="card-search" type="search" placeholder="Search cards" aria-label="Search cards"></label>
-            <label class="sort-wrap"><span>Order</span><select id="card-sort" aria-label="Order cards"><option value="original">Original order</option><option value="card-order">Card order</option><option value="category-subcategory">Category – subcategory</option><option value="title-asc">Title A–Z</option><option value="title-desc">Title Z–A</option></select></label>
-          </div>
-          <div class="result-meta" id="result-meta" aria-live="polite"></div>
-        </div>
-        <div class="keyboard-guide" aria-label="Keyboard controls">
-          <div class="keyboard-keys"><span><kbd>←</kbd><kbd>→</kbd> move</span><span><kbd>Q</kbd> Role</span><span><kbd>W</kbd> 1-handed</span><span><kbd>E</kbd> 2-handed</span><span><kbd>R</kbd> Armor</span><span><kbd>T</kbd> Trinket</span><span><kbd>Y</kbd> Mount</span><span><kbd>U</kbd> Hero</span><span><kbd>Del</kbd> delete</span></div>
-          <strong id="current-card-label" aria-live="polite"></strong>
-        </div>
+        <div class="gallery-meta"><span class="result-meta" id="result-meta" aria-live="polite"></span><span id="current-card-label" aria-live="polite"></span></div>
         <div id="gallery" class="card-grid"></div>
         <div id="gallery-empty" class="empty-state" hidden>No cards match these filters.</div>
       </div>
@@ -81,7 +73,6 @@
           <div class="eyebrow" id="dialog-category"></div>
           <label class="detail-label title-label" for="dialog-title-input">Title</label>
           <input id="dialog-title-input" class="card-title-input" type="text" autocomplete="off" aria-label="Card title">
-          <p class="ocr-note" id="dialog-ocr-note"></p>
           <div id="dialog-scan-wrap" hidden><label class="detail-label" for="dialog-scan">Image source</label><select id="dialog-scan" class="card-subcategory-input"></select></div>
           <label class="detail-label card-text-label" for="dialog-card-text">Card text</label>
           <textarea id="dialog-card-text" class="card-text-input" rows="10" placeholder="Type the text from this card"></textarea>

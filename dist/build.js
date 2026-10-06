@@ -48,21 +48,19 @@ function renderActions() {
   const canEdit = editable() && !state.busy;
   $('#build-name').disabled = !canEdit;
   $('#build-notes').readOnly = !canEdit;
-  $('#build-owner').textContent = state.draft.ownerName ? `By ${state.draft.ownerName}${state.draft.ownerId === state.user?.uid ? ' · your build' : ''}` : '';
+  $('#build-owner').textContent = state.draft.ownerName ? `By ${state.draft.ownerName}` : '';
   $('#save-build').hidden = !!state.draft.ownerId && state.draft.ownerId !== state.user?.uid;
   $('#save-build').disabled = !canEdit || !state.user || !state.draft.heroId || !state.draft.name.trim() || state.stale || (!state.dirty && state.draft.revision > 0);
   $('#copy-build').hidden = !state.initialized || !state.draft.id;
   $('#copy-build').disabled = state.busy || !state.user;
-  $('#copy-build').title = state.user ? '' : 'Sign in with Google to create a copy';
   $('#delete-build').hidden = !state.remote || state.remote.ownerId !== state.user?.uid || state.removed;
   $('#delete-build').disabled = state.busy || state.stale;
   $('#reload-build').hidden = !state.stale || !state.remote;
   $('#reload-build').disabled = state.busy;
-  const status = state.busy ? state.saving : state.error ? state.error : state.removed ? 'This build was deleted.'
-    : state.stale ? 'Changed in another session · reload or copy your draft'
-    : !state.initialized ? 'Loading…' : !editable() ? 'Read-only · create a copy to edit'
-    : state.dirty || !state.draft.revision ? (state.user ? 'Unsaved changes' : 'Sign in to save · draft stays in this browser') : 'Saved';
+  const status = state.busy ? state.saving : state.error ? state.error : state.removed ? 'Build deleted.'
+    : state.stale ? 'Build changed in another session.' : '';
   $('#build-save-status').textContent = status;
+  $('.build-details').hidden = !state.draft.ownerName && !status;
   migration.render();
 }
 function preview(id) {
@@ -84,7 +82,7 @@ function renderLibrary() {
   });
   const unavailable = unavailableCards(state.draft, state.cards);
   $('#build-warning').hidden = !unavailable.length;
-  $('#build-warning').textContent = `${unavailable.length} saved card(s) are unavailable in the current catalog. Saved selections are retained.`;
+  $('#build-warning').textContent = `${unavailable.length} unavailable saved card(s).`;
   $('#build-notes-label').hidden = !editable() && !state.draft.notes;
 }
 function render() {

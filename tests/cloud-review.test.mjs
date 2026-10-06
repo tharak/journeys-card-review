@@ -49,7 +49,7 @@ async function harness(t, initial = {}, readOnly = false) {
       subcategoryOverrides: review.subcategoryOverrides, orderOverrides: review.orderOverrides,
       textOverrides: review.textOverrides, titleOverrides: review.titleOverrides }); },
   });
-  return { state, connection, stored, elements, writes, notices,
+  return { state, connection, stored, elements, controls, writes, notices,
     snapshot(documents = {}, metadata = {}) { snapshotHandler({ metadata: { fromCache: false, hasPendingWrites: false, ...metadata },
       docs: Object.entries(documents).map(([id, fields]) => ({ id, data: () => fields })) }); },
     async authenticate(user = { uid: 'editor', email: 'editor@example.com' }) { auth.currentUser = user; await authHandler(user); },
@@ -97,6 +97,8 @@ test('signed-out and read-only viewers never write to the catalog', async t => {
   assert.deepEqual(h.writes, []);
   assert.equal(h.elements.get('auth').hidden, true);
   assert.equal(h.elements.get('upload').hidden, true);
+  assert.equal(h.elements.get('status').textContent, '');
+  assert.equal(h.controls.hidden, true);
 });
 
 test('optimistic SDK snapshots do not count as acknowledged cloud data', async t => {

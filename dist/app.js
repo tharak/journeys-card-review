@@ -258,7 +258,6 @@ function setCatalogAccess() {
   document.querySelectorAll('.tile-category, .tile-subcategory, .tile-restore, #dialog-categories button, #delete-card, #dialog-subcategory-select, #dialog-subcategory-input, #dialog-order-input')
     .forEach(element => { element.disabled = !canEditCatalog || (element.closest('#dialog-categories') && state.deleted.has(state.selected)); });
   for (const selector of ['#dialog-title-input', '#dialog-card-text']) $(selector).readOnly = !canEditCatalog;
-  $('.keyboard-keys').hidden = !canEditCatalog;
 }
 
 function createCardTile(card) {
@@ -380,7 +379,6 @@ function renderDialog() {
     $('#current-card-label').textContent = `Current: ${titleFor(card)} · ${card.id.replace('card-', '#').replace('character-', 'Hero ')}`;
   };
   titleInput.onchange = () => { renderGallery(); renderDialog(); };
-  $('#dialog-ocr-note').textContent = card.category === 'hero-card' ? 'Character sheet. Check the image for abilities and stats.' : card.ocrTitle ? `OCR title: ${card.ocrTitle}. Check it against the image.` : 'The title could not be read automatically. Check the image.';
   const cardText = $('#dialog-card-text');
   cardText.value = cardTextFor(card);
   cardText.oninput = () => {
@@ -475,6 +473,8 @@ function switchView(view) {
   state.view = view === 'gallery' ? 'gallery' : 'builds';
   $('#builds-view').hidden = state.view !== 'builds';
   $('#gallery-view').hidden = state.view !== 'gallery';
+  $('#build-filters').hidden = state.view !== 'builds';
+  $('#card-filters').hidden = state.view !== 'gallery';
   $('#cloud-controls').classList.toggle('catalog-only', state.view !== 'gallery');
   for (const button of document.querySelectorAll('.view-tab[data-view]')) {
     const active = button.dataset.view === state.view;

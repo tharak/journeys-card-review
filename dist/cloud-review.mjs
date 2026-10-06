@@ -70,8 +70,9 @@ export async function connectCloudReview({ getState, applyReview, controls, noti
       if (lastError) setStatus(lastError);
       else if (!ready) setStatus('Connecting to cloud…');
       else if (writing) setStatus('Saving to cloud…');
-      else if (hasPending() && !readOnly) setStatus(editor ? 'Cloud edits waiting to save' : 'Browser edits pending · sign in as an editor to save');
-      else setStatus(editor ? 'Cloud connected · edits save automatically' : manageAuth ? 'Shared cloud catalog · browser edits stay local' : 'Shared cloud catalog · read-only');
+      else if (hasPending() && !readOnly) setStatus('Pending edits');
+      else setStatus('');
+      controls.hidden = !status.textContent && authButton.hidden && uploadButton.hidden && retryButton.hidden;
     }
     function applyRemote() {
       const review = applyCloudDocuments(getState(), mergeDocuments(remote, readOnly ? {} : pending));

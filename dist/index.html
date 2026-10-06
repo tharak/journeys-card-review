@@ -19,11 +19,21 @@
     </nav>
     <div id="build-filters" class="topbar-filters">
       <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="build-search" type="search" placeholder="Search builds" aria-label="Search builds"></label>
-      <label class="sort-wrap"><span>Order by</span><select id="build-sort" aria-label="Order builds"><option value="favorite">Favorites</option><option value="hero">Hero</option><option value="role">Role</option></select></label>
+      <div id="build-sort" class="sort-segments" role="radiogroup" aria-label="Order builds">
+        <button type="button" class="build-segment" role="radio" data-value="favorite" aria-checked="true">Favorites</button>
+        <button type="button" class="build-segment" role="radio" data-value="hero" aria-checked="false" tabindex="-1">Hero</button>
+        <button type="button" class="build-segment" role="radio" data-value="role" aria-checked="false" tabindex="-1">Role</button>
+      </div>
     </div>
     <div id="card-filters" class="topbar-filters" hidden>
       <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="card-search" type="search" placeholder="Search cards" aria-label="Search cards"></label>
-      <label class="sort-wrap"><span>Order by</span><select id="card-sort" aria-label="Order cards"><option value="original">Original order</option><option value="card-order">Card order</option><option value="category-subcategory">Category – subcategory</option><option value="title-asc">Title A–Z</option><option value="title-desc">Title Z–A</option></select></label>
+      <div id="card-sort" class="sort-segments" role="radiogroup" aria-label="Order cards">
+        <button type="button" class="build-segment" role="radio" data-value="original" aria-checked="true">Original</button>
+        <button type="button" class="build-segment" role="radio" data-value="card-order" aria-checked="false" tabindex="-1">Card order</button>
+        <button type="button" class="build-segment" role="radio" data-value="category-subcategory" aria-label="Category and subcategory" aria-checked="false" tabindex="-1">Category</button>
+        <button type="button" class="build-segment" role="radio" data-value="title-asc" aria-label="Title A–Z" aria-checked="false" tabindex="-1">A–Z</button>
+        <button type="button" class="build-segment" role="radio" data-value="title-desc" aria-label="Title Z–A" aria-checked="false" tabindex="-1">Z–A</button>
+      </div>
     </div>
     <div class="header-actions" hidden>
       <button type="button" class="plain-button" id="export-button">Export review</button>

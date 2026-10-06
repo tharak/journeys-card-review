@@ -2,6 +2,7 @@ import { connectBuildList } from './build-list.mjs';
 import { connectAccount } from './firebase-client.mjs';
 import { REVIEW_FIELDS, normalizeCategory, parseReview, createReview, createSiteData, isCardOrder, cardOrderFor, compareCardOrder } from './review-data.mjs';
 import { connectCloudReview } from './cloud-review.mjs';
+import { connectSegmentedControl } from './segmented-control.mjs';
 
 const CATEGORIES = [
   { id: 'all', label: 'All cards', icon: '▦' },
@@ -604,7 +605,7 @@ function applySharedReview(review) {
 
 document.querySelectorAll('.view-tab[data-view]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
 $('#card-search').addEventListener('input', event => { state.search = event.target.value.trim(); renderGallery(); });
-$('#card-sort').addEventListener('change', event => { state.sort = event.target.value; renderGallery(); });
+connectSegmentedControl($('#card-sort'), value => { state.sort = value; renderGallery(); });
 $('#close-dialog').addEventListener('click', () => $('#card-dialog').close());
 $('#prev-card').addEventListener('click', () => moveCard(-1));
 $('#next-card').addEventListener('click', () => moveCard(1));

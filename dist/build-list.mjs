@@ -1,6 +1,7 @@
 import { getBuildStore } from './cloud-builds.mjs';
 import { buildSummary, compareBuildList } from './build-data.mjs';
 import { migrationControl } from './build-migration.mjs';
+import { connectSegmentedControl } from './segmented-control.mjs';
 
 export function connectBuildList({ getCatalog, notify }) {
   const $ = selector => document.querySelector(selector);
@@ -8,6 +9,7 @@ export function connectBuildList({ getCatalog, notify }) {
   let favorites = new Set(), unsubscribeFavorites, generation = 0;
   const busyFavorites = new Set();
   const store = getBuildStore();
+  const ordering = connectSegmentedControl($('#build-sort'), render);
   const migration = migrationControl($('#local-build-transfer'), { getUser: () => user, getStore: () => store, notify });
   function render() {
     const term = $('#build-search').value.trim().toLocaleLowerCase();
@@ -15,7 +17,7 @@ export function connectBuildList({ getCatalog, notify }) {
     list.replaceChildren();
     const catalog = getCatalog();
     const matching = builds.filter(build => !term || `${build.name} ${buildSummary(build, catalog)}`.toLocaleLowerCase().includes(term))
-      .sort((a, b) => compareBuildList(a, b, { sort: $('#build-sort').value, favorites, catalog }));
+      .sort((a, b) => compareBuildList(a, b, { sort: ordering.value, favorites, catalog }));
     for (const build of matching) {
       const row = document.createElement('li');
       const link = document.createElement('a');
@@ -52,7 +54,6 @@ export function connectBuildList({ getCatalog, notify }) {
     failure = 'Saved builds could not load. Check your connection and reload.'; render();
   })).catch(error => { failure = error.message; render(); });
   $('#build-search').addEventListener('input', render);
-  $('#build-sort').addEventListener('change', render);
   render();
   return { render, setUser(next) {
     if (next?.uid !== user?.uid) {

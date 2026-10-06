@@ -1,0 +1,98 @@
+rules_version = '2';
+// Public cardReviews: optional categories/subcategories/orders/cardTexts/titles/deleted overrides.
+// Private editors/{uid}: enabled Boolean, readable by that user, administered outside the client.
+// Public builds/{id}: name (1..100), heroId (1..200), role/equipment strings (0..200),
+// notes (0..10000), cards map (<=1000, quantities 1..9), weaponSubcategories (<=2 strings),
+// ownerId (1..128), ownerName (1..100), sourceBuildId (0..128), timestamps and positive revision.
+// ownerId/ownerName/createdAt/sourceBuildId are immutable. Only the creator writes/deletes.
+// Private users/{uid}/favorites/{buildId}: createdAt timestamp; only that account reads/writes.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isGoogleUser() {
+      return request.auth != null && request.auth.token.firebase.sign_in_provider == 'google.com';
+    }
+    function isEditor() {
+      return isGoogleUser()
+        && get(/databases/$(database)/documents/editors/$(request.auth.uid)).data.enabled == true;
+    }
+    function validOptionalString(data, key, limit) {
+      return data.get(key, null) == null
+        || (data[key] is string && data[key].size() <= limit);
+    }
+    function validString(value, min, max) {
+      return value is string && value.size() >= min && value.size() <= max;
+    }
+    function isBuildOwner() {
+      return isGoogleUser() && resource.data.ownerId == request.auth.uid;
+    }
+    function isValidBuild(data) {
+      let fields = ['name', 'heroId', 'role', 'notes', 'cards', 'weaponMode', 'weaponSubcategories',
+        'armorSubcategory', 'trinketSubcategory', 'mountSubcategory', 'sourceBuildId',
+        'ownerId', 'ownerName', 'createdAt', 'updatedAt', 'revision'];
+      return data.keys().hasAll(fields) && data.keys().hasOnly(fields)
+        && validString(data.name, 1, 100) && data.name.matches('.*[^ ].*')
+        && validString(data.heroId, 1, 200) && validString(data.role, 0, 200)
+        && validString(data.notes, 0, 10000)
+        && data.cards is map && data.cards.size() <= 1000
+        && data.cards.values().hasOnly([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        && data.weaponMode in ['', 'one-handed', 'two-handed']
+        && data.weaponSubcategories is list && data.weaponSubcategories.size() <= 2
+        && (data.weaponSubcategories.size() < 1 || validString(data.weaponSubcategories[0], 0, 200))
+        && (data.weaponSubcategories.size() < 2 || validString(data.weaponSubcategories[1], 0, 200))
+        && validString(data.armorSubcategory, 0, 200) && validString(data.trinketSubcategory, 0, 200)
+        && validString(data.mountSubcategory, 0, 200)
+        && validString(data.sourceBuildId, 0, 128)
+        && (data.sourceBuildId == '' || data.sourceBuildId.matches('[A-Za-z0-9_-]{1,128}'))
+        && validString(data.ownerId, 1, 128) && validString(data.ownerName, 1, 100)
+        && data.createdAt is timestamp && data.updatedAt is timestamp && data.updatedAt == request.time
+        && data.revision is int && data.revision >= 1 && data.revision <= 9007199254740991;
+    }
+    function isValidCardReview(data) {
+      return data.keys().hasOnly(['categories', 'subcategories', 'orders', 'cardTexts', 'titles', 'deleted'])
+        && (data.get('categories', null) == null
+          || data.categories in ['hero', 'hero-card', 'role', 'one-handed', 'two-handed', 'armor', 'trinket', 'mount', 'hand-item', 'basic', 'title', 'weakness', 'terrain', 'damage', 'fear', 'boon', 'bane', 'captured', 'card-back', 'unsorted'])
+        && validOptionalString(data, 'subcategories', 200) && validOptionalString(data, 'cardTexts', 50000)
+        && validOptionalString(data, 'titles', 500)
+        && (data.get('orders', null) == null || data.orders == 'published'
+          || (data.orders is int && data.orders >= 0 && data.orders <= 9007199254740991))
+        && (data.get('deleted', null) == null || data.deleted is bool);
+    }
+    function isValidFavorite(data) {
+      return data.keys().hasAll(['createdAt']) && data.keys().hasOnly(['createdAt'])
+        && data.createdAt is timestamp && data.createdAt == request.time;
+    }
+    match /editors/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      // Only project administrators can grant access through the console/Admin SDK.
+      allow list, write: if false;
+    }
+    match /cardReviews/{cardId} {
+      allow read: if true;
+      allow create, update: if isEditor()
+        && cardId.matches('[A-Za-z0-9_-]{1,128}')
+        && isValidCardReview(request.resource.data);
+      allow delete: if false;
+    }
+    match /builds/{buildId} {
+      allow read: if true;
+      allow create: if isGoogleUser() && buildId.matches('[A-Za-z0-9_-]{1,128}')
+        && isValidBuild(request.resource.data)
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerName == (request.auth.token.get('name', '') == '' ? 'Player' : request.auth.token.name)
+        && request.resource.data.createdAt == request.time && request.resource.data.revision == 1;
+      allow update: if isBuildOwner() && isValidBuild(request.resource.data)
+        && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['ownerId', 'ownerName', 'createdAt', 'sourceBuildId'])
+        && request.resource.data.revision == resource.data.revision + 1;
+      allow delete: if isBuildOwner();
+    }
+    match /users/{uid}/favorites/{buildId} {
+      allow read: if isGoogleUser() && request.auth.uid == uid;
+      allow create: if isGoogleUser() && request.auth.uid == uid
+        && buildId.matches('[A-Za-z0-9_-]{1,128}')
+        && exists(/databases/$(database)/documents/builds/$(buildId))
+        && isValidFavorite(request.resource.data);
+      allow update: if false;
+      allow delete: if isGoogleUser() && request.auth.uid == uid;
+    }
+  }
+}

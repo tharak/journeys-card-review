@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "firebase": {
+    "apiKey": "AIzaSyCGC6ZSppjHNCGR0sTS0OdvTp62OwIqLiE",
+    "authDomain": "journeys-card-review-e1771.firebaseapp.com",
+    "projectId": "journeys-card-review-e1771",
+    "storageBucket": "journeys-card-review-e1771.firebasestorage.app",
+    "messagingSenderId": "788392024027",
+    "appId": "1:788392024027:web:2f50e248a90932e73839fe",
+    "measurementId": "G-TKFY7SQLFV"
+  }
+}

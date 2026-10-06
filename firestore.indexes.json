@@ -1,0 +1,8 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    { "collectionGroup": "cardReviews", "fieldPath": "*", "indexes": [] },
+    { "collectionGroup": "builds", "fieldPath": "*", "indexes": [] },
+    { "collectionGroup": "favorites", "fieldPath": "*", "indexes": [] }
+  ]
+}

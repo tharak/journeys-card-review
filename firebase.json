@@ -1,0 +1,35 @@
+{
+  "auth": {
+    "providers": {
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Journeys Card Review",
+        "supportEmail": "tharakzn@gmail.com",
+        "authorizedRedirectUris": [
+          "https://tharak.github.io"
+        ]
+      }
+    }
+  },
+  "hosting": {
+    "site": "journeys-card-review-e1771",
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "predeploy": ["npm run build"],
+    "headers": [
+      { "source": "cloud-config.json", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+    ]
+  },
+  "emulators": {
+    "firestore": { "host": "127.0.0.1", "port": 8080, "edition": "standard" },
+    "auth": { "host": "127.0.0.1", "port": 9099 },
+    "ui": { "enabled": false },
+    "singleProjectMode": true
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "southamerica-east1",
+    "edition": "standard",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

@@ -1,5 +1,7 @@
-import { renderBuildFlow } from './build-flow.mjs';
+import { connectBuildList } from './build-list.mjs';
+import { connectAccount } from './firebase-client.mjs';
 import { REVIEW_FIELDS, normalizeCategory, parseReview, createReview, createSiteData, isCardOrder, cardOrderFor, compareCardOrder } from './review-data.mjs';
+import { connectCloudReview } from './cloud-review.mjs';
 
 const CATEGORIES = [
   { id: 'all', label: 'All cards', icon: '▦' },
@@ -36,9 +38,11 @@ const TITLE_KEY = 'journeys-card-review-titles-v1';
 const BUILD_KEY = 'journeys-card-review-build-v1';
 const DUPLICATE_REVIEW_KEY = 'journeys-card-review-duplicate-review-v1';
 const $ = selector => document.querySelector(selector);
-const mobileBuilds = window.matchMedia('(max-width:700px)');
 const state = { cards: [], sections: [], aliases: {}, sourceData: null, overrides: {}, subcategoryOverrides: {}, orderOverrides: {}, textOverrides: {}, titleOverrides: {}, roleSubcategories: [], heroNames: [], duplicateIds: [], deleted: new Set(), category: 'all', subcategory: '', search: '', sort: 'original', view: 'builds', visible: [], selected: null, build: { heroCardId: '', role: '', weaponMode: '', weaponSubcategories: [], armorSubcategory: '', trinketSubcategory: '', mountSubcategory: '' } };
 let toastTimer;
+let cloudReview;
+let buildList;
+let canEditCatalog = false;
 
 function showToast(message) {
   const toast = $('#toast');
@@ -90,25 +94,27 @@ function labelFor(category) { return CATEGORIES.find(item => item.id === categor
 function saveStoredValue(key, value, message) {
   try { localStorage.setItem(key, JSON.stringify(value)); }
   catch { showToast(message); }
+  if (key !== BUILD_KEY) cloudReview?.recordChanges();
 }
 
 function saveOverrides() {
-  saveStoredValue(STORAGE_KEY, state.overrides, 'This browser could not save categories. Export a copy.');
+  saveStoredValue(STORAGE_KEY, state.overrides, 'This browser could not save categories. Check browser storage permissions.');
 }
 
 function saveDeleted() {
-  saveStoredValue(DELETED_KEY, [...state.deleted], 'This browser could not save deletions. Export a copy.');
+  saveStoredValue(DELETED_KEY, [...state.deleted], 'This browser could not save deletions. Check browser storage permissions.');
 }
 
 function saveSubcategories() {
-  saveStoredValue(SUBCATEGORY_KEY, state.subcategoryOverrides, 'This browser could not save subcategories. Export a copy.');
+  saveStoredValue(SUBCATEGORY_KEY, state.subcategoryOverrides, 'This browser could not save subcategories. Check browser storage permissions.');
 }
 
 function saveOrders() {
-  saveStoredValue(ORDER_KEY, state.orderOverrides, 'This browser could not save card order. Export a copy.');
+  saveStoredValue(ORDER_KEY, state.orderOverrides, 'This browser could not save card order. Check browser storage permissions.');
 }
 
 function setOrder(card, input) {
+  if (!canEditCatalog) return;
   const order = input.value.trim() === '' ? null : input.valueAsNumber;
   if (!input.validity.valid || !isCardOrder(order)) {
     showToast('Order must be a whole number of 0 or more, or blank.');
@@ -124,14 +130,15 @@ function setOrder(card, input) {
 }
 
 function saveCardTexts() {
-  saveStoredValue(CARD_TEXT_KEY, state.textOverrides, 'This browser could not save card text. Export a copy.');
+  saveStoredValue(CARD_TEXT_KEY, state.textOverrides, 'This browser could not save card text. Check browser storage permissions.');
 }
 
 function saveTitles() {
-  saveStoredValue(TITLE_KEY, state.titleOverrides, 'This browser could not save titles. Export a copy.');
+  saveStoredValue(TITLE_KEY, state.titleOverrides, 'This browser could not save titles. Check browser storage permissions.');
 }
 
 function setSubcategory(id, subcategory) {
+  if (!canEditCatalog) return;
   const card = state.cards.find(item => item.id === id);
   const category = card && categoryFor(card);
   const names = ['hero', 'hero-card'].includes(category) ? state.heroNames : category === 'role' ? state.roleSubcategories : [];
@@ -148,6 +155,7 @@ function setSubcategory(id, subcategory) {
 }
 
 function toggleDeleted(id) {
+  if (!canEditCatalog) return;
   const card = state.cards.find(item => item.id === id);
   if (!card) return;
   const oldIndex = state.visible.findIndex(item => item.id === id);
@@ -161,6 +169,7 @@ function toggleDeleted(id) {
 }
 
 function setCategories(changes) {
+  if (!canEditCatalog) throw new Error('An approved editor must sign in to edit cards.');
   const oldIndex = state.visible.findIndex(item => item.id === state.selected);
   for (const [id, category] of Object.entries(changes)) {
     const card = state.cards.find(item => item.id === id);
@@ -238,26 +247,18 @@ function matchingCards() {
   return cards;
 }
 
-function saveBuild() {
-  saveStoredValue(BUILD_KEY, state.build, 'This browser could not save the build.');
-}
-
-function openBuildCard(id) {
-  const card = state.cards.find(card => card.id === id);
-  if (!card) return;
-  $('#build-preview-image').src = card.image;
-  $('#build-preview-image').alt = titleFor(card);
-  $('#build-preview-dialog').showModal();
-}
-
-function renderBuilds() {
-  const cards = state.cards.map(card => ({ ...card, category: categoryFor(card), subcategory: subcategoryFor(card),
+function reviewedCatalog() {
+  return state.cards.map(card => ({ ...card, category: categoryFor(card), subcategory: subcategoryFor(card),
     title: titleFor(card), order: orderFor(card), deleted: state.deleted.has(card.id) }));
-  state.build = renderBuildFlow($('#build-flow'), {
-    cards, selection: state.build, prefix: 'build', onPreview: openBuildCard,
-    onChange(selection) { state.build = selection; saveBuild(); renderBuilds(); },
-  });
-  saveBuild();
+}
+
+function renderBuilds() { buildList?.render(); }
+
+function setCatalogAccess() {
+  document.querySelectorAll('.tile-category, .tile-subcategory, .tile-restore, #dialog-categories button, #delete-card, #dialog-subcategory-select, #dialog-subcategory-input, #dialog-order-input')
+    .forEach(element => { element.disabled = !canEditCatalog || (element.closest('#dialog-categories') && state.deleted.has(state.selected)); });
+  for (const selector of ['#dialog-title-input', '#dialog-card-text']) $(selector).readOnly = !canEditCatalog;
+  $('.keyboard-keys').hidden = !canEditCatalog;
 }
 
 function createCardTile(card) {
@@ -333,6 +334,7 @@ function renderGallery(fallbackIndex = null) {
   $('#result-meta').textContent = `${state.visible.length} of ${state.category === 'deleted' ? state.deleted.size : state.cards.length - state.deleted.size} images`;
   $('#gallery-empty').hidden = state.visible.length > 0;
   updateCurrentLabel();
+  setCatalogAccess();
 }
 
 function updateCurrentLabel() {
@@ -368,6 +370,7 @@ function renderDialog() {
   const titleInput = $('#dialog-title-input');
   titleInput.value = titleFor(card);
   titleInput.oninput = () => {
+    if (!canEditCatalog) return;
     const value = titleInput.value.trim();
     if (value) state.titleOverrides[card.id] = value;
     else delete state.titleOverrides[card.id];
@@ -381,6 +384,7 @@ function renderDialog() {
   const cardText = $('#dialog-card-text');
   cardText.value = cardTextFor(card);
   cardText.oninput = () => {
+    if (!canEditCatalog) return;
     state.textOverrides[card.id] = cardText.value;
     saveCardTexts();
   };
@@ -413,6 +417,7 @@ function renderDialog() {
       subcategoryInput.placeholder = `Enter ${labelFor(categoryFor(card)).toLocaleLowerCase()} subcategory`;
       subcategoryInput.setAttribute('aria-label', `${labelFor(categoryFor(card))} subcategory`);
       subcategoryInput.oninput = () => {
+    if (!canEditCatalog) return;
         if (subcategoryInput.value) state.subcategoryOverrides[card.id] = subcategoryInput.value;
         else delete state.subcategoryOverrides[card.id];
         saveSubcategories();
@@ -430,14 +435,17 @@ function renderDialog() {
     source.textContent = `JiME Card DB · ${card.sourceHeading || 'Source'}`;
     source.onclick = () => window.open(card.sourceUrl, '_blank', 'noopener,noreferrer');
   } else {
-    source.textContent = `Document section ${card.section}`;
-    source.onclick = () => { $('#card-dialog').close(); switchView('document'); document.getElementById(`section-${card.section}`)?.scrollIntoView(); };
+    source.textContent = 'Captured card image';
+    source.onclick = null;
   }
+  source.hidden = !card.sourceUrl?.startsWith('https://sites.google.com/view/jime-carddb/');
+  source.previousElementSibling.hidden = source.hidden;
   const deleteButton = $('#delete-card');
   deleteButton.textContent = state.deleted.has(card.id) ? 'Restore card' : 'Delete card';
   deleteButton.onclick = () => toggleDeleted(card.id);
   $('#prev-card').disabled = index <= 0;
   $('#next-card').disabled = index < 0 || index >= state.visible.length - 1;
+  setCatalogAccess();
 }
 
 function openCard(id) {
@@ -463,48 +471,20 @@ function categorizeCurrent(category) {
   showToast(`${titleFor(current)} → ${labelFor(category)}`);
 }
 
-function renderDocument() {
-  const term = $('#document-search').value.trim().toLocaleLowerCase();
-  const matches = state.sections.filter(section => !term || `${section.number} ${section.text}`.toLocaleLowerCase().includes(term));
-  const container = $('#document-sections');
-  const fragment = document.createDocumentFragment();
-  for (const section of matches) {
-    const article = document.createElement('article'); article.className = 'document-section'; article.id = `section-${section.number}`;
-    const capture = document.createElement('div'); capture.className = 'section-capture';
-    const image = document.createElement('img'); image.src = section.image; image.loading = 'lazy'; image.alt = `Document screenshot, section ${section.number}`;
-    capture.append(image);
-    const copy = document.createElement('div'); copy.className = 'section-copy';
-    const heading = document.createElement('h2'); heading.textContent = `Section ${String(section.number).padStart(2, '0')}`;
-    const text = document.createElement('pre'); text.textContent = section.text || 'No text detected in this section.';
-    if (!section.text) text.className = 'no-text';
-    copy.append(heading, text); article.append(capture, copy); fragment.append(article);
-  }
-  container.replaceChildren(fragment);
-  $('#document-empty').hidden = matches.length > 0;
-}
-
 function switchView(view) {
-  if (mobileBuilds.matches) view = 'builds';
-  state.view = view;
-  $('#builds-view').hidden = view !== 'builds';
-  $('#gallery-view').hidden = view !== 'gallery';
-  $('#document-view').hidden = view !== 'document';
-  for (const button of document.querySelectorAll('.view-tab')) {
-    const active = button.dataset.view === view;
+  state.view = view === 'gallery' ? 'gallery' : 'builds';
+  $('#builds-view').hidden = state.view !== 'builds';
+  $('#gallery-view').hidden = state.view !== 'gallery';
+  $('#cloud-controls').classList.toggle('catalog-only', state.view !== 'gallery');
+  for (const button of document.querySelectorAll('.view-tab[data-view]')) {
+    const active = button.dataset.view === state.view;
     button.classList.toggle('active', active);
     if (active) button.setAttribute('aria-current', 'page'); else button.removeAttribute('aria-current');
   }
-  if (view === 'builds' && state.cards.length) renderBuilds();
-  if (view === 'document' && !$('#document-sections').children.length) renderDocument();
+  history.replaceState(null, '', state.view === 'gallery' ? '#cards' : location.pathname);
+  if (state.view === 'builds') renderBuilds();
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
-
-mobileBuilds.addEventListener('change', event => {
-  if (event.matches) {
-    $('#card-dialog').close();
-    switchView('builds');
-  }
-});
 
 function registerWebMCP() {
   if (!document.modelContext?.registerTool) return;
@@ -512,7 +492,7 @@ function registerWebMCP() {
     Promise.resolve(document.modelContext.registerTool({
       name: 'categorize_cards',
       title: 'Categorize cards',
-      description: 'Set categories for one or more cards in this local review. Changes appear in the gallery and are saved in this browser.',
+      description: 'Set categories for one or more cards in this local review. Approved editor changes save to the shared cloud catalog.',
       inputSchema: {
         type: 'object',
         properties: { changes: { type: 'array', items: { type: 'object', properties: {
@@ -541,14 +521,6 @@ async function start() {
     state.duplicateIds = (data.deletedCards || []).filter(id => state.cards.some(card => card.id === id));
     state.roleSubcategories = data.roleSubcategories || [];
     state.heroNames = state.cards.filter(card => card.id.startsWith('character-')).map(card => card.title).sort((a, b) => a.localeCompare(b));
-    let savedBuild = null;
-    try {
-      savedBuild = JSON.parse(localStorage.getItem(BUILD_KEY) || 'null');
-      if (savedBuild && typeof savedBuild === 'object') {
-        state.build = { ...state.build, ...savedBuild };
-        if (!Array.isArray(state.build.weaponSubcategories)) state.build.weaponSubcategories = ['', ''];
-      }
-    } catch { /* Start with an empty build if saved data is invalid. */ }
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
@@ -578,19 +550,6 @@ async function start() {
         state.orderOverrides = Object.fromEntries(Object.entries(saved).filter(([id, order]) => state.cards.some(card => card.id === id) && isCardOrder(order)));
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
-    if (savedBuild && typeof savedBuild === 'object' && !Array.isArray(savedBuild)) {
-      const oldSubcategoryFor = (id, category) => {
-        const card = state.cards.find(item => item.id === id);
-        return card && categoryFor(card) === category ? subcategoryFor(card) : '';
-      };
-      if (!Array.isArray(savedBuild.weaponSubcategories)) {
-        state.build.weaponSubcategories = (Array.isArray(savedBuild.weapons) ? savedBuild.weapons : []).map(id => oldSubcategoryFor(id, savedBuild.weaponMode || 'one-handed'));
-      }
-      if (typeof savedBuild.armorSubcategory !== 'string') state.build.armorSubcategory = oldSubcategoryFor(savedBuild.armor, 'armor');
-      if (typeof savedBuild.trinketSubcategory !== 'string') state.build.trinketSubcategory = oldSubcategoryFor(savedBuild.trinket, 'trinket');
-      if (typeof savedBuild.mountSubcategory !== 'string') state.build.mountSubcategory = oldSubcategoryFor(savedBuild.mount, 'mount');
-      for (const key of ['weapons', 'armor', 'trinket', 'mount']) delete state.build[key];
-    }
     try {
       const saved = JSON.parse(localStorage.getItem(CARD_TEXT_KEY) || '{}');
       if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
@@ -608,7 +567,19 @@ async function start() {
         localStorage.setItem(DUPLICATE_REVIEW_KEY, '1');
       }
     } catch { /* The gallery still works if storage is unavailable. */ }
+    buildList = connectBuildList({ getCatalog: reviewedCatalog, notify: showToast });
+    void connectAccount($('[data-account-auth]'), (user, editor) => {
+      canEditCatalog = editor;
+      buildList.setUser(user);
+      setCatalogAccess();
+    }, showToast);
     renderCategories(); renderGallery(); renderBuilds(); registerWebMCP();
+    switchView(location.hash === '#cards' ? 'gallery' : 'builds');
+    void connectCloudReview({
+      getState: () => ({ ...state, validCategories: VALID }),
+      applyReview: applySharedReview,
+      controls: $('#cloud-controls'), notify: showToast, manageAuth: false,
+    }).then(connection => { cloudReview = connection; cloudReview?.recordChanges(); });
   } catch (error) {
     $('#gallery-empty').hidden = false;
     $('#gallery-empty').textContent = 'The review data could not load. Reload this page to try again.';
@@ -616,11 +587,24 @@ async function start() {
   }
 }
 
+function applySharedReview(review) {
+  state.overrides = review.categories;
+  state.deleted = review.deleted;
+  for (const { stateKey } of REVIEW_FIELDS) state[stateKey] = review[stateKey];
+  const stored = [[STORAGE_KEY, state.overrides], [DELETED_KEY, [...state.deleted]],
+    [SUBCATEGORY_KEY, state.subcategoryOverrides], [ORDER_KEY, state.orderOverrides],
+    [CARD_TEXT_KEY, state.textOverrides], [TITLE_KEY, state.titleOverrides]];
+  try {
+    for (const [key, value] of stored) localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(DUPLICATE_REVIEW_KEY, '1');
+  } catch { showToast('Cloud review loaded, but this browser could not keep a copy.'); }
+  renderCategories(); renderGallery(); renderBuilds();
+  if ($('#card-dialog').open && state.selected) renderDialog();
+}
+
 document.querySelectorAll('.view-tab[data-view]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
 $('#card-search').addEventListener('input', event => { state.search = event.target.value.trim(); renderGallery(); });
 $('#card-sort').addEventListener('change', event => { state.sort = event.target.value; renderGallery(); });
-$('#document-search').addEventListener('input', renderDocument);
-$('#close-build-preview').addEventListener('click', () => $('#build-preview-dialog').close());
 $('#close-dialog').addEventListener('click', () => $('#card-dialog').close());
 $('#prev-card').addEventListener('click', () => moveCard(-1));
 $('#next-card').addEventListener('click', () => moveCard(1));
@@ -632,6 +616,7 @@ document.addEventListener('keydown', event => {
     moveCard(event.key === 'ArrowLeft' ? -1 : 1);
     return;
   }
+  if (!canEditCatalog) return;
   if (event.key === 'Delete' && !event.repeat && state.selected) { event.preventDefault(); toggleDeleted(state.selected); return; }
   const category = SHORTCUTS[event.key.toLowerCase()];
   if (category && !event.repeat) { event.preventDefault(); categorizeCurrent(category); }

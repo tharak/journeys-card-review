@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { cardsFor, heroCardsFor, normalizeBuildSelection, subcategoriesFor, orderedBuildRow } from '../dist/build-flow.mjs';
+import { cardsFor, heroCardsFor, normalizeBuildSelection, subcategoriesFor, orderedBuildRow, visibleBuildCards } from '../dist/build-flow.mjs';
 
 const cards = [
   { id: 'hero-front', category: 'hero-card', subcategory: 'Aragorn' },
@@ -54,11 +54,42 @@ test('selection normalization replaces unavailable choices with defaults without
   assert.deepEqual(input, before);
 });
 
-test('picked cards lead each row in click order while the other cards keep reviewed order', () => {
-  const row = cardsFor(cards, 'one-handed');
-  assert.deepEqual(orderedBuildRow(row, ['shield', 'sword-2']).map(card => card.id), ['shield', 'sword-2', 'sword-1', 'hand-harp']);
-  assert.deepEqual(orderedBuildRow(row, ['sword-2']).map(card => card.id), ['sword-2', 'sword-1', 'shield', 'hand-harp']);
-  assert.deepEqual(orderedBuildRow(row, []), row);
+test('build rows keep Order within a group regardless of picks, with unassigned cards last', () => {
+  const row = [
+    { id: 'unassigned', order: null },
+    { id: 'later', order: 10 },
+    { id: 'first', order: 0 },
+    { id: 'earlier', order: 2 },
+    { id: 'also-earlier', order: 2 },
+    { id: 'missing-order' },
+  ];
+  const before = structuredClone(row);
+  const expected = ['first', 'earlier', 'also-earlier', 'later', 'unassigned', 'missing-order'];
+  assert.deepEqual(orderedBuildRow(row, ['unassigned', 'later']).map(card => card.id), expected);
+  assert.deepEqual(orderedBuildRow(row, ['later', 'earlier']).map(card => card.id), expected);
+  assert.deepEqual(orderedBuildRow(row).map(card => card.id), expected);
+  assert.deepEqual(row, before);
+});
+
+test('build cards sort by category, then subcategory, then numeric Order', () => {
+  const catalog = [
+    { id: 'armor', category: 'armor', subcategory: 'Cloak', order: 0 },
+    { id: 'sword-unassigned', category: 'one-handed', subcategory: 'Sword', order: null },
+    { id: 'sword-10', category: 'one-handed', subcategory: 'Sword', order: 10 },
+    { id: 'role', category: 'role', subcategory: 'Captain', order: 100 },
+    { id: 'sword-2', category: 'one-handed', subcategory: 'Sword', order: 2 },
+    { id: 'shield-unassigned', category: 'one-handed', subcategory: 'Shield' },
+    { id: 'shield', category: 'one-handed', subcategory: 'Shield', order: 100 },
+    { id: 'hero', category: 'hero', subcategory: 'Aragorn', order: 1000 },
+  ];
+  const expected = ['hero', 'role', 'shield', 'shield-unassigned', 'sword-2', 'sword-10', 'sword-unassigned', 'armor'];
+  assert.deepEqual(orderedBuildRow(catalog).map(card => card.id), expected);
+  assert.deepEqual(cardsFor(catalog, 'one-handed').map(card => card.id), expected.slice(2, -1));
+  const selection = { heroCardId: 'front', role: 'Captain', weaponMode: 'one-handed',
+    weaponSubcategories: ['Sword', 'Shield'], armorSubcategory: 'Cloak' };
+  assert.deepEqual(visibleBuildCards([...catalog,
+    { id: 'front', category: 'hero-card', subcategory: 'Aragorn' },
+  ], selection).map(card => card.id), expected);
 });
 
 test('changing a picker removes hidden picks and preserves the remaining click order', () => {

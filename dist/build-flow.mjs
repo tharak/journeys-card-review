@@ -1,5 +1,18 @@
 import { cardOrderFor, compareCardOrder } from './review-data.mjs';
 
+const CATEGORY_ORDER = new Map([
+  'hero', 'hero-card', 'role', 'one-handed', 'two-handed', 'armor', 'trinket', 'mount',
+  'hand-item', 'basic', 'title', 'weakness', 'terrain', 'damage', 'fear', 'boon', 'bane',
+  'captured', 'card-back', 'unsorted',
+].map((category, index) => [category, index]));
+
+export function compareBuildCards(a, b) {
+  return (CATEGORY_ORDER.get(a.category) ?? Infinity) - (CATEGORY_ORDER.get(b.category) ?? Infinity)
+    || (a.category || '').localeCompare(b.category || '')
+    || (a.subcategory || '').localeCompare(b.subcategory || '')
+    || compareCardOrder(cardOrderFor(a), cardOrderFor(b));
+}
+
 const EQUIPMENT = [
   ['armor', 'Armor', 'armorSubcategory'],
   ['trinket', 'Trinkets', 'trinketSubcategory'],
@@ -9,7 +22,7 @@ const EQUIPMENT = [
 export function cardsFor(cards, category, subcategory) {
   return cards.filter(card => !card.deleted && card.category === category
     && (subcategory === undefined || card.subcategory === subcategory))
-    .sort((a, b) => compareCardOrder(cardOrderFor(a), cardOrderFor(b)));
+    .sort(compareBuildCards);
 }
 
 export function subcategoriesFor(cards, category) {
@@ -66,13 +79,11 @@ export function visibleBuildCards(cards, selection) {
   for (const [category, , key] of EQUIPMENT) {
     if (selection[key]) matches.push(...cardsFor(cards, category, selection[key]));
   }
-  return [...new Map(matches.map(card => [card.id, card])).values()];
+  return orderedBuildRow([...new Map(matches.map(card => [card.id, card])).values()]);
 }
 
-export function orderedBuildRow(cards, pickedCardIds) {
-  const ranks = new Map(pickedCardIds.map((id, index) => [id, index]));
-  return [...cards].sort((a, b) => (ranks.get(a.id) ?? Infinity) - (ranks.get(b.id) ?? Infinity)
-    || compareCardOrder(cardOrderFor(a), cardOrderFor(b)));
+export function orderedBuildRow(cards) {
+  return [...cards].sort(compareBuildCards);
 }
 
 export function heroCardsFor(cards, heroCardId) {
@@ -82,12 +93,12 @@ export function heroCardsFor(cards, heroCardId) {
     skills: name ? cardsFor(cards, 'hero', name) : [] };
 }
 
-export function renderBuildFlow(container, { cards, selection: input, prefix, onChange, onPreview }) {
+export function renderBuildFlow(container, { cards, selection: input, prefix, onChange, onPreview, readOnly = false }) {
   const focusedId = container.contains(document.activeElement) ? document.activeElement.id : '';
   const scrollPositions = new Map([...container.querySelectorAll('.build-flow-row, .build-picker')].map(row => [row.id, row.scrollLeft]));
   const previousChoices = new Map([...container.querySelectorAll('.build-picker')]
     .map(picker => [picker.id, picker.querySelector('[aria-checked="true"]')?.dataset.value]));
-  const selection = normalizeBuildSelection(input, cards);
+  const selection = readOnly ? { ...input, weaponSubcategories: input.weaponSubcategories || [], pickedCardIds: input.pickedCardIds || [] } : normalizeBuildSelection(input, cards);
   const fragment = document.createDocumentFragment();
   const section = (title, name) => {
     const element = document.createElement('section'); element.className = 'build-step';
@@ -110,6 +121,7 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
       button.setAttribute('role', 'radio'); button.setAttribute('aria-checked', String(choice.value === selected));
       button.tabIndex = choice.value === selected ? 0 : -1;
       button.textContent = choice.text;
+      button.disabled = readOnly;
       if (choice.group) {
         button.setAttribute('aria-label', `${choice.text}, ${choice.group}`);
         const badge = document.createElement('span'); badge.className = 'build-segment-hand';
@@ -134,15 +146,15 @@ export function renderBuildFlow(container, { cards, selection: input, prefix, on
   };
   const renderCards = (parent, matches, name) => {
     const row = document.createElement('div'); row.className = 'build-flow-row'; row.id = `${prefix}-${name}`;
-    for (const card of orderedBuildRow(matches, selection.pickedCardIds)) {
+    for (const card of orderedBuildRow(matches)) {
       const picked = selection.pickedCardIds.includes(card.id);
       const button = document.createElement('button'); button.type = 'button';
       button.className = `build-image-card${picked ? ' picked' : ''}`;
       button.id = `${prefix}-${name}-${card.id}`; button.dataset.cardId = card.id;
-      button.setAttribute('aria-label', `Pick ${card.title || card.id}`);
+      button.setAttribute('aria-label', `${readOnly ? 'View' : 'Pick'} ${card.title || card.id}`);
       button.setAttribute('aria-pressed', String(picked));
       button.addEventListener('click', () => {
-        if (!picked) row.scrollLeft = 0;
+        if (readOnly) { onPreview(card.id); return; }
         update({ pickedCardIds: picked ? selection.pickedCardIds.filter(id => id !== card.id) : [...selection.pickedCardIds, card.id] });
       });
       const image = document.createElement('img'); image.src = card.image; image.alt = card.title || card.id; image.loading = 'lazy';

@@ -1,3 +1,9 @@
 .openai/
 find_headings.py
 prepare_site.py
+node_modules/
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+.playwright-cli/

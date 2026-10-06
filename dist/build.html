@@ -16,12 +16,13 @@
     <nav class="view-tabs" aria-label="Views"><a class="view-tab" href="index.html">Builds</a><a class="view-tab create-build-link" href="build.html" aria-label="Create build" title="Create build">+</a></nav>
     <div class="build-toolbar" role="group" aria-label="Build controls">
       <input id="build-name" maxlength="100" placeholder="Build name" aria-label="Build name" autocomplete="off" disabled>
-      <button id="save-build" class="plain-button" type="button" disabled>Save</button>
+      <button id="save-build" class="plain-button" type="button" hidden disabled>Save</button>
+      <div class="account-actions"><button type="button" class="plain-button" data-account-auth disabled>Sign in with Google</button></div>
       <button id="copy-build" class="plain-button" type="button" hidden>Create a copy</button>
       <button id="reload-build" class="plain-button" type="button" hidden>Reload saved build</button>
       <button id="delete-build" class="plain-button" type="button" hidden>Delete</button>
     </div>
-    <div class="account-actions"><button type="button" class="plain-button" data-account-auth disabled>Sign in with Google</button><a class="view-tab" href="index.html#cards">Edit cards</a></div>
+    <a class="view-tab edit-cards-link" href="index.html#cards">Edit cards</a>
   </header>
   <div id="cloud-controls" class="cloud-controls" aria-label="Cloud catalog" hidden>
     <span data-cloud-status role="status" aria-live="polite"></span>

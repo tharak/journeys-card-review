@@ -49,8 +49,8 @@ function renderActions() {
   $('#build-name').disabled = !canEdit;
   $('#build-notes').readOnly = !canEdit;
   $('#build-owner').textContent = state.draft.ownerName ? `By ${state.draft.ownerName}` : '';
-  $('#save-build').hidden = !!state.draft.ownerId && state.draft.ownerId !== state.user?.uid;
   $('#save-build').disabled = !canEdit || !state.user || !state.draft.heroId || !state.draft.name.trim() || state.stale || (!state.dirty && state.draft.revision > 0);
+  $('#save-build').hidden = $('#save-build').disabled;
   $('#copy-build').hidden = !state.initialized || !state.draft.id;
   $('#copy-build').disabled = state.busy || !state.user;
   $('#delete-build').hidden = !state.remote || state.remote.ownerId !== state.user?.uid || state.removed;

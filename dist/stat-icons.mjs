@@ -14,7 +14,8 @@ export function statIcon(name) {
 export const negateIcons = value => String(value).split(' / ').map(statIcon).join('<span class="stat-separator" aria-hidden="true"> / </span>');
 
 export function symbolText(text) {
-  return escape(text).replace(/\{(Might|Wisdom|Agility|Spirit|Wits?|Damage|Fear|Inspiration)\}/g, (_,name)=>statIcon(name));
+  const normalized = String(text ?? '').replace(/\{inspiration\}|\binspiration\b/gi, '{Inspiration}');
+  return escape(normalized).replace(/\{(Might|Wisdom|Agility|Spirit|Wits?|Damage|Fear|Inspiration)\}/g, (_,name)=>statIcon(name));
 }
 
 export function statAmount(name, value) {

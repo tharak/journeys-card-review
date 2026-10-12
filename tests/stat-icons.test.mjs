@@ -43,6 +43,13 @@ test('combined negate stats and attack tokens preserve meaning without injecting
   assert.ok(text.includes('&lt;script&gt;'));
   assert.ok(text.includes('{2H}'));
   assert.ok(!text.includes('{Damage}'));
+  for (const phrase of ['discard 1 inspiration.', 'gain 2 Inspiration.', 'discard 1 {Inspiration}.', 'gain 1 {inspiration}.']) {
+    const rendered = symbolText(phrase);
+    assert.equal((rendered.match(/alt="Inspiration"/g) || []).length, 1);
+    assert.ok(!rendered.includes('{Inspiration}'));
+    assert.ok(!rendered.includes('{<img'));
+    assert.ok(rendered.includes(phrase.includes('2') ? '2 ' : '1 '));
+  }
 });
 
 test('shared attack strip retains exact values, decreases, and unavailable groups without bars', () => {

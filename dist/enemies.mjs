@@ -6,7 +6,13 @@ const speed = n => ['','Slow','Medium','Fast'][n];
 const number = n => n === null || n === undefined ? '—' : n.toFixed(1);
 const stats = ['Might','Wisdom','Agility','Spirit','Wits'];
 const modifierId = name => `modifier-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-const modifierCode = modifier => String.fromCharCode(65 + data.modifiers.indexOf(modifier));
+const modifierCodes = {
+  Large: 'L', Huge: 'Hu', Armored: 'A', Shrouded: 'S', Bloodthirsty: 'B',
+  Terrifying: 'T', 'Spike Armor': 'S', 'Well-Equipped': 'We', Veteran: 'V',
+  Wary: 'Wa', Guarded: 'G', Hardened: 'Ha',
+};
+const modifierCode = modifier => modifierCodes[modifier.name];
+const modifierLegendId = modifier => `legend-${modifierId(modifier.name)}`;
 let data;
 
 function heading(title, description, count, countLabel) {
@@ -19,7 +25,7 @@ function sourceFooter() {
 
 function damageFear(attack) {
   if (!attack) return '<span aria-label="Unavailable group size">—</span>';
-  return `<span class="damage-value" aria-label="${number(attack.damage)} Damage">${number(attack.damage)}</span><span class="attack-divider" aria-hidden="true"> / </span><span class="fear-value" aria-label="${number(attack.fear)} Fear">${number(attack.fear)}</span>`;
+  return `<span class="damage-value" aria-label="${number(attack.damage)} Damage">${number(attack.damage)}</span><span class="attack-divider" aria-hidden="true">&nbsp;/&nbsp;</span><span class="fear-value" aria-label="${number(attack.fear)} Fear">${number(attack.fear)}</span>`;
 }
 
 function modifierTable(modifiers, includeEnemies = true, includeCosts = true) {
@@ -31,12 +37,12 @@ function possibleModifiers(enemy) {
 }
 
 function modifierLegend() {
-  return `<dl class="modifier-legend" aria-label="Elite modifier legend">${data.modifiers.map(m=>`<div id="elite-code-${modifierCode(m).toLowerCase()}"><dt>${modifierCode(m)}</dt><dd><a href="#${modifierId(m.name)}">${escape(m.name)}</a></dd></div>`).join('')}</dl>`;
+  return `<dl class="modifier-legend" aria-label="Elite modifier legend">${data.modifiers.map(m=>`<div id="${modifierLegendId(m)}"><dt>${modifierCode(m)}</dt><dd><a href="#${modifierId(m.name)}">${escape(m.name)}</a>: ${escape(m.effect).replaceAll("HP", "hp")}</dd></div>`).join('')}</dl>`;
 }
 
 function renderCatalog() {
   content.innerHTML = `
-    <div class="enemy-table-wrap" role="region" aria-label="Enemies" tabindex="0"><table class="enemy-table catalog-enemies"><thead><tr><th scope="col" rowspan="2">Enemy</th><th scope="col" rowspan="2">Health</th><th scope="col" rowspan="2">Armor</th><th scope="col" rowspan="2">Sorcery</th><th scope="col" rowspan="2">Move</th><th scope="colgroup" colspan="3"><span class="damage-value">Damage</span>/<span class="fear-value">Fear</span></th><th scope="col" rowspan="2">Possible elite modifiers</th><th scope="col" rowspan="2">Special</th></tr><tr>${[1,2,3].map(n=>`<th scope="col" class="damage-fear-heading">${n} ${n===1?'enemy':'enemies'}</th>`).join('')}</tr></thead><tbody id="enemy-rows">${data.enemies.map(e=>`<tr><td class="enemy-name"><a href="${link(e)}">${escape(e.name)}</a>${e.ranged?'<small>Ranged</small>':''}</td><td>${e.health}</td><td>${e.armor}</td><td>${e.sorcery}</td><td class="enemy-move">${e.speed}</td>${[0,1,2].map(i=>`<td class="damage-fear-cell">${damageFear(e.attacks[i])}</td>`).join('')}<td class="enemy-modifiers">${possibleModifiers(e).map(m=>`<a href="#elite-code-${modifierCode(m).toLowerCase()}" title="${escape(m.name)}" aria-label="${modifierCode(m)}: ${escape(m.name)}">${modifierCode(m)}</a>`).join(' ')}</td><td class="enemy-special">${escape(e.note)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="enemy-table-wrap" role="region" aria-label="Enemies" tabindex="0"><table class="enemy-table catalog-enemies"><thead><tr><th scope="col" rowspan="2">Enemy</th><th scope="col" rowspan="2" class="enemy-stats-heading" aria-label="Health / Armor / Sorcery / Move">Health / Armor /<br>Sorcery / Move</th><th scope="colgroup" colspan="3"><span class="damage-value">Damage</span>&nbsp;/&nbsp;<span class="fear-value">Fear</span></th><th scope="col" rowspan="2">Possible elite modifiers</th><th scope="col" rowspan="2">Special</th></tr><tr>${[1,2,3].map(n=>`<th scope="col" class="damage-fear-heading">${n} ${n===1?'enemy':'enemies'}</th>`).join('')}</tr></thead><tbody id="enemy-rows">${data.enemies.map(e=>`<tr><td class="enemy-name"><a href="${link(e)}">${escape(e.name)}</a>${e.ranged?'<small>Ranged</small>':''}</td><td class="enemy-stats" aria-label="Health ${e.health}, Armor ${e.armor}, Sorcery ${e.sorcery}, Move ${e.speed}">${e.health} / ${e.armor} / ${e.sorcery} / ${e.speed}</td>${[0,1,2].map(i=>`<td class="damage-fear-cell">${damageFear(e.attacks[i])}</td>`).join('')}<td class="enemy-modifiers">${possibleModifiers(e).map(m=>`<a href="#${modifierLegendId(m)}" title="${escape(m.name)}" aria-label="${modifierCode(m)}: ${escape(m.name)}">${modifierCode(m)}</a>`).join(' ')}</td><td class="enemy-special">${escape(e.note)}</td></tr>`).join('')}</tbody></table></div>
     ${modifierLegend()}
     <section class="reference-section campaign-lists" aria-labelledby="campaign-lists-title"><h2 id="campaign-lists-title">Campaign adversaries</h2>${data.campaigns.map(c=>`<details class="campaign-list"><summary>${escape(c.name)}</summary><div class="enemy-table-wrap" role="region" aria-label="${escape(c.name)} adversaries" tabindex="0"><table class="enemy-table"><thead><tr><th scope="col">Adversary</th><th scope="col">Health</th><th scope="col">Armor</th><th scope="col">Sorcery</th><th scope="col">Move</th></tr></thead><tbody>${c.bosses.map(b=>`<tr><th scope="row">${escape(b.name)}</th><td>${b.health ?? '—'}</td><td>${b.armor ?? '—'}</td><td>${b.sorcery ?? '—'}</td><td>${escape(b.move ?? '—')}</td></tr>`).join('')}</tbody></table></div></details>`).join('')}</section>
     <section class="reference-section" aria-labelledby="catalog-modifiers-title"><h2 id="catalog-modifiers-title">Elite modifiers</h2>${modifierTable(data.modifiers,true,false)}</section>` + sourceFooter();

@@ -15,7 +15,7 @@ function heading(title, description, count, countLabel) {
 }
 
 function sourceFooter() {
-  return `<footer class="reference-sources"><p>Research by <strong>Reshyk</strong>, with the attack workbook assembled by <strong>Birdman137</strong>. <a href="${data.source.url}" target="_blank" rel="noopener">Read the original BGG project ↗</a> · <a href="${data.source.spreadsheet}" target="_blank" rel="noopener">Full attack spreadsheet and PDF ↗</a></p></footer>`;
+  return `<footer class="reference-sources"><p><a href="${data.source.url}" target="_blank" rel="noopener">Read the original BGG project ↗</a> · <a href="${data.source.spreadsheet}" target="_blank" rel="noopener">Full attack spreadsheet and PDF ↗</a></p></footer>`;
 }
 
 function damageFear(attack) {

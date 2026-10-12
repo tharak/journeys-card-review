@@ -5,6 +5,7 @@ const link = enemy => `enemy.html?id=${encodeURIComponent(enemy.id)}`;
 const speed = n => ['','Slow','Medium','Fast'][n];
 const number = n => n === null || n === undefined ? '—' : n.toFixed(1);
 const stats = ['Might','Wisdom','Agility','Spirit','Wits'];
+const modifierId = name => `modifier-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 let data;
 
 function heading(title, description, count, countLabel) {
@@ -12,53 +13,28 @@ function heading(title, description, count, countLabel) {
 }
 
 function sourceFooter() {
-  return `<footer class="reference-sources"><p>Research by <strong>Reshyk</strong>, with the attack workbook assembled by <strong>Birdman137</strong>. <a href="${data.source.url}" target="_blank" rel="noopener">Read the original BGG project ↗</a> · <a href="${data.source.spreadsheet}" target="_blank" rel="noopener">Full attack spreadsheet and PDF ↗</a></p><p>Adapted from the original post, updated July 7, 2022; checked October 12, 2026. This reference covers the 13 standard enemy types and five campaign boss sections documented in that post. The linked v1.4 workbook includes further Spreading War enemy data. Scripted encounters can override base values; follow the app for your encounter.</p></footer>`;
+  return `<footer class="reference-sources"><p>Research by <strong>Reshyk</strong>, with the attack workbook assembled by <strong>Birdman137</strong>. <a href="${data.source.url}" target="_blank" rel="noopener">Read the original BGG project ↗</a> · <a href="${data.source.spreadsheet}" target="_blank" rel="noopener">Full attack spreadsheet and PDF ↗</a></p></footer>`;
 }
 
-function output(attack) {
-  if (!attack) return '<span class="reference-note">Not a legal group size</span>';
-  return `<div class="attack-value"><span>${number(attack.damage)} D / ${number(attack.fear)} F</span><strong>${number(attack.total)}</strong></div><div class="attack-track" aria-hidden="true"><span class="physical" style="width:${attack.damage / 6 * 100}%"></span><span class="fear" style="width:${attack.fear / 6 * 100}%"></span></div>`;
+function damageFear(attack) {
+  if (!attack) return '<span aria-label="Unavailable group size">—</span>';
+  return `<span class="damage-value" aria-label="${number(attack.damage)} Damage">${number(attack.damage)}</span><span class="attack-divider" aria-hidden="true"> / </span><span class="fear-value" aria-label="${number(attack.fear)} Fear">${number(attack.fear)}</span>`;
 }
 
-function modifierTable(modifiers, includeEnemies = true) {
-  return `<div class="enemy-table-wrap" role="region" aria-label="Elite modifiers" tabindex="0"><table class="enemy-table"><thead><tr><th scope="col">Modifier</th><th scope="col">Effect</th><th scope="col">Cost: 1 / 2 / 3</th>${includeEnemies ? '<th scope="col">Eligible enemies</th>' : ''}</tr></thead><tbody>${modifiers.map(m=>`<tr><th scope="row">${escape(m.name)}</th><td>${escape(m.effect)}</td><td class="compact">${m.costs.map(c=>c ?? '—').join(' / ')}</td>${includeEnemies ? `<td>${m.enemies.map(name=>{const e=data.enemies.find(e=>e.name===name);return `<a href="${link(e)}">${escape(name)}</a>${name==='Hill Troll' && m.conditional ? '*' : ''}`;}).join(', ')}</td>` : ''}</tr>`).join('')}</tbody></table></div>`;
+function modifierTable(modifiers, includeEnemies = true, includeCosts = true) {
+  return `<div class="enemy-table-wrap" role="region" aria-label="Elite modifiers" tabindex="0"><table class="enemy-table"><thead><tr><th scope="col">Modifier</th><th scope="col">Effect</th>${includeCosts ? '<th scope="col">Cost: 1 / 2 / 3</th>' : ''}${includeEnemies ? '<th scope="col">Eligible enemies</th>' : ''}</tr></thead><tbody>${modifiers.map(m=>`<tr><th scope="row">${escape(m.name)}</th><td>${escape(m.effect)}</td>${includeCosts ? `<td class="compact">${m.costs.map(c=>c ?? '—').join(' / ')}</td>` : ''}${includeEnemies ? `<td>${m.enemies.filter(name=>includeCosts || possibleModifiers(data.enemies.find(e=>e.name===name)).includes(m)).map(name=>{const e=data.enemies.find(e=>e.name===name);return `<a href="${link(e)}">${escape(name)}</a>${includeCosts && name==='Hill Troll' && m.conditional ? '*' : ''}`;}).join(', ')}</td>` : ''}</tr>`).join('')}</tbody></table></div>`;
+}
+
+function possibleModifiers(enemy) {
+  return data.modifiers.filter(m=>m.enemies.includes(enemy.name) && m.costs.some((cost,index)=>cost!==null && index<enemy.maxGroup));
 }
 
 function renderCatalog() {
-  content.innerHTML = heading('Know your enemy', 'Compare defenses, movement, and expected attacks before you commit your next action.', data.enemies.length, 'standard enemy types') + `
-    <div class="reference-intro"><p><strong>Difficulty changes the opposition</strong>Base health, defenses, movement, and attacks stay the same across difficulty settings.</p><p><strong>Group size changes the attack</strong>Select the number of figures to compare the published average Damage and Fear.</p><p><strong>Look beyond the numbers</strong>Open an enemy for side effects, negate chances, elite modifiers, and spawn costs.</p></div>
-    <form class="enemy-controls" role="search" onsubmit="return false">
-      <label class="enemy-search">Find an enemy<input id="enemy-search" type="search" placeholder="Name, tag, or effect…" autocomplete="off"></label>
-      <label>Movement<select id="enemy-movement"><option value="all">All movement</option><option value="1">Slow · 1 space</option><option value="2">Medium · 2 spaces</option><option value="3">Fast · 3 spaces</option><option value="ranged">Ranged enemies</option></select></label>
-      <label>Order by<select id="enemy-order"><option value="source">Research order</option><option value="name">Name A–Z</option><option value="attack">Highest total attack</option><option value="health">Highest health</option></select></label>
-      <fieldset class="group-selector"><legend>Figures in group</legend><div class="group-buttons">${[1,2,3].map(n=>`<button type="button" data-group="${n}" aria-pressed="${n===1}">${n}</button>`).join('')}</div></fieldset>
-    </form>
-    <div class="enemy-results-meta"><span id="enemy-count" role="status" aria-live="polite"></span><div class="attack-legend"><span>Damage</span><span>Fear</span></div></div>
-    <div class="enemy-table-wrap" role="region" aria-label="Compare enemy stats" tabindex="0"><table class="enemy-table"><thead><tr><th scope="col">Enemy</th><th scope="col">Health</th><th scope="col">Armor</th><th scope="col">Sorcery</th><th scope="col">Move</th><th scope="col" id="attack-heading">Average attack · 1 figure</th><th scope="col">Spawn cost</th></tr></thead><tbody id="enemy-rows"></tbody></table></div>
-    <p id="enemy-empty" class="empty-state" hidden>No enemies match. Try a different name, tag, effect, or movement filter.</p>
-    <p class="reference-note">Health and defenses are per figure. Average attacks are per group, before negation and elite bonuses. D = Damage; F = Fear. Totals reproduce the source’s independently rounded averages and may differ from the sum of the displayed Damage and Fear. A dash marks an unavailable group size.</p>
-    <div class="reference-bottom-links"><a href="enemy-mechanics.html">How attacks and elites work →</a><a href="enemy-bosses.html">Campaign bosses & scripted enemies →</a></div>` + sourceFooter();
-  let group = 1;
-  const update = () => {
-    const query=document.querySelector('#enemy-search').value.trim().toLowerCase();
-    const movement=document.querySelector('#enemy-movement').value;
-    const order=document.querySelector('#enemy-order').value;
-    const enemies=data.enemies.filter(e=>`${e.name} ${e.tags.join(' ')} ${e.note}`.toLowerCase().includes(query) && (movement==='all' || (movement==='ranged' ? e.ranged : e.speed===Number(movement))));
-    if(order==='name') enemies.sort((a,b)=>a.name.localeCompare(b.name));
-    if(order==='health') enemies.sort((a,b)=>b.health-a.health);
-    if(order==='attack') enemies.sort((a,b)=>(b.attacks[group-1]?.total ?? -1)-(a.attacks[group-1]?.total ?? -1));
-    document.querySelector('#enemy-rows').innerHTML=enemies.map(e=>`<tr><td class="enemy-name"><a href="${link(e)}">${escape(e.name)} →</a><small>${e.ranged?'Ranged · ':''}${escape(e.tags.filter(t=>!['Slow','Fast','Range'].includes(t)).join(' · '))}</small></td><td>${e.health}</td><td>${e.armor}</td><td>${e.sorcery}</td><td class="compact">${speed(e.speed)} · ${e.speed}</td><td class="attack-output">${output(e.attacks[group-1])}</td><td>${e.costs[group-1] ?? '—'}</td></tr>`).join('');
-    document.querySelector('#enemy-count').textContent=`${enemies.length} of ${data.enemies.length} enemies · ${group} ${group===1?'figure':'figures'} per group`;
-    document.querySelector('#attack-heading').textContent=`Average attack · ${group} ${group===1?'figure':'figures'}`;
-    document.querySelector('#enemy-empty').hidden=enemies.length>0;
-  };
-  for(const id of ['enemy-search','enemy-movement','enemy-order']) document.getElementById(id).addEventListener('input', update);
-  document.querySelectorAll('[data-group]').forEach(button=>button.addEventListener('click',()=>{
-    group=Number(button.dataset.group);
-    document.querySelectorAll('[data-group]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-    update();
-  }));
-  update();
+  content.innerHTML = `
+    <div class="enemy-table-wrap" role="region" aria-label="Enemies" tabindex="0"><table class="enemy-table catalog-enemies"><thead><tr><th scope="col" rowspan="2">Enemy</th><th scope="col" rowspan="2">Health</th><th scope="col" rowspan="2">Armor</th><th scope="col" rowspan="2">Sorcery</th><th scope="col" rowspan="2">Move</th><th scope="colgroup" colspan="3"><span class="damage-value">Damage</span>/<span class="fear-value">Fear</span></th><th scope="col" rowspan="2">Possible elite modifiers</th></tr><tr>${[1,2,3].map(n=>`<th scope="col" class="damage-fear-heading">${n} ${n===1?'enemy':'enemies'}</th>`).join('')}</tr></thead><tbody id="enemy-rows">${data.enemies.map(e=>`<tr><td class="enemy-name"><a href="${link(e)}">${escape(e.name)}</a>${e.ranged?'<small>Ranged</small>':''}</td><td>${e.health}</td><td>${e.armor}</td><td>${e.sorcery}</td><td class="compact">${speed(e.speed)} · ${e.speed}</td>${[0,1,2].map(i=>`<td class="damage-fear-cell">${damageFear(e.attacks[i])}</td>`).join('')}<td class="enemy-modifiers">${possibleModifiers(e).map(m=>`<a href="#${modifierId(m.name)}">${escape(m.name)}</a>`).join(', ')}</td></tr>`).join('')}</tbody></table></div>
+    <section class="reference-section campaign-lists" aria-labelledby="campaign-lists-title"><h2 id="campaign-lists-title">Campaign adversaries</h2>${data.campaigns.map(c=>`<section class="campaign-list"><h3>${escape(c.name)}</h3><div class="enemy-table-wrap" role="region" aria-label="${escape(c.name)} adversaries" tabindex="0"><table class="enemy-table"><thead><tr><th scope="col">Adversary</th><th scope="col">Health</th><th scope="col">Armor</th><th scope="col">Sorcery</th><th scope="col">Move</th></tr></thead><tbody>${c.bosses.map(b=>`<tr><th scope="row">${escape(b.name)}</th><td>${b.health ?? '—'}</td><td>${b.armor ?? '—'}</td><td>${b.sorcery ?? '—'}</td><td>${escape(b.move ?? '—')}</td></tr>`).join('')}</tbody></table></div></section>`).join('')}</section>
+    <section class="reference-section" aria-labelledby="catalog-modifiers-title"><h2 id="catalog-modifiers-title">Elite modifiers</h2>${modifierTable(data.modifiers,true,false)}</section>` + sourceFooter();
+  document.querySelectorAll('[aria-label="Elite modifiers"] tbody tr').forEach((row,index)=>{row.id=modifierId(data.modifiers[index].name);});
 }
 
 function renderEnemy() {

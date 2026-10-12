@@ -18,17 +18,17 @@ export function symbolText(text) {
 }
 
 export function statAmount(name, value) {
-  if (!Number.isFinite(value) || value < 0) return '<span aria-label="Unavailable">—</span>';
+  if (!Number.isFinite(value) || value < 0) return '<span aria-label="Unavailable"></span>';
   const whole = Math.floor(value);
   const fraction = Math.round((value - whole) * 100);
   const icon = statIcon(name).replace(`alt="${name}"`, 'alt=""').replace(` title="${name}"`, '');
   const unit = `<span class="stat-unit">${icon}</span>`;
   const partial = fraction ? `<span class="stat-unit stat-unit-partial"><span class="stat-unit-ghost">${icon}</span><span class="stat-unit-fill" style="width:${fraction}%">${icon}</span></span>` : '';
   const label = `${value} ${name}`;
-  return `<span class="stat-amount ${symbols.get(name)}-value" role="img" aria-label="${label}" title="${label}"><span class="stat-amount-icons" aria-hidden="true">${value === 0 ? '—' : unit.repeat(whole) + partial}</span></span>`;
+  return `<span class="stat-amount ${symbols.get(name)}-value" role="img" aria-label="${label}" title="${label}"><span class="stat-amount-icons" aria-hidden="true">${unit.repeat(whole) + partial}</span></span>`;
 }
 
 export function damageFearIcons(attack) {
-  if (!attack) return '<span aria-label="Unavailable group size">—</span>';
-  return `${statAmount('Damage', attack.damage)}<span class="attack-divider" aria-hidden="true">&nbsp;/&nbsp;</span>${statAmount('Fear', attack.fear)}`;
+  if (!attack) return '<span aria-label="Unavailable group size"></span>';
+  return `<span class="damage-fear-icons">${statAmount('Damage', attack.damage)}${statAmount('Fear', attack.fear)}</span>`;
 }

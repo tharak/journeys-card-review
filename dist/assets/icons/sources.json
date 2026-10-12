@@ -1,0 +1,77 @@
+{
+  "source": "assets/carddb/carddb-heroes-aragorn-001.webp",
+  "sourceUrl": "https://sites.google.com/view/jime-carddb/home/heroes/aragorn",
+  "note": "Original game badges cropped from the card scan. The attack PDF contains text placeholders, not symbol artwork.",
+  "icons": [
+    {
+      "name": "might",
+      "file": "assets/icons/might.png",
+      "box": [
+        629,
+        48,
+        690,
+        109
+      ]
+    },
+    {
+      "name": "wisdom",
+      "file": "assets/icons/wisdom.png",
+      "box": [
+        629,
+        114,
+        690,
+        175
+      ]
+    },
+    {
+      "name": "agility",
+      "file": "assets/icons/agility.png",
+      "box": [
+        629,
+        180,
+        690,
+        241
+      ]
+    },
+    {
+      "name": "spirit",
+      "file": "assets/icons/spirit.png",
+      "box": [
+        629,
+        246,
+        690,
+        307
+      ]
+    },
+    {
+      "name": "wits",
+      "file": "assets/icons/wits.png",
+      "box": [
+        629,
+        312,
+        690,
+        373
+      ]
+    },
+    {
+      "name": "damage",
+      "file": "assets/icons/damage.png",
+      "box": [
+        848,
+        317,
+        901,
+        370
+      ]
+    },
+    {
+      "name": "fear",
+      "file": "assets/icons/fear.png",
+      "box": [
+        848,
+        261,
+        901,
+        314
+      ]
+    }
+  ]
+}

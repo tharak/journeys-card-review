@@ -1,3 +1,5 @@
+import { installEnemyAttacks } from './enemy-attacks.mjs';
+
 const content = document.querySelector('#reference-content');
 const page = document.body.dataset.reference;
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -6,13 +8,6 @@ const speed = n => ['','Slow','Medium','Fast'][n];
 const number = n => n === null || n === undefined ? '—' : n.toFixed(1);
 const stats = ['Might','Wisdom','Agility','Spirit','Wits'];
 const modifierId = name => `modifier-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-const modifierCodes = {
-  Large: 'L', Huge: 'Hu', Armored: 'A', Shrouded: 'S', Bloodthirsty: 'B',
-  Terrifying: 'T', 'Spike Armor': 'S', 'Well-Equipped': 'We', Veteran: 'V',
-  Wary: 'Wa', Guarded: 'G', Hardened: 'Ha',
-};
-const modifierCode = modifier => modifierCodes[modifier.name];
-const modifierLegendId = modifier => `legend-${modifierId(modifier.name)}`;
 let data;
 
 function heading(title, description, count, countLabel) {
@@ -36,10 +31,6 @@ function possibleModifiers(enemy) {
   return data.modifiers.filter(m=>m.enemies.includes(enemy.name) && m.costs.some((cost,index)=>cost!==null && index<enemy.maxGroup));
 }
 
-function modifierLegend() {
-  return `<dl class="modifier-legend" aria-label="Elite modifier legend">${data.modifiers.map(m=>`<div id="${modifierLegendId(m)}"><dt>${modifierCode(m)}</dt><dd><a href="#${modifierId(m.name)}">${escape(m.name)}</a>: ${escape(m.effect).replaceAll("HP", "hp")}</dd></div>`).join('')}</dl>`;
-}
-
 function campaignMovement(adversary) {
   const move = String(adversary.move ?? '').trim();
   if (/^\d+$/.test(move)) return { value: move, note: '' };
@@ -55,16 +46,16 @@ function enemyTable(enemies, { label = 'Enemies', campaign = false } = {}) {
     const movement = campaign ? campaignMovement(e) : { value: e.speed, note: '' };
     const values = [e.health, e.armor, e.sorcery, movement.value].map(v=>v ?? '—');
     const modifiers = campaign ? [] : possibleModifiers(e);
-    return `<tr><td class="enemy-name">${campaign ? escape(e.name) : `<a href="${link(e)}">${escape(e.name)}</a>`}${e.ranged ? '<small>Ranged</small>' : ''}</td><td class="enemy-stats" aria-label="${escape(['Health','Armor','Sorcery','Move'].map((name,i)=>`${name} ${values[i]}`).join(', '))}">${values.map(escape).join(' / ')}</td>${campaign ? `<td class="campaign-attack-values" aria-label="Documented attack values">${e.attacks.length ? e.attacks.map(a=>`<span class="campaign-attack-pair" title="Negate: ${escape(a.negate)}">${damageFear(a)}</span>`).join(', ') : '—'}</td>` : [0,1,2].map(i=>`<td class="damage-fear-cell">${damageFear(e.attacks[i])}</td>`).join('')}<td class="enemy-special">${escape([movement.note.replace(/[.\s]+$/, ''),e.note].filter(Boolean).join('. '))}</td><td class="enemy-modifiers">${modifiers.length ? modifiers.map(m=>`<a href="#${modifierLegendId(m)}" title="${escape(m.name)}" aria-label="${modifierCode(m)}: ${escape(m.name)}">${modifierCode(m)}</a>`).join(' ') : '—'}</td></tr>`;
+    return `<tr${campaign ? '' : ` data-enemy-id="${escape(e.id)}" data-enemy-name="${escape(e.name)}" tabindex="0" aria-haspopup="dialog" aria-controls="enemy-attack-dialog" title="Show all attacks"`}><td class="enemy-name">${campaign ? escape(e.name) : `<button type="button" class="enemy-attack-trigger" aria-label="Show all ${escape(e.name)} attacks" aria-haspopup="dialog" aria-controls="enemy-attack-dialog">${escape(e.name)}</button>`}${e.ranged ? '<small>Ranged</small>' : ''}</td><td class="enemy-stats" aria-label="${escape(['Health','Armor','Sorcery','Move'].map((name,i)=>`${name} ${values[i]}`).join(', '))}">${values.map(escape).join(' / ')}</td>${campaign ? `<td class="campaign-attack-values" aria-label="Documented attack values">${e.attacks.length ? e.attacks.map(a=>`<span class="campaign-attack-pair" title="Negate: ${escape(a.negate)}">${damageFear(a)}</span>`).join(', ') : '—'}</td>` : [0,1,2].map(i=>`<td class="damage-fear-cell">${damageFear(e.attacks[i])}</td>`).join('')}<td class="enemy-special">${escape([movement.note.replace(/[.\s]+$/, ''),e.note].filter(Boolean).join('. '))}</td><td class="enemy-modifiers">${modifiers.length ? modifiers.map(m=>`<a href="#${modifierId(m.name)}" title="${escape(m.effect)}">${escape(m.name)}</a>`).join(', ') : '—'}</td></tr>`;
   }).join('')}</tbody></table></div>`;
 }
 
 function renderCatalog() {
   content.innerHTML = `
     ${enemyTable(data.enemies)}
-    ${modifierLegend()}
     <section class="reference-section campaign-lists" aria-labelledby="campaign-lists-title"><h2 id="campaign-lists-title">Campaign adversaries</h2>${data.campaigns.map(c=>`<details class="campaign-list"><summary>${escape(c.name)}</summary>${enemyTable(c.bosses,{label:`${c.name} adversaries`,campaign:true})}</details>`).join('')}</section>
     <section class="reference-section" aria-labelledby="catalog-modifiers-title"><h2 id="catalog-modifiers-title">Elite modifiers</h2>${modifierTable(data.modifiers,true,false)}</section>` + sourceFooter();
+  installEnemyAttacks(content);
 }
 
 function renderEnemy() {

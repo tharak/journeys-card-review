@@ -29,7 +29,7 @@ function damageFear(attack) {
 }
 
 function modifierTable(modifiers, includeEnemies = true, includeCosts = true) {
-  return `<div class="enemy-table-wrap" role="region" aria-label="Elite modifiers" tabindex="0"><table class="enemy-table"><thead><tr><th scope="col">Modifier</th><th scope="col">Effect</th>${includeCosts ? '<th scope="col">Cost: 1 / 2 / 3</th>' : ''}${includeEnemies ? '<th scope="col">Eligible enemies</th>' : ''}</tr></thead><tbody>${modifiers.map(m=>`<tr><th scope="row">${escape(m.name)}</th><td>${escape(m.effect)}</td>${includeCosts ? `<td class="compact">${m.costs.map(c=>c ?? '—').join(' / ')}</td>` : ''}${includeEnemies ? `<td>${m.enemies.filter(name=>includeCosts || possibleModifiers(data.enemies.find(e=>e.name===name)).includes(m)).map(name=>{const e=data.enemies.find(e=>e.name===name);return `<a href="${link(e)}">${escape(name)}</a>${includeCosts && name==='Hill Troll' && m.conditional ? '*' : ''}`;}).join(', ')}</td>` : ''}</tr>`).join('')}</tbody></table></div>`;
+  return `<div class="enemy-table-wrap" role="region" aria-label="Elite modifiers" tabindex="0"><table class="enemy-table"><thead><tr><th scope="col">Modifier</th><th scope="col">Effect</th>${includeCosts ? '<th scope="col">Cost: 1 / 2 / 3</th>' : ''}${includeEnemies ? '<th scope="col">Eligible enemies</th>' : ''}</tr></thead><tbody>${modifiers.map(m=>`<tr id="${modifierId(m.name)}"><th scope="row">${escape(m.name)}</th><td>${escape(m.effect)}</td>${includeCosts ? `<td class="compact">${m.costs.map(c=>c ?? '—').join(' / ')}</td>` : ''}${includeEnemies ? `<td>${m.enemies.filter(name=>includeCosts || possibleModifiers(data.enemies.find(e=>e.name===name)).includes(m)).map(name=>{const e=data.enemies.find(e=>e.name===name);return `<a href="${link(e)}">${escape(name)}</a>${includeCosts && name==='Hill Troll' && m.conditional ? '*' : ''}`;}).join(', ')}</td>` : ''}</tr>`).join('')}</tbody></table></div>`;
 }
 
 function possibleModifiers(enemy) {
@@ -40,13 +40,31 @@ function modifierLegend() {
   return `<dl class="modifier-legend" aria-label="Elite modifier legend">${data.modifiers.map(m=>`<div id="${modifierLegendId(m)}"><dt>${modifierCode(m)}</dt><dd><a href="#${modifierId(m.name)}">${escape(m.name)}</a>: ${escape(m.effect).replaceAll("HP", "hp")}</dd></div>`).join('')}</dl>`;
 }
 
+function campaignMovement(adversary) {
+  const move = String(adversary.move ?? '').trim();
+  if (/^\d+$/.test(move)) return { value: move, note: '' };
+  // Conditional and alternate movements have no single fixed speed.
+  const fixed = !move.includes('/') && move.match(/^(\d+)(?:,\s*|\s*\()(.*)$/);
+  if (fixed) return { value: fixed[1], note: `Movement: ${fixed[2].replace(/\)$/, '')}` };
+  return { value: '—', note: move ? `Movement: ${move}` : '' };
+}
+
+function enemyTable(enemies, { label = 'Enemies', campaign = false } = {}) {
+  const groupColumns = !campaign;
+  return `<div class="enemy-table-wrap" role="region" aria-label="${escape(label)}" tabindex="0"><table class="enemy-table catalog-enemies"><thead><tr><th scope="col"${groupColumns ? ' rowspan="2"' : ''}>${campaign ? 'Adversary' : 'Enemy'}</th><th scope="col"${groupColumns ? ' rowspan="2"' : ''} class="enemy-stats-heading" aria-label="Health / Armor / Sorcery / Move">Health / Armor /<br>Sorcery / Move</th><th scope="${groupColumns ? 'colgroup' : 'col'}"${groupColumns ? ' colspan="3"' : ''}><span class="damage-value">Damage</span>&nbsp;/&nbsp;<span class="fear-value">Fear</span></th><th scope="col"${groupColumns ? ' rowspan="2"' : ''}>Special</th><th scope="col"${groupColumns ? ' rowspan="2"' : ''}>Elite modifiers</th></tr>${groupColumns ? `<tr>${[1,2,3].map(n=>`<th scope="col" class="damage-fear-heading">${n} ${n===1?'enemy':'enemies'}</th>`).join('')}</tr>` : ''}</thead><tbody${campaign ? '' : ' id="enemy-rows"'}>${enemies.map(e=>{
+    const movement = campaign ? campaignMovement(e) : { value: e.speed, note: '' };
+    const values = [e.health, e.armor, e.sorcery, movement.value].map(v=>v ?? '—');
+    const modifiers = campaign ? [] : possibleModifiers(e);
+    return `<tr><td class="enemy-name">${campaign ? escape(e.name) : `<a href="${link(e)}">${escape(e.name)}</a>`}${e.ranged ? '<small>Ranged</small>' : ''}</td><td class="enemy-stats" aria-label="${escape(['Health','Armor','Sorcery','Move'].map((name,i)=>`${name} ${values[i]}`).join(', '))}">${values.map(escape).join(' / ')}</td>${campaign ? `<td class="campaign-attack-values" aria-label="Documented attack values">${e.attacks.length ? e.attacks.map(a=>`<span class="campaign-attack-pair" title="Negate: ${escape(a.negate)}">${damageFear(a)}</span>`).join(', ') : '—'}</td>` : [0,1,2].map(i=>`<td class="damage-fear-cell">${damageFear(e.attacks[i])}</td>`).join('')}<td class="enemy-special">${escape([movement.note.replace(/[.\s]+$/, ''),e.note].filter(Boolean).join('. '))}</td><td class="enemy-modifiers">${modifiers.length ? modifiers.map(m=>`<a href="#${modifierLegendId(m)}" title="${escape(m.name)}" aria-label="${modifierCode(m)}: ${escape(m.name)}">${modifierCode(m)}</a>`).join(' ') : '—'}</td></tr>`;
+  }).join('')}</tbody></table></div>`;
+}
+
 function renderCatalog() {
   content.innerHTML = `
-    <div class="enemy-table-wrap" role="region" aria-label="Enemies" tabindex="0"><table class="enemy-table catalog-enemies"><thead><tr><th scope="col" rowspan="2">Enemy</th><th scope="col" rowspan="2" class="enemy-stats-heading" aria-label="Health / Armor / Sorcery / Move">Health / Armor /<br>Sorcery / Move</th><th scope="colgroup" colspan="3"><span class="damage-value">Damage</span>&nbsp;/&nbsp;<span class="fear-value">Fear</span></th><th scope="col" rowspan="2">Possible elite modifiers</th><th scope="col" rowspan="2">Special</th></tr><tr>${[1,2,3].map(n=>`<th scope="col" class="damage-fear-heading">${n} ${n===1?'enemy':'enemies'}</th>`).join('')}</tr></thead><tbody id="enemy-rows">${data.enemies.map(e=>`<tr><td class="enemy-name"><a href="${link(e)}">${escape(e.name)}</a>${e.ranged?'<small>Ranged</small>':''}</td><td class="enemy-stats" aria-label="Health ${e.health}, Armor ${e.armor}, Sorcery ${e.sorcery}, Move ${e.speed}">${e.health} / ${e.armor} / ${e.sorcery} / ${e.speed}</td>${[0,1,2].map(i=>`<td class="damage-fear-cell">${damageFear(e.attacks[i])}</td>`).join('')}<td class="enemy-modifiers">${possibleModifiers(e).map(m=>`<a href="#${modifierLegendId(m)}" title="${escape(m.name)}" aria-label="${modifierCode(m)}: ${escape(m.name)}">${modifierCode(m)}</a>`).join(' ')}</td><td class="enemy-special">${escape(e.note)}</td></tr>`).join('')}</tbody></table></div>
+    ${enemyTable(data.enemies)}
     ${modifierLegend()}
-    <section class="reference-section campaign-lists" aria-labelledby="campaign-lists-title"><h2 id="campaign-lists-title">Campaign adversaries</h2>${data.campaigns.map(c=>`<details class="campaign-list"><summary>${escape(c.name)}</summary><div class="enemy-table-wrap" role="region" aria-label="${escape(c.name)} adversaries" tabindex="0"><table class="enemy-table"><thead><tr><th scope="col">Adversary</th><th scope="col">Health</th><th scope="col">Armor</th><th scope="col">Sorcery</th><th scope="col">Move</th></tr></thead><tbody>${c.bosses.map(b=>`<tr><th scope="row">${escape(b.name)}</th><td>${b.health ?? '—'}</td><td>${b.armor ?? '—'}</td><td>${b.sorcery ?? '—'}</td><td>${escape(b.move ?? '—')}</td></tr>`).join('')}</tbody></table></div></details>`).join('')}</section>
+    <section class="reference-section campaign-lists" aria-labelledby="campaign-lists-title"><h2 id="campaign-lists-title">Campaign adversaries</h2>${data.campaigns.map(c=>`<details class="campaign-list"><summary>${escape(c.name)}</summary>${enemyTable(c.bosses,{label:`${c.name} adversaries`,campaign:true})}</details>`).join('')}</section>
     <section class="reference-section" aria-labelledby="catalog-modifiers-title"><h2 id="catalog-modifiers-title">Elite modifiers</h2>${modifierTable(data.modifiers,true,false)}</section>` + sourceFooter();
-  document.querySelectorAll('[aria-label="Elite modifiers"] tbody tr').forEach((row,index)=>{row.id=modifierId(data.modifiers[index].name);});
 }
 
 function renderEnemy() {
@@ -90,6 +108,7 @@ try {
   const response=await fetch('enemies-data.json');
   if(!response.ok) throw new Error(`HTTP ${response.status}`);
   data=await response.json();
+  data.modifiers.sort((a,b)=>a.name.localeCompare(b.name));
   ({catalog:renderCatalog,enemy:renderEnemy,mechanics:renderMechanics,bosses:renderBosses}[page] || renderCatalog)();
 } catch(error) {
   console.error('Could not load enemy reference',error);

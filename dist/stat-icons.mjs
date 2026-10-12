@@ -1,7 +1,7 @@
 const symbols = new Map([
   ['Might', 'might'], ['Wisdom', 'wisdom'], ['Agility', 'agility'],
   ['Spirit', 'spirit'], ['Wits', 'wits'], ['Wit', 'wits'],
-  ['Damage', 'damage'], ['Fear', 'fear'],
+  ['Damage', 'damage'], ['Fear', 'fear'], ['Inspiration', 'inspiration'],
 ]);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -14,5 +14,5 @@ export function statIcon(name) {
 export const negateIcons = value => String(value).split(' / ').map(statIcon).join('<span class="stat-separator" aria-hidden="true"> / </span>');
 
 export function symbolText(text) {
-  return escape(text).replace(/\{(Might|Wisdom|Agility|Spirit|Wits?|Damage|Fear)\}/g, (_,name)=>statIcon(name));
+  return escape(text).replace(/\{(Might|Wisdom|Agility|Spirit|Wits?|Damage|Fear|Inspiration)\}/g, (_,name)=>statIcon(name));
 }

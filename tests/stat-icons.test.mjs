@@ -4,7 +4,7 @@ import test from 'node:test';
 import { statIcon, negateIcons, symbolText } from '../dist/stat-icons.mjs';
 
 test('all original symbol images exist and retain accessible stat names', () => {
-  for (const name of ['Might','Wisdom','Agility','Spirit','Wits','Damage','Fear']) {
+  for (const name of ['Might','Wisdom','Agility','Spirit','Wits','Damage','Fear','Inspiration']) {
     const icon = statIcon(name);
     assert.ok(icon.includes(`alt="${name}"`));
     assert.ok(icon.includes(`title="${name}"`));
@@ -19,8 +19,8 @@ test('combined negate stats and attack tokens preserve meaning without injecting
   assert.ok(negateIcons('Agility / Wisdom').includes('alt="Agility"'));
   assert.ok(negateIcons('Agility / Wisdom').includes('alt="Wisdom"'));
   assert.equal(negateIcons('Unknown <stat>'), 'Unknown &lt;stat&gt;');
-  const text = symbolText('If you suffer {Damage} or {Fear}, test {Might}. <script> {2H}');
-  for (const name of ['Damage','Fear','Might']) assert.ok(text.includes(`alt="${name}"`));
+  const text = symbolText('If you suffer {Damage} or {Fear}, test {Might}. Gain {Inspiration}. <script> {2H}');
+  for (const name of ['Damage','Fear','Might','Inspiration']) assert.ok(text.includes(`alt="${name}"`));
   assert.ok(text.includes('&lt;script&gt;'));
   assert.ok(text.includes('{2H}'));
   assert.ok(!text.includes('{Damage}'));

@@ -72,6 +72,16 @@
         901,
         314
       ]
+    },
+    {
+      "name": "inspiration",
+      "file": "assets/icons/inspiration.png",
+      "box": [
+        744,
+        92,
+        862,
+        201
+      ]
     }
   ]
 }

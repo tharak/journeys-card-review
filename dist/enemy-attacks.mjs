@@ -1,10 +1,6 @@
-import { statIcon, negateIcons, symbolText } from './stat-icons.mjs';
+import { statIcon, negateIcons, symbolText, damageFearIcons as pair } from './stat-icons.mjs';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const pair = group => group
-  ? `<span class="damage-value">${group.damage}</span><span class="attack-divider">&nbsp;/&nbsp;</span><span class="fear-value">${group.fear}</span>`
-  : '<span aria-label="Unavailable group size">—</span>';
-
 export function installEnemyAttacks(content) {
   const dialog = document.createElement('dialog');
   dialog.id = 'enemy-attack-dialog';

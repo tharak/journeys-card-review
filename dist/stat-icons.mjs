@@ -32,3 +32,35 @@ export function damageFearIcons(attack) {
   if (!attack) return '<span aria-label="Unavailable group size"></span>';
   return `<span class="damage-fear-icons">${statAmount('Damage', attack.damage)}${statAmount('Fear', attack.fear)}</span>`;
 }
+
+export const groupLegend = '<span class="group-legend" aria-label="Enemy group sizes"><span class="group-one">1</span><span class="group-two">2</span><span class="group-three">3</span></span>';
+
+let stripId = 0;
+export function groupAttackStrip(groups) {
+  const available = groups.map((attack, i) => attack ? {attack, group: i + 1} : null).filter(Boolean);
+  if (!available.length) return '<span aria-label="Unavailable group sizes"></span>';
+  const label = groups.map((a, i) => `${i + 1} ${i === 0 ? 'enemy' : 'enemies'}: ${a ? `${a.damage} Damage, ${a.fear} Fear` : 'unavailable'}`).join('; ');
+  const colors = ['#a8b7a2', '#d9b765', '#8fb7e0'];
+  const position = value => value === 0 ? 0 : Math.floor(value) * 20 + (value % 1 ? Math.round((value % 1) * 180) / 10 : -2);
+  const id = `attack-strip-${++stripId}`;
+  let offset = 3;
+  const lanes = ['damage', 'fear'].map(name => {
+    const max = Math.max(...available.map(({attack}) => attack[name]));
+    if (max === 0) return '';
+    const width = Math.ceil(max) * 20 - 2;
+    const icons = Array.from({length: Math.ceil(max)}, (_, i) => `<image href="assets/icons/${name}.png" x="${i * 20}" y="2" width="18" height="18"/>`).join('');
+    let previous = 0;
+    const bands = available.map(({attack, group}) => {
+      const end = position(attack[name]);
+      const start = position(previous);
+      previous = Math.max(previous, attack[name]);
+      const extra = end > start && group > 1 ? `<rect x="${start}" y="0" width="${end - start}" height="22" fill="${colors[group - 1]}" opacity=".2" rx="2"/>` : '';
+      return `${extra}<path data-group="${group}" data-value="${attack[name]}" d="M0 ${22 + group * 3} H${end}" stroke="${colors[group - 1]}" stroke-width="2"/><circle cx="${end}" cy="${22 + group * 3}" r="1.6" fill="${colors[group - 1]}"/>`;
+    }).join('');
+    const lane = `<g class="attack-strip-${name}" transform="translate(${offset} 0)"><defs><clipPath id="${id}-${name}"><rect width="${position(max)}" height="22"/></clipPath></defs><g opacity=".18">${icons}</g><g clip-path="url(#${id}-${name})">${icons}</g>${bands}</g>`;
+    offset += width + 12;
+    return lane;
+  }).join('');
+  const width = Math.max(6, offset - 9);
+  return `<svg class="group-attack-strip" xmlns="http://www.w3.org/2000/svg" width="${width}" height="35" viewBox="0 0 ${width} 35" role="img" aria-label="${escape(label)}"><title>${escape(label)}</title>${lanes}</svg>`;
+}

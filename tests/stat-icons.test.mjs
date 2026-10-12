@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
-import { statIcon, negateIcons, symbolText, statAmount, damageFearIcons } from '../dist/stat-icons.mjs';
+import { statIcon, negateIcons, symbolText, statAmount, damageFearIcons, groupAttackStrip } from '../dist/stat-icons.mjs';
 
 test('all original symbol images exist and retain accessible stat names', () => {
   for (const name of ['Might','Wisdom','Agility','Spirit','Wits','Damage','Fear','Inspiration']) {
@@ -43,4 +43,19 @@ test('combined negate stats and attack tokens preserve meaning without injecting
   assert.ok(text.includes('&lt;script&gt;'));
   assert.ok(text.includes('{2H}'));
   assert.ok(!text.includes('{Damage}'));
+});
+
+test('shared attack strip retains group endpoints, decreases, and unavailable groups', () => {
+  const groups = [{damage: 1.6, fear: 1}, {damage: 2.2, fear: .8}, {damage: 2.5, fear: 1}];
+  const strip = groupAttackStrip(groups);
+  assert.equal((strip.match(/<svg /g) || []).length, 1);
+  for (const [i, a] of groups.entries()) {
+    assert.ok(strip.includes(`${i + 1} ${i ? 'enemies' : 'enemy'}: ${a.damage} Damage, ${a.fear} Fear`));
+    assert.ok(strip.includes(`data-group="${i + 1}" data-value="${a.fear}"`));
+  }
+  assert.ok(strip.includes('d="M0 28 H14.4"'), 'the lower two-enemy Fear endpoint stays below the one-enemy endpoint');
+  assert.ok(groupAttackStrip([groups[0], null, null]).includes('2 enemies: unavailable; 3 enemies: unavailable'));
+  assert.ok(!groupAttackStrip([{damage: 0, fear: 0}]).includes('<image'));
+  const ids = [...strip.matchAll(/clipPath id="([^"]+)"/g)].map(m => m[1]);
+  assert.ok(ids.every(id => !groupAttackStrip(groups).includes(`id="${id}"`)), 'each strip has independent clipping');
 });

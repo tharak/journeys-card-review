@@ -1,4 +1,4 @@
-import { statIcon, negateIcons, symbolText, damageFearIcons as pair } from './stat-icons.mjs';
+import { statIcon, negateIcons, symbolText, groupAttackStrip, groupLegend } from './stat-icons.mjs';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function installEnemyAttacks(content) {
@@ -42,7 +42,7 @@ export function installEnemyAttacks(content) {
       if (!dialog.open || activeRequest !== request) return;
       const enemy = data.enemies.find(enemy => enemy.id === id);
       if (!enemy?.attacks.length) throw new Error(`No attacks found for ${id}`);
-      body.innerHTML = `<div class="enemy-table-wrap" role="region" aria-label="${escape(enemy.name)} attacks" tabindex="0"><table class="enemy-table attack-table"><thead><tr><th scope="col" rowspan="2">#</th><th scope="col" rowspan="2">Attack</th><th scope="col" rowspan="2">Negate</th><th scope="colgroup" colspan="3">${statIcon('Damage')}&nbsp;&nbsp;${statIcon('Fear')}</th><th scope="col" rowspan="2">Effect</th></tr><tr>${[1,2,3].map(n=>`<th scope="col" class="damage-fear-heading">${n} ${n===1?'enemy':'enemies'}</th>`).join('')}</tr></thead><tbody>${enemy.attacks.map(attack=>`<tr><th scope="row">${attack.number}</th><td class="attack-text">${symbolText(attack.text)}</td><td class="attack-negate">${negateIcons(attack.negate)}</td>${attack.groups.map(group=>`<td class="damage-fear-cell">${pair(group)}</td>`).join('')}<td class="attack-effect">${symbolText(attack.effect || '—')}</td></tr>`).join('')}</tbody></table></div>`;
+      body.innerHTML = `<div class="enemy-table-wrap" role="region" aria-label="${escape(enemy.name)} attacks" tabindex="0"><table class="enemy-table attack-table"><thead><tr><th scope="col">#</th><th scope="col">Attack</th><th scope="col">Negate</th><th scope="col" class="damage-fear-heading">${statIcon('Damage')}&nbsp;&nbsp;${statIcon('Fear')}${groupLegend}</th><th scope="col">Effect</th></tr></thead><tbody>${enemy.attacks.map(attack=>`<tr><th scope="row">${attack.number}</th><td class="attack-text">${symbolText(attack.text)}</td><td class="attack-negate">${negateIcons(attack.negate)}</td><td class="damage-fear-cell">${groupAttackStrip(attack.groups)}</td><td class="attack-effect">${symbolText(attack.effect || '—')}</td></tr>`).join('')}</tbody></table></div>`;
     } catch (error) {
       if (!dialog.open || activeRequest !== request) return;
       console.error('Could not load enemy attacks', error);

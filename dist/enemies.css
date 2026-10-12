@@ -18,3 +18,5 @@
 .stat-amount,.stat-amount-icons{display:inline-flex;align-items:center;vertical-align:middle;gap:2px}.stat-amount-icons{white-space:nowrap}.stat-unit{position:relative;display:inline-block;flex:none;width:18px;height:18px}.stat-unit .stat-icon{display:block;width:18px;height:18px;margin:0;vertical-align:top}.stat-unit-ghost{opacity:.18}.stat-unit-fill{position:absolute;inset:0 auto 0 0;overflow:hidden}.campaign-attack-pair{display:inline-flex;align-items:center}.campaign-attack-values .campaign-attack-pair{margin:2px 0}.damage-fear-cell{vertical-align:middle}
 
 .damage-fear-icons{display:inline-flex;align-items:center;vertical-align:middle;gap:6px}
+
+.group-attack-strip{display:inline-block;vertical-align:middle;overflow:visible}.group-legend{display:flex;justify-content:center;gap:10px;margin-top:7px;font-size:10px;letter-spacing:0}.group-legend>span{display:inline-flex;align-items:center;gap:4px}.group-legend>span:before{content:"";width:10px;height:3px;border-radius:2px;background:currentColor}.group-one{color:#a8b7a2}.group-two{color:#d9b765}.group-three{color:#8fb7e0}

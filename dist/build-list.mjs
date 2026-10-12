@@ -16,20 +16,33 @@ export function connectBuildList({ getCatalog, notify }) {
     const list = $('#saved-build-list');
     list.replaceChildren();
     const catalog = getCatalog();
+    const byId = new Map(catalog.map(card => [card.id, card]));
     const matching = builds.filter(build => !term || `${build.name} ${buildSummary(build, catalog)}`.toLocaleLowerCase().includes(term))
       .sort((a, b) => compareBuildList(a, b, { sort: ordering.value, favorites, catalog }));
     for (const build of matching) {
       const row = document.createElement('li');
       const link = document.createElement('a');
       link.href = `build.html?id=${encodeURIComponent(build.id)}`;
-      link.textContent = buildSummary(build, catalog);
+      const summary = buildSummary(build, catalog);
+      const hero = byId.get(build.heroId);
+      if (hero?.image) {
+        const image = document.createElement('img');
+        image.className = 'saved-build-hero';
+        image.src = hero.image;
+        image.alt = '';
+        image.loading = 'lazy';
+        link.append(image);
+      }
+      const text = document.createElement('span');
+      text.textContent = summary;
+      link.append(text);
       link.title = build.name;
-      if (build.ownerId === user?.uid) link.setAttribute('aria-label', `${link.textContent} — your build`);
+      if (build.ownerId === user?.uid) link.setAttribute('aria-label', `${summary} — your build`);
       const favorite = document.createElement('button');
       favorite.type = 'button'; favorite.className = 'build-favorite';
       const active = favorites.has(build.id);
       favorite.textContent = active ? '★' : '☆';
-      favorite.setAttribute('aria-label', `${active ? 'Unfavorite' : 'Favorite'} ${link.textContent}`);
+      favorite.setAttribute('aria-label', `${active ? 'Unfavorite' : 'Favorite'} ${summary}`);
       favorite.setAttribute('aria-pressed', String(active));
       favorite.title = active ? 'Remove favorite' : 'Favorite build';
       favorite.disabled = !user || busyFavorites.has(build.id);

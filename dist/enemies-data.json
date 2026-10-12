@@ -1,0 +1,2081 @@
+{
+  "source": {
+    "title": "Demystifying enemies, a project documenting enemy stats and behavior",
+    "author": "Reshyk",
+    "url": "https://boardgamegeek.com/thread/2469108/demystifying-enemies-a-project-documenting-enemy-s",
+    "updated": "2022-07-07",
+    "accessed": "2026-10-12",
+    "spreadsheet": "https://boardgamegeek.com/filepage/215030/jime-enemy-stats-activations-and-modifiers",
+    "spreadsheetVersion": "1.4",
+    "spreadsheetAuthor": "Birdman137"
+  },
+  "enemies": [
+    {
+      "id": "goblin-scout",
+      "name": "Goblin Scout",
+      "health": 3,
+      "armor": 1,
+      "sorcery": 0,
+      "speed": 2,
+      "ranged": false,
+      "figures": 6,
+      "maxGroup": 3,
+      "costs": [
+        4,
+        7,
+        11
+      ],
+      "tags": [
+        "Goblin",
+        "Weak",
+        "Small"
+      ],
+      "note": "A lone Scout is more likely to produce an attack with a beneficial side effect for the hero.",
+      "negate": [
+        42,
+        0,
+        17,
+        33,
+        8
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 1.2,
+          "fear": 0.4,
+          "total": 1.6
+        },
+        {
+          "group": 2,
+          "damage": 1.6,
+          "fear": 0.7,
+          "total": 2.4
+        },
+        {
+          "group": 3,
+          "damage": 2.3,
+          "fear": 1.1,
+          "total": 3.4
+        }
+      ]
+    },
+    {
+      "id": "giant-spider",
+      "name": "Giant Spider",
+      "health": 4,
+      "armor": 0,
+      "sorcery": 0,
+      "speed": 3,
+      "ranged": false,
+      "figures": 6,
+      "maxGroup": 3,
+      "costs": [
+        5,
+        8,
+        12
+      ],
+      "tags": [
+        "Beast",
+        "Fast",
+        "Weak",
+        "Small"
+      ],
+      "note": "Its lower-damage attacks often carry additional effects.",
+      "negate": [
+        14,
+        0,
+        43,
+        14,
+        29
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 1.6,
+          "fear": 0.3,
+          "total": 1.9
+        },
+        {
+          "group": 2,
+          "damage": 2.1,
+          "fear": 0.7,
+          "total": 2.9
+        },
+        {
+          "group": 3,
+          "damage": 2.7,
+          "fear": 1,
+          "total": 3.7
+        }
+      ]
+    },
+    {
+      "id": "pit-goblin",
+      "name": "Pit Goblin",
+      "health": 3,
+      "armor": 2,
+      "sorcery": 0,
+      "speed": 2,
+      "ranged": true,
+      "figures": 6,
+      "maxGroup": 3,
+      "costs": [
+        4,
+        7,
+        11
+      ],
+      "tags": [
+        "Goblin",
+        "Weak",
+        "Small",
+        "Range"
+      ],
+      "note": "Attack output increases slowly as the group grows.",
+      "negate": [
+        57,
+        14,
+        14,
+        14,
+        0
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 1.6,
+          "fear": 0.6,
+          "total": 2.1
+        },
+        {
+          "group": 2,
+          "damage": 1.8,
+          "fear": 1,
+          "total": 2.8
+        },
+        {
+          "group": 3,
+          "damage": 1.8,
+          "fear": 1.5,
+          "total": 3.3
+        }
+      ]
+    },
+    {
+      "id": "ruffian",
+      "name": "Ruffian",
+      "health": 5,
+      "armor": 0,
+      "sorcery": 0,
+      "speed": 2,
+      "ranged": false,
+      "figures": 6,
+      "maxGroup": 3,
+      "costs": [
+        7,
+        13,
+        19
+      ],
+      "tags": [
+        "Humanoid",
+        "Weak"
+      ],
+      "note": "A solo Ruffian can add a Weakness; negating the relevant attack can prevent it.",
+      "negate": [
+        42,
+        8,
+        25,
+        17,
+        8
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 1.7,
+          "fear": 0.2,
+          "total": 2
+        },
+        {
+          "group": 2,
+          "damage": 2.5,
+          "fear": 1.2,
+          "total": 3.6
+        },
+        {
+          "group": 3,
+          "damage": 2.9,
+          "fear": 1.8,
+          "total": 4.7
+        }
+      ]
+    },
+    {
+      "id": "orc-hunter",
+      "name": "Orc Hunter",
+      "health": 5,
+      "armor": 1,
+      "sorcery": 0,
+      "speed": 1,
+      "ranged": true,
+      "figures": 3,
+      "maxGroup": 3,
+      "costs": [
+        10,
+        19,
+        28
+      ],
+      "tags": [
+        "Orc",
+        "Range"
+      ],
+      "note": "Can inflict a Weakness, with prevention becoming harder in larger groups. A solo-only activation delivers an unusually strong physical hit.",
+      "negate": [
+        25,
+        8,
+        42,
+        8,
+        17
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 2,
+          "fear": 0.8,
+          "total": 2.8
+        },
+        {
+          "group": 2,
+          "damage": 2.4,
+          "fear": 1.3,
+          "total": 3.6
+        },
+        {
+          "group": 3,
+          "damage": 2.5,
+          "fear": 2,
+          "total": 4.5
+        }
+      ]
+    },
+    {
+      "id": "orc-marauder",
+      "name": "Orc Marauder",
+      "health": 5,
+      "armor": 2,
+      "sorcery": 0,
+      "speed": 1,
+      "ranged": false,
+      "figures": 3,
+      "maxGroup": 3,
+      "costs": [
+        9,
+        17,
+        25
+      ],
+      "tags": [
+        "Orc",
+        "Slow"
+      ],
+      "note": "Some attacks reposition both the Marauder and the defending hero.",
+      "negate": [
+        42,
+        8,
+        17,
+        25,
+        8
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 1.9,
+          "fear": 0.3,
+          "total": 2.3
+        },
+        {
+          "group": 2,
+          "damage": 2.6,
+          "fear": 0.4,
+          "total": 3
+        },
+        {
+          "group": 3,
+          "damage": 3.3,
+          "fear": 0.6,
+          "total": 3.9
+        }
+      ]
+    },
+    {
+      "id": "shadowman",
+      "name": "Shadowman",
+      "health": 5,
+      "armor": 1,
+      "sorcery": 2,
+      "speed": 1,
+      "ranged": false,
+      "figures": 3,
+      "maxGroup": 3,
+      "costs": [
+        17,
+        32,
+        47
+      ],
+      "tags": [
+        "Humanoid",
+        "Slow",
+        "Powerful"
+      ],
+      "note": "Ignores walls. One Fear-based attack can inflict a Weakness if it is not negated.",
+      "negate": [
+        29,
+        0,
+        14,
+        43,
+        14
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 1.4,
+          "fear": 1.3,
+          "total": 2.7
+        },
+        {
+          "group": 2,
+          "damage": 2,
+          "fear": 1.6,
+          "total": 3.6
+        },
+        {
+          "group": 3,
+          "damage": 2,
+          "fear": 2.1,
+          "total": 4.1
+        }
+      ]
+    },
+    {
+      "id": "orc-taskmaster",
+      "name": "Orc Taskmaster",
+      "health": 7,
+      "armor": 2,
+      "sorcery": 0,
+      "speed": 1,
+      "ranged": false,
+      "figures": 3,
+      "maxGroup": 3,
+      "costs": [
+        14,
+        27,
+        40
+      ],
+      "tags": [
+        "Orc",
+        "Slow"
+      ],
+      "note": "Some lower-damage attacks let other Orcs or Goblins move or inflict additional Damage.",
+      "negate": [
+        43,
+        14,
+        14,
+        0,
+        14
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 1.6,
+          "fear": 1,
+          "total": 2.6
+        },
+        {
+          "group": 2,
+          "damage": 2.2,
+          "fear": 0.8,
+          "total": 3
+        },
+        {
+          "group": 3,
+          "damage": 2.5,
+          "fear": 1,
+          "total": 3.5
+        }
+      ]
+    },
+    {
+      "id": "hungry-warg",
+      "name": "Hungry Warg",
+      "health": 8,
+      "armor": 1,
+      "sorcery": 0,
+      "speed": 3,
+      "ranged": false,
+      "figures": 3,
+      "maxGroup": 3,
+      "costs": [
+        14,
+        27,
+        40
+      ],
+      "tags": [
+        "Beast",
+        "Fast",
+        "Powerful"
+      ],
+      "note": "Groups can make you discard cards; a lone Warg can inflict a Weakness.",
+      "negate": [
+        42,
+        0,
+        17,
+        25,
+        17
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 1.9,
+          "fear": 0.9,
+          "total": 2.8
+        },
+        {
+          "group": 2,
+          "damage": 2.4,
+          "fear": 1.2,
+          "total": 3.6
+        },
+        {
+          "group": 3,
+          "damage": 3.1,
+          "fear": 1.9,
+          "total": 5
+        }
+      ]
+    },
+    {
+      "id": "wight",
+      "name": "Wight",
+      "health": 6,
+      "armor": 0,
+      "sorcery": 3,
+      "speed": 1,
+      "ranged": false,
+      "figures": 3,
+      "maxGroup": 3,
+      "costs": [
+        17,
+        32,
+        47
+      ],
+      "tags": [
+        "Humanoid",
+        "Powerful"
+      ],
+      "note": "Several attacks remove inspiration. Larger groups are more likely to select these effects.",
+      "negate": [
+        33,
+        8,
+        17,
+        42,
+        0
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 0.8,
+          "fear": 2.5,
+          "total": 3.4
+        },
+        {
+          "group": 2,
+          "damage": 0.9,
+          "fear": 3.3,
+          "total": 4.1
+        },
+        {
+          "group": 3,
+          "damage": 1.3,
+          "fear": 3.9,
+          "total": 5.1
+        }
+      ]
+    },
+    {
+      "id": "cave-troll",
+      "name": "Cave Troll",
+      "health": 10,
+      "armor": 1,
+      "sorcery": 0,
+      "speed": 1,
+      "ranged": false,
+      "figures": 2,
+      "maxGroup": 2,
+      "costs": [
+        20,
+        40
+      ],
+      "tags": [
+        "Beast",
+        "Slow",
+        "Powerful",
+        "Large"
+      ],
+      "note": "Fully negating one of its attacks can grant Emboldened.",
+      "negate": [
+        42,
+        14,
+        29,
+        0,
+        14
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 2.4,
+          "fear": 0.3,
+          "total": 2.7
+        },
+        {
+          "group": 2,
+          "damage": 3.4,
+          "fear": 0.3,
+          "total": 3.7
+        }
+      ]
+    },
+    {
+      "id": "hill-troll",
+      "name": "Hill Troll",
+      "health": 14,
+      "armor": 2,
+      "sorcery": 0,
+      "speed": 2,
+      "ranged": false,
+      "figures": 1,
+      "maxGroup": 1,
+      "costs": [
+        25
+      ],
+      "tags": [
+        "Beast",
+        "Powerful",
+        "Large"
+      ],
+      "note": "Its few additional effects cannot be prevented by negating the attack. Uluk has separate scripted movement rules.",
+      "negate": [
+        50,
+        0,
+        25,
+        17,
+        8
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 3,
+          "fear": 1.4,
+          "total": 4.4
+        }
+      ]
+    },
+    {
+      "id": "nameless-thing",
+      "name": "Nameless Thing",
+      "health": 20,
+      "armor": 0,
+      "sorcery": 0,
+      "speed": 3,
+      "ranged": false,
+      "figures": 3,
+      "maxGroup": 1,
+      "costs": [
+        27
+      ],
+      "tags": [
+        "Beast",
+        "Fast",
+        "Powerful",
+        "Large"
+      ],
+      "note": "Teleports rather than traversing intervening spaces. High health and fast movement are its main threats; random groups contain only one figure.",
+      "negate": [
+        29,
+        14,
+        14,
+        14,
+        29
+      ],
+      "attacks": [
+        {
+          "group": 1,
+          "damage": 2.1,
+          "fear": 0.4,
+          "total": 2.6
+        }
+      ]
+    }
+  ],
+  "modifiers": [
+    {
+      "name": "Large",
+      "effect": "+2 HP",
+      "costs": [
+        3,
+        5,
+        7
+      ],
+      "enemies": [
+        "Goblin Scout",
+        "Giant Spider",
+        "Pit Goblin",
+        "Ruffian",
+        "Orc Hunter",
+        "Orc Marauder",
+        "Orc Taskmaster",
+        "Hungry Warg",
+        "Wight",
+        "Cave Troll",
+        "Nameless Thing"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Huge",
+      "effect": "+3 HP",
+      "costs": [
+        4,
+        7,
+        10
+      ],
+      "enemies": [
+        "Goblin Scout",
+        "Giant Spider",
+        "Pit Goblin",
+        "Ruffian",
+        "Orc Marauder",
+        "Orc Taskmaster",
+        "Cave Troll",
+        "Nameless Thing"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Armored",
+      "effect": "+1 Armor",
+      "costs": [
+        4,
+        7,
+        10
+      ],
+      "enemies": [
+        "Goblin Scout",
+        "Pit Goblin",
+        "Ruffian",
+        "Orc Hunter",
+        "Shadowman",
+        "Orc Taskmaster",
+        "Hungry Warg",
+        "Cave Troll",
+        "Hill Troll",
+        "Nameless Thing"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Shrouded",
+      "effect": "+1 Sorcery",
+      "costs": [
+        7,
+        12,
+        17
+      ],
+      "enemies": [
+        "Giant Spider",
+        "Orc Hunter",
+        "Shadowman",
+        "Wight",
+        "Nameless Thing"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Bloodthirsty",
+      "effect": "+1 Damage",
+      "costs": [
+        3,
+        4,
+        5
+      ],
+      "enemies": [
+        "Giant Spider",
+        "Pit Goblin",
+        "Ruffian",
+        "Orc Hunter",
+        "Shadowman",
+        "Orc Taskmaster",
+        "Hungry Warg",
+        "Cave Troll",
+        "Nameless Thing"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Terrifying",
+      "effect": "+1 Fear",
+      "costs": [
+        3,
+        4,
+        5
+      ],
+      "enemies": [
+        "Giant Spider",
+        "Pit Goblin",
+        "Orc Marauder",
+        "Shadowman",
+        "Orc Taskmaster",
+        "Hungry Warg",
+        "Wight",
+        "Hill Troll",
+        "Nameless Thing"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Spike Armor",
+      "effect": "+1 Armor, +1 Damage",
+      "costs": [
+        6,
+        10,
+        14
+      ],
+      "enemies": [
+        "Goblin Scout",
+        "Pit Goblin",
+        "Orc Marauder",
+        "Orc Taskmaster",
+        "Cave Troll",
+        "Hill Troll",
+        "Nameless Thing"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Well-Equipped",
+      "effect": "+1 Armor, +2 HP",
+      "costs": [
+        6,
+        11,
+        16
+      ],
+      "enemies": [
+        "Goblin Scout",
+        "Pit Goblin",
+        "Shadowman",
+        "Orc Taskmaster",
+        "Wight",
+        "Cave Troll",
+        "Hill Troll"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Veteran",
+      "effect": "+5 HP, +1 Damage",
+      "costs": [
+        10,
+        17,
+        24
+      ],
+      "enemies": [
+        "Pit Goblin",
+        "Shadowman",
+        "Orc Taskmaster"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Wary",
+      "effect": "Immune to Stun and Lethal",
+      "costs": [
+        null,
+        16,
+        24
+      ],
+      "enemies": [
+        "Goblin Scout",
+        "Giant Spider",
+        "Pit Goblin",
+        "Ruffian",
+        "Orc Hunter",
+        "Orc Marauder",
+        "Orc Taskmaster",
+        "Hungry Warg",
+        "Hill Troll"
+      ],
+      "conditional": true
+    },
+    {
+      "name": "Guarded",
+      "effect": "Immune to Stun and Cleave",
+      "costs": [
+        null,
+        18,
+        27
+      ],
+      "enemies": [
+        "Goblin Scout",
+        "Giant Spider",
+        "Pit Goblin",
+        "Orc Hunter",
+        "Orc Marauder",
+        "Shadowman",
+        "Orc Taskmaster",
+        "Wight",
+        "Cave Troll"
+      ],
+      "conditional": false
+    },
+    {
+      "name": "Hardened",
+      "effect": "Immune to Pierce and Sunder",
+      "costs": [
+        6,
+        12,
+        18
+      ],
+      "enemies": [
+        "Pit Goblin",
+        "Orc Hunter",
+        "Orc Marauder",
+        "Shadowman",
+        "Orc Taskmaster",
+        "Cave Troll",
+        "Nameless Thing"
+      ],
+      "conditional": false
+    }
+  ],
+  "campaigns": [
+    {
+      "name": "Bones of Arnor",
+      "modifiers": [
+        {
+          "name": "Spectral",
+          "effect": "+2 Sorcery, Lethal immune"
+        },
+        {
+          "name": "King's Armor",
+          "effect": "2 arm, +5 hp"
+        },
+        {
+          "name": "Warband Leader",
+          "effect": "+2 Armor, +2 hp, +1 Damage"
+        },
+        {
+          "name": "Orc Champion (Gulgotar)",
+          "effect": "+1 Damage, +1 Fear"
+        },
+        {
+          "name": "Trained for Battle (Uluk)",
+          "effect": "+2 Armor, +5 hp"
+        },
+        {
+          "name": "Númenórean Blood (Atarin)",
+          "effect": "+4 hp"
+        },
+        {
+          "name": "Spirit Guard (Atarin)",
+          "effect": "+2 Fear, +2 Damage, +2 Sorcery"
+        },
+        {
+          "name": "Eternal Flame (Atarin transformed)",
+          "effect": "+1 Sorcery, +15 hp"
+        },
+        {
+          "name": "Eternal Lord (Atarin transformed)",
+          "effect": "+2 Armor, +2 hp, +1 Fear, +1 Damage"
+        }
+      ],
+      "bosses": [
+        {
+          "id": "atarin",
+          "name": "Atarin",
+          "tags": [
+            "Humanoid",
+            "Powerful",
+            "Small"
+          ],
+          "health": 8,
+          "armor": 1,
+          "sorcery": 1,
+          "move": "2",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Wisdom",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Spirit",
+              "damage": 0,
+              "fear": 3
+            },
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 0
+            }
+          ],
+          "note": "Can place Weakness on top of the deck, cause additional facedown Fear, or remove inspiration. Its transformed form and campaign modifiers alter its defenses and attacks."
+        },
+        {
+          "id": "atarin-spirit",
+          "name": "Atarin Spirit",
+          "tags": [
+            "Humanoid",
+            "Powerful"
+          ],
+          "health": 8,
+          "armor": 0,
+          "sorcery": 3,
+          "move": "Wight",
+          "unused": false,
+          "attacks": [],
+          "note": "Uses Wight movement and activations."
+        },
+        {
+          "id": "uluk",
+          "name": "Uluk",
+          "tags": [
+            "Beast",
+            "Powerful",
+            "Large"
+          ],
+          "health": 18,
+          "armor": 2,
+          "sorcery": 0,
+          "move": "1",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 4
+            },
+            {
+              "negate": "Spirit",
+              "damage": 4,
+              "fear": 0
+            },
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 1
+            },
+            {
+              "negate": "Might",
+              "damage": 3,
+              "fear": 1
+            }
+          ],
+          "note": "Retreats one space from the nearest hero after each documented attack."
+        },
+        {
+          "id": "uluk-finale",
+          "name": "Uluk Finale",
+          "tags": [
+            "Beast",
+            "Powerful",
+            "Large"
+          ],
+          "health": 14,
+          "armor": 2,
+          "sorcery": 0,
+          "move": "2, only dashes at speed 3",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Might",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Agility",
+              "damage": 5,
+              "fear": 0
+            },
+            {
+              "negate": "Spirit",
+              "damage": 2,
+              "fear": 3
+            },
+            {
+              "negate": "Might",
+              "damage": 4,
+              "fear": 1
+            }
+          ],
+          "note": "Can weaken Guard, add a prepared Weakness, or turn Damage faceup. One attack rewards avoiding Fear with Scout 1."
+        },
+        {
+          "id": "gulgotar",
+          "name": "Gulgotar",
+          "tags": [
+            "Orc",
+            "Powerful"
+          ],
+          "health": 8,
+          "armor": 2,
+          "sorcery": 0,
+          "move": "1, dashes at speed 3",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Might",
+              "damage": 3,
+              "fear": 1
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Wits",
+              "damage": 3,
+              "fear": 1
+            },
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 0
+            }
+          ],
+          "note": "Can remove boons or inspiration; its dash is three spaces despite a normal move of one."
+        },
+        {
+          "id": "scion",
+          "name": "Scion",
+          "tags": [
+            "Humanoid",
+            "Powerful"
+          ],
+          "health": 8,
+          "armor": 0,
+          "sorcery": 3,
+          "move": "Wight",
+          "unused": false,
+          "attacks": [],
+          "note": "Uses Wight movement and activations."
+        }
+      ]
+    },
+    {
+      "name": "Hunt for the Ember Crown",
+      "modifiers": [
+        {
+          "name": "Pack's Vengeance (Coalfang)",
+          "effect": "+2 hp, Stun/Lethal immune"
+        },
+        {
+          "name": "Pack's Vengeance (Coalfake)",
+          "effect": "+2 hp, Stun immune, says Lethal immune in description but this is a lie."
+        },
+        {
+          "name": "Burning Hatred (Coalfang)",
+          "effect": "+1 Armor, +4 Health"
+        },
+        {
+          "name": "Blind Rage (Coalfang)",
+          "effect": "+2 Armor, Pierce/Sunder immune"
+        },
+        {
+          "name": "Last Gasp (Coalfang)",
+          "effect": "-2 Armor, +1 Damage, +1 Fear"
+        }
+      ],
+      "bosses": [
+        {
+          "id": "coalfang",
+          "name": "Coalfang",
+          "tags": [
+            "Beast",
+            "Fast"
+          ],
+          "health": 8,
+          "armor": 1,
+          "sorcery": 0,
+          "move": "3 (When dashing targets hero with the most Damage)",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 1
+            },
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 3
+            }
+          ],
+          "note": "Targets the hero with the most Damage when dashing. Attacks can remove prepared cards or inspiration, add facedown Fear, turn Fear faceup, and reposition Coalfang."
+        },
+        {
+          "id": "coalfang-decoy-coalfake",
+          "name": "Coalfang Decoy (Coalfake)",
+          "tags": [
+            "Beast",
+            "Fast"
+          ],
+          "health": 8,
+          "armor": 1,
+          "sorcery": 0,
+          "move": "3 (When dashing targets hero with the most Damage)",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 1
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 3
+            }
+          ],
+          "note": "Shares Coalfang’s base stats. The author reports that its Pack’s Vengeance description claims Lethal immunity which the implementation does not enforce."
+        },
+        {
+          "id": "weak-warg",
+          "name": "Weak Warg",
+          "tags": [
+            "Beast",
+            "Fast"
+          ],
+          "health": 3,
+          "armor": 1,
+          "sorcery": 0,
+          "move": "Warg Move",
+          "unused": false,
+          "attacks": [],
+          "note": "A chapter-one scripted Warg with only 3 health, using a subset of Warg attacks and normal Warg movement."
+        },
+        {
+          "id": "mushroom-thief",
+          "name": "Mushroom Thief",
+          "tags": [
+            "Goblin",
+            "Weak",
+            "Small"
+          ],
+          "health": 6,
+          "armor": 2,
+          "sorcery": 0,
+          "move": "0 if hero in space, otherwise 2 to nearest space without a hero.",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 0
+            },
+            {
+              "negate": "Agility",
+              "damage": 0,
+              "fear": 2
+            }
+          ],
+          "note": "Stays put with a hero in its space; otherwise moves two spaces toward the nearest empty-of-heroes space. Its physical attack deals facedown Damage."
+        },
+        {
+          "id": "barrow-wight",
+          "name": "Barrow-Wight",
+          "tags": [
+            "Humanoid",
+            "Powerful"
+          ],
+          "health": 5,
+          "armor": 0,
+          "sorcery": 1,
+          "move": "Wight Activation",
+          "unused": false,
+          "attacks": [],
+          "note": "Uses Wight movement and activations, with reduced health and sorcery."
+        },
+        {
+          "id": "doorsmasher-the-troll",
+          "name": "Doorsmasher the Troll",
+          "tags": [
+            "Beast",
+            "Powerful",
+            "Large"
+          ],
+          "health": 14,
+          "armor": 2,
+          "sorcery": 0,
+          "move": "0",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 2
+            }
+          ],
+          "note": "Stationary. Its documented attack removes one inspiration if any Damage or Fear gets through."
+        },
+        {
+          "id": "grot-elf-breaker",
+          "name": "Grot Elf-Breaker",
+          "tags": [
+            "Orc",
+            "Powerful"
+          ],
+          "health": 7,
+          "armor": 3,
+          "sorcery": 0,
+          "move": "2, prefers to attack Elves. Only dashes at 3 speed.",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Might",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 2
+            }
+          ],
+          "note": "Prefers Elves and dashes three spaces. Can move toward an adjacent concentration of enemies or turn Fear faceup."
+        },
+        {
+          "id": "ogruk-dwarf-cutter",
+          "name": "Ogruk Dwarf-Cutter",
+          "tags": [
+            "Orc",
+            "Powerful"
+          ],
+          "health": 7,
+          "armor": 3,
+          "sorcery": 0,
+          "move": "2, prefers to attack Dwarves. Only dashes at 3 speed.",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Wits",
+              "damage": 3,
+              "fear": 0
+            }
+          ],
+          "note": "Prefers Dwarves and dashes three spaces. Can turn Damage faceup; one attack prevents using Guard against its Damage."
+        }
+      ]
+    },
+    {
+      "name": "Shadowed Paths",
+      "modifiers": [
+        {
+          "name": "Durin's Bane 2 (Balrog)",
+          "effect": "+1 Armor, Lethal/Stun immune"
+        },
+        {
+          "name": "Durin's Bane 3 (Balrog)",
+          "effect": "+1 Armor, +1 Sorcery, +4 hp, +1 Fear, Lethal/Sunder immune"
+        },
+        {
+          "name": "Durin's Bane 4 (Balrog)",
+          "effect": "+2 Armor, +2 Sorcery, +5 hp, +2 Fear, +2 Damage, Lethal/Sunder/Stun immune"
+        },
+        {
+          "name": "Master of the Pit 1 (Supplicant of Morgoth)",
+          "effect": "+1 Sorcery, Stun immune"
+        },
+        {
+          "name": "Master of the Pit 2 (Supplicant of Morgoth)",
+          "effect": "+2 Sorcery, Stun immune"
+        },
+        {
+          "name": "Master of the Pit 3 (Supplicant of Morgoth)",
+          "effect": "+3 Sorcery, Stun immune"
+        },
+        {
+          "name": "Herald of the Balrog (Supplicant)",
+          "effect": "+2 hp, +3 sorcery, Smite/Stun immune"
+        },
+        {
+          "name": "Eldest Worm 1 (Eldest Worm)",
+          "effect": "-4 hp, +1 Armor, Pierce/Sunder immune"
+        },
+        {
+          "name": "Eldest Worm 2 (Eldest Worm)",
+          "effect": "+1 Armor, Pierce/Sunder immune"
+        },
+        {
+          "name": "Eldest Worm 3 (Eldest Worm)",
+          "effect": "+4 hp, +1 Armor, Pierce/Sunder immune"
+        },
+        {
+          "name": "Orc Captain",
+          "effect": "+1 Armor, +2 hp, +1 Fear, Stun immune"
+        },
+        {
+          "name": "Spider Captain",
+          "effect": "+7 hp, +1 Damage, Stun immune"
+        },
+        {
+          "name": "Shadowman Captain",
+          "effect": "+4 hp, +1 Sorcery, Stun immune"
+        }
+      ],
+      "bosses": [
+        {
+          "id": "balrog-durin-s-bane",
+          "name": "Balrog/Durin's Bane",
+          "tags": [
+            "Beast",
+            "Slow",
+            "Powerful",
+            "Large"
+          ],
+          "health": 18,
+          "armor": 2,
+          "sorcery": 2,
+          "move": "1, attacks every hero in a space",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 4,
+              "fear": 0
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 4
+            },
+            {
+              "negate": "Might",
+              "damage": 4,
+              "fear": 0
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 3,
+              "fear": 3
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 1,
+              "fear": 4
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 4
+            },
+            {
+              "negate": "Might",
+              "damage": 4,
+              "fear": 0
+            }
+          ],
+          "note": "Attacks every hero in its space. Can remove inspiration before negation or deal extra Damage afterward. One Wisdom attack grants Elves an extra success."
+        },
+        {
+          "id": "spawn-of-ungoliant",
+          "name": "Spawn of Ungoliant",
+          "tags": [
+            "Beast",
+            "Powerful",
+            "Large"
+          ],
+          "health": 18,
+          "armor": 2,
+          "sorcery": 0,
+          "move": "2",
+          "unused": true,
+          "attacks": [
+            {
+              "negate": "Might",
+              "damage": 4,
+              "fear": 0
+            },
+            {
+              "negate": "Agility",
+              "damage": 5,
+              "fear": 0
+            },
+            {
+              "negate": "Spirit",
+              "damage": 0,
+              "fear": 3
+            },
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Agility",
+              "damage": 4,
+              "fear": 1
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 3
+            },
+            {
+              "negate": "Might",
+              "damage": 4,
+              "fear": 0
+            }
+          ],
+          "note": "Unused enemy definition, included by the researcher for completeness. Attacks can drain inspiration or add Fear. It does not appear in ordinary random spawns."
+        },
+        {
+          "id": "nalka",
+          "name": "Nalka",
+          "tags": [
+            "Beast",
+            "Powerful",
+            "Large"
+          ],
+          "health": 20,
+          "armor": 2,
+          "sorcery": 1,
+          "move": "2 (Attacks hero with most corruption)/ 1 space towards the space with the fewest heroes. ",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 3
+            },
+            {
+              "negate": "Agility / Wits",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Spirit / Wits",
+              "damage": 1,
+              "fear": 3
+            },
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Agility / Wisdom",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Spirit",
+              "damage": 2,
+              "fear": 3
+            },
+            {
+              "negate": "Might / Spirit",
+              "damage": 2,
+              "fear": 2
+            }
+          ],
+          "note": "Two activation sets are documented; the author is uncertain how the effects and damage values pair with each set. Targets corruption in one movement pattern. A focus activation teleports to its focus and deals 2 Damage and 2 Fear, negated with Might."
+        },
+        {
+          "id": "relic-shade",
+          "name": "Relic Shade",
+          "tags": [
+            "Humanoid",
+            "Powerful"
+          ],
+          "health": 10,
+          "armor": 1,
+          "sorcery": 2,
+          "move": "Shadowman Activations",
+          "unused": false,
+          "attacks": [],
+          "note": "Uses Shadowman movement and activations."
+        },
+        {
+          "id": "master-of-the-pit",
+          "name": "Master of the Pit",
+          "tags": [
+            "Orc",
+            "Slow",
+            "Powerful"
+          ],
+          "health": 9,
+          "armor": 2,
+          "sorcery": 0,
+          "move": null,
+          "unused": false,
+          "attacks": [],
+          "note": "Uses Orc Taskmaster activations; normal Taskmaster movement is slow."
+        },
+        {
+          "id": "master-of-the-pit-balrog",
+          "name": "Master of the Pit (Balrog)",
+          "tags": [
+            "Orc",
+            "Slow",
+            "Powerful"
+          ],
+          "health": 9,
+          "armor": 2,
+          "sorcery": 0,
+          "move": "1",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 2
+            }
+          ],
+          "note": "Its documented attack advances the Balrog one space toward the hero carrying the Crown of Shadows."
+        }
+      ]
+    },
+    {
+      "name": "The Haunting of Dale",
+      "modifiers": [
+        {
+          "name": "Wisp",
+          "effect": "-1 health, -1 Sorcery"
+        },
+        {
+          "name": "Possessed (Watch Commander Shade)",
+          "effect": "+1 Fear, Smite immune"
+        },
+        {
+          "name": "Golden Mask",
+          "effect": "+1 Armor, +2 hp, +2 Sorcery, +1 Fear"
+        },
+        {
+          "name": "Ursa's Vengeance (Ollie)",
+          "effect": "+4 hp, +1 Armor, +2 Sorcery, Lethal/Stun immune"
+        },
+        {
+          "name": "Favored Beast (Worm Witch Steed)",
+          "effect": "+1 Armor, +4 hp, Stun immune"
+        },
+        {
+          "name": "Mother of Rot (Worm Witch)",
+          "effect": "+1 Armor, +1 Fear, +1 Sorcery, Stun immune"
+        },
+        {
+          "name": "Hatchling (Young Worm)",
+          "effect": "-5 hp"
+        }
+      ],
+      "bosses": [
+        {
+          "id": "watch-commander-shade",
+          "name": "Watch Commander Shade",
+          "tags": [
+            "Humanoid",
+            "Powerful"
+          ],
+          "health": 10,
+          "armor": 1,
+          "sorcery": 2,
+          "move": "2",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Wits",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Might",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 2,
+              "fear": 0
+            },
+            {
+              "negate": "Spirit",
+              "damage": 0,
+              "fear": 3
+            },
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 2
+            }
+          ],
+          "note": "Several attacks make nearby heroes spend inspiration or move away."
+        },
+        {
+          "id": "golden-mask",
+          "name": "Golden Mask",
+          "tags": [
+            "Humanoid",
+            "Weak"
+          ],
+          "health": 5,
+          "armor": 0,
+          "sorcery": 0,
+          "move": "2, ignore terrain",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 0
+            },
+            {
+              "negate": "Might",
+              "damage": 0,
+              "fear": 2
+            },
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 2
+            },
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Might",
+              "damage": 1,
+              "fear": 1
+            }
+          ],
+          "note": "Ignores terrain and uses a subset of Ruffian attacks. One physical attack can grant Emboldened if Damage is suffered."
+        },
+        {
+          "id": "ursa",
+          "name": "Ursa",
+          "tags": [
+            "Humanoid",
+            "Powerful"
+          ],
+          "health": 16,
+          "armor": 2,
+          "sorcery": 4,
+          "move": "3, ignore terrain",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Might",
+              "damage": 3,
+              "fear": 1
+            },
+            {
+              "negate": "Wits",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 3
+            },
+            {
+              "negate": "Spirit",
+              "damage": 0,
+              "fear": 3
+            },
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Spirit",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Might",
+              "damage": 4,
+              "fear": 0
+            }
+          ],
+          "note": "Ignores terrain. Can turn Damage or Fear faceup, add Weakness, strip boons or inspiration, and retreat to a space without a hero."
+        },
+        {
+          "id": "ollie",
+          "name": "Ollie",
+          "tags": [
+            "Beast",
+            "Slow",
+            "Powerful",
+            "Large"
+          ],
+          "health": 11,
+          "armor": 1,
+          "sorcery": 0,
+          "move": "1",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Spirit",
+              "damage": 2,
+              "fear": 2
+            },
+            {
+              "negate": "Might",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Might",
+              "damage": 4,
+              "fear": 0
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Wits",
+              "damage": 3,
+              "fear": 2
+            }
+          ],
+          "note": "Can remove all inspiration, add facedown Damage, or reduce cards revealed by Dwarves and Humans for one Might test."
+        },
+        {
+          "id": "worm-witch",
+          "name": "Worm Witch",
+          "tags": [
+            "Humanoid",
+            "Powerful"
+          ],
+          "health": 15,
+          "armor": 0,
+          "sorcery": 4,
+          "move": "3",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Spirit",
+              "damage": 0,
+              "fear": 2
+            },
+            {
+              "negate": "Spirit",
+              "damage": 1,
+              "fear": 1
+            },
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 0
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 1,
+              "fear": 2
+            },
+            {
+              "negate": "Wits",
+              "damage": 2,
+              "fear": 0
+            },
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 0
+            }
+          ],
+          "note": "Can add Weakness, remove boons or inspiration, and teleport to the closest hero."
+        },
+        {
+          "id": "worm-witch-steed",
+          "name": "Worm Witch Steed",
+          "tags": [
+            "Beast",
+            "Powerful",
+            "Large"
+          ],
+          "health": 20,
+          "armor": 2,
+          "sorcery": 0,
+          "move": "3 (Teleports, infinite teleport if out of range)",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Spirit",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 0
+            },
+            {
+              "negate": "Spirit",
+              "damage": 0,
+              "fear": 3
+            },
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Wits",
+              "damage": 2,
+              "fear": 1
+            }
+          ],
+          "note": "Teleports without traversing spaces and can teleport to reach a target from any distance when out of range. Attacks can remove boons or add Weakness."
+        }
+      ]
+    },
+    {
+      "name": "Spreading War",
+      "modifiers": [
+        {
+          "name": "Swift Death (Mercenary Assassin)",
+          "effect": "+1 Damage"
+        },
+        {
+          "name": "Witch-king (The Shadow)",
+          "effect": "Stun immune"
+        },
+        {
+          "name": "Chief of the Nine (Witch King)",
+          "effect": "+1 Armor, Stun immune"
+        },
+        {
+          "name": "Lord of Minas Morgul (Witch King)",
+          "effect": "+5 hp, +1 Damage, +1 Fear, Lethal/Sunder/Stun immune"
+        },
+        {
+          "name": "Undying Hate (Witch King)",
+          "effect": "-12 hp, +1 Fear, +1 Damage, Stun immune"
+        }
+      ],
+      "bosses": [
+        {
+          "id": "mercenary-assassin",
+          "name": "Mercenary Assassin",
+          "tags": [
+            "Humanoid",
+            "Weak"
+          ],
+          "health": 6,
+          "armor": 1,
+          "sorcery": 0,
+          "move": "2, Attacks the hero who has suffered the most Damage.",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Agility",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Wits",
+              "damage": 2,
+              "fear": 1
+            }
+          ],
+          "note": "Targets the hero with the most Damage and moves one space away from the closest hero after each attack."
+        },
+        {
+          "id": "girandar",
+          "name": "Girandar",
+          "tags": [
+            "Humanoid",
+            "Powerful"
+          ],
+          "health": 8,
+          "armor": 1,
+          "sorcery": 0,
+          "move": "2",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Might",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 1
+            },
+            {
+              "negate": "Wits",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 3,
+              "fear": 0
+            },
+            {
+              "negate": "Wits",
+              "damage": 3,
+              "fear": 0
+            }
+          ],
+          "note": "The author flags the first Agility attack as potentially unused or incorrect. Other attacks can capture a hero, disable inspiration spending, remove a prepared Tactic, or damage heroes engaged with enemies."
+        },
+        {
+          "id": "the-shadow",
+          "name": "The Shadow",
+          "tags": [
+            "Humanoid",
+            "Beast",
+            "Powerful",
+            "Large",
+            "Flying"
+          ],
+          "health": null,
+          "armor": null,
+          "sorcery": null,
+          "move": null,
+          "unused": false,
+          "attacks": [],
+          "note": "A renamed Witch-king with functionally equivalent activations. Use the Witch-king reference below for base stats."
+        },
+        {
+          "id": "the-witch-king",
+          "name": "The Witch-King",
+          "tags": [
+            "Humanoid",
+            "Beast",
+            "Powerful",
+            "Large",
+            "Flying"
+          ],
+          "health": 16,
+          "armor": 1,
+          "sorcery": 3,
+          "move": "Chooses one of three movement options depending on activation. Usually move speed 2 ignoring terrain, 33% chance to teleport to farthest target.",
+          "unused": false,
+          "attacks": [
+            {
+              "negate": "Might",
+              "damage": 4,
+              "fear": 0
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 2,
+              "fear": 3
+            },
+            {
+              "negate": "Agility",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 3,
+              "fear": 2
+            },
+            {
+              "negate": "Might",
+              "damage": 0,
+              "fear": 4
+            },
+            {
+              "negate": "Wisdom",
+              "damage": 0,
+              "fear": 4
+            },
+            {
+              "negate": "Agility",
+              "damage": 4,
+              "fear": 0
+            },
+            {
+              "negate": "Might",
+              "damage": 2,
+              "fear": 3
+            }
+          ],
+          "note": "Mixes movement, effects, and attack descriptions. Some activations teleport to the farthest hero or target the hero with the most Fear. Effects include Terrified, inspiration loss, and turning Fear faceup; some attacks reduce Damage for heroes equipped with a two-handed item."
+        }
+      ]
+    }
+  ]
+}

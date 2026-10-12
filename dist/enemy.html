@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141915">
+  <meta name="description" content="Enemy stats, attack averages, negate chances, and elite modifiers.">
+  <title>Enemy reference · Journeys</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141915'/%3E%3Cpath d='M16 14h32v36H16z' fill='%23d8bd78' stroke='%23f1dfad' stroke-width='2'/%3E%3Cpath d='M23 23h18M23 29h18M23 35h13' stroke='%233f4d37' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="enemies.css">
+  <script type="module" src="enemies.mjs"></script>
+</head>
+<body class="enemy-page" data-reference="enemy">
+  <header class="topbar">
+    <nav class="view-tabs" aria-label="Views">
+      <a class="view-tab" href="index.html">Builds</a>
+      <a class="view-tab create-build-link" href="build.html" aria-label="Create build" title="Create build">+</a>
+      <a class="view-tab active" href="enemies.html">Enemies</a>
+    </nav>
+    <a class="view-tab edit-cards-link" href="index.html#cards">Edit cards</a>
+  </header>
+  <main class="reference-main">
+    <nav class="reference-nav" aria-label="Enemy reference">
+      <a href="enemies.html" aria-current="true">Enemy reference</a>
+      <a href="enemy-mechanics.html">Mechanics & elites</a>
+      <a href="enemy-bosses.html">Campaign adversaries</a>
+    </nav>
+    <div id="reference-content"><p class="reference-status" role="status">Loading enemy research…</p></div>
+    <noscript><p>Enable JavaScript to browse the enemy reference, or <a href="https://boardgamegeek.com/thread/2469108/demystifying-enemies-a-project-documenting-enemy-s">read the original BGG research</a>.</p></noscript>
+  </main>
+</body>
+</html>

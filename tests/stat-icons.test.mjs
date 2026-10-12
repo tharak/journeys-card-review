@@ -45,7 +45,7 @@ test('combined negate stats and attack tokens preserve meaning without injecting
   assert.ok(!text.includes('{Damage}'));
 });
 
-test('shared attack strip retains group endpoints, decreases, and unavailable groups', () => {
+test('shared attack strip retains exact values, decreases, and unavailable groups without bars', () => {
   const groups = [{damage: 1.6, fear: 1}, {damage: 2.2, fear: .8}, {damage: 2.5, fear: 1}];
   const strip = groupAttackStrip(groups);
   assert.equal((strip.match(/<svg /g) || []).length, 1);
@@ -53,7 +53,8 @@ test('shared attack strip retains group endpoints, decreases, and unavailable gr
     assert.ok(strip.includes(`${i + 1} ${i ? 'enemies' : 'enemy'}: ${a.damage} Damage, ${a.fear} Fear`));
     assert.ok(strip.includes(`data-group="${i + 1}" data-value="${a.fear}"`));
   }
-  assert.ok(strip.includes('d="M0 28 H14.4"'), 'the lower two-enemy Fear endpoint stays below the one-enemy endpoint');
+  assert.ok(strip.includes('data-group="2" data-value="0.8" data-end="14.4"'), 'the lower two-enemy Fear value is preserved');
+  assert.ok(!strip.includes('<path') && !strip.includes('<circle'), 'no bars or endpoint dots');
   assert.ok(groupAttackStrip([groups[0], null, null]).includes('2 enemies: unavailable; 3 enemies: unavailable'));
   assert.ok(!groupAttackStrip([{damage: 0, fear: 0}]).includes('<image'));
   const ids = [...strip.matchAll(/clipPath id="([^"]+)"/g)].map(m => m[1]);
